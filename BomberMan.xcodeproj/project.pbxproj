@@ -15,6 +15,7 @@
 		C815F79D27B400490084DE7A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C815F79B27B400490084DE7A /* Main.storyboard */; };
 		C815F79F27B400490084DE7A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C815F79E27B400490084DE7A /* Assets.xcassets */; };
 		C815F7A227B400490084DE7A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C815F7A027B400490084DE7A /* LaunchScreen.storyboard */; };
+		C869390D27BA66E100EEF877 /* TileSet Placeholder.sks in Resources */ = {isa = PBXBuildFile; fileRef = C869390C27BA66E100EEF877 /* TileSet Placeholder.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		C815F79C27B400490084DE7A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C815F79E27B400490084DE7A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C815F7A127B400490084DE7A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C869390C27BA66E100EEF877 /* TileSet Placeholder.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "TileSet Placeholder.sks"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 				C815F79B27B400490084DE7A /* Main.storyboard */,
 				C815F79E27B400490084DE7A /* Assets.xcassets */,
 				C815F7A027B400490084DE7A /* LaunchScreen.storyboard */,
+				C869390C27BA66E100EEF877 /* TileSet Placeholder.sks */,
 			);
 			path = BomberMan;
 			sourceTree = "<group>";
@@ -132,6 +135,7 @@
 				C815F79D27B400490084DE7A /* Main.storyboard in Resources */,
 				C815F79427B400490084DE7A /* GameScene.sks in Resources */,
 				C815F79F27B400490084DE7A /* Assets.xcassets in Resources */,
+				C869390D27BA66E100EEF877 /* TileSet Placeholder.sks in Resources */,
 				C815F7A227B400490084DE7A /* LaunchScreen.storyboard in Resources */,
 				C815F79627B400490084DE7A /* Actions.sks in Resources */,
 			);
