@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  BomberMan
 //
-//  Created by Luca Salmi on 2022-02-09.
+//  Created by Luca Salmi, Daniel Falkedal, Calle Höglund, Hampus Brandtman on 2022-02-15.
 //
 
 import UIKit

@@ -2,7 +2,7 @@
 //  GameViewController.swift
 //  BomberMan
 //
-//  Created by Luca Salmi on 2022-02-09.
+//  Created by Luca Salmi, Daniel Falkedal, Calle Höglund, Hampus Brandtman on 2022-02-15.
 //
 
 import UIKit
@@ -29,7 +29,7 @@ class GameViewController: UIViewController {
                 //sceneNode.graphs = scene.graphs
                 
                 // Set the scale mode to scale to fit the window
-                sceneNode.scaleMode = .aspectFill
+                sceneNode.scaleMode = .fill
                 
                 // Present the scene
                 if let view = self.view as! SKView? {
