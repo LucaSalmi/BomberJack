@@ -10,6 +10,11 @@ import GameplayKit
 
 class TestEnemy: Enemy {
     
+    //Movement AI logic variables
+    let changeDirectionInterval: Int = 32
+    var currentMovementDistance: Int = 0
+    var direction = CGPoint(x: 0, y: 0)
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("use init()")
     }
@@ -27,13 +32,41 @@ class TestEnemy: Enemy {
         physicsBody?.allowsRotation = false
         
         enemySpeed = 1.0
+        direction = getRandomDirection()
         
     }
     
     override func update() {
         
-        position.x += enemySpeed
+        position.x += (direction.x * enemySpeed)
+        position.y += (direction.y * enemySpeed)
         
+        currentMovementDistance += 1
+        if currentMovementDistance == changeDirectionInterval {
+            currentMovementDistance = 0
+            direction = getRandomDirection()
+        }
+        
+    }
+    
+    private func getRandomDirection() -> CGPoint {
+        var newDirection = CGPoint(x: 0, y: 0)
+        
+        let moveSideways: Bool = Bool.random()
+        if moveSideways {
+            newDirection.x = 1
+        }
+        else {
+            newDirection.y = 1
+        }
+        
+        let invertDirection: Bool = Bool.random()
+        if invertDirection {
+            newDirection.x *= -1
+            newDirection.y *= -1
+        }
+        
+        return newDirection
     }
     
 }

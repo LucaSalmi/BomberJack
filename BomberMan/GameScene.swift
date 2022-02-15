@@ -156,8 +156,6 @@ class GameScene: SKScene {
                 
                 if tile.userData?.object(forKey: "enemyType") != nil {
                     
-                    print("Key found!")
-                    
                     let value = tile.userData?.value(forKey: "enemyType") as! String
                     
                     var enemy: Enemy
@@ -173,7 +171,6 @@ class GameScene: SKScene {
                     enemy.position = enemiesMap.centerOfTile(atColumn: column, row: row)
                     Enemy.enemies.append(enemy)
                     enemyNode.addChild(enemy)
-                    print("Enemy added!")
                     
                 }
             }
