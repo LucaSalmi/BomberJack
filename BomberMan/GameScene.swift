@@ -12,9 +12,9 @@ class GameScene: SKScene {
     
     var backgroundMap: SKTileMapNode!
     var obstaclesTileMap: SKTileMapNode?
-    var breakablesTileMap: SKTileMapNode?
     
     var enemyNode = SKNode()
+    var breakablesNode = SKNode()
     var player = Player()
     
     var movementManager: MovementManager!
@@ -29,7 +29,6 @@ class GameScene: SKScene {
         
         movementManager = MovementManager(self, camera!)
         
-        breakablesTileMap = (childNode(withName: "breakables")as! SKTileMapNode)
         
         
     }
@@ -82,7 +81,7 @@ class GameScene: SKScene {
     
     func setupBreakablesPhysics(){
         
-        guard let breakablesTileMap = breakablesTileMap else {
+        guard let breakablesTileMap = childNode(withName: "breakables")as? SKTileMapNode else {
             return
         }
 
@@ -92,21 +91,28 @@ class GameScene: SKScene {
                 guard let tile = tile(in: breakablesTileMap, at: (column, row)) else {continue}
                 guard tile.userData?.object(forKey: "breakable") != nil else {continue}
                 
-                let node = SKNode()
-                
-                node.physicsBody = SKPhysicsBody(rectangleOf: tile.size)
-                
-                node.physicsBody?.categoryBitMask = PhysicsCategory.Breakable
-                node.physicsBody?.contactTestBitMask = PhysicsCategory.Breakable
+                var breakable: BreakableObject
+                //eventualy different types of breakable obj???
+                if tile.userData?.value(forKey: "breakable") as! Bool == true{
                     
-                node.physicsBody?.isDynamic = false
-                node.physicsBody?.friction = 0
+                    breakable = BreakableObject()
+                    
+                }else{
+                    
+                    breakable = BreakableObject()
+                }
                 
-                node.position = breakablesTileMap.centerOfTile(atColumn: column, row: row)
-                breakablesTileMap.addChild(node)
+                breakable.createPhysicsBody(tile: tile)
+                breakable.position = breakablesTileMap.centerOfTile(atColumn: column, row: row)
+                
+                breakablesNode.addChild(breakable)
                 
             }
         }
+        
+        breakablesNode.name = "BreakableObjects"
+        addChild(breakablesNode)
+        breakablesTileMap.removeFromParent()
     }
     
     
@@ -218,14 +224,13 @@ extension GameScene: SKPhysicsContactDelegate{
 
         let otherBody = contact.bodyA.categoryBitMask == PhysicsCategory.Player ?
         contact.bodyB : contact.bodyA
-        
-        print(otherBody.categoryBitMask)
-      
+              
         switch otherBody.categoryBitMask{
             
         case PhysicsCategory.Breakable:
             let obstacleNode = otherBody.node
             obstacleNode?.removeFromParent()
+            obstacleNode?.physicsBody = nil
             
         default:
             break
