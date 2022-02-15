@@ -12,12 +12,14 @@ class GameScene: SKScene {
     
     var backgroundMap: SKTileMapNode!
     var obstaclesTileMap: SKTileMapNode?
+    var breakablesTileMap: SKTileMapNode?
     var player = Player()
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         backgroundMap = (childNode(withName: "background") as! SKTileMapNode)
         obstaclesTileMap = (childNode(withName: "obstacles")as! SKTileMapNode)
+        breakablesTileMap = (childNode(withName: "breakables")as! SKTileMapNode)
         
     }
     
@@ -26,7 +28,8 @@ class GameScene: SKScene {
         addChild(player)
         setupCamera()
         setupWorldPhysics()
-        setupObstaclePhysics()
+        setupObstaclesPhysics()
+        setupBreakablesPhysics()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -68,36 +71,66 @@ class GameScene: SKScene {
       physicsWorld.contactDelegate = self
     }
     
-    func setupObstaclePhysics() {
-      guard let obstaclesTileMap = obstaclesTileMap else { return }
-      // 1
-      for row in 0..<obstaclesTileMap.numberOfRows {
-        for column in 0..<obstaclesTileMap.numberOfColumns {
-          // 2
-          guard let tile = tile(in: obstaclesTileMap,
-                                at: (column, row))
-            else { continue }
-          guard tile.userData?.object(forKey: "obstacle") != nil
-            else { continue }
-          // 3
-          let node = SKNode()
-          node.physicsBody = SKPhysicsBody(rectangleOf: tile.size)
-          node.physicsBody?.isDynamic = false
-          node.physicsBody?.friction = 0
-          
-
-          node.position = obstaclesTileMap.centerOfTile(
-            atColumn: column, row: row)
-          obstaclesTileMap.addChild(node)
+    func setupBreakablesPhysics(){
+        
+        guard let breakablesTileMap = breakablesTileMap else {
+            return
         }
-      }
+
+        for row in 0..<breakablesTileMap.numberOfRows{
+            for column in 0..<breakablesTileMap.numberOfColumns{
+                
+                guard let tile = tile(in: breakablesTileMap, at: (column, row)) else {continue}
+                guard tile.userData?.object(forKey: "breakable") != nil else {continue}
+                
+                let node = SKNode()
+                
+                node.physicsBody = SKPhysicsBody(rectangleOf: tile.size)
+                
+                node.physicsBody?.categoryBitMask = PhysicsCategory.Breakable
+                node.physicsBody?.contactTestBitMask = PhysicsCategory.Breakable
+                    
+                node.physicsBody?.isDynamic = false
+                node.physicsBody?.friction = 0
+                
+                node.position = breakablesTileMap.centerOfTile(atColumn: column, row: row)
+                breakablesTileMap.addChild(node)
+                print(breakablesTileMap.children)
+                
+            }
+        }
     }
+    
+    
+    func setupObstaclesPhysics(){
+        guard let obstaclesTileMap = obstaclesTileMap else {
+            return
+        }
+
+        for row in 0..<obstaclesTileMap.numberOfRows{
+            for column in 0..<obstaclesTileMap.numberOfColumns{
+                
+                guard let tile = tile(in: obstaclesTileMap, at: (column, row)) else {continue}
+                guard tile.userData?.object(forKey: "obstacle") != nil else {continue}
+                
+                let node = SKNode()
+                
+                node.physicsBody = SKPhysicsBody(rectangleOf: tile.size)
+
+                node.physicsBody?.isDynamic = false
+                node.physicsBody?.friction = 0
+                
+                node.position = obstaclesTileMap.centerOfTile(atColumn: column, row: row)
+                obstaclesTileMap.addChild(node)
+                
+            }
+        }
+    }
+    
     
     func tile(in tileMap: SKTileMapNode, at coordinates: tileCoordinates) -> SKTileDefinition?{
       return tileMap.tileDefinition(atColumn: coordinates.column, row: coordinates.row)
     }
-    
-    
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
@@ -105,6 +138,26 @@ class GameScene: SKScene {
     }
 }
 
+
 extension GameScene: SKPhysicsContactDelegate{
     
+    func didBegin(_ contact: SKPhysicsContact) {
+              
+      let other = contact.bodyA.categoryBitMask
+        == PhysicsCategory.Player ?
+          contact.bodyB : contact.bodyA
+        
+      switch other.categoryBitMask {
+      
+        case PhysicsCategory.Breakable:
+            if let obstacleNode = other.node {
+                print("removing")
+                obstacleNode.removeFromParent()
+                
+            }
+      default:
+        break
+      }
+    
+    }
 }
