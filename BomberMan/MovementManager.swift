@@ -49,9 +49,6 @@ class MovementManager {
             let topSide = virtualJoystick!.position.y + ((virtualJoystick!.size.height)/2)
             let bottomSide = virtualJoystick!.position.y - ((virtualJoystick!.size.height)/2)
             
-            print(leftSide)
-            print(mainLocation.x)
-            
             if mainLocation.x < leftSide || mainLocation.x > rightSide {
                 if mainLocation.y < bottomSide || mainLocation.y > topSide {
                     return
@@ -63,8 +60,6 @@ class MovementManager {
             let location = touch.location(in: virtualJoystick!)
             let currentNode = virtualJoystick!.atPoint(location)
             let currentNodeName = currentNode.name
-            
-            print(currentNodeName)
             
             touchLocation = location
             
@@ -85,34 +80,35 @@ class MovementManager {
             
             let joystickButtonName = currentJoystickButton!.name
             
+            //TODO: Remove this test variable
             var test: Int = 0
             
             switch (joystickButtonName) {
                 
             case "rightButton":
-                //TODO: Move player
+                //TODO: Move player right
                 test = -1
                 
                 //Test only
-                camera?.position.x += 1
+                //camera?.position.x += 1
             case "downButton":
-                //TODO: Move player
+                //TODO: Move player down
                 test = -1
                 
                 //Test only
-                camera?.position.y -= 1
+                //camera?.position.y -= 1
             case "leftButton":
-                //TODO: Move player
+                //TODO: Move player left
                 test = -1
                 
                 //Test only
-                camera?.position.x -= 1
+                //camera?.position.x -= 1
             default:
-                //TODO: Move player
+                //TODO: Move player up
                 test = -1
                 
                 //Test only
-                camera?.position.y += 1
+                //camera?.position.y += 1
             }
         
             if touchLocation != nil && touchLocation != nil {
