@@ -154,7 +154,7 @@ class GameScene: SKScene {
                     
                     let value = tile.userData?.value(forKey: "enemyType") as! String
                     
-                    var enemy = Enemy()
+                    var enemy: Enemy
                     
                     if value == "testEnemy" {
                         enemy = TestEnemy()
@@ -169,14 +169,14 @@ class GameScene: SKScene {
                     enemyNode.addChild(enemy)
                     print("Enemy added!")
                     
-                    
                 }
-                
-                
-                
             }
         }
         
+        enemyNode.name = "Enemies"
+        addChild(enemyNode)
+        
+        enemiesMap.removeFromParent()
     }
     
     
