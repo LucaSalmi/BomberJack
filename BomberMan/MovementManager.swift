@@ -80,36 +80,21 @@ class MovementManager {
             
             let joystickButtonName = currentJoystickButton!.name
             
-            //TODO: Remove this test variable
-            var test: Int = 0
+            var direction = CGPoint(x: 0, y: 0)
             
             switch (joystickButtonName) {
                 
             case "rightButton":
-                //TODO: Move player right
-                test = -1
-                
-                //Test only
-                //camera?.position.x += 1
+                direction.x = 1
             case "downButton":
-                //TODO: Move player down
-                test = -1
-                
-                //Test only
-                //camera?.position.y -= 1
+                direction.y = -1
             case "leftButton":
-                //TODO: Move player left
-                test = -1
-                
-                //Test only
-                //camera?.position.x -= 1
+                direction.x = -1
             default:
-                //TODO: Move player up
-                test = -1
-                
-                //Test only
-                //camera?.position.y += 1
+                direction.y = 1
             }
+            
+            context.player.move(direction: direction)
         
             if touchLocation != nil && touchLocation != nil {
                 centerButton!.position = touchLocation!

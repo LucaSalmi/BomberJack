@@ -9,7 +9,7 @@ import Foundation
 import SpriteKit
 
 enum PlayerSettings{
-    static let playerSpeed: CGFloat = 1.0
+    static let playerSpeed: CGFloat = 1.5
 }
 
 class Player: SKSpriteNode{
@@ -32,9 +32,12 @@ class Player: SKSpriteNode{
         
     }
     
-    func move(target: CGPoint){
+    func move(direction: CGPoint){
         
-        let move = SKAction.move(to: target, duration: 1)
-        run(move)
+        self.position.x += (direction.x * PlayerSettings.playerSpeed)
+        self.position.y += (direction.y * PlayerSettings.playerSpeed)
+        
+        //let move = SKAction.move(to: target, duration: 1)
+        //run(move)
     }
 }
