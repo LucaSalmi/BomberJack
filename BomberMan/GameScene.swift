@@ -20,7 +20,6 @@ class GameScene: SKScene {
     var movementManager: MovementManager!
     
     
-    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
@@ -28,8 +27,6 @@ class GameScene: SKScene {
         obstaclesTileMap = (childNode(withName: "obstacles")as! SKTileMapNode)
         
         movementManager = MovementManager(self, camera!)
-        
-        
         
     }
     
@@ -213,10 +210,19 @@ class GameScene: SKScene {
     }
 }
 
-
 extension GameScene: SKPhysicsContactDelegate{
     
     func didBegin(_ contact: SKPhysicsContact) {
+        
+        //Check if any of the contacts are enemies
+        if contact.bodyA.node is Enemy {
+            let enemy = contact.bodyA.node as! Enemy
+            enemy.collision(with: contact.bodyB.node ?? nil)
+        }
+        if contact.bodyB.node is Enemy {
+            let enemy = contact.bodyB.node as! Enemy
+            enemy.collision(with: contact.bodyA.node ?? nil)
+        }
         
 
         let otherBody = contact.bodyA.categoryBitMask == PhysicsCategory.Player ?
