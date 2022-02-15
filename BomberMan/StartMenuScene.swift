@@ -12,6 +12,14 @@ class StartMenuScene: SKScene {
     
     var viewController: GameViewController? = nil
     
+
+    
+    override func sceneDidLoad() {
+        
+
+    
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
             
