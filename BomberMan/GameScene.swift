@@ -95,7 +95,6 @@ class GameScene: SKScene {
                 
                 node.position = breakablesTileMap.centerOfTile(atColumn: column, row: row)
                 breakablesTileMap.addChild(node)
-                print(breakablesTileMap.children)
                 
             }
         }
@@ -142,22 +141,22 @@ class GameScene: SKScene {
 extension GameScene: SKPhysicsContactDelegate{
     
     func didBegin(_ contact: SKPhysicsContact) {
-              
-      let other = contact.bodyA.categoryBitMask
-        == PhysicsCategory.Player ?
-          contact.bodyB : contact.bodyA
         
-      switch other.categoryBitMask {
+
+        let otherBody = contact.bodyA.categoryBitMask == PhysicsCategory.Player ?
+        contact.bodyB : contact.bodyA
+        
+        print(otherBody.categoryBitMask)
       
+        switch otherBody.categoryBitMask{
+            
         case PhysicsCategory.Breakable:
-            if let obstacleNode = other.node {
-                print("removing")
-                obstacleNode.removeFromParent()
-                
-            }
-      default:
-        break
-      }
+            let obstacleNode = otherBody.node
+            obstacleNode?.removeFromParent()
+            
+        default:
+            break
+        }
     
     }
 }
