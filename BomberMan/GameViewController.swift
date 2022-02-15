@@ -16,10 +16,13 @@ class GameViewController: UIViewController {
         
         // Load 'GameScene.sks' as a GKScene. This provides gameplay related content
         // including entities and graphs.
-        if let scene = GKScene(fileNamed: "GameScene") {
+        if let scene = GKScene(fileNamed: "StartMenuScene") {
+        
             
             // Get the SKScene from the loaded GKScene
-            if let sceneNode = scene.rootNode as! GameScene? {
+            if let sceneNode = scene.rootNode as! StartMenuScene? {
+                
+                sceneNode.viewController = self
                 
                 // Copy gameplay related content over to the scene
                 //sceneNode.entities = scene.entities
@@ -32,7 +35,7 @@ class GameViewController: UIViewController {
                 if let view = self.view as! SKView? {
                     view.presentScene(sceneNode)
                     
-                    view.ignoresSiblingOrder = true
+                    //view.ignoresSiblingOrder = true
                     
                     view.showsFPS = true
                     view.showsNodeCount = true
@@ -55,5 +58,28 @@ class GameViewController: UIViewController {
 
     override var prefersStatusBarHidden: Bool {
         return true
+    }
+    
+    func presentScene(_ sceneName: String) {
+        
+        if let view = self.view as! SKView? {
+            
+            if let scene = SKScene(fileNamed: sceneName) {
+                
+                let transition = SKTransition.fade(with: UIColor.black, duration: 1.5)
+                
+                scene.scaleMode = .aspectFill
+                
+                view.presentScene(scene, transition: transition)
+                
+                //view.ignoresSiblingOrder = true
+                
+                view.showsFPS = true
+                view.showsNodeCount = true
+                
+            }
+            
+        }
+        
     }
 }
