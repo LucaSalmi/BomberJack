@@ -13,6 +13,8 @@ class GameScene: SKScene {
     var backgroundMap: SKTileMapNode!
     var obstaclesTileMap: SKTileMapNode?
     var breakablesTileMap: SKTileMapNode?
+    
+    var enemyNode = SKNode()
     var player = Player()
     
     var movementManager: MovementManager!
@@ -29,6 +31,7 @@ class GameScene: SKScene {
         
         breakablesTileMap = (childNode(withName: "breakables")as! SKTileMapNode)
         
+        
     }
     
     override func didMove(to view: SKView) {
@@ -38,6 +41,7 @@ class GameScene: SKScene {
         setupWorldPhysics()
         setupObstaclesPhysics()
         setupBreakablesPhysics()
+        setupEnemiesPhysics()
     }
     
     
@@ -131,6 +135,50 @@ class GameScene: SKScene {
         }
     }
     
+    func setupEnemiesPhysics() {
+        
+        guard let enemiesMap = childNode(withName: "enemies") as? SKTileMapNode else {
+            return
+        }
+        
+        for row in 0..<enemiesMap.numberOfRows {
+            for column in 0..<enemiesMap.numberOfColumns {
+                
+                guard let tile = tile(in: enemiesMap, at: (column, row)) else {
+                    continue
+                }
+                
+                if tile.userData?.object(forKey: "enemyType") != nil {
+                    
+                    print("Key found!")
+                    
+                    let value = tile.userData?.value(forKey: "enemyType") as! String
+                    
+                    var enemy = Enemy()
+                    
+                    if value == "testEnemy" {
+                        enemy = TestEnemy()
+
+                    }
+                    else {
+                        enemy = TestEnemy()
+                    }
+                
+                    enemy.position = enemiesMap.centerOfTile(atColumn: column, row: row)
+                    Enemy.enemies.append(enemy)
+                    enemyNode.addChild(enemy)
+                    print("Enemy added!")
+                    
+                    
+                }
+                
+                
+                
+            }
+        }
+        
+    }
+    
     
     func tile(in tileMap: SKTileMapNode, at coordinates: tileCoordinates) -> SKTileDefinition?{
       return tileMap.tileDefinition(atColumn: coordinates.column, row: coordinates.row)
@@ -153,6 +201,11 @@ class GameScene: SKScene {
         
         //Game logic for updating movement goes in movementManagers update()-method
         movementManager.update()
+        
+        //Call update()-method on all enemies
+        for enemy in Enemy.enemies {
+            enemy.update()
+        }
         
     }
 }
