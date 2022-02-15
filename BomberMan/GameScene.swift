@@ -27,7 +27,6 @@ class GameScene: SKScene {
         
         movementManager = MovementManager(self, camera!)
         
-        
         breakablesTileMap = (childNode(withName: "breakables")as! SKTileMapNode)
         
     }
