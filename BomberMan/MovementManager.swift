@@ -2,7 +2,7 @@
 //  MovementManager.swift
 //  BomberMan
 //
-//  Created by Daniel Falkedal on 2022-02-15.
+//  Created by Luca Salmi, Daniel Falkedal, Calle Höglund, Hampus Brandtman on 2022-02-15.
 //
 
 import Foundation
