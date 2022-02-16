@@ -13,6 +13,8 @@ class MovementManager {
     var context: GameScene!
     var camera: SKCameraNode? = nil
     
+    
+    
     //Joystick variables
     var virtualJoystick: SKSpriteNode? = nil
     var centerButton: SKSpriteNode? = nil

@@ -15,18 +15,25 @@ class GameScene: SKScene {
     
     var enemyNode = SKNode()
     var breakablesNode = SKNode()
+    var bombsNode = SKNode()
     var player = Player()
     
     var movementManager: MovementManager!
+    var actionManager: ActionManagager!
     
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
+        
         backgroundMap = (childNode(withName: "background") as! SKTileMapNode)
         obstaclesTileMap = (childNode(withName: "obstacles")as! SKTileMapNode)
         
         movementManager = MovementManager(self, camera!)
+        actionManager = ActionManagager(self, camera!)
+        
+        addChild(bombsNode)
+        
         
     }
     
@@ -179,6 +186,15 @@ class GameScene: SKScene {
         enemiesMap.removeFromParent()
     }
     
+    func placeBomb(){
+        
+        let bomb = Bomb()
+        
+        bomb.position = player.position
+        
+        bombsNode.addChild(bomb)
+    }
+    
     
     func tile(in tileMap: SKTileMapNode, at coordinates: tileCoordinates) -> SKTileDefinition?{
       return tileMap.tileDefinition(atColumn: coordinates.column, row: coordinates.row)
@@ -186,6 +202,7 @@ class GameScene: SKScene {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         movementManager.checkInput(touches, with: event)
+        actionManager.checkInput(touches, with: event)
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {

@@ -40,4 +40,5 @@ class Player: SKSpriteNode{
         //let move = SKAction.move(to: target, duration: 1)
         //run(move)
     }
+    
 }
