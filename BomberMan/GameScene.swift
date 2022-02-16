@@ -10,14 +10,16 @@ import GameplayKit
 
 class GameScene: SKScene {
     
-    var backgroundMap: SKTileMapNode!
+    static var viewController: GameViewController? = nil
+    
+    var backgroundMap: SKTileMapNode?
     var obstaclesTileMap: SKTileMapNode?
     
-    var enemyNode = SKNode()
-    var breakablesNode = SKNode()
-    var player = Player()
+    var enemyNode: SKNode? = SKNode()
+    var breakablesNode: SKNode? = SKNode()
+    var player: Player? = Player()
     
-    var movementManager: MovementManager!
+    var movementManager: MovementManager? = nil
     
     
     required init?(coder aDecoder: NSCoder) {
@@ -28,11 +30,12 @@ class GameScene: SKScene {
         
         movementManager = MovementManager(self, camera!)
         
+        
     }
     
     override func didMove(to view: SKView) {
         
-        addChild(player)
+        addChild(player!)
         setupCamera()
         setupWorldPhysics()
         setupObstaclesPhysics()
@@ -52,12 +55,12 @@ class GameScene: SKScene {
       guard let camera = camera else {return}
       
       let zeroDistance = SKRange(constantValue: 0)
-      let playerConstraint = SKConstraint.distance(zeroDistance, to: player)
+      let playerConstraint = SKConstraint.distance(zeroDistance, to: player!)
       
-      let xInset = min((view?.bounds.width)!/2*camera.xScale, backgroundMap.frame.width/2)
-      let yInset = min((view?.bounds.height)!/2*camera.yScale, backgroundMap.frame.height/2)
+      let xInset = min((view?.bounds.width)!/2*camera.xScale, backgroundMap!.frame.width/2)
+      let yInset = min((view?.bounds.height)!/2*camera.yScale, backgroundMap!.frame.height/2)
       
-      let constrainRect = backgroundMap.frame.insetBy(dx: xInset, dy: yInset)
+      let constrainRect = backgroundMap!.frame.insetBy(dx: xInset, dy: yInset)
       
       let xRange = SKRange(lowerLimit: constrainRect.minX, upperLimit: constrainRect.maxX)
       let yRange = SKRange(lowerLimit: constrainRect.minY, upperLimit: constrainRect.maxY)
@@ -71,8 +74,8 @@ class GameScene: SKScene {
     }
     
     func setupWorldPhysics(){
-      backgroundMap.physicsBody = SKPhysicsBody(edgeLoopFrom: backgroundMap.frame)
-      backgroundMap.physicsBody?.categoryBitMask = PhysicsCategory.Edge
+      backgroundMap!.physicsBody = SKPhysicsBody(edgeLoopFrom: backgroundMap!.frame)
+      backgroundMap!.physicsBody?.categoryBitMask = PhysicsCategory.Edge
       physicsWorld.contactDelegate = self
     }
     
@@ -102,13 +105,13 @@ class GameScene: SKScene {
                 breakable.createPhysicsBody(tile: tile)
                 breakable.position = breakablesTileMap.centerOfTile(atColumn: column, row: row)
                 
-                breakablesNode.addChild(breakable)
+                breakablesNode!.addChild(breakable)
                 
             }
         }
         
-        breakablesNode.name = "BreakableObjects"
-        addChild(breakablesNode)
+        breakablesNode!.name = "BreakableObjects"
+        addChild(breakablesNode!)
         breakablesTileMap.removeFromParent()
     }
     
@@ -167,14 +170,14 @@ class GameScene: SKScene {
                 
                     enemy.position = enemiesMap.centerOfTile(atColumn: column, row: row)
                     Enemy.enemies.append(enemy)
-                    enemyNode.addChild(enemy)
+                    enemyNode!.addChild(enemy)
                     
                 }
             }
         }
         
-        enemyNode.name = "Enemies"
-        addChild(enemyNode)
+        enemyNode!.name = "Enemies"
+        addChild(enemyNode!)
         
         enemiesMap.removeFromParent()
     }
@@ -185,28 +188,37 @@ class GameScene: SKScene {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        movementManager.checkInput(touches, with: event)
+        movementManager!.checkInput(touches, with: event)
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        movementManager.checkInput(touches, with: event)
+        movementManager!.checkInput(touches, with: event)
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        movementManager.stopMovement()
+        movementManager!.stopMovement()
     }
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
         
         //Game logic for updating movement goes in movementManagers update()-method
-        movementManager.update()
+        movementManager?.update()
         
         //Call update()-method on all enemies
         for enemy in Enemy.enemies {
             enemy.update()
         }
         
+    }
+    
+    func stopScene() {
+        backgroundMap = nil
+        obstaclesTileMap = nil
+        enemyNode = nil
+        breakablesNode = nil
+        player = nil
+        movementManager = nil
     }
 }
 

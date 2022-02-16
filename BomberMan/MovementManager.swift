@@ -38,6 +38,9 @@ class MovementManager {
     }
     
     func checkInput(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        
+        
         for touch in touches {
             
             let mainLocation = touch.location(in: context)
@@ -67,6 +70,11 @@ class MovementManager {
                 currentJoystickButton = currentNode
             }
         }
+        
+        context.removeAllChildren()
+        context.removeAllActions()
+        context.stopScene()
+        GameScene.viewController?.presentScene("GameScene2")
     }
     
     func stopMovement() {
@@ -94,7 +102,7 @@ class MovementManager {
                 direction.y = 1
             }
             
-            context.player.move(direction: direction)
+            context.player!.move(direction: direction)
         
             if touchLocation != nil && touchLocation != nil {
                 centerButton!.position = touchLocation!
