@@ -25,3 +25,6 @@ struct PhysicsCategory{
     static let Obstacle: UInt32 = 0b100000
     
 }
+
+
+//test
