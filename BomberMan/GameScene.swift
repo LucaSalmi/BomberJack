@@ -226,6 +226,8 @@ extension GameScene: SKPhysicsContactDelegate{
     
     func didBegin(_ contact: SKPhysicsContact) {
         
+        
+        
         //Check if any of the contacts are enemies
         if contact.bodyA.node is Enemy {
             let enemy = contact.bodyA.node as! Enemy
@@ -245,7 +247,7 @@ extension GameScene: SKPhysicsContactDelegate{
             player.collision(with: contact.bodyA.node ?? nil)
         }
         
-        /*
+        
         if contact.bodyB.categoryBitMask == PhysicsCategory.Player {
             let otherBody = contact.bodyA
             
@@ -269,7 +271,8 @@ extension GameScene: SKPhysicsContactDelegate{
              
         }
 
-        */
+            
     
     }
+         
 }
