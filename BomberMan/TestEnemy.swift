@@ -66,8 +66,6 @@ class TestEnemy: Enemy {
             newDirection = getRandomDirection()
         }
         direction = newDirection
-        
-        print("Enemy collision with \(other?.name)")
     }
     
     override func update() {

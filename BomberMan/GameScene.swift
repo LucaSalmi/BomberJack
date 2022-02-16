@@ -13,10 +13,10 @@ class GameScene: SKScene {
     static var viewController: GameViewController? = nil
     
     var backgroundMap: SKTileMapNode?
-    var obstaclesTileMap: SKTileMapNode?
     
     var enemyNode: SKNode? = SKNode()
     var breakablesNode: SKNode? = SKNode()
+    var obstaclesNode: SKNode? = SKNode()
     var player: Player? = Player()
     
     var movementManager: MovementManager? = nil
@@ -26,9 +26,8 @@ class GameScene: SKScene {
         super.init(coder: aDecoder)
         
         backgroundMap = (childNode(withName: "background") as! SKTileMapNode)
-        obstaclesTileMap = (childNode(withName: "obstacles")as! SKTileMapNode)
         
-        movementManager = MovementManager(self, camera!)
+        movementManager = MovementManager(self)
         
         
     }
@@ -117,7 +116,7 @@ class GameScene: SKScene {
     
     
     func setupObstaclesPhysics(){
-        guard let obstaclesTileMap = obstaclesTileMap else {
+        guard let obstaclesTileMap = childNode(withName: "obstacles")as? SKTileMapNode else {
             return
         }
 
@@ -127,18 +126,26 @@ class GameScene: SKScene {
                 guard let tile = tile(in: obstaclesTileMap, at: (column, row)) else {continue}
                 guard tile.userData?.object(forKey: "obstacle") != nil else {continue}
                 
-                let node = SKNode()
+                var obstacle: ObstacleObject
+                if tile.userData?.value(forKey: "obstacle") as! Bool == true{
+                    
+                    obstacle = ObstacleObject()
+                    
+                }else{
+                    
+                    obstacle = ObstacleObject()
+                }
                 
-                node.physicsBody = SKPhysicsBody(rectangleOf: tile.size)
-
-                node.physicsBody?.isDynamic = false
-                node.physicsBody?.friction = 0
+                obstacle.createPhysicsBody(tile: tile)
+                obstacle.position = obstaclesTileMap.centerOfTile(atColumn: column, row: row)
                 
-                node.position = obstaclesTileMap.centerOfTile(atColumn: column, row: row)
-                obstaclesTileMap.addChild(node)
-                
+                obstaclesNode!.addChild(obstacle)
             }
         }
+        
+        obstaclesNode!.name = "ObstaclesObjects"
+        addChild(obstaclesNode!)
+        obstaclesTileMap.removeFromParent()
     }
     
     func setupEnemiesPhysics() {
@@ -214,9 +221,9 @@ class GameScene: SKScene {
     
     func stopScene() {
         backgroundMap = nil
-        obstaclesTileMap = nil
         enemyNode = nil
         breakablesNode = nil
+        obstaclesNode = nil
         player = nil
         movementManager = nil
     }

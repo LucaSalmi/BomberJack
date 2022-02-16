@@ -11,7 +11,7 @@ import GameplayKit
 class MovementManager {
     
     var context: GameScene!
-    var camera: SKCameraNode? = nil
+    //var camera: SKCameraNode? = nil
     
     //Joystick variables
     var virtualJoystick: SKSpriteNode? = nil
@@ -20,9 +20,9 @@ class MovementManager {
     var centerButtonPosition: CGPoint? = nil
     var touchLocation: CGPoint? = nil
     
-    init(_ context: GameScene, _ camera: SKCameraNode) {
+    init(_ context: GameScene) {
         self.context = context
-        self.camera = camera
+        //self.camera = camera
         
         //Joystick setup
         virtualJoystick = (context.childNode(withName: "camera/leftUI/virtualJoystick") as! SKSpriteNode)
