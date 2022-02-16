@@ -33,11 +33,11 @@ class Enemy: SKSpriteNode {
         
         physicsBody = SKPhysicsBody(circleOfRadius: size.width/2)
         physicsBody?.categoryBitMask = PhysicsCategory.Enemy
-        physicsBody?.contactTestBitMask = PhysicsCategory.Enemy
+        physicsBody?.contactTestBitMask = PhysicsCategory.All
         physicsBody?.restitution = 0
         physicsBody?.allowsRotation = false
         
-        zPosition = 40
+        zPosition = 50
     }
     
     func collision(with other: SKNode?) {

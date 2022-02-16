@@ -236,20 +236,40 @@ extension GameScene: SKPhysicsContactDelegate{
             enemy.collision(with: contact.bodyA.node ?? nil)
         }
         
-
-        let otherBody = contact.bodyA.categoryBitMask == PhysicsCategory.Player ?
-        contact.bodyB : contact.bodyA
-              
-        switch otherBody.categoryBitMask{
-            
-        case PhysicsCategory.Breakable:
-            let obstacleNode = otherBody.node
-            obstacleNode?.removeFromParent()
-            obstacleNode?.physicsBody = nil
-            
-        default:
-            break
+        if contact.bodyA.node is Player {
+            let player = contact.bodyA.node as! Player
+            player.collision(with: contact.bodyA.node ?? nil)
         }
+        if contact.bodyB.node is Player {
+            let player = contact.bodyB.node as! Player
+            player.collision(with: contact.bodyA.node ?? nil)
+        }
+        
+        /*
+        if contact.bodyB.categoryBitMask == PhysicsCategory.Player {
+            let otherBody = contact.bodyA
+            
+            if otherBody.categoryBitMask == PhysicsCategory.Breakable {
+                let obstacleNode = otherBody.node
+                obstacleNode?.removeFromParent()
+                obstacleNode?.physicsBody = nil
+            }
+
+            
+            let otherBody = contact.bodyB
+                  
+            switch otherBody.categoryBitMask{
+                
+            case PhysicsCategory.Breakable:
+                
+                
+            default:
+                break
+            }
+             
+        }
+
+        */
     
     }
 }

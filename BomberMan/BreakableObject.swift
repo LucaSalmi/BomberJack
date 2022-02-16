@@ -25,8 +25,6 @@ class BreakableObject: SKSpriteNode{
         
         physicsBody = SKPhysicsBody(rectangleOf: tile.size)
         physicsBody?.categoryBitMask = PhysicsCategory.Breakable
-        physicsBody?.contactTestBitMask = PhysicsCategory.Breakable | PhysicsCategory.Player
-        physicsBody?.collisionBitMask = PhysicsCategory.Breakable | PhysicsCategory.Player
         physicsBody?.restitution = 0
         physicsBody?.isDynamic = false
         physicsBody?.friction = 0

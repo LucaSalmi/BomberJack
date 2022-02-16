@@ -71,10 +71,10 @@ class MovementManager {
             }
         }
         
-        context.removeAllChildren()
-        context.removeAllActions()
-        context.stopScene()
-        GameScene.viewController?.presentScene("GameScene2")
+        //context.removeAllChildren()
+        //context.removeAllActions()
+        //context.stopScene()
+        //GameScene.viewController?.presentScene("GameScene2")
     }
     
     func stopMovement() {

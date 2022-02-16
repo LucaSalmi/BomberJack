@@ -26,7 +26,7 @@ class Player: SKSpriteNode{
         
         physicsBody = SKPhysicsBody(circleOfRadius: size.width/2)
         physicsBody?.categoryBitMask = PhysicsCategory.Player
-        physicsBody?.contactTestBitMask = PhysicsCategory.Player
+        physicsBody?.contactTestBitMask = PhysicsCategory.Breakable
         physicsBody?.restitution = 0
         physicsBody?.allowsRotation = false
         
@@ -39,5 +39,21 @@ class Player: SKSpriteNode{
         
         //let move = SKAction.move(to: target, duration: 1)
         //run(move)
+    }
+    
+    func collision(with other: SKNode?) {
+        
+        switch other?.physicsBody?.categoryBitMask {
+            
+        case PhysicsCategory.Breakable:
+
+            other?.removeFromParent()
+            other?.physicsBody = nil
+            
+        default:
+            print("Player collision with \(other?.name)")
+            
+        }
+        
     }
 }
