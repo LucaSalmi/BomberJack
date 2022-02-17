@@ -45,7 +45,7 @@ class Player: SKSpriteNode{
     func collision(with other: SKNode?) {
         
         
-            
+            print("collision happened")
         
         
     }
