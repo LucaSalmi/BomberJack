@@ -29,7 +29,7 @@ class StartMenuScene: SKScene {
             
             if startButton.name == "startButton" {
                 
-                self.viewController?.presentScene("GameScene")
+                self.viewController?.presentScene("UIScene")
                 
             }
             
