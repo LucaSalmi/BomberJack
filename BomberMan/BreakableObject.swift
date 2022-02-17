@@ -32,9 +32,10 @@ class BreakableObject: SKSpriteNode{
         physicsBody?.allowsRotation = false
     }
     
-    func collision(with other: SKNode?) {
+    func collision(breakable: SKNode?) {
         
-       
+        breakable?.removeFromParent()
+        breakable?.physicsBody = nil
         
     }
 }
