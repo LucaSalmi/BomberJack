@@ -35,14 +35,16 @@ class MovementManager {
         }
         centerButton!.zPosition = 1
         centerButton!.alpha = 1
+        
+        stopMovement()
     }
     
     func updateJoystickPosition(_ touches: Set<UITouch>, with event: UIEvent?) {
         
         for touch in touches {
             virtualJoystick?.position = touch.location(in: context.leftUI!)
-            if (virtualJoystick?.position.x)! > context.position.x {
-                virtualJoystick?.position.x = context.position.x
+            if (virtualJoystick?.position.x)! > ((context.leftUI?.size.width)! / 2) {
+                virtualJoystick?.position.x = ((context.leftUI?.size.width)! / 2)
             }
         }
         
@@ -53,9 +55,6 @@ class MovementManager {
         
         
         for touch in touches {
-            
-            let mainLocation = touch.location(in: context)
-            let mainNode = context.atPoint(mainLocation)
             
             /*
             let leftSide = virtualJoystick!.position.x - ((virtualJoystick!.size.width)/2)
@@ -79,6 +78,7 @@ class MovementManager {
             
             if (currentNodeName == "rightButton" || currentNodeName == "downButton" || currentNodeName == "leftButton") || currentNodeName == "upButton" {
                 currentJoystickButton = currentNode
+                virtualJoystick!.alpha = 1
             }
         }
         
@@ -89,6 +89,7 @@ class MovementManager {
     }
     
     func stopMovement() {
+        virtualJoystick!.alpha = 0
         currentJoystickButton = nil
         centerButton!.position = centerButtonPosition!
         touchLocation = nil

@@ -12,8 +12,8 @@ class GameScene: SKScene {
     
     static var viewController: GameViewController? = nil
     
-    var leftUI: SKNode? = nil
-    var rightUI: SKNode? = nil
+    var leftUI: SKSpriteNode? = nil
+    var rightUI: SKSpriteNode? = nil
     
     var bombsNode = SKNode()
     var actionManager: ActionManagager!
@@ -59,8 +59,8 @@ class GameScene: SKScene {
         
         guard let camera = SKScene(fileNamed: "UIScene")!.camera else {return}
         
-        leftUI = camera.childNode(withName: "leftUI")
-        rightUI = camera.childNode(withName: "rightUI")
+        leftUI = (camera.childNode(withName: "leftUI") as! SKSpriteNode)
+        rightUI = (camera.childNode(withName: "rightUI") as! SKSpriteNode)
       
         let zeroDistance = SKRange(constantValue: 0)
         let playerConstraint = SKConstraint.distance(zeroDistance, to: player!)
