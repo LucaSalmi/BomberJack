@@ -12,6 +12,9 @@ class GameScene: SKScene {
     
     static var viewController: GameViewController? = nil
     
+    static var leftUI: SKNode? = nil
+    static var rightUI: SKNode? = nil
+    
     var bombsNode = SKNode()
     var actionManager: ActionManagager!
     var backgroundMap: SKTileMapNode?
@@ -28,9 +31,7 @@ class GameScene: SKScene {
         super.init(coder: aDecoder)
         
         backgroundMap = (childNode(withName: "background") as! SKTileMapNode)
-        actionManager = ActionManagager(self, camera!)
         addChild(bombsNode)
-        movementManager = MovementManager(self)
         
     }
     
@@ -42,6 +43,8 @@ class GameScene: SKScene {
         setupEnemiesPhysics()
         setupPlayer()
         setupCamera()
+        movementManager = MovementManager(self)
+        actionManager = ActionManagager(self, camera!)
     }
     
     
@@ -53,31 +56,34 @@ class GameScene: SKScene {
     }
     
     func setupCamera(){
-      guard let camera = camera else {return}
+        
+        guard let camera = SKScene(fileNamed: "UIScene")!.camera else {return}
       
-      let zeroDistance = SKRange(constantValue: 0)
-      let playerConstraint = SKConstraint.distance(zeroDistance, to: player!)
-      
-      let xInset = min((view?.bounds.width)!/2*camera.xScale, backgroundMap!.frame.width/2)
-      let yInset = min((view?.bounds.height)!/2*camera.yScale, backgroundMap!.frame.height/2)
-      
-      let constrainRect = backgroundMap!.frame.insetBy(dx: xInset, dy: yInset)
-      
-      let xRange = SKRange(lowerLimit: constrainRect.minX, upperLimit: constrainRect.maxX)
-      let yRange = SKRange(lowerLimit: constrainRect.minY, upperLimit: constrainRect.maxY)
-      
-      let edgeConstraint = SKConstraint.positionX(xRange, y: yRange)
-      edgeConstraint.referenceNode = backgroundMap
-      
-      camera.constraints = [playerConstraint, edgeConstraint]
-      
-      
+        let zeroDistance = SKRange(constantValue: 0)
+        let playerConstraint = SKConstraint.distance(zeroDistance, to: player!)
+
+        let xInset = min((view?.bounds.width)!/2*camera.xScale, backgroundMap!.frame.width/2)
+        let yInset = min((view?.bounds.height)!/2*camera.yScale, backgroundMap!.frame.height/2)
+
+        let constrainRect = backgroundMap!.frame.insetBy(dx: xInset, dy: yInset)
+
+        let xRange = SKRange(lowerLimit: constrainRect.minX, upperLimit: constrainRect.maxX)
+        let yRange = SKRange(lowerLimit: constrainRect.minY, upperLimit: constrainRect.maxY)
+
+        let edgeConstraint = SKConstraint.positionX(xRange, y: yRange)
+        edgeConstraint.referenceNode = backgroundMap
+
+        camera.constraints = [playerConstraint, edgeConstraint]
+
+        camera.removeFromParent()
+        self.camera = camera
+        addChild(camera)
     }
     
     func setupWorldPhysics(){
-      backgroundMap!.physicsBody = SKPhysicsBody(edgeLoopFrom: backgroundMap!.frame)
-      backgroundMap!.physicsBody?.categoryBitMask = PhysicsCategory.Edge
-      physicsWorld.contactDelegate = self
+        backgroundMap!.physicsBody = SKPhysicsBody(edgeLoopFrom: backgroundMap!.frame)
+        backgroundMap!.physicsBody?.categoryBitMask = PhysicsCategory.Edge
+        physicsWorld.contactDelegate = self
     }
     
     func setupBreakablesPhysics(){
