@@ -19,7 +19,7 @@ class GameScene: SKScene {
     var enemyNode: SKNode? = SKNode()
     var breakablesNode: SKNode? = SKNode()
     var obstaclesNode: SKNode? = SKNode()
-    var player: Player? = Player()
+    var player: Player? = nil
     
     var movementManager: MovementManager? = nil
     
@@ -36,12 +36,12 @@ class GameScene: SKScene {
     
     override func didMove(to view: SKView) {
         
-        addChild(player!)
-        setupCamera()
         setupWorldPhysics()
         setupObstaclesPhysics()
         setupBreakablesPhysics()
         setupEnemiesPhysics()
+        setupPlayer()
+        setupCamera()
     }
     
     
@@ -189,6 +189,35 @@ class GameScene: SKScene {
         addChild(enemyNode!)
         
         enemiesMap.removeFromParent()
+    }
+    
+    private func setupPlayer() {
+        
+        guard let playerMap = childNode(withName: "player") as? SKTileMapNode else {
+            return
+        }
+        
+        player = Player()
+        
+        for row in 0..<playerMap.numberOfRows {
+            for column in 0..<playerMap.numberOfColumns {
+                
+                guard let tile = tile(in: playerMap, at: (column, row)) else {
+                    continue
+                }
+                
+                if tile.userData?.object(forKey: "player") != nil {
+                
+                    player!.position = playerMap.centerOfTile(atColumn: column, row: row)
+                    
+                }
+            }
+        }
+        
+        addChild(player!)
+        
+        playerMap.removeFromParent()
+        
     }
     
     func placeBomb(){
