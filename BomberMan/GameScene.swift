@@ -233,8 +233,121 @@ extension GameScene: SKPhysicsContactDelegate{
     
     func didBegin(_ contact: SKPhysicsContact) {
         
+        //main switch for body A
+        switch contact.bodyA.categoryBitMask{
+            
+        // BodyA is the Player
+        case PhysicsCategory.Player:
+            
+            switch contact.bodyB.categoryBitMask{
+                
+            case PhysicsCategory.Enemy:
+                print("Player-Enemy")
+                
+            case PhysicsCategory.Breakable:
+                print("Player_Breakable")
+                
+            case PhysicsCategory.Bomb:
+                print("Player-Bomb")
+                
+            case PhysicsCategory.Obstacle:
+                print("Player_Obstacle")
+                
+            default:
+                print("mystery")
+            }
+            
+        // BodyA is an Enemy
+        case PhysicsCategory.Enemy:
+            
+            switch contact.bodyB.categoryBitMask{
+                
+            case PhysicsCategory.Player:
+                print("Enemy-Player")
+                
+            case PhysicsCategory.Enemy:
+                print("Enemy-Enemy")
+                
+            case PhysicsCategory.Breakable:
+                print("Enemy-Breakable")
+                
+            case PhysicsCategory.Bomb:
+                print("Enemy-Bomb")
+                
+            case PhysicsCategory.Obstacle:
+                print("Enemy-Obstacle")
+                
+            default:
+                print("mystery")
+            }
+            
+        // BodyA is a Breakable
+        case PhysicsCategory.Breakable:
+            
+            switch contact.bodyB.categoryBitMask{
+                
+            case PhysicsCategory.Player:
+                print("Beakable-Player")
+                
+            case PhysicsCategory.Enemy:
+                print("Breakable-Enemy")
+                
+            case PhysicsCategory.Bomb:
+                print("Breakable-Bomb")
+                                
+            default:
+                print("mystery")
+            }
+            
+        // BodyA is an Obstacle
+        case PhysicsCategory.Obstacle:
+            
+            switch contact.bodyB.categoryBitMask{
+                
+            case PhysicsCategory.Player:
+                print("Obstacle-Player")
+                
+            case PhysicsCategory.Enemy:
+                print("Obstacle-Enemy")
+                
+            case PhysicsCategory.Bomb:
+                print("Obstacle-Bomb")
+                
+            default:
+                print("mystery")
+            }
+            
+        // BodyA is a Bomb
+        case PhysicsCategory.Bomb:
+            
+            switch contact.bodyB.categoryBitMask{
+                
+            case PhysicsCategory.Player:
+                print("Bomb-Player")
+                
+            case PhysicsCategory.Enemy:
+                print("Bomb-Enemy")
+                
+            case PhysicsCategory.Breakable:
+                print("Bomb-Breakable")
+                
+            case PhysicsCategory.Bomb:
+                print("Bomb-Bomb")
+                
+            case PhysicsCategory.Obstacle:
+                print("Bomb-Obstacle")
+                
+            default:
+                print("mystery")
+            }
+        
+        //default case for main switch
+        default:
+            print("mystery")
+        }
         
         
+        /*
         //Check if any of the contacts are enemies
         if contact.bodyA.node is Enemy {
             let enemy = contact.bodyA.node as! Enemy
@@ -268,9 +381,8 @@ extension GameScene: SKPhysicsContactDelegate{
         default:
             break
         }
-
-            
-    
+  
+         */
     }
-         
+      
 }
