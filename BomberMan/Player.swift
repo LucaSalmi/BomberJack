@@ -26,7 +26,7 @@ class Player: SKSpriteNode{
         
         physicsBody = SKPhysicsBody(circleOfRadius: size.width/2)
         physicsBody?.categoryBitMask = PhysicsCategory.Player
-        physicsBody?.contactTestBitMask = PhysicsCategory.Player
+        physicsBody?.contactTestBitMask = PhysicsCategory.Breakable
         physicsBody?.restitution = 0
         physicsBody?.allowsRotation = false
         
@@ -41,4 +41,12 @@ class Player: SKSpriteNode{
         //run(move)
     }
     
+
+    func collision(with other: SKNode?) {
+        
+        
+            
+        
+        
+    }
 }
