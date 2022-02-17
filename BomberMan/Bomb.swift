@@ -11,6 +11,7 @@ import SpriteKit
 enum BombSettings{
     
     static var tickingTime: Float = 0
+    static let explosionTime: Int = 3
     static let blastRadius: Int = 1
     
     

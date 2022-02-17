@@ -190,9 +190,90 @@ class GameScene: SKScene {
         
         let bomb = Bomb()
         
-        bomb.position = player.position
         
+        var tileFound = false
+        
+        for row in 0..<backgroundMap.numberOfRows{
+            for column in 0..<backgroundMap.numberOfColumns{
+                 guard let tile = tile(in: backgroundMap, at: (column, row)) else {
+                    continue
+                 }
+                
+                let tilePosition = backgroundMap.centerOfTile(atColumn: column, row: row)
+                
+                let leftSide = tilePosition.x - (tile.size.width/2)
+                let topSide = tilePosition.y + (tile.size.height/2)
+                let rightSide = tilePosition.x + (tile.size.width/2)
+                let bottomSide = tilePosition.y - (tile.size.height/2)
+                
+                if player.position.x > leftSide && player.position.x < rightSide{
+                    if player.position.y > bottomSide && player.position.y < topSide{
+                        bomb.position = tilePosition
+                        tileFound = true
+                        break
+                    }
+                }
+            }
+            
+            if tileFound {break}
+        }
+        
+        let pos = bomb.position
         bombsNode.addChild(bomb)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            //let bombPos: CGPoint = bomb.position
+            bomb.removeFromParent()
+            
+            self.explosion(pos)
+            
+            
+         }
+        
+    }
+    func explosion(_ position: CGPoint){
+        
+        let bomb0 = Bomb()
+        bomb0.position = position
+        
+        let bomb1 = Bomb()
+        bomb1.position = position
+        bomb1.position.x += -32
+        
+        let bomb2 = Bomb()
+        bomb2.position = position
+        bomb2.position.x += 32
+        
+        let bomb3 = Bomb()
+        bomb3.position = position
+        bomb3.position.y += -32
+        
+        let bomb4 = Bomb()
+        bomb4.position = position
+        bomb4.position.y += 32
+        
+        bombsNode.addChild(bomb0)
+        bombsNode.addChild(bomb1)
+        bombsNode.addChild(bomb2)
+        bombsNode.addChild(bomb3)
+        bombsNode.addChild(bomb4)
+        
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            //let bombPos: CGPoint = bomb.position
+            bomb0.removeFromParent()
+            bomb1.removeFromParent()
+            bomb2.removeFromParent()
+            bomb3.removeFromParent()
+            bomb4.removeFromParent()
+            
+            }
+        
+        
+        
+        
+        
+        
     }
     
     
