@@ -548,44 +548,7 @@ extension GameScene: SKPhysicsContactDelegate{
         default:
             print("mystery")
         }
-        
-        
-        /*
-        //Check if any of the contacts are enemies
-        if contact.bodyA.node is Enemy {
-            let enemy = contact.bodyA.node as! Enemy
-            enemy.collision(with: contact.bodyB.node ?? nil)
-        }
-        if contact.bodyB.node is Enemy {
-            let enemy = contact.bodyB.node as! Enemy
-            enemy.collision(with: contact.bodyA.node ?? nil)
-        }
-        
-        if contact.bodyA.node is Player {
-            let player = contact.bodyA.node as! Player
-            player.collision(with: contact.bodyA.node ?? nil)
-        }
-        if contact.bodyB.node is Player {
-            let player = contact.bodyB.node as! Player
-            player.collision(with: contact.bodyA.node ?? nil)
-        }
-        
-        
-        let otherBody = contact.bodyA.categoryBitMask == PhysicsCategory.Player ?
-        contact.bodyB : contact.bodyA
-              
-        switch otherBody.categoryBitMask{
-            
-        case PhysicsCategory.Breakable:
-            let obstacleNode = otherBody.node
-            obstacleNode?.removeFromParent()
-            obstacleNode?.physicsBody = nil
-            
-        default:
-            break
-        }
-  
-         */
+
     }
     
     func getEnemy(node: SKNode) -> Enemy{
