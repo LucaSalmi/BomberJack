@@ -12,8 +12,8 @@ class GameScene: SKScene {
     
     static var viewController: GameViewController? = nil
     
-    static var leftUI: SKNode? = nil
-    static var rightUI: SKNode? = nil
+    var leftUI: SKNode? = nil
+    var rightUI: SKNode? = nil
     
     var bombsNode = SKNode()
     var actionManager: ActionManagager!
@@ -58,6 +58,9 @@ class GameScene: SKScene {
     func setupCamera(){
         
         guard let camera = SKScene(fileNamed: "UIScene")!.camera else {return}
+        
+        leftUI = camera.childNode(withName: "leftUI")
+        rightUI = camera.childNode(withName: "rightUI")
       
         let zeroDistance = SKRange(constantValue: 0)
         let playerConstraint = SKConstraint.distance(zeroDistance, to: player!)
@@ -318,7 +321,9 @@ class GameScene: SKScene {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 
-        movementManager?.checkInput(touches, with: event)
+        
+        movementManager!.updateJoystickPosition(touches, with: event)
+        
         actionManager.checkInput(touches, with: event)
         movementManager!.checkInput(touches, with: event)
 

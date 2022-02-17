@@ -37,6 +37,17 @@ class MovementManager {
         centerButton!.alpha = 1
     }
     
+    func updateJoystickPosition(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        for touch in touches {
+            virtualJoystick?.position = touch.location(in: context.leftUI!)
+            if (virtualJoystick?.position.x)! > context.position.x {
+                virtualJoystick?.position.x = context.position.x
+            }
+        }
+        
+    }
+    
     func checkInput(_ touches: Set<UITouch>, with event: UIEvent?) {
         
         
