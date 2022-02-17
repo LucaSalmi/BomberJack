@@ -41,6 +41,7 @@ class Player: SKSpriteNode{
         //run(move)
     }
     
+
     func collision(with other: SKNode?) {
         
         

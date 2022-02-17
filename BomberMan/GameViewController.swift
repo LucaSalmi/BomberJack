@@ -24,6 +24,7 @@ class GameViewController: UIViewController {
             // Get the SKScene from the loaded GKScene
             if let sceneNode = scene.rootNode as! StartMenuScene? {
                 
+                
                 sceneNode.viewController = self
                 
                 // Copy gameplay related content over to the scene
