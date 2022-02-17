@@ -16,6 +16,7 @@ class ObstacleObject: SKSpriteNode{
     
     init(){
         let texture = SKTexture(imageNamed: "wall")
+        
         super.init(texture: texture, color: .white, size: texture.size())
         name = "Obstacle Object"
         zPosition = 50
