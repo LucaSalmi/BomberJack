@@ -233,6 +233,9 @@ extension GameScene: SKPhysicsContactDelegate{
     
     func didBegin(_ contact: SKPhysicsContact) {
         
+        print(contact.bodyA.node?.name)
+        print(contact.bodyB.node?.name)
+        
         //main switch for body A
         switch contact.bodyA.categoryBitMask{
             
@@ -384,5 +387,13 @@ extension GameScene: SKPhysicsContactDelegate{
   
          */
     }
-      
+}
+
+extension SKNode{
+    
+    func getType<T>(object: T) -> T.Type{
+        return T.self
+    }
+    
+    
 }
