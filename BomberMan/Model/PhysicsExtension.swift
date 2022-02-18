@@ -184,7 +184,7 @@ extension GameScene: SKPhysicsContactDelegate{
                 
                 let explosion = contact.bodyA.node as! Explosion
             
-            print("look here 2")
+                print("look here 2")
                 switch contact.bodyB.categoryBitMask{
                     
                 case PhysicsCategory.Player:
