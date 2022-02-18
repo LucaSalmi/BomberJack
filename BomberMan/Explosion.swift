@@ -39,9 +39,11 @@ class Explosion: SKSpriteNode{
         count += 1
         
         if count >= ExplosionSettings.permanence{
+            
             count = 0
             self.removeFromParent()
             ExplosionSettings.explosionsArray.remove(at: ExplosionSettings.explosionsArray.firstIndex(of: self)!)
+            PlayerSettings.canDropBomb = true
         }
         
     }

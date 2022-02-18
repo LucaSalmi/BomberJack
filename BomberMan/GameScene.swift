@@ -209,7 +209,6 @@ class GameScene: SKScene {
         }
         
         
-        
         for row in 0..<playerMap.numberOfRows {
             for column in 0..<playerMap.numberOfColumns {
                 
