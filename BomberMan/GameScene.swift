@@ -261,6 +261,7 @@ class GameScene: SKScene {
             if tileFound {break}
         }
         
+        bomb.texture = SKTexture(imageNamed: "bomb1")
         let pos = bomb.position
         bombsNode.addChild(bomb)
         
