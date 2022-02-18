@@ -142,7 +142,7 @@ class MovementManager {
             
         }
         
-        context.player!.move(direction: direction)
+        //context.player!.move(direction: direction)
     }
     
 }

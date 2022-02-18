@@ -35,8 +35,6 @@ class StartMenuScene: SKScene {
                 self.viewController?.presentScene(sceneName)
                 
             }
-            
         }
     }
-    
 }
