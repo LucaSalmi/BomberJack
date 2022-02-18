@@ -16,6 +16,7 @@ class GameScene: SKScene {
     var rightUI: SKSpriteNode? = nil
     
     var bombsNode = SKNode()
+    var explosionsNode: SKNode? = SKNode()
     var actionManager: ActionManagager!
     var backgroundMap: SKTileMapNode?
     
@@ -32,6 +33,7 @@ class GameScene: SKScene {
         
         backgroundMap = (childNode(withName: "background") as! SKTileMapNode)
         addChild(bombsNode)
+        addChild(explosionsNode!)
         
     }
     
@@ -207,7 +209,6 @@ class GameScene: SKScene {
         }
         
         
-        
         for row in 0..<playerMap.numberOfRows {
             for column in 0..<playerMap.numberOfColumns {
                 
@@ -233,7 +234,6 @@ class GameScene: SKScene {
     func placeBomb(){
         
         let bomb = Bomb()
-        
         
         var tileFound = false
         
@@ -264,7 +264,15 @@ class GameScene: SKScene {
         
         bomb.texture = SKTexture(imageNamed: "bomb1")
         let pos = bomb.position
-        bombsNode.addChild(bomb)
+        
+        if !checkIfOccupied(node: bombsNode, position: pos){
+            
+            bombsNode.addChild(bomb)
+
+        }else{
+            
+            return
+        }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             //let bombPos: CGPoint = bomb.position
@@ -277,49 +285,45 @@ class GameScene: SKScene {
          }
         
     }
+    
+    func checkIfOccupied(node: SKNode, position: CGPoint) -> Bool{
+    
+        let list = node.children
+        for obj in list{
+            if obj.position == position{
+                return true
+            }
+        }
+        return false
+    }
+    
+    
     func explosion(_ position: CGPoint){
         
-        let bomb0 = Bomb()
-        bomb0.position = position
-        bomb0.texture = SKTexture(imageNamed: "explosion1")
+        let explosion0 = Explosion(position: position)
+        ExplosionSettings.explosionsArray.append(explosion0)
         
-        let bomb1 = Bomb()
-        bomb1.position = position
-        bomb1.position.x += -32
-        bomb1.texture = SKTexture(imageNamed: "explosion1")
+        let explosion1 = Explosion(position: position)
+        explosion1.position.x += ExplosionSettings.distanceNeg
+        ExplosionSettings.explosionsArray.append(explosion1)
         
-        let bomb2 = Bomb()
-        bomb2.position = position
-        bomb2.position.x += 32
-        bomb2.texture = SKTexture(imageNamed: "explosion1")
+        let explosion2 = Explosion(position: position)
+        explosion2.position.x += ExplosionSettings.distancePos
+        ExplosionSettings.explosionsArray.append(explosion2)
         
-        let bomb3 = Bomb()
-        bomb3.position = position
-        bomb3.position.y += -32
-        bomb3.texture = SKTexture(imageNamed: "explosion1")
+        let explosion3 = Explosion(position: position)
+        explosion3.position.y += ExplosionSettings.distanceNeg
+        ExplosionSettings.explosionsArray.append(explosion3)
         
-        let bomb4 = Bomb()
-        bomb4.position = position
-        bomb4.position.y += 32
-        bomb4.texture = SKTexture(imageNamed: "explosion1")
-        
-        bombsNode.addChild(bomb0)
-        bombsNode.addChild(bomb1)
-        bombsNode.addChild(bomb2)
-        bombsNode.addChild(bomb3)
-        bombsNode.addChild(bomb4)
+        let explosion4 = Explosion(position: position)
+        explosion4.position.y += ExplosionSettings.distancePos
+        ExplosionSettings.explosionsArray.append(explosion4)
+    
+        for i in ExplosionSettings.explosionsArray{
+            explosionsNode!.addChild(i)
+        }
         
         shakeCamera(duration: CGFloat(0.5))
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            //let bombPos: CGPoint = bomb.position
-            bomb0.removeFromParent()
-            bomb1.removeFromParent()
-            bomb2.removeFromParent()
-            bomb3.removeFromParent()
-            bomb4.removeFromParent()
-            
-            }
         
     }
     
@@ -380,11 +384,17 @@ class GameScene: SKScene {
             enemy.update()
         }
         
+        for explosion in ExplosionSettings.explosionsArray{
+            
+            explosion.update()
+        }
+        
     }
     
     func stopScene() {
         backgroundMap = nil
         enemyNode = nil
+        explosionsNode = nil
         breakablesNode = nil
         obstaclesNode = nil
         player = nil

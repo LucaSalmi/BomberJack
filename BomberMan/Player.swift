@@ -12,6 +12,7 @@ enum PlayerSettings{
     static let playerSpeed: CGFloat = 1.5
     static var frame: Int = 0
     static var frameLimiter: Int = 1
+    static var canDropBomb: Bool = true
 }
 
 class Player: SKSpriteNode{

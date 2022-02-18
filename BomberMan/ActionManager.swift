@@ -42,7 +42,7 @@ class ActionManagager{
             
             
             if (currentNodeName == "bombButton"){
-                print("boom fire bitch")
+                
                 context.placeBomb()
                 
             }
