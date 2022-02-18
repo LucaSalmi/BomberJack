@@ -206,7 +206,7 @@ class GameScene: SKScene {
             return
         }
         
-        player = Player()
+        
         
         for row in 0..<playerMap.numberOfRows {
             for column in 0..<playerMap.numberOfColumns {
@@ -217,6 +217,7 @@ class GameScene: SKScene {
                 
                 if tile.userData?.object(forKey: "player") != nil {
                 
+                    player = Player()
                     player!.position = playerMap.centerOfTile(atColumn: column, row: row)
                     
                 }
