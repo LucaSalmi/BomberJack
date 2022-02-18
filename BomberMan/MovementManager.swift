@@ -115,7 +115,7 @@ class MovementManager {
             }
             
             context.player!.move(direction: direction)
-        
+            
             if touchLocation != nil && touchLocation != nil {
                 centerButton!.position = touchLocation!
             }
