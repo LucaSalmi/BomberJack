@@ -29,32 +29,6 @@ class RushEnemy: TestEnemy {
         self.texture = SKTexture(imageNamed: "firebug")
     }
     
-    override func update() {
-        //base logic is same as parent Test Enemy
-        if !isCharging {
-            super.update()
-            
-            let rushDirection = searchForPlayer()
-            if rushDirection.x == 0 && rushDirection.y == 0 {
-                //No player found in path
-                return
-            }
-            else {
-                isCharging = true
-                direction = rushDirection
-            }
-        }
-        
-        //different logic when charging
-        
-        
-        position.x += (direction.x * chargeSpeed)
-        position.y += (direction.y * chargeSpeed)
-        
-        
-        
-    }
-    
     private func searchForPlayer() -> CGPoint {
         
         let worldWidth = (self.scene as! GameScene).backgroundMap!.mapSize.width
@@ -96,6 +70,32 @@ class RushEnemy: TestEnemy {
         
         //return default when no player was found
         return CGPoint(x: 0, y: 0)
+    }
+    
+    override func update() {
+        //base logic is same as parent Test Enemy
+        if !isCharging {
+            super.update()
+            
+            let rushDirection = searchForPlayer()
+            if rushDirection.x == 0 && rushDirection.y == 0 {
+                //No player found in path
+                return
+            }
+            else {
+                isCharging = true
+                direction = rushDirection
+            }
+        }
+        
+        //different logic when charging
+        
+        
+        position.x += (direction.x * chargeSpeed)
+        position.y += (direction.y * chargeSpeed)
+        
+        
+        
     }
     
 }
