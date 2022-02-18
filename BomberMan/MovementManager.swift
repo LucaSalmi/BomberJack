@@ -121,6 +121,28 @@ class MovementManager {
             }
             
         }
+        
+        var direction = CGPoint(x: 0, y: 0)
+        
+        switch GameViewController.currentInputKey {
+        case 119:
+            direction.y = 1
+        case 100:
+            direction.x = 1
+        case 115:
+            direction.y = -1
+        case 97:
+            direction.x = -1
+        case 32:
+            //space-button
+            context.placeBomb()
+            GameViewController.currentInputKey = 0
+        default:
+            let null = false
+            
+        }
+        
+        context.player!.move(direction: direction)
     }
     
 }

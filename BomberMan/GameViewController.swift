@@ -11,6 +11,9 @@ import GameplayKit
 
 class GameViewController: UIViewController {
     
+    //For physical keyboard input with simulator
+    static var currentInputKey: UInt8 = 0
+    
     let numberOfLevels: Int = 2
     var currentLevel: Int = 1
 
@@ -94,6 +97,42 @@ class GameViewController: UIViewController {
             
         }
         
+    }
+    
+    override func pressesBegan(_ presses: Set<UIPress>, with event: UIPressesEvent?) {
+        // Run backward or forward when the user presses a left or right arrow key.
+        
+        var didHandleEvent = false
+        for press in presses {
+            guard let key = press.key else { continue }
+            
+            let keyAscii = key.characters.first?.asciiValue
+            
+            if key.characters.first != nil {
+                GameViewController.currentInputKey = keyAscii!
+                print(GameViewController.currentInputKey)
+                didHandleEvent = true
+            }
+            
+        }
+        
+        if didHandleEvent == false {
+            // Didn't handle this key press, so pass the event to the next responder.
+            super.pressesBegan(presses, with: event)
+        }
+    }
+    
+    override func pressesEnded(_ presses: Set<UIPress>, with event: UIPressesEvent?) {
+        // Stop running when the user releases the left or right arrow key.
+
+        GameViewController.currentInputKey = 0
+        print(String(GameViewController.currentInputKey))
+        var didHandleEvent = true
+        
+        if didHandleEvent == false {
+            // Didn't handle this key press, so pass the event to the next responder.
+            super.pressesBegan(presses, with: event)
+        }
     }
     
 }
