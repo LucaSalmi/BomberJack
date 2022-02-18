@@ -14,6 +14,8 @@ enum PlayerSettings{
 
 class Player: SKSpriteNode{
     
+    static var camera: SKCameraNode! = SKCameraNode()
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("use init()")
     }

@@ -57,7 +57,7 @@ class GameScene: SKScene {
     
     func setupCamera(){
         
-        guard let camera = SKScene(fileNamed: "UIScene")!.camera else {return}
+        let camera = Player.camera!
         
         leftUI = (camera.childNode(withName: "leftUI") as! SKSpriteNode)
         rightUI = (camera.childNode(withName: "rightUI") as! SKSpriteNode)

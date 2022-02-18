@@ -14,6 +14,7 @@ class ActionManagager{
     var camera: SKCameraNode? = nil
     
     var rightUI: SKSpriteNode? = nil
+    var nextLevelButton: SKSpriteNode? = nil
     var bombButton: SKSpriteNode? = nil
     var touchLocation: CGPoint? = nil
     
@@ -23,6 +24,7 @@ class ActionManagager{
         self.camera = camera
         
         rightUI = (context.childNode(withName: "camera/rightUI") as! SKSpriteNode)
+        nextLevelButton = (context.childNode(withName: "camera/rightUI/nextLevelButton") as! SKSpriteNode)
         bombButton = (context.childNode(withName: "camera/rightUI/bombButton") as! SKSpriteNode)
     }
     
@@ -43,6 +45,19 @@ class ActionManagager{
                 print("boom fire bitch")
                 context.placeBomb()
                 
+            }
+            else if (currentNodeName == "nextLevelButton") {
+                print("Presenting next level!")
+                if GameScene.viewController == nil {
+                    print("Could not find Game View Controller!")
+                    return
+                }
+                GameScene.viewController!.currentLevel += 1
+                if GameScene.viewController!.currentLevel > GameScene.viewController!.numberOfLevels {
+                    GameScene.viewController!.currentLevel = GameScene.viewController!.numberOfLevels
+                }
+                let nextScene = "GameScene" + String(GameScene.viewController!.currentLevel)
+                GameScene.viewController!.presentScene(nextScene)
             }
             
             

@@ -10,11 +10,21 @@ import SpriteKit
 import GameplayKit
 
 class GameViewController: UIViewController {
+    
+    let numberOfLevels: Int = 2
+    var currentLevel: Int = 1
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         GameScene.viewController = self
+        
+        guard let camera = SKScene(fileNamed: "UIScene")!.camera else {
+            print("Error: Could not find UIScene and/or camera!")
+            return
+        }
+        
+        Player.camera = camera
         
         // Load 'GameScene.sks' as a GKScene. This provides gameplay related content
         // including entities and graphs.
@@ -85,4 +95,5 @@ class GameViewController: UIViewController {
         }
         
     }
+    
 }
