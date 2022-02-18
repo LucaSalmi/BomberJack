@@ -33,7 +33,7 @@ class TestEnemy: Enemy {
         
     }
     
-    private func getRandomDirection() -> CGPoint {
+    internal func getRandomDirection() -> CGPoint {
         var newDirection = CGPoint(x: 0, y: 0)
         
         let moveSideways: Bool = Bool.random()

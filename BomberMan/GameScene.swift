@@ -178,8 +178,8 @@ class GameScene: SKScene {
                     
                     var enemy: Enemy
                     
-                    if value == "testEnemy" {
-                        enemy = TestEnemy()
+                    if value == "rushEnemy" {
+                        enemy = RushEnemy()
 
                     }
                     else {
