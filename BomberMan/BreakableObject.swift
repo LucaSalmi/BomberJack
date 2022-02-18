@@ -15,6 +15,7 @@ class BreakableObject: SKSpriteNode{
     }
     
     init(){
+        
         let texture = SKTexture(imageNamed: "tree")
         super.init(texture: texture, color: .white, size: texture.size())
         name = "Breakable Object"
@@ -31,9 +32,10 @@ class BreakableObject: SKSpriteNode{
         physicsBody?.allowsRotation = false
     }
     
-    func collision(with other: SKNode?) {
+    func collision(breakable: SKNode?) {
         
-       
+        breakable?.removeFromParent()
+        breakable?.physicsBody = nil
         
     }
 }

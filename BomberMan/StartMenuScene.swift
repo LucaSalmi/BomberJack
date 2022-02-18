@@ -29,7 +29,10 @@ class StartMenuScene: SKScene {
             
             if startButton.name == "startButton" {
                 
-                self.viewController?.presentScene("GameScene")
+                let currentLevel = self.viewController!.currentLevel
+                var sceneName = "GameScene"
+                sceneName.append(String(currentLevel as Int))
+                self.viewController?.presentScene(sceneName)
                 
             }
             

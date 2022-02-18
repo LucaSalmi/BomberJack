@@ -14,13 +14,17 @@ enum PlayerSettings{
 
 class Player: SKSpriteNode{
     
+    static var camera: SKCameraNode! = SKCameraNode()
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("use init()")
     }
     
     init(){
-        let texture = SKTexture(imageNamed: "player_ft1")
-        super.init(texture: texture, color: .white, size: texture.size())
+        let texture = SKTexture(imageNamed: "player_tf2")
+        let size: CGSize = CGSize(width: 26.0, height: 48.0)
+        
+        super.init(texture: texture, color: .white, size: size)
         name = "Player"
         zPosition = 50
         
@@ -41,10 +45,11 @@ class Player: SKSpriteNode{
         //run(move)
     }
     
+
     func collision(with other: SKNode?) {
         
         
-            
+            print("collision happened")
         
         
     }
