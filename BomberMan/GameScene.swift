@@ -269,6 +269,7 @@ class GameScene: SKScene {
             bomb.removeFromParent()
             
             self.explosion(pos)
+            SoundManager.playSFX(SoundManager.explosionSFX, self)
             
             
          }
@@ -278,22 +279,27 @@ class GameScene: SKScene {
         
         let bomb0 = Bomb()
         bomb0.position = position
+        bomb0.texture = SKTexture(imageNamed: "explosion1")
         
         let bomb1 = Bomb()
         bomb1.position = position
         bomb1.position.x += -32
+        bomb1.texture = SKTexture(imageNamed: "explosion1")
         
         let bomb2 = Bomb()
         bomb2.position = position
         bomb2.position.x += 32
+        bomb2.texture = SKTexture(imageNamed: "explosion1")
         
         let bomb3 = Bomb()
         bomb3.position = position
         bomb3.position.y += -32
+        bomb3.texture = SKTexture(imageNamed: "explosion1")
         
         let bomb4 = Bomb()
         bomb4.position = position
         bomb4.position.y += 32
+        bomb4.texture = SKTexture(imageNamed: "explosion1")
         
         bombsNode.addChild(bomb0)
         bombsNode.addChild(bomb1)
@@ -301,6 +307,7 @@ class GameScene: SKScene {
         bombsNode.addChild(bomb3)
         bombsNode.addChild(bomb4)
         
+        shakeCamera(duration: CGFloat(0.5))
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             //let bombPos: CGPoint = bomb.position
@@ -312,6 +319,29 @@ class GameScene: SKScene {
             
             }
         
+    }
+    
+    func shakeCamera(duration: CGFloat) {
+        
+        let amplitudeX: CGFloat = 10;
+        let amplitudeY: CGFloat = 6;
+        let numberOfShakes = duration / 0.04;
+        var actionsArray = [SKAction]();
+        for _ in 1...Int(numberOfShakes) {
+            // build a new random shake and add it to the list
+            let moveX = CGFloat(arc4random_uniform(UInt32(amplitudeX))) - amplitudeX / 2;
+            let moveY = CGFloat(arc4random_uniform(UInt32(amplitudeY))) - amplitudeY / 2;
+            let shakeAction = SKAction.moveBy(x: moveX, y: moveY, duration: 0.02);
+            shakeAction.timingMode = SKActionTimingMode.easeOut;
+            actionsArray.append(shakeAction);
+            actionsArray.append(shakeAction.reversed());
+        }
+
+        let actionSeq = SKAction.sequence(actionsArray);
+        
+        obstaclesNode!.run(actionSeq)
+        breakablesNode!.run(actionSeq)
+
     }
     
     
