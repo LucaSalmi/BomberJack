@@ -41,7 +41,9 @@ class Explosion: SKSpriteNode{
         if count >= ExplosionSettings.permanence{
             count = 0
             self.removeFromParent()
+            ExplosionSettings.explosionsArray.remove(at: ExplosionSettings.explosionsArray.firstIndex(of: self)!)
         }
+        
     }
     
     

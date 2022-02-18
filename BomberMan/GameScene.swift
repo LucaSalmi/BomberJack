@@ -16,7 +16,7 @@ class GameScene: SKScene {
     var rightUI: SKSpriteNode? = nil
     
     var bombsNode = SKNode()
-    var explosionsNode = SKNode()
+    var explosionsNode: SKNode? = SKNode()
     var actionManager: ActionManagager!
     var backgroundMap: SKTileMapNode?
     
@@ -33,7 +33,7 @@ class GameScene: SKScene {
         
         backgroundMap = (childNode(withName: "background") as! SKTileMapNode)
         addChild(bombsNode)
-        addChild(explosionsNode)
+        addChild(explosionsNode!)
         
     }
     
@@ -236,7 +236,6 @@ class GameScene: SKScene {
         
         let bomb = Bomb()
         
-        
         var tileFound = false
         
         for row in 0..<backgroundMap!.numberOfRows{
@@ -301,7 +300,7 @@ class GameScene: SKScene {
         ExplosionSettings.explosionsArray.append(explosion4)
     
         for i in ExplosionSettings.explosionsArray{
-            explosionsNode.addChild(i)
+            explosionsNode!.addChild(i)
         }
         
         shakeCamera(duration: CGFloat(0.5))
@@ -375,6 +374,7 @@ class GameScene: SKScene {
     func stopScene() {
         backgroundMap = nil
         enemyNode = nil
+        explosionsNode = nil
         breakablesNode = nil
         obstaclesNode = nil
         player = nil
