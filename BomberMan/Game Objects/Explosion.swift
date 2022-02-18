@@ -45,6 +45,7 @@ class Explosion: SKSpriteNode{
         physicsBody = SKPhysicsBody(rectangleOf: GameScene.tileSize ?? CGSize(width: 32, height: 32))
         physicsBody?.categoryBitMask = PhysicsCategory.Explosion
         physicsBody?.collisionBitMask = PhysicsCategory.Breakable
+        physicsBody?.contactTestBitMask = PhysicsCategory.Breakable
         physicsBody?.restitution = 0
         physicsBody?.isDynamic = false
         physicsBody?.friction = 0
