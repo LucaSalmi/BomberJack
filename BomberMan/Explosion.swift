@@ -16,11 +16,13 @@ enum ExplosionSettings{
     static var distanceNeg: CGFloat = -32
     static var permanence: Int = 60
     static var explosionsArray: [Explosion] = []
+    static var explosionId: Int = 0
 }
 
 class Explosion: SKSpriteNode{
     
     var count: Int = 0
+    
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("use init()")
@@ -32,6 +34,8 @@ class Explosion: SKSpriteNode{
         let size: CGSize = CGSize(width: 32.0, height: 32.0)
         super.init(texture: texture, color: .white, size: size)
         self.position = position
+        name = "Explosion\(ExplosionSettings.explosionId)"
+        ExplosionSettings.explosionId += 1
     }
     
     func update(){
@@ -43,7 +47,6 @@ class Explosion: SKSpriteNode{
             count = 0
             self.removeFromParent()
             ExplosionSettings.explosionsArray.remove(at: ExplosionSettings.explosionsArray.firstIndex(of: self)!)
-            PlayerSettings.canDropBomb = true
         }
         
     }

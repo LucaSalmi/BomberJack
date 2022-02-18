@@ -41,9 +41,8 @@ class ActionManagager{
             
             
             
-            if (currentNodeName == "bombButton") && PlayerSettings.canDropBomb{
+            if (currentNodeName == "bombButton"){
                 
-                PlayerSettings.canDropBomb = false
                 context.placeBomb()
                 
             }

@@ -264,7 +264,15 @@ class GameScene: SKScene {
         
         bomb.texture = SKTexture(imageNamed: "bomb1")
         let pos = bomb.position
-        bombsNode.addChild(bomb)
+        
+        if !checkIfOccupied(node: bombsNode, position: pos){
+            
+            bombsNode.addChild(bomb)
+
+        }else{
+            
+            return
+        }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             //let bombPos: CGPoint = bomb.position
@@ -277,6 +285,19 @@ class GameScene: SKScene {
          }
         
     }
+    
+    func checkIfOccupied(node: SKNode, position: CGPoint) -> Bool{
+    
+        let list = node.children
+        for obj in list{
+            if obj.position == position{
+                return true
+            }
+        }
+        return false
+    }
+    
+    
     func explosion(_ position: CGPoint){
         
         let explosion0 = Explosion(position: position)
