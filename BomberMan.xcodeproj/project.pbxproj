@@ -10,6 +10,7 @@
 		33201EDD27BD352F003B4EB4 /* ObstacleObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33201EDC27BD352F003B4EB4 /* ObstacleObject.swift */; };
 		3354DF2227BF841E0019D640 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3354DF2127BF841E0019D640 /* SoundManager.swift */; };
 		3354DF2427BF847F0019D640 /* explosion1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3354DF2327BF847F0019D640 /* explosion1.wav */; };
+		3354DF2A27BFDAE60019D640 /* RushEnemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3354DF2927BFDAE60019D640 /* RushEnemy.swift */; };
 		33B882A327BBC41A00BB897E /* MovementManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B882A227BBC41A00BB897E /* MovementManager.swift */; };
 		33B882A527BBEF3500BB897E /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B882A427BBEF3500BB897E /* Enemy.swift */; };
 		33B882A727BBF2FB00BB897E /* TestEnemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B882A627BBF2FB00BB897E /* TestEnemy.swift */; };
@@ -38,6 +39,7 @@
 		33201EDC27BD352F003B4EB4 /* ObstacleObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObstacleObject.swift; sourceTree = "<group>"; };
 		3354DF2127BF841E0019D640 /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
 		3354DF2327BF847F0019D640 /* explosion1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = explosion1.wav; sourceTree = "<group>"; };
+		3354DF2927BFDAE60019D640 /* RushEnemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RushEnemy.swift; sourceTree = "<group>"; };
 		33B882A227BBC41A00BB897E /* MovementManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementManager.swift; sourceTree = "<group>"; };
 		33B882A427BBEF3500BB897E /* Enemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
 		33B882A627BBF2FB00BB897E /* TestEnemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestEnemy.swift; sourceTree = "<group>"; };
@@ -108,8 +110,9 @@
 				C8B747FE27BF992F00D76B32 /* Animatable.swift */,
 				C8B7480027BF9A9A00D76B32 /* Extensions.swift */,
 				33B882A427BBEF3500BB897E /* Enemy.swift */,
-				E56CE0B127BCEF0C00962834 /* Bomb.swift */,
 				33B882A627BBF2FB00BB897E /* TestEnemy.swift */,
+				3354DF2927BFDAE60019D640 /* RushEnemy.swift */,
+				E56CE0B127BCEF0C00962834 /* Bomb.swift */,
 				33B882A227BBC41A00BB897E /* MovementManager.swift */,
 				E56CE0B327BD1F8D00962834 /* ActionManager.swift */,
 				3354DF2127BF841E0019D640 /* SoundManager.swift */,
@@ -214,6 +217,7 @@
 				E56CE0B227BCEF0C00962834 /* Bomb.swift in Sources */,
 				C801D2E827BBAF2F008B1CD5 /* Player.swift in Sources */,
 				C815F79227B400480084DE7A /* AppDelegate.swift in Sources */,
+				3354DF2A27BFDAE60019D640 /* RushEnemy.swift in Sources */,
 				E56CE0B427BD1F8D00962834 /* ActionManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
