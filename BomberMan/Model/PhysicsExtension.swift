@@ -95,7 +95,6 @@ extension GameScene: SKPhysicsContactDelegate{
             case PhysicsCategory.Player:
                 
                 breakable.collision(breakable: nodeA)
-                print("Beakable-Player")
                 
                 // BodyB is an Enemy
             case PhysicsCategory.Enemy:
@@ -106,6 +105,10 @@ extension GameScene: SKPhysicsContactDelegate{
                 //BodyB is a Bomb
             case PhysicsCategory.Bomb:
                 print("Breakable-Bomb")
+                
+            case PhysicsCategory.Explosion:
+                print("look here")
+                breakable.collision(breakable: nodeA)
                                 
             default:
                 print("mystery")
@@ -160,6 +163,7 @@ extension GameScene: SKPhysicsContactDelegate{
                 
                 // BodyB is a Breakable Object
             case PhysicsCategory.Breakable:
+                
                 let breakable = getBreakable(node: nodeB!)
                 breakable.collision(breakable: nodeB)
                 
@@ -175,33 +179,34 @@ extension GameScene: SKPhysicsContactDelegate{
             }
             
             
-            /*
             // BodyA is an explosion
             case PhysicsCategory.Explosion:
                 
-                //let bomb = contact.bodyA.node as! Explosion
-                
+                let explosion = contact.bodyA.node as! Explosion
+            
+            print("look here 2")
                 switch contact.bodyB.categoryBitMask{
                     
                 case PhysicsCategory.Player:
-                    print("Bomb-Player")
+                    print("Explosion-Player")
                     
                 case PhysicsCategory.Enemy:
-                    print("Bomb-Enemy")
+                    print("Explosion-Enemy")
                     
                 case PhysicsCategory.Breakable:
-                    print("Bomb-Breakable")
+                    print("look here")
+                    let breakable = getBreakable(node: nodeB!)
+                    breakable.collision(breakable: nodeB)
                     
                 case PhysicsCategory.Bomb:
-                    print("Bomb-Bomb")
+                    print("Explosion-Bomb")
                     
                 case PhysicsCategory.Obstacle:
-                    print("Bomb-Obstacle")
+                    print("Explosion-Obstacle")
                     
                 default:
                     print("mystery")
                 }
-             */
         
         //default case for main switch
         default:
@@ -226,12 +231,12 @@ extension GameScene: SKPhysicsContactDelegate{
         return node as! ObstacleObject
     }
     
-    func getBomb(node: SKNode){
-        
+    func getBomb(node: SKNode) -> Bomb{
+        return node as! Bomb
     }
     
-    func getExplosion(node: SKNode){
-        
+    func getExplosion(node: SKNode) -> Explosion{
+        return node as! Explosion
     }
     
     

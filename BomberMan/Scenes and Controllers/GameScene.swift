@@ -11,6 +11,7 @@ import GameplayKit
 class GameScene: SKScene {
     
     static var viewController: GameViewController? = nil
+    static var tileSize: CGSize? = nil
     
     var leftUI: SKSpriteNode? = nil
     var rightUI: SKSpriteNode? = nil
@@ -101,6 +102,7 @@ class GameScene: SKScene {
             for column in 0..<breakablesTileMap.numberOfColumns{
                 
                 guard let tile = tile(in: breakablesTileMap, at: (column, row)) else {continue}
+                GameScene.tileSize = tile.size
                 guard tile.userData?.object(forKey: "breakable") != nil else {continue}
                 
                 var breakable: BreakableObject
@@ -300,6 +302,7 @@ class GameScene: SKScene {
     
     func explosion(_ position: CGPoint){
         
+     
         let explosion0 = Explosion(position: position)
         ExplosionSettings.explosionsArray.append(explosion0)
         
@@ -322,6 +325,7 @@ class GameScene: SKScene {
         for i in ExplosionSettings.explosionsArray{
             explosionsNode!.addChild(i)
         }
+            
         
         shakeCamera(duration: CGFloat(0.5))
         

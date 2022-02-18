@@ -31,11 +31,22 @@ class Explosion: SKSpriteNode{
     init(position: CGPoint){
         
         let texture = SKTexture(imageNamed: "explosion1")
-        let size: CGSize = CGSize(width: 32.0, height: 32.0)
+        let size: CGSize = GameScene.tileSize ?? CGSize(width: 32, height: 32)
         super.init(texture: texture, color: .white, size: size)
         self.position = position
         name = "Explosion\(ExplosionSettings.explosionId)"
         ExplosionSettings.explosionId += 1
+        createPhysicsBody()
+    }
+    
+    func createPhysicsBody(){
+        
+        physicsBody = SKPhysicsBody(rectangleOf: GameScene.tileSize ?? CGSize(width: 32, height: 32))
+        physicsBody?.categoryBitMask = PhysicsCategory.Explosion
+        physicsBody?.restitution = 0
+        physicsBody?.isDynamic = false
+        physicsBody?.friction = 0
+        physicsBody?.allowsRotation = false
     }
     
     func update(){
@@ -50,7 +61,4 @@ class Explosion: SKSpriteNode{
         }
         
     }
-    
-    
-    
 }

@@ -23,6 +23,7 @@ struct PhysicsCategory{
     static let Bomb: UInt32 = 0b1000
     static let Breakable: UInt32 = 0b10000
     static let Obstacle: UInt32 = 0b100000
+    static let Explosion: UInt32 = 0b1000000
     
 }
 

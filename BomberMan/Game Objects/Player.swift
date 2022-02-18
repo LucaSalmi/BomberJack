@@ -35,7 +35,7 @@ class Player: SKSpriteNode{
         
         physicsBody = SKPhysicsBody(circleOfRadius: size.width/2)
         physicsBody?.categoryBitMask = PhysicsCategory.Player
-        physicsBody?.contactTestBitMask = PhysicsCategory.Breakable
+        //physicsBody?.contactTestBitMask = PhysicsCategory.Breakable
         physicsBody?.restitution = 0
         physicsBody?.allowsRotation = false
         
