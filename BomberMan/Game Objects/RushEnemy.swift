@@ -89,6 +89,14 @@ class RushEnemy: TestEnemy {
             else {
                 isCharging = true
                 direction = rushDirection
+                
+                guard let backgroundMap = scene!.childNode(withName: "background")as? SKTileMapNode else {
+                    return
+                }
+                let center = PhysicsUtils.findCenterOfClosestTile(map: backgroundMap, object: self)
+                if center != nil {
+                    self.position = center!
+                }
             }
         }
         
