@@ -10,16 +10,16 @@ import SpriteKit
 
 enum BombSettings{
     
-    static var tickingTime: Float = 0
-    static let explosionTime: Int = 3
+    static let explosionTime: Int = 60 * 3
     static let blastRadius: Int = 1
-    
     
 }
 
 class Bomb: SKSpriteNode{
     
-    static var bombs = [Enemy]()
+    static var bombs = [Bomb]()
+    
+    var tickingTime: Int = 0
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("use init()")
@@ -71,10 +71,31 @@ class Bomb: SKSpriteNode{
             scene?.explosionsNode!.addChild(i)
         }
             
+        if scene != nil {
+            SoundManager.playSFX(SoundManager.explosionSFX, scene!)
+        }
         
         PhysicsUtils.shakeCamera(duration: CGFloat(0.5))
         
     }
     
+    func update() {
+        
+        tickingTime += 1
+        
+        if tickingTime >= BombSettings.explosionTime {
+            for i in 0..<Bomb.bombs.count {
+                if i >= Bomb.bombs.count {return}
+                let bomb = Bomb.bombs[i]
+                if bomb == self {
+                    removeFromParent()
+                    Bomb.bombs.remove(at: i)
+                    explosion(position)
+                    
+                }
+            }
+        }
+        
+    }
     
 }

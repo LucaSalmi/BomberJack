@@ -277,8 +277,11 @@ class GameScene: SKScene {
         }
         
         for explosion in ExplosionSettings.explosionsArray{
-            
             explosion.update()
+        }
+        
+        for bomb in Bomb.bombs {
+            bomb.update()
         }
         
     }

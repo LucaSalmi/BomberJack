@@ -103,22 +103,11 @@ class ActionManagager{
         if !PhysicsUtils.checkIfOccupied(node: context.bombsNode, object: bomb){
             
             context.bombsNode.addChild(bomb)
+            Bomb.bombs.append(bomb)
             
         }else{
             return
         }
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            //let bombPos: CGPoint = bomb.position
-            bomb.removeFromParent()
-            
-            bomb.explosion(bomb.position)
-            let scene = GameViewController.currentGameScene
-            if scene != nil {
-                SoundManager.playSFX(SoundManager.explosionSFX, scene!)
-            }
-            
-         }
         
     }
 }
