@@ -21,6 +21,8 @@ class Player: SKSpriteNode{
     static var camera: SKCameraNode! = SKCameraNode()
     var rightAnimations: [SKAction] = []
     var leftAnimations: [SKAction] = []
+    var upAnimations: [SKAction] = []
+    var downAnimations: [SKAction] = []
     var playerTexture: SKSpriteNode! = SKSpriteNode()
     
     required init?(coder aDecoder: NSCoder) {
@@ -97,9 +99,9 @@ class Player: SKSpriteNode{
         switch playerDirection {
             
         case .forward:
-            playerTexture.texture = SKTexture(pixelImageNamed: "player_walk_up_1")
+            playerTexture.run(upAnimations[PlayerSettings.frame], withKey: "animation")
         case .backward:
-            playerTexture.run(rightAnimations[PlayerSettings.frame], withKey: "animation")
+            playerTexture.run(downAnimations[PlayerSettings.frame], withKey: "animation")
         case .left:
             playerTexture.run(leftAnimations[PlayerSettings.frame], withKey: "animation")
         case .right:

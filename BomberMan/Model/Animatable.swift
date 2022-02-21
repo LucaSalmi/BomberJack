@@ -12,6 +12,8 @@ protocol Animatable: AnyObject{
     
     var rightAnimations: [SKAction] {get set}
     var leftAnimations: [SKAction] {get set}
+    var upAnimations: [SKAction] {get set}
+    var downAnimations: [SKAction] {get set}
     
 }
 
@@ -46,6 +48,34 @@ extension Animatable{
         leftAnimations.append(animLFour)
         leftAnimations.append(animLFive)
         leftAnimations.append(animLSix)
+        
+        let animUpOne: SKAction = SKAction.animate(with: [SKTexture(pixelImageNamed: "\(character)_up_1"), SKTexture(pixelImageNamed: "\(character)_up_2")], timePerFrame: 0.4)
+        let animUpTwo: SKAction = SKAction.animate(with: [SKTexture(pixelImageNamed: "\(character)_up_2"), SKTexture(pixelImageNamed: "\(character)_up_3")], timePerFrame: 0.4)
+        let animUpThree: SKAction = SKAction.animate(with: [SKTexture(pixelImageNamed: "\(character)_up_3"), SKTexture(pixelImageNamed: "\(character)_up_4")], timePerFrame: 0.4)
+        let animUpFour: SKAction = SKAction.animate(with: [SKTexture(pixelImageNamed: "\(character)_up_4"), SKTexture(pixelImageNamed: "\(character)_up_5")], timePerFrame: 0.4)
+        let animUpFive: SKAction = SKAction.animate(with: [SKTexture(pixelImageNamed: "\(character)_up_5"), SKTexture(pixelImageNamed: "\(character)_up_6")], timePerFrame: 0.4)
+        let animUpSix: SKAction = SKAction.animate(with: [SKTexture(pixelImageNamed: "\(character)_up_7"), SKTexture(pixelImageNamed: "\(character)_up_1")], timePerFrame: 0.4)
+        
+        upAnimations.append(animUpOne)
+        upAnimations.append(animUpTwo)
+        upAnimations.append(animUpThree)
+        upAnimations.append(animUpFour)
+        upAnimations.append(animUpFive)
+        upAnimations.append(animUpSix)
+        
+        let animDownOne: SKAction = SKAction.animate(with: [SKTexture(pixelImageNamed: "\(character)_down_1"), SKTexture(pixelImageNamed: "\(character)_down_2")], timePerFrame: 0.4)
+        let animDownTwo: SKAction = SKAction.animate(with: [SKTexture(pixelImageNamed: "\(character)_down_2"), SKTexture(pixelImageNamed: "\(character)_down_3")], timePerFrame: 0.4)
+        let animDownThree: SKAction = SKAction.animate(with: [SKTexture(pixelImageNamed: "\(character)_down_3"), SKTexture(pixelImageNamed: "\(character)_down_4")], timePerFrame: 0.4)
+        let animDownFour: SKAction = SKAction.animate(with: [SKTexture(pixelImageNamed: "\(character)_down_4"), SKTexture(pixelImageNamed: "\(character)_down_5")], timePerFrame: 0.4)
+        let animDownFive: SKAction = SKAction.animate(with: [SKTexture(pixelImageNamed: "\(character)_down_5"), SKTexture(pixelImageNamed: "\(character)_down_6")], timePerFrame: 0.4)
+        let animDownSix: SKAction = SKAction.animate(with: [SKTexture(pixelImageNamed: "\(character)_down_7"), SKTexture(pixelImageNamed: "\(character)_down_1")], timePerFrame: 0.4)
+        
+        downAnimations.append(animDownOne)
+        downAnimations.append(animDownTwo)
+        downAnimations.append(animDownThree)
+        downAnimations.append(animDownFour)
+        downAnimations.append(animDownFive)
+        downAnimations.append(animDownSix)
         
     }
 }
