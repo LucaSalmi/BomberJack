@@ -43,6 +43,10 @@ class PhysicsUtils {
         
         scene.obstaclesNode!.run(actionSeq)
         scene.breakablesNode!.run(actionSeq)
+        scene.player!.run(actionSeq)
+        scene.bombsNode.run(actionSeq)
+        scene.enemyNode!.run(actionSeq)
+        scene.explosionsNode!.run(actionSeq)
 
     }
     
