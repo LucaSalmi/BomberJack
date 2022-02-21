@@ -18,6 +18,8 @@ enum BombSettings{
 class Bomb: SKSpriteNode{
     
     static var bombs = [Bomb]()
+    var activePhysicsBody: SKPhysicsBody?
+    var inactivePhysicsBody: SKPhysicsBody?
     
     var tickingTime: Int = 0
     
@@ -30,16 +32,16 @@ class Bomb: SKSpriteNode{
         super.init(texture: texture, color: .white, size: texture.size())
         name = "Bomb Object"
         zPosition = 50
+        createPhysicsBody()
     }
     
-    func createPhysicsBody(tile: SKTileDefinition){
+    func createPhysicsBody(){
         
-        physicsBody = SKPhysicsBody(rectangleOf: tile.size)
-        physicsBody?.categoryBitMask = PhysicsCategory.Bomb
-        physicsBody?.contactTestBitMask = PhysicsCategory.All
-        physicsBody?.collisionBitMask = PhysicsCategory.All
+        physicsBody = SKPhysicsBody(rectangleOf: GameScene.tileSize ?? CGSize(width: 32, height: 32))
+        physicsBody?.categoryBitMask = PhysicsCategory.InactiveBomb
+        physicsBody?.collisionBitMask = 0
+        physicsBody?.isDynamic = true
         physicsBody?.restitution = 0
-        physicsBody?.isDynamic = false
         physicsBody?.friction = 0
         physicsBody?.allowsRotation = false
     }
@@ -82,6 +84,15 @@ class Bomb: SKSpriteNode{
     }
     
     func update() {
+        
+        let scene = GameViewController.currentGameScene
+        let distanceX = abs((scene?.player?.position.x)! - position.x)
+        let distanceY = abs((scene?.player?.position.y)! - position.y)
+        
+        if distanceX >= GameScene.tileSize!.width || distanceY >= GameScene.tileSize!.height{
+            
+            physicsBody?.categoryBitMask = PhysicsCategory.Bomb
+        }
         
         tickingTime += 1
         

@@ -233,16 +233,6 @@ class GameScene: SKScene {
         
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     func tile(in tileMap: SKTileMapNode, at coordinates: tileCoordinates) -> SKTileDefinition?{
       return tileMap.tileDefinition(atColumn: coordinates.column, row: coordinates.row)
     }

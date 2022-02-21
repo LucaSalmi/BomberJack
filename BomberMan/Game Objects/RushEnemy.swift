@@ -77,6 +77,7 @@ class RushEnemy: TestEnemy {
     }
     
     override func update() {
+        
         //base logic is same as parent Test Enemy
         if !isCharging {
             super.update()

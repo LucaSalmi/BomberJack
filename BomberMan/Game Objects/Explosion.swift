@@ -34,18 +34,18 @@ class Explosion: SKSpriteNode{
         let size: CGSize = GameScene.tileSize ?? CGSize(width: 32, height: 32)
         super.init(texture: texture, color: .white, size: size)
         self.position = position
-        zPosition = 60
+        zPosition = 50
         name = "Explosion\(ExplosionSettings.explosionId)"
         ExplosionSettings.explosionId += 1
-        createPhysicsBody()
+        
     }
     
     func createPhysicsBody(){
         
         physicsBody = SKPhysicsBody(rectangleOf: GameScene.tileSize ?? CGSize(width: 32, height: 32))
         physicsBody?.categoryBitMask = PhysicsCategory.Explosion
-        physicsBody?.collisionBitMask = PhysicsCategory.Breakable
-        physicsBody?.contactTestBitMask = PhysicsCategory.Breakable
+        physicsBody?.collisionBitMask = PhysicsCategory.All
+        physicsBody?.contactTestBitMask = PhysicsCategory.All
         physicsBody?.restitution = 0
         physicsBody?.isDynamic = false
         physicsBody?.friction = 0
@@ -55,6 +55,10 @@ class Explosion: SKSpriteNode{
     func update(){
        
         count += 1
+        
+        if count == 1{
+            createPhysicsBody()
+        }
         
         if count >= ExplosionSettings.permanence{
             
