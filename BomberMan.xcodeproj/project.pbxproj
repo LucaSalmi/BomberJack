@@ -16,6 +16,7 @@
 		33B882A727BBF2FB00BB897E /* TestEnemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B882A627BBF2FB00BB897E /* TestEnemy.swift */; };
 		33BFC5C827BBA567008DBA03 /* StartMenuScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 33BFC5C727BBA567008DBA03 /* StartMenuScene.sks */; };
 		33BFC5CA27BBA5A9008DBA03 /* StartMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BFC5C927BBA5A9008DBA03 /* StartMenuScene.swift */; };
+		33D1493627C36C1E00B4BECA /* PhysicsUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D1493527C36C1E00B4BECA /* PhysicsUtils.swift */; };
 		33D36F0027BD0137002DDB49 /* GameScene2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 33D36EFF27BD0137002DDB49 /* GameScene2.sks */; };
 		33FEE19E27BE96DF0036BC22 /* UIScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 33FEE19D27BE96DF0036BC22 /* UIScene.sks */; };
 		C801D2E827BBAF2F008B1CD5 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = C801D2E727BBAF2F008B1CD5 /* Player.swift */; };
@@ -47,6 +48,7 @@
 		33B882A627BBF2FB00BB897E /* TestEnemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestEnemy.swift; sourceTree = "<group>"; };
 		33BFC5C727BBA567008DBA03 /* StartMenuScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = StartMenuScene.sks; sourceTree = "<group>"; };
 		33BFC5C927BBA5A9008DBA03 /* StartMenuScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartMenuScene.swift; sourceTree = "<group>"; };
+		33D1493527C36C1E00B4BECA /* PhysicsUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsUtils.swift; sourceTree = "<group>"; };
 		33D36EFF27BD0137002DDB49 /* GameScene2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene2.sks; sourceTree = "<group>"; };
 		33FEE19D27BE96DF0036BC22 /* UIScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = UIScene.sks; sourceTree = "<group>"; };
 		C801D2E727BBAF2F008B1CD5 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 		C8C7DC3527BFF7DE0083656A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				33D1493527C36C1E00B4BECA /* PhysicsUtils.swift */,
 				C8C7DC2E27BFD9990083656A /* PhysicsExtension.swift */,
 				C8B747FE27BF992F00D76B32 /* Animatable.swift */,
 				C8B7480027BF9A9A00D76B32 /* Extensions.swift */,
@@ -257,6 +260,7 @@
 				E56CE0B227BCEF0C00962834 /* Bomb.swift in Sources */,
 				C801D2E827BBAF2F008B1CD5 /* Player.swift in Sources */,
 				C815F79227B400480084DE7A /* AppDelegate.swift in Sources */,
+				33D1493627C36C1E00B4BECA /* PhysicsUtils.swift in Sources */,
 				3354DF2A27BFDAE60019D640 /* RushEnemy.swift in Sources */,
 				E56CE0B427BD1F8D00962834 /* ActionManager.swift in Sources */,
 			);
@@ -405,9 +409,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 5C7SAYQ8DJ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -421,8 +426,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.LucaSalmi.BomberMan;
+				PRODUCT_BUNDLE_IDENTIFIER = com.DanielFalkedal.BomberMan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -434,9 +440,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 3P2G45WJH3;
+				DEVELOPMENT_TEAM = 5C7SAYQ8DJ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -450,8 +457,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.LucaSalmi.BomberMan;
+				PRODUCT_BUNDLE_IDENTIFIER = com.DanielFalkedal.BomberMan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

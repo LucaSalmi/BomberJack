@@ -18,9 +18,13 @@ class SoundManager {
     
     static func playSFX(_ sfx: String, _ context: GameScene) {
         
+        if GameViewController.currentGameScene == nil {
+            return
+        }
+        
         let sfxName = sfx + sfxExtension
         let sfxAction = SKAction.playSoundFileNamed(sfxName, waitForCompletion: false)
-        context.run(sfxAction)
+        GameViewController.currentGameScene!.run(sfxAction)
     }
     
 }

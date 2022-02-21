@@ -233,126 +233,14 @@ class GameScene: SKScene {
         
     }
     
-    func placeBomb(){
-        
-        let bomb = Bomb()
-        
-        var tileFound = false
-        
-        for row in 0..<backgroundMap!.numberOfRows{
-            for column in 0..<backgroundMap!.numberOfColumns{
-                 guard let tile = tile(in: backgroundMap!, at: (column, row)) else {
-                    continue
-                 }
-                
-                let tilePosition = backgroundMap!.centerOfTile(atColumn: column, row: row)
-                
-                let leftSide = tilePosition.x - (tile.size.width/2)
-                let topSide = tilePosition.y + (tile.size.height/2)
-                let rightSide = tilePosition.x + (tile.size.width/2)
-                let bottomSide = tilePosition.y - (tile.size.height/2)
-                
-                if player!.position.x > leftSide && player!.position.x < rightSide{
-                    if player!.position.y > bottomSide && player!.position.y < topSide{
-                        bomb.position = tilePosition
-                        tileFound = true
-                        break
-                    }
-                }
-            }
-            
-            if tileFound {break}
-        }
-        
-        bomb.texture = SKTexture(imageNamed: "bomb1")
-        let pos = bomb.position
-        
-        if !checkIfOccupied(node: bombsNode, position: pos){
-            
-            bombsNode.addChild(bomb)
-
-        }else{
-            
-            return
-        }
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            //let bombPos: CGPoint = bomb.position
-            bomb.removeFromParent()
-            
-            self.explosion(pos)
-            SoundManager.playSFX(SoundManager.explosionSFX, self)
-            
-            
-         }
-        
-    }
-    
-    func checkIfOccupied(node: SKNode, position: CGPoint) -> Bool{
-    
-        let list = node.children
-        for obj in list{
-            if obj.position == position{
-                return true
-            }
-        }
-        return false
-    }
     
     
-    func explosion(_ position: CGPoint){
-        
-     
-        let explosion0 = Explosion(position: position)
-        ExplosionSettings.explosionsArray.append(explosion0)
-        
-        let explosion1 = Explosion(position: position)
-        explosion1.position.x += ExplosionSettings.distanceNeg
-        ExplosionSettings.explosionsArray.append(explosion1)
-        
-        let explosion2 = Explosion(position: position)
-        explosion2.position.x += ExplosionSettings.distancePos
-        ExplosionSettings.explosionsArray.append(explosion2)
-        
-        let explosion3 = Explosion(position: position)
-        explosion3.position.y += ExplosionSettings.distanceNeg
-        ExplosionSettings.explosionsArray.append(explosion3)
-        
-        let explosion4 = Explosion(position: position)
-        explosion4.position.y += ExplosionSettings.distancePos
-        ExplosionSettings.explosionsArray.append(explosion4)
     
-        for i in ExplosionSettings.explosionsArray{
-            explosionsNode!.addChild(i)
-        }
-            
-        
-        shakeCamera(duration: CGFloat(0.5))
-        
-    }
     
-    func shakeCamera(duration: CGFloat) {
-        
-        let amplitudeX: CGFloat = 10;
-        let amplitudeY: CGFloat = 6;
-        let numberOfShakes = duration / 0.04;
-        var actionsArray = [SKAction]();
-        for _ in 1...Int(numberOfShakes) {
-            // build a new random shake and add it to the list
-            let moveX = CGFloat(arc4random_uniform(UInt32(amplitudeX))) - amplitudeX / 2;
-            let moveY = CGFloat(arc4random_uniform(UInt32(amplitudeY))) - amplitudeY / 2;
-            let shakeAction = SKAction.moveBy(x: moveX, y: moveY, duration: 0.02);
-            shakeAction.timingMode = SKActionTimingMode.easeOut;
-            actionsArray.append(shakeAction);
-            actionsArray.append(shakeAction.reversed());
-        }
-
-        let actionSeq = SKAction.sequence(actionsArray);
-        
-        obstaclesNode!.run(actionSeq)
-        breakablesNode!.run(actionSeq)
-
-    }
+    
+    
+    
+    
     
     
     func tile(in tileMap: SKTileMapNode, at coordinates: tileCoordinates) -> SKTileDefinition?{

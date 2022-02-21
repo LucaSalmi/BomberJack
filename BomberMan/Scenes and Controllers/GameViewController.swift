@@ -13,6 +13,7 @@ class GameViewController: UIViewController {
     
     //For physical keyboard input with simulator
     static var currentInputKey: UInt8 = 0
+    static var currentGameScene: GameScene? = nil
     
     let numberOfLevels: Int = 2
     var currentLevel: Int = 1
@@ -81,6 +82,8 @@ class GameViewController: UIViewController {
         if let view = self.view as! SKView? {
             
             if let scene = SKScene(fileNamed: sceneName) {
+                
+                GameViewController.currentGameScene = scene as? GameScene
                 
                 let transition = SKTransition.fade(with: UIColor.black, duration: 1.5)
                 

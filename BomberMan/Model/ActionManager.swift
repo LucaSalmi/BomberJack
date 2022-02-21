@@ -43,7 +43,7 @@ class ActionManagager{
             
             if (currentNodeName == "bombButton"){
                 
-                context.placeBomb()
+                placeBomb()
                 
             }
             else if (currentNodeName == "nextLevelButton") {
@@ -62,5 +62,63 @@ class ActionManagager{
             
             
         }
+    }
+    
+    func placeBomb(){
+        
+        let bomb = Bomb()
+        
+        let backgroundMap = context.backgroundMap!
+        let player = context.player!
+        
+        var tileFound = false
+        
+        for row in 0..<backgroundMap.numberOfRows{
+            for column in 0..<backgroundMap.numberOfColumns{
+                guard let tile = context.tile(in: backgroundMap, at: (column, row)) else {
+                    continue
+                 }
+                
+                let tilePosition = backgroundMap.centerOfTile(atColumn: column, row: row)
+                
+                let leftSide = tilePosition.x - (tile.size.width/2)
+                let topSide = tilePosition.y + (tile.size.height/2)
+                let rightSide = tilePosition.x + (tile.size.width/2)
+                let bottomSide = tilePosition.y - (tile.size.height/2)
+                
+                if player.position.x > leftSide && player.position.x < rightSide{
+                    if player.position.y > bottomSide && player.position.y < topSide{
+                        bomb.position = tilePosition
+                        tileFound = true
+                        break
+                    }
+                }
+            }
+            
+            if tileFound {break}
+        }
+        
+        bomb.texture = SKTexture(imageNamed: "bomb1")
+        
+        if !PhysicsUtils.checkIfOccupied(node: context.bombsNode, object: bomb){
+            
+            context.bombsNode.addChild(bomb)
+            
+        }else{
+            return
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            //let bombPos: CGPoint = bomb.position
+            bomb.removeFromParent()
+            
+            bomb.explosion(bomb.position)
+            let scene = GameViewController.currentGameScene
+            if scene != nil {
+                SoundManager.playSFX(SoundManager.explosionSFX, scene!)
+            }
+            
+         }
+        
     }
 }

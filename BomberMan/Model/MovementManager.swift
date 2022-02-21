@@ -135,7 +135,7 @@ class MovementManager {
             direction.x = -1
         case 32:
             //space-button
-            context.placeBomb()
+            context.actionManager.placeBomb()
             GameViewController.currentInputKey = 0
         default:
             let null = false
