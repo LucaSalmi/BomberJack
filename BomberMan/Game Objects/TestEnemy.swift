@@ -58,6 +58,19 @@ class TestEnemy: Enemy {
         return newDirection
     }
     
+    private func updateDirection(newDirection: CGPoint) {
+        
+        guard let backgroundMap = scene!.childNode(withName: "background")as? SKTileMapNode else {
+            return
+        }
+        let center = PhysicsUtils.findCenterOfClosestTile(map: backgroundMap, object: self)
+        if center != nil {
+            self.position = center!
+        }
+        
+        direction = newDirection
+    }
+    
     override func collision(with other: SKNode?) {
         let oldDirection = direction
         var newDirection = direction
@@ -65,7 +78,7 @@ class TestEnemy: Enemy {
         while newDirection == oldDirection {
             newDirection = getRandomDirection()
         }
-        direction = newDirection
+        updateDirection(newDirection: newDirection)
     }
     
     override func update() {
@@ -75,7 +88,7 @@ class TestEnemy: Enemy {
         
         currentMovementDistance += enemySpeed
         if currentMovementDistance == changeDirectionInterval {
-            direction = getRandomDirection()
+            updateDirection(newDirection: getRandomDirection())
         }
         
     }

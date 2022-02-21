@@ -72,6 +72,10 @@ class RushEnemy: TestEnemy {
         return CGPoint(x: 0, y: 0)
     }
     
+    override func collision(with other: SKNode?) {
+        isCharging = false
+    }
+    
     override func update() {
         //base logic is same as parent Test Enemy
         if !isCharging {
@@ -85,6 +89,14 @@ class RushEnemy: TestEnemy {
             else {
                 isCharging = true
                 direction = rushDirection
+                
+                guard let backgroundMap = scene!.childNode(withName: "background")as? SKTileMapNode else {
+                    return
+                }
+                let center = PhysicsUtils.findCenterOfClosestTile(map: backgroundMap, object: self)
+                if center != nil {
+                    self.position = center!
+                }
             }
         }
         
