@@ -102,7 +102,7 @@ class GameScene: SKScene {
             for column in 0..<breakablesTileMap.numberOfColumns{
                 
                 guard let tile = tile(in: breakablesTileMap, at: (column, row)) else {continue}
-                //GameScene.tileSize = tile.size
+                GameScene.tileSize = tile.size
                 guard tile.userData?.object(forKey: "breakable") != nil else {continue}
                 
                 var breakable: BreakableObject

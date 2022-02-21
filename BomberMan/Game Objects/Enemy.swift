@@ -34,7 +34,7 @@ class Enemy: SKSpriteNode {
         physicsBody = SKPhysicsBody(circleOfRadius: size.width/2)
         physicsBody?.categoryBitMask = PhysicsCategory.Enemy
         physicsBody?.contactTestBitMask = PhysicsCategory.All
-        physicsBody?.collisionBitMask = PhysicsCategory.Obstacle | PhysicsCategory.Breakable | PhysicsCategory.Bomb
+        physicsBody?.collisionBitMask = PhysicsCategory.Obstacle | PhysicsCategory.Breakable | PhysicsCategory.Bomb | PhysicsCategory.InactiveBomb
         physicsBody?.restitution = 0
         physicsBody?.allowsRotation = false
         
