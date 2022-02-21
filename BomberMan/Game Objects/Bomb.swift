@@ -30,16 +30,16 @@ class Bomb: SKSpriteNode{
         super.init(texture: texture, color: .white, size: texture.size())
         name = "Bomb Object"
         zPosition = 50
+        createPhysicsBody()
     }
     
-    func createPhysicsBody(tile: SKTileDefinition){
+    func createPhysicsBody(){
         
-        physicsBody = SKPhysicsBody(rectangleOf: tile.size)
+        physicsBody = SKPhysicsBody(rectangleOf: GameScene.tileSize ?? CGSize(width: 32, height: 32))
         physicsBody?.categoryBitMask = PhysicsCategory.Bomb
-        physicsBody?.contactTestBitMask = PhysicsCategory.All
-        physicsBody?.collisionBitMask = PhysicsCategory.All
+        physicsBody?.collisionBitMask = 0
+        physicsBody?.isDynamic = true
         physicsBody?.restitution = 0
-        physicsBody?.isDynamic = false
         physicsBody?.friction = 0
         physicsBody?.allowsRotation = false
     }
