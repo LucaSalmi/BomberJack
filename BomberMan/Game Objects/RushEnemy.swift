@@ -72,6 +72,10 @@ class RushEnemy: TestEnemy {
         return CGPoint(x: 0, y: 0)
     }
     
+    override func collision(with other: SKNode?) {
+        isCharging = false
+    }
+    
     override func update() {
         //base logic is same as parent Test Enemy
         if !isCharging {

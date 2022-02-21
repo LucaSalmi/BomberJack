@@ -14,7 +14,20 @@ extension GameScene: SKPhysicsContactDelegate{
         
         let nodeA = contact.bodyA.node
         let nodeB = contact.bodyB.node
-
+        
+        //Enemy collision will call their own collision methods
+        if nodeA is Enemy {
+            let enemyA = nodeA as! Enemy
+            enemyA.collision(with: nodeB)
+        }
+        if nodeB is Enemy {
+            let enemyB = nodeB as! Enemy
+            enemyB.collision(with: nodeA)
+        }
+        if nodeA is Enemy && nodeB is Enemy {
+            //return if both nodes are enemies
+            return
+        }
         
         //main switch for body A
         switch contact.bodyA.categoryBitMask{
