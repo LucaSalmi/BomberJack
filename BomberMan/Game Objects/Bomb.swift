@@ -67,8 +67,10 @@ class Bomb: SKSpriteNode{
         ExplosionSettings.explosionsArray.append(explosion4)
     
         let scene = GameViewController.currentGameScene
-        for i in ExplosionSettings.explosionsArray{
-            scene?.explosionsNode!.addChild(i)
+        for explosion in ExplosionSettings.explosionsArray{
+            if explosion.parent == nil {
+                scene?.explosionsNode!.addChild(explosion)
+            }
         }
             
         if scene != nil {
