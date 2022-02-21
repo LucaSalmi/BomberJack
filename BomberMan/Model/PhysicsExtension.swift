@@ -195,7 +195,7 @@ extension GameScene: SKPhysicsContactDelegate{
                     
                 case PhysicsCategory.Breakable:
                     print("look here")
-                    let breakable = getBreakable(node: nodeB!)
+                    let breakable = getBreakable(node: (nodeB ?? contact.bodyB.node)!)
                     breakable.collision(breakable: nodeB)
                     
                 case PhysicsCategory.Bomb:

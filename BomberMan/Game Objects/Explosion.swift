@@ -34,10 +34,10 @@ class Explosion: SKSpriteNode{
         let size: CGSize = GameScene.tileSize ?? CGSize(width: 32, height: 32)
         super.init(texture: texture, color: .white, size: size)
         self.position = position
-        zPosition = 60
+        zPosition = 50
         name = "Explosion\(ExplosionSettings.explosionId)"
         ExplosionSettings.explosionId += 1
-        createPhysicsBody()
+        ()
     }
     
     func createPhysicsBody(){
