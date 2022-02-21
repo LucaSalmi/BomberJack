@@ -76,7 +76,7 @@ class Player: SKSpriteNode{
     
     func runAnim(playerDirection: Direction){
         
-        if PlayerSettings.frame > 4{
+        if PlayerSettings.frame > rightAnimations.count - 1 || PlayerSettings.frame > leftAnimations.count - 1{
             PlayerSettings.frame = 0
         }
         
@@ -92,7 +92,7 @@ class Player: SKSpriteNode{
             run(rightAnimations[PlayerSettings.frame], withKey: "animation")
         }
         
-        if PlayerSettings.frameLimiter > 4{
+        if PlayerSettings.frameLimiter > rightAnimations.count - 1 || PlayerSettings.frameLimiter > leftAnimations.count - 1{
             
             PlayerSettings.frame += 1
             PlayerSettings.frameLimiter = 1
