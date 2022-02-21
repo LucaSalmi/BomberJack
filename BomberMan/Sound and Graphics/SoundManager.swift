@@ -2,7 +2,7 @@
 //  SoundManager.swift
 //  BomberMan
 //
-//  Created by Daniel Falkedal on 2022-02-18.
+//  Created by Luca Salmi, Daniel Falkedal, Calle Höglund, Hampus Brandtman on 2022-02-18.
 //
 
 import Foundation

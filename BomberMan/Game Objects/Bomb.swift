@@ -2,7 +2,7 @@
 //  Bomb.swift
 //  BomberMan
 //
-//  Created by Calle Höglund on 2022-02-16.
+//  Created by Luca Salmi, Daniel Falkedal, Calle Höglund, Hampus Brandtman on 2022-02-16.
 //
 
 import Foundation
