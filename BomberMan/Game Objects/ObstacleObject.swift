@@ -14,8 +14,7 @@ class ObstacleObject: SKSpriteNode{
         fatalError("use init()")
     }
     
-    init(){
-        let texture = SKTexture(imageNamed: "wall")
+    init(texture: SKTexture){
         
         super.init(texture: texture, color: .white, size: texture.size())
         name = "Obstacle Object"

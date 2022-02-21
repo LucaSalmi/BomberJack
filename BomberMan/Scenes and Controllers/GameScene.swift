@@ -130,6 +130,7 @@ class GameScene: SKScene {
     }
     
     
+    
     func setupObstaclesPhysics(){
         guard let obstaclesTileMap = childNode(withName: "obstacles")as? SKTileMapNode else {
             return
@@ -141,14 +142,23 @@ class GameScene: SKScene {
                 guard let tile = tile(in: obstaclesTileMap, at: (column, row)) else {continue}
                 guard tile.userData?.object(forKey: "obstacle") != nil else {continue}
                 
-                var obstacle: ObstacleObject
-                if tile.userData?.value(forKey: "obstacle") as! Bool == true{
+                var obstacle: ObstacleObject = ObstacleObject(texture: SKTexture(imageNamed: "wall"))
+                
+                if tile.userData?.value(forKey: "obstacle") != nil{
+                    let value = tile.userData?.value(forKey: "obstacle") as! String
+                    switch value{
+                    case "wall":
+                        let texture = SKTexture(imageNamed: "wall")
+                        obstacle = ObstacleObject(texture: texture)
+                        
+                        
+                    default:
+                        let texture = SKTexture()
+                        obstacle = ObstacleObject(texture: texture)
+                        
+                    }
                     
-                    obstacle = ObstacleObject()
                     
-                }else{
-                    
-                    obstacle = ObstacleObject()
                 }
                 
                 obstacle.createPhysicsBody(tile: tile)
