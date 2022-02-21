@@ -263,6 +263,18 @@ class GameScene: SKScene {
         
         //Call update()-method on all enemies
         for enemy in Enemy.enemies {
+            if !enemy.isAlive {
+                for i in 0..<Enemy.enemies.count {
+                    if i >= Enemy.enemies.count { continue }
+                    let checkEnemy = Enemy.enemies[i]
+                    if checkEnemy == enemy {
+                        Enemy.enemies.remove(at: i)
+                    }
+                }
+                enemy.removeFromParent()
+                
+                return
+            }
             enemy.update()
         }
         

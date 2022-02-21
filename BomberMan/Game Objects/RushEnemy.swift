@@ -73,6 +73,8 @@ class RushEnemy: TestEnemy {
     }
     
     override func collision(with other: SKNode?) {
+        super.collision(with: other)
+        
         isCharging = false
     }
     
@@ -106,8 +108,6 @@ class RushEnemy: TestEnemy {
         
         position.x += (direction.x * chargeSpeed)
         position.y += (direction.y * chargeSpeed)
-        
-        
         
     }
     

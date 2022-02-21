@@ -142,7 +142,9 @@ class MovementManager {
             
         }
         
-        //context.player!.move(direction: direction)
+        if direction.x != 0 || direction.y != 0 {
+            context.player!.move(direction: direction)
+        }
     }
     
 }

@@ -179,6 +179,10 @@ extension GameScene: SKPhysicsContactDelegate{
             case PhysicsCategory.Obstacle:
                 print("Bomb-Obstacle")
                 
+            case PhysicsCategory.Explosion:
+                let bomb = nodeA as! Bomb
+                bomb.tickingTime = BombSettings.explosionTime
+                
             default:
                 print("mystery")
             }
@@ -200,8 +204,10 @@ extension GameScene: SKPhysicsContactDelegate{
                     
                 case PhysicsCategory.Breakable:
                     print("look here")
-                    let breakable = getBreakable(node: (nodeB ?? contact.bodyB.node)!)
-                    breakable.collision(breakable: nodeB)
+                    if nodeB != nil {
+                        let breakable = getBreakable(node: nodeB!)
+                        breakable.collision(breakable: nodeB)
+                    }
                     
                 case PhysicsCategory.Bomb:
                     print("Explosion-Bomb")

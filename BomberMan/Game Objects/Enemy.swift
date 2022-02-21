@@ -23,6 +23,7 @@ class Enemy: SKSpriteNode {
     //change these variables in enemy subclass
     var enemySpeed: CGFloat = 0.0
     var difficult: Int = 0
+    var isAlive: Bool = true
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("use init()")
@@ -31,7 +32,8 @@ class Enemy: SKSpriteNode {
     init(_ texture: SKTexture, _ color: UIColor, _ size: CGSize) {
         super.init(texture: texture, color: color, size: size)
         
-        physicsBody = SKPhysicsBody(circleOfRadius: size.width/2)
+        let physicsBodyPct = CGFloat(0.90)
+        physicsBody = SKPhysicsBody(circleOfRadius: (size.width/2) * physicsBodyPct)
         physicsBody?.categoryBitMask = PhysicsCategory.Enemy
         physicsBody?.contactTestBitMask = PhysicsCategory.All
         physicsBody?.collisionBitMask = PhysicsCategory.Obstacle | PhysicsCategory.Breakable | PhysicsCategory.Bomb | PhysicsCategory.InactiveBomb
@@ -43,6 +45,18 @@ class Enemy: SKSpriteNode {
     
     func collision(with other: SKNode?) {
         //Override this in enemy subclasses
+        
+        if other is Explosion {
+            for i in 0..<Enemy.enemies.count {
+                if i >= Enemy.enemies.count {
+                    return
+                }
+                let enemy = Enemy.enemies[i]
+                if enemy == self {
+                    isAlive = false
+                }
+            }
+        }
     }
  
     func update() {

@@ -42,7 +42,9 @@ class Explosion: SKSpriteNode{
     
     func createPhysicsBody(){
         
-        physicsBody = SKPhysicsBody(rectangleOf: GameScene.tileSize ?? CGSize(width: 32, height: 32))
+        let physicsBodyPct = CGFloat(0.99)
+        physicsBody = SKPhysicsBody(circleOfRadius: (size.width/2) * physicsBodyPct)
+        //physicsBody = SKPhysicsBody(rectangleOf: GameScene.tileSize ?? CGSize(width: 32, height: 32))
         physicsBody?.categoryBitMask = PhysicsCategory.Explosion
         physicsBody?.collisionBitMask = PhysicsCategory.All
         physicsBody?.contactTestBitMask = PhysicsCategory.All
