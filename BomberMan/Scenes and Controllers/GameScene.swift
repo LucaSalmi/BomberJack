@@ -222,6 +222,8 @@ class GameScene: SKScene {
                 
                     player = Player()
                     player!.position = playerMap.centerOfTile(atColumn: column, row: row)
+                    player!.playerTexture.position.x = player!.position.x
+                    player!.playerTexture.position.y = player!.position.y + PlayerSettings.textureOffset
                     
                 }
             }
@@ -285,6 +287,8 @@ class GameScene: SKScene {
         for bomb in Bomb.bombs {
             bomb.update()
         }
+        
+        player!.update()
         
     }
     
