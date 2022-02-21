@@ -13,6 +13,7 @@ enum PlayerSettings{
     static var frame: Int = 0
     static var frameLimiter: Int = 1
     static var canDropBomb: Bool = true
+    static let textureOffset = CGFloat(10) //temporary hard coded variable
 }
 
 class Player: SKSpriteNode{
@@ -20,6 +21,7 @@ class Player: SKSpriteNode{
     static var camera: SKCameraNode! = SKCameraNode()
     var rightAnimations: [SKAction] = []
     var leftAnimations: [SKAction] = []
+    var playerTexture: SKSpriteNode! = SKSpriteNode()
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("use init()")
@@ -27,11 +29,11 @@ class Player: SKSpriteNode{
     
     init(){
         let texture = SKTexture(imageNamed: "player_walk_up_1")
-        let size: CGSize = CGSize(width: 26.0, height: 48.0)
-        
-        super.init(texture: texture, color: .white, size: size)
+        let size: CGSize = CGSize(width: 32, height: 32)
+        let tempColor = UIColor(red: 100, green: 100, blue: 100, alpha: 0)
+        super.init(texture: SKTexture(imageNamed: "player_shadow"), color: tempColor, size: size)
         name = "Player"
-        zPosition = 50
+        zPosition = 1
         
         physicsBody = SKPhysicsBody(circleOfRadius: size.width/2)
         physicsBody?.categoryBitMask = PhysicsCategory.Player
@@ -39,6 +41,12 @@ class Player: SKSpriteNode{
         //physicsBody?.contactTestBitMask = PhysicsCategory.Breakable
         physicsBody?.restitution = 0
         physicsBody?.allowsRotation = false
+        
+        let textureSize = CGSize(width: size.width, height: size.height*1.5)
+        playerTexture = SKSpriteNode(texture: texture, color: UIColor(red: 0, green: 0, blue: 0, alpha: 0), size: textureSize)
+        playerTexture.position = position
+        playerTexture.zPosition = 50
+        GameViewController.currentGameScene!.addChild(playerTexture)
         
         createPlayerAnimations(character: "player_walk")
         
@@ -83,13 +91,13 @@ class Player: SKSpriteNode{
         switch playerDirection {
             
         case .forward:
-            self.texture = SKTexture(pixelImageNamed: "player_walk_up_1")
+            playerTexture.texture = SKTexture(pixelImageNamed: "player_walk_up_1")
         case .backward:
-            run(rightAnimations[PlayerSettings.frame], withKey: "animation")
+            playerTexture.run(rightAnimations[PlayerSettings.frame], withKey: "animation")
         case .left:
-            run(leftAnimations[PlayerSettings.frame], withKey: "animation")
+            playerTexture.run(leftAnimations[PlayerSettings.frame], withKey: "animation")
         case .right:
-            run(rightAnimations[PlayerSettings.frame], withKey: "animation")
+            playerTexture.run(rightAnimations[PlayerSettings.frame], withKey: "animation")
         }
         
         if PlayerSettings.frameLimiter > 4{
@@ -106,6 +114,11 @@ class Player: SKSpriteNode{
         
         print("collision happened")
         
+    }
+    
+    func update() {
+        playerTexture.position.x = position.x
+        playerTexture.position.y = position.y + PlayerSettings.textureOffset
     }
 }
 
