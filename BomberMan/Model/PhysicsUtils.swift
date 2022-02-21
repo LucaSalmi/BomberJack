@@ -23,7 +23,7 @@ class PhysicsUtils {
     
     static func findCenterOfClosestTile(map: SKTileMapNode, object: SKNode) -> CGPoint? {
         
-        let scene = object.scene as! GameScene
+        let scene = GameViewController.currentGameScene!
         
         for row in 0..<map.numberOfRows{
             for column in 0..<map.numberOfColumns{
@@ -72,7 +72,7 @@ class PhysicsUtils {
         scene.obstaclesNode!.run(actionSeq)
         scene.breakablesNode!.run(actionSeq)
         scene.player!.run(actionSeq)
-        scene.bombsNode.run(actionSeq)
+        scene.bombsNode!.run(actionSeq)
         scene.enemyNode!.run(actionSeq)
         scene.explosionsNode!.run(actionSeq)
 

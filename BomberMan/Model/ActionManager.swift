@@ -100,9 +100,9 @@ class ActionManagager{
         
         bomb.texture = SKTexture(imageNamed: "bomb1")
         
-        if !PhysicsUtils.checkIfOccupied(node: context.bombsNode, object: bomb){
+        if !PhysicsUtils.checkIfOccupied(node: context.bombsNode!, object: bomb){
             
-            context.bombsNode.addChild(bomb)
+            context.bombsNode!.addChild(bomb)
             Bomb.bombs.append(bomb)
             
         }else{

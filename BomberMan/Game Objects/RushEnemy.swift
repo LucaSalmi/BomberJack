@@ -31,7 +31,8 @@ class RushEnemy: TestEnemy {
     
     private func searchForPlayer() -> CGPoint {
         
-        let worldWidth = (self.scene as! GameScene).backgroundMap!.mapSize.width
+        let worldWidth = (GameViewController.currentGameScene!.backgroundMap!.mapSize.width)
+        //let worldWidth = (self.scene as! GameScene).backgroundMap!.mapSize.width
         let rayStart = self.position
         var targetBody = SKPhysicsBody()
         
@@ -55,7 +56,7 @@ class RushEnemy: TestEnemy {
         
         for i in 0..<rays.count {
             let rayEnd = rays[i]
-            targetBody = self.scene!.physicsWorld.body(alongRayStart: rayStart, end: rayEnd)!
+            targetBody = GameViewController.currentGameScene!.physicsWorld.body(alongRayStart: rayStart, end: rayEnd)!
             if targetBody.node != nil {
                 targets.append(targetBody.node!)
             }
@@ -93,7 +94,7 @@ class RushEnemy: TestEnemy {
                 isCharging = true
                 direction = rushDirection
                 
-                guard let backgroundMap = scene!.childNode(withName: "background")as? SKTileMapNode else {
+                guard let backgroundMap = GameViewController.currentGameScene!.childNode(withName: "background")as? SKTileMapNode else {
                     return
                 }
                 let center = PhysicsUtils.findCenterOfClosestTile(map: backgroundMap, object: self)

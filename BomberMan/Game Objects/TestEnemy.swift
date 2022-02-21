@@ -60,7 +60,7 @@ class TestEnemy: Enemy {
     
     private func updateDirection(newDirection: CGPoint) {
         
-        guard let backgroundMap = scene!.childNode(withName: "background")as? SKTileMapNode else {
+        guard let backgroundMap = GameViewController.currentGameScene!.childNode(withName: "background")as? SKTileMapNode else {
             return
         }
         let center = PhysicsUtils.findCenterOfClosestTile(map: backgroundMap, object: self)

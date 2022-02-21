@@ -16,7 +16,7 @@ class GameScene: SKScene {
     var leftUI: SKSpriteNode? = nil
     var rightUI: SKSpriteNode? = nil
     
-    var bombsNode = SKNode()
+    var bombsNode: SKNode? = SKNode()
     var explosionsNode: SKNode? = SKNode()
     var actionManager: ActionManagager!
     var backgroundMap: SKTileMapNode?
@@ -28,12 +28,13 @@ class GameScene: SKScene {
     
     var movementManager: MovementManager? = nil
     
+    var isGameOver = false
+    
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        
         backgroundMap = (childNode(withName: "background") as! SKTileMapNode)
-        addChild(bombsNode)
+        addChild(bombsNode!)
         addChild(explosionsNode!)
         
     }
@@ -87,8 +88,8 @@ class GameScene: SKScene {
     }
     
     func setupWorldPhysics(){
-        backgroundMap!.physicsBody = SKPhysicsBody(edgeLoopFrom: backgroundMap!.frame)
-        backgroundMap!.physicsBody?.categoryBitMask = PhysicsCategory.Edge
+        backgroundMap?.physicsBody = SKPhysicsBody(edgeLoopFrom: backgroundMap!.frame)
+        backgroundMap?.physicsBody?.categoryBitMask = PhysicsCategory.Edge
         physicsWorld.contactDelegate = self
     }
     
@@ -300,9 +301,21 @@ class GameScene: SKScene {
         
         player!.update()
         
+        if isGameOver{
+            
+            self.removeAllChildren()
+            self.removeAllActions()
+            isGameOver = false
+            stopScene()
+            let restartScene = "GameScene" + String(GameScene.viewController!.currentLevel)
+            GameScene.viewController!.presentScene(restartScene)
+            
+        }
+        
     }
     
     func stopScene() {
+        
         backgroundMap = nil
         enemyNode = nil
         explosionsNode = nil
@@ -310,6 +323,10 @@ class GameScene: SKScene {
         obstaclesNode = nil
         player = nil
         movementManager = nil
+        bombsNode = nil
+        Bomb.bombs.removeAll()
+        Enemy.enemies.removeAll()
+        ExplosionSettings.explosionsArray.removeAll()
     }
 }
 
