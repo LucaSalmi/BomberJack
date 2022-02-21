@@ -63,6 +63,12 @@ class Player: SKSpriteNode{
         //run(move)
     }
     
+    func death(player: SKNode){
+        
+        player.removeFromParent()
+        playerTexture.removeFromParent()
+    }
+    
     func findDirection(playerDirection: CGPoint) -> Direction{
         
         
@@ -117,8 +123,13 @@ class Player: SKSpriteNode{
     }
     
     func update() {
-        playerTexture.position.x = position.x
-        playerTexture.position.y = position.y + PlayerSettings.textureOffset
+        
+        if playerTexture != nil{
+            
+            playerTexture.position.x = position.x
+            playerTexture.position.y = position.y + PlayerSettings.textureOffset
+        }
+        
     }
 }
 

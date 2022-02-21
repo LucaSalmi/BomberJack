@@ -42,15 +42,10 @@ extension GameScene: SKPhysicsContactDelegate{
                 // BodyB is an Enemy
             case PhysicsCategory.Enemy:
                 
-                let enemy = getEnemy(node: nodeB!)
-                enemy.collision(with: contact.bodyA.node)
-                player.collision(with: nodeB)
+                player.death(player: nodeA!)
+                isGameOver = true
                 
                 // BodyB is a Breakable Object
-            case PhysicsCategory.Breakable:
-                
-                let breakable = getBreakable(node: nodeB!)
-                breakable.collision(breakable: nodeB)
                 
                 //BodyB is a Bomb
             case PhysicsCategory.Bomb:
@@ -58,6 +53,11 @@ extension GameScene: SKPhysicsContactDelegate{
                 
             case PhysicsCategory.Obstacle:
                 print("Player_Obstacle")
+                
+            case PhysicsCategory.Explosion:
+                
+                player.death(player: nodeA!)
+                isGameOver = true
                 
             default:
                 print("mystery")
@@ -72,13 +72,8 @@ extension GameScene: SKPhysicsContactDelegate{
             case PhysicsCategory.Player:
                 
                 let player = getPlayer(node: nodeB!)
-                print(player)
-                
-                // BodyB is an Enemy
-            case PhysicsCategory.Enemy:
-                
-                let enemy = getEnemy(node: nodeB!)
-                print(enemy)
+                player.death(player: nodeB!)
+                isGameOver = true
                 
                 // BodyB is a Breakable Object
             case PhysicsCategory.Breakable:
@@ -193,11 +188,11 @@ extension GameScene: SKPhysicsContactDelegate{
                 
                 let _ = contact.bodyA.node as! Explosion
             
-                print("look here 2")
                 switch contact.bodyB.categoryBitMask{
                     
                 case PhysicsCategory.Player:
-                    print("Explosion-Player")
+                    let player = getPlayer(node: nodeB!)
+                    player.death(player: nodeB!)
                     
                 case PhysicsCategory.Enemy:
                     print("Explosion-Enemy")
