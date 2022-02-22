@@ -43,7 +43,7 @@ class ActionManagager{
             
             if (currentNodeName == "bombButton"){
                 
-                placeBomb()
+                placeBomb(id: 0)
                 
             }
             else if (currentNodeName == "nextLevelButton") {
@@ -59,14 +59,32 @@ class ActionManagager{
                 let nextScene = "GameScene" + String(GameScene.viewController!.currentLevel)
                 GameScene.viewController!.presentScene(nextScene)
             }
+            else if currentNodeName == "trapButton"{
+                
+                print("trapSet")
+                placeBomb(id: 1)
+            }
             
             
         }
     }
     
-    func placeBomb(){
+    func placeBomb(id: Int){
         
-        let bomb = StandardBomb()
+        var bomb: Bomb
+        
+        switch id {
+            
+        case 0:
+            bomb = StandardBomb()
+            
+        case 1:
+            bomb = TrapBomb()
+            
+        default:
+            bomb = StandardBomb()
+        }
+        
         
         let backgroundMap = context.backgroundMap!
         let player = context.player!

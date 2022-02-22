@@ -10,6 +10,11 @@ import SpriteKit
 
 class TrapBomb: Bomb{
     
+    var trapActive: Int = 0
+    var activeTraps: [TrapBomb] = []
+    var isTrapActive = false
+    
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("use init()")
     }
@@ -22,28 +27,47 @@ class TrapBomb: Bomb{
         zPosition = 50
     }
     
+    override func createPhysicsBody() {
+        
+        physicsBody = SKPhysicsBody(circleOfRadius: (size.width/2) * PhysicsUtils.physicsBodyPct)
+        physicsBody?.categoryBitMask = PhysicsCategory.InactiveBomb
+        physicsBody?.collisionBitMask = 0
+        physicsBody?.isDynamic = true
+        physicsBody?.restitution = 0
+        physicsBody?.friction = 0
+        physicsBody?.allowsRotation = false
+    }
+    
+    override func activation(_ position: CGPoint) {
+         
+        self.isTrapActive = true
+        self.physicsBody?.categoryBitMask = PhysicsCategory.TrapBomb
+    }
+    
     override func update() {
-        
-        let scene = GameViewController.currentGameScene
-        let distanceX = abs((scene?.player?.position.x)! - position.x)
-        let distanceY = abs((scene?.player?.position.y)! - position.y)
-        
-        if distanceX >= GameScene.tileSize!.width || distanceY >= GameScene.tileSize!.height{
-            
-            physicsBody?.categoryBitMask = PhysicsCategory.Bomb
-        }
         
         tickingTime += 1
         
-        if tickingTime >= BombSettings.explosionTime {
+        if tickingTime >= BombSettings.activateTrap {
             for i in 0..<Bomb.bombs.count {
                 if i >= Bomb.bombs.count {return}
                 let bomb = Bomb.bombs[i]
-                if bomb == self{
-                    removeFromParent()
-                    Bomb.bombs.remove(at: i)
-                    explosion(position)
+                if bomb == self && !self.isTrapActive{
+                                        
+                    activation(position)
+                    print("trap active")
                     
+                }else if bomb == self && self.isTrapActive{
+                    
+                    trapActive += 1
+                    
+                    if trapActive >= BombSettings.trapDuration{
+                        
+                        print("trap removed")
+                        Bomb.bombs.remove(at: i)
+                        bomb.removeFromParent()
+                    }
+
                 }
             }
         }
