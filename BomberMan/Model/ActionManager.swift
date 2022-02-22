@@ -66,7 +66,7 @@ class ActionManagager{
     
     func placeBomb(){
         
-        let bomb = Bomb()
+        let bomb = StandardBomb()
         
         let backgroundMap = context.backgroundMap!
         let player = context.player!

@@ -23,7 +23,7 @@ class StandardBomb: Bomb{
     }
     
     
-    func explosion(_ position: CGPoint){
+    override func explosion(_ position: CGPoint){
         
      
         let explosion0 = Explosion(position: position)
