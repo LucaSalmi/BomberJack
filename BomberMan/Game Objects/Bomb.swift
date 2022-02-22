@@ -37,7 +37,7 @@ class Bomb: SKSpriteNode{
     
     func createPhysicsBody(){
         
-        physicsBody = SKPhysicsBody(rectangleOf: GameScene.tileSize ?? CGSize(width: 32, height: 32))
+        physicsBody = SKPhysicsBody(circleOfRadius: (size.width/2) * PhysicsUtils.physicsBodyPct)
         physicsBody?.categoryBitMask = PhysicsCategory.InactiveBomb
         physicsBody?.collisionBitMask = 0
         physicsBody?.isDynamic = true

@@ -21,8 +21,8 @@ enum ExplosionSettings{
 
 class Explosion: SKSpriteNode{
     
+    static let physicsBodyPct = CGFloat(0.85)
     var count: Int = 0
-    
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("use init()")
@@ -42,8 +42,7 @@ class Explosion: SKSpriteNode{
     
     func createPhysicsBody(){
         
-        let physicsBodyPct = CGFloat(0.90)
-        physicsBody = SKPhysicsBody(circleOfRadius: (size.width/2) * physicsBodyPct)
+        physicsBody = SKPhysicsBody(circleOfRadius: (size.width/2) * Explosion.physicsBodyPct)
         //physicsBody = SKPhysicsBody(rectangleOf: GameScene.tileSize ?? CGSize(width: 32, height: 32))
         physicsBody?.categoryBitMask = PhysicsCategory.Explosion
         physicsBody?.collisionBitMask = PhysicsCategory.All
