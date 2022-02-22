@@ -55,6 +55,9 @@ class ActionManagager{
                 print("trapSet")
                 placeBomb(id: 1)
             }
+    
+        }
+    }
             
     func placeBomb(id: Int){
         
@@ -66,10 +69,6 @@ class ActionManagager{
             bomb = StandardBomb()
             
         case 1:
-            bomb = TrapBomb()
-            
-        default:
-            bomb = StandardBomb()
             bomb = TrapBomb()
             
         default:
