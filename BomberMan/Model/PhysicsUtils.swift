@@ -72,14 +72,6 @@ class PhysicsUtils {
         let actionSeq = SKAction.sequence(actionsArray);
         
         scene.player!.playerTexture.run(actionSeq)
-        
-        return
-        scene.obstaclesNode!.run(actionSeq)
-        scene.breakablesNode!.run(actionSeq)
-        scene.player!.run(actionSeq)
-        scene.bombsNode!.run(actionSeq)
-        scene.enemyNode!.run(actionSeq)
-        scene.explosionsNode!.run(actionSeq)
 
     }
     
