@@ -98,7 +98,6 @@ class ActionManagager{
             if tileFound {break}
         }
         
-        bomb.texture = SKTexture(imageNamed: "bomb1")
         
         if !PhysicsUtils.checkIfOccupied(node: context.bombsNode!, object: bomb){
             

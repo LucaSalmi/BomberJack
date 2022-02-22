@@ -27,9 +27,11 @@ class Bomb: SKSpriteNode{
         fatalError("use init()")
     }
     
-    init(_ texture: SKTexture, _ color: UIColor, _ size: CGSize){
-        
-        super.init(texture: texture, color: color, size: size)
+    init(){
+        let texture = SKTexture(imageNamed: "bugspray")
+        super.init(texture: texture, color: .white, size: texture.size())
+        name = "Bomb Object"
+        zPosition = 50
         createPhysicsBody()
     }
     
@@ -43,14 +45,5 @@ class Bomb: SKSpriteNode{
         physicsBody?.friction = 0
         physicsBody?.allowsRotation = false
     }
-    
-    func explosion(_ position: CGPoint){
-        //overridden in subclasses
-    }
 
-    
-    func update() {
-        //overridden in subclasses
-    }
-    
 }
