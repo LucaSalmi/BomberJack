@@ -61,6 +61,10 @@ class ActionManagager{
             
     func placeBomb(id: Int){
         
+        if GameViewController.currentGameScene!.player!.isShielded {
+            return
+        }
+        
         var bomb: Bomb
         
         switch id {
