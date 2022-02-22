@@ -85,13 +85,17 @@ class TestEnemy: Enemy {
     
     override func update() {
         
-        position.x += (direction.x * enemySpeed)
-        position.y += (direction.y * enemySpeed)
-        
-        currentMovementDistance += enemySpeed
-        if currentMovementDistance == changeDirectionInterval {
-            updateDirection(newDirection: getRandomDirection())
+        if !isTrapped{
+            
+            position.x += (direction.x * enemySpeed)
+            position.y += (direction.y * enemySpeed)
+            
+            currentMovementDistance += enemySpeed
+            if currentMovementDistance == changeDirectionInterval {
+                updateDirection(newDirection: getRandomDirection())
+            }
         }
+        
         
     }
     

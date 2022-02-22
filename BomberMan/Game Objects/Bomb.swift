@@ -22,7 +22,6 @@ class Bomb: SKSpriteNode{
     static var bombs = [Bomb]()
     var activePhysicsBody: SKPhysicsBody?
     var inactivePhysicsBody: SKPhysicsBody?
-    
     var tickingTime: Int = 0
     
     required init?(coder aDecoder: NSCoder) {

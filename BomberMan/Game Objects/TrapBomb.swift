@@ -11,7 +11,6 @@ import SpriteKit
 class TrapBomb: Bomb{
     
     var trapActive: Int = 0
-    var activeTraps: [TrapBomb] = []
     var isTrapActive = false
     
     
@@ -27,21 +26,16 @@ class TrapBomb: Bomb{
         zPosition = 50
     }
     
-    override func createPhysicsBody() {
-        
-        physicsBody = SKPhysicsBody(circleOfRadius: (size.width/2) * PhysicsUtils.physicsBodyPct)
-        physicsBody?.categoryBitMask = PhysicsCategory.InactiveBomb
-        physicsBody?.collisionBitMask = 0
-        physicsBody?.isDynamic = true
-        physicsBody?.restitution = 0
-        physicsBody?.friction = 0
-        physicsBody?.allowsRotation = false
-    }
     
     override func activation(_ position: CGPoint) {
          
         self.isTrapActive = true
-        self.physicsBody?.categoryBitMask = PhysicsCategory.TrapBomb
+        physicsBody = SKPhysicsBody(circleOfRadius: (size.width/2) * PhysicsUtils.physicsBodyPct)
+        physicsBody?.categoryBitMask = PhysicsCategory.TrapBomb
+        physicsBody?.collisionBitMask = PhysicsCategory.Player | PhysicsCategory.Enemy
+        physicsBody?.contactTestBitMask = PhysicsCategory.Player | PhysicsCategory.Enemy
+        physicsBody?.isDynamic = false
+        
     }
     
     override func update() {
@@ -64,6 +58,7 @@ class TrapBomb: Bomb{
                     if trapActive >= BombSettings.trapDuration{
                         
                         print("trap removed")
+                        resetBools()
                         Bomb.bombs.remove(at: i)
                         bomb.removeFromParent()
                     }
@@ -71,5 +66,17 @@ class TrapBomb: Bomb{
                 }
             }
         }
+    }
+    
+    func resetBools(){
+        
+        let scene = GameViewController.currentGameScene
+        scene?.player?.isTrapped = false
+        for enemy in Enemy.enemies{
+            if enemy.isTrapped{
+                enemy.isTrapped = false
+            }
+        }
+        
     }
 }

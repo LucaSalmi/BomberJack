@@ -81,35 +81,35 @@ class RushEnemy: TestEnemy {
     
     override func update() {
         
-        //base logic is same as parent Test Enemy
-        if !isCharging {
-            super.update()
+        if !isTrapped{
             
-            let rushDirection = searchForPlayer()
-            if rushDirection.x == 0 && rushDirection.y == 0 {
-                //No player found in path
-                return
-            }
-            else {
-                isCharging = true
-                direction = rushDirection
+            //base logic is same as parent Test Enemy
+            if !isCharging {
+                super.update()
                 
-                guard let backgroundMap = GameViewController.currentGameScene!.childNode(withName: "background")as? SKTileMapNode else {
+                let rushDirection = searchForPlayer()
+                if rushDirection.x == 0 && rushDirection.y == 0 {
+                    //No player found in path
                     return
                 }
-                let center = PhysicsUtils.findCenterOfClosestTile(map: backgroundMap, object: self)
-                if center != nil {
-                    self.position = center!
+                else {
+                    isCharging = true
+                    direction = rushDirection
+                    
+                    guard let backgroundMap = GameViewController.currentGameScene!.childNode(withName: "background")as? SKTileMapNode else {
+                        return
+                    }
+                    let center = PhysicsUtils.findCenterOfClosestTile(map: backgroundMap, object: self)
+                    if center != nil {
+                        self.position = center!
+                    }
                 }
             }
+            
+            //different logic when charging
+            position.x += (direction.x * chargeSpeed)
+            position.y += (direction.y * chargeSpeed)
+            
         }
-        
-        //different logic when charging
-        
-        
-        position.x += (direction.x * chargeSpeed)
-        position.y += (direction.y * chargeSpeed)
-        
     }
-    
 }

@@ -59,6 +59,11 @@ extension GameScene: SKPhysicsContactDelegate{
                 player.death(player: nodeA!)
                 isGameOver = true
                 
+            case PhysicsCategory.TrapBomb:
+                
+                player.isTrapped = true
+                
+                
             default:
                 print("mystery")
             }
@@ -213,6 +218,17 @@ extension GameScene: SKPhysicsContactDelegate{
                 default:
                     print("mystery")
                 }
+            
+        case PhysicsCategory.TrapBomb:
+            
+            switch contact.bodyB.categoryBitMask{
+                
+            case PhysicsCategory.Player:
+                player?.isTrapped = true
+                
+            default:
+                print("mystery")
+            }
         
         //default case for main switch
         default:
