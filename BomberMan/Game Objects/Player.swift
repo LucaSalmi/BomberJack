@@ -73,6 +73,15 @@ class Player: SKSpriteNode{
         if isShielded {
             return
         }
+        
+        let smokeParticle = SKEmitterNode(fileNamed: "BarrelSmoke")
+        smokeParticle!.position = position
+        smokeParticle!.position.y += 16
+        smokeParticle!.zPosition = 100
+        GameViewController.currentGameScene!.addChild(smokeParticle!)
+        GameViewController.currentGameScene!.run(SKAction.wait(forDuration: 1)) {
+            smokeParticle!.removeFromParent()
+        }
   
         physicsBody?.isDynamic = false
         shieldTick = 0.0
