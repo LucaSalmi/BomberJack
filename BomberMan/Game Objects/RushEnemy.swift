@@ -15,8 +15,8 @@ class RushEnemy: TestEnemy {
     var chargeSpeed: CGFloat = 0.0
     
     var isStunned: Bool = false
-    let stunDuration: Int = 3
-    var stunTick: Int = 0
+    let stunDuration: CGFloat = 60 * 3
+    var stunTick: CGFloat = 0
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("use init()")
@@ -98,7 +98,7 @@ class RushEnemy: TestEnemy {
         GameViewController.currentGameScene!.run(SKAction.wait(forDuration: Double(stunDuration))) {
             stunParticle!.removeFromParent()
         }
-        SoundManager.playSFX(SoundManager.barrelShieldSFX)
+        SoundManager.playSFX(SoundManager.rushImpactSFX)
     }
     
     override func update() {

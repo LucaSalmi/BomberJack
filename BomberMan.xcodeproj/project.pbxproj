@@ -20,6 +20,7 @@
 		33CC322F27C51A3600856D82 /* TestFire.sks in Resources */ = {isa = PBXBuildFile; fileRef = 33CC322D27C51A3600856D82 /* TestFire.sks */; };
 		33CC323227C5297400856D82 /* barrel_shield.wav in Resources */ = {isa = PBXBuildFile; fileRef = 33CC323127C5297400856D82 /* barrel_shield.wav */; };
 		33CC323427C5343600856D82 /* RushStun.sks in Resources */ = {isa = PBXBuildFile; fileRef = 33CC323327C5343600856D82 /* RushStun.sks */; };
+		33CC323627C5387000856D82 /* rush_impact.wav in Resources */ = {isa = PBXBuildFile; fileRef = 33CC323527C5386F00856D82 /* rush_impact.wav */; };
 		33D1493627C36C1E00B4BECA /* PhysicsUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D1493527C36C1E00B4BECA /* PhysicsUtils.swift */; };
 		33D36F0027BD0137002DDB49 /* GameScene2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 33D36EFF27BD0137002DDB49 /* GameScene2.sks */; };
 		33FEE19E27BE96DF0036BC22 /* UIScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 33FEE19D27BE96DF0036BC22 /* UIScene.sks */; };
@@ -60,6 +61,7 @@
 		33CC322D27C51A3600856D82 /* TestFire.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TestFire.sks; sourceTree = "<group>"; };
 		33CC323127C5297400856D82 /* barrel_shield.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = barrel_shield.wav; sourceTree = "<group>"; };
 		33CC323327C5343600856D82 /* RushStun.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = RushStun.sks; sourceTree = "<group>"; };
+		33CC323527C5386F00856D82 /* rush_impact.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = rush_impact.wav; sourceTree = "<group>"; };
 		33D1493527C36C1E00B4BECA /* PhysicsUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsUtils.swift; sourceTree = "<group>"; };
 		33D36EFF27BD0137002DDB49 /* GameScene2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene2.sks; sourceTree = "<group>"; };
 		33FEE19D27BE96DF0036BC22 /* UIScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = UIScene.sks; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 				C869390C27BA66E100EEF877 /* TileSet Placeholder.sks */,
 				3354DF2327BF847F0019D640 /* explosion1.wav */,
 				33CC323127C5297400856D82 /* barrel_shield.wav */,
+				33CC323527C5386F00856D82 /* rush_impact.wav */,
 				33CC322927C516FE00856D82 /* BarrelSmoke.sks */,
 				33CC323327C5343600856D82 /* RushStun.sks */,
 			);
@@ -249,6 +252,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				33FEE19E27BE96DF0036BC22 /* UIScene.sks in Resources */,
+				33CC323627C5387000856D82 /* rush_impact.wav in Resources */,
 				C815F79D27B400490084DE7A /* Main.storyboard in Resources */,
 				D5FFD73527C4FAB20032912D /* GameScene1.sks in Resources */,
 				33CC322B27C516FE00856D82 /* BarrelSmoke.sks in Resources */,
