@@ -63,9 +63,7 @@ class StandardBomb: Bomb{
             }
         }
             
-        if scene != nil {
-            SoundManager.playSFX(SoundManager.explosionSFX, scene!)
-        }
+        SoundManager.playSFX(SoundManager.explosionSFX)
         
         PhysicsUtils.shakeCamera(duration: CGFloat(0.5))
         

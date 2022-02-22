@@ -13,10 +13,10 @@ class SoundManager {
     static let sfxExtension = ".wav"
     
     static let explosionSFX = "explosion1"
-    //sfx 2
+    static let barrelShieldSFX = "barrel_shield"
     //sfx 3 etc...
     
-    static func playSFX(_ sfx: String, _ context: GameScene) {
+    static func playSFX(_ sfx: String) {
         
         if GameViewController.currentGameScene == nil {
             return
