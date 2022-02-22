@@ -14,7 +14,7 @@ enum ExplosionSettings{
     static var size: Int = 5
     static var distancePos: CGFloat = 32
     static var distanceNeg: CGFloat = -32
-    static var permanence: Int = 60
+    static var permanence: Int = 30
     static var explosionsArray: [Explosion] = []
     static var explosionId: Int = 0
 }
