@@ -31,7 +31,6 @@ class GameScene: SKScene {
     
     var isGameOver = false
     
-    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         backgroundMap = (childNode(withName: "background") as! SKTileMapNode)
@@ -50,6 +49,7 @@ class GameScene: SKScene {
         setupCamera()
         movementManager = MovementManager(self)
         actionManager = ActionManagager(self, camera!)
+        setupLootObjects()
     }
     
     
@@ -131,6 +131,45 @@ class GameScene: SKScene {
         breakablesTileMap.removeFromParent()
     }
     
+    func setupLootObjects(){
+        guard let lootObjectTileMap = childNode(withName: "lootObject")as? SKTileMapNode else {
+            return
+        }
+
+        for row in 0..<lootObjectTileMap.numberOfRows{
+            for column in 0..<lootObjectTileMap.numberOfColumns{
+                
+                guard let tile = tile(in: lootObjectTileMap, at: (column, row)) else {continue}
+                guard tile.userData?.object(forKey: "lootObject") != nil else {continue}
+                
+                var lootObject: LootObject
+                
+                if tile.userData?.value(forKey: "lootObject") != nil{
+                    let value = tile.userData?.value(forKey: "lootObject") as! String
+                    switch value{
+                        
+                    case "keyOneLoot":
+                        lootObject = Key()
+                        
+                        
+                    case "bombPile":
+                        lootObject = BombPile()
+                        
+                    default:
+                        lootObject = BombPile()
+                        
+                    }
+                    
+                    lootObject.position = lootObjectTileMap.centerOfTile(atColumn: column, row: row)
+                    lootNode!.addChild(lootObject)
+                }
+            }
+        }
+        
+        lootNode!.name = "lootObject"
+        addChild(lootNode!)
+        lootObjectTileMap.removeFromParent()
+    }
     
     
     func setupObstaclesPhysics(){

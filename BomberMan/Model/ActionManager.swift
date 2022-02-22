@@ -31,6 +31,7 @@ class ActionManagager{
         
         if (PlayerSettings.haveBombs == false) {
             bombButton?.alpha = 0.2
+        }
     }
     
     func checkInput(_ touches: Set<UITouch>, with event: UIEvent?){

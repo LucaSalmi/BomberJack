@@ -39,7 +39,7 @@
 		C8E502CE27C4E5C000706C71 /* TrapBomb.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E502CD27C4E5C000706C71 /* TrapBomb.swift */; };
 		D5FFD73527C4FAB20032912D /* GameScene1.sks in Resources */ = {isa = PBXBuildFile; fileRef = D5FFD73427C4FAB20032912D /* GameScene1.sks */; };
 		D5FFD73727C52BEC0032912D /* LootObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FFD73627C52BEC0032912D /* LootObject.swift */; };
-		D5FFD73927C536840032912D /* key_one.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FFD73827C536840032912D /* key_one.swift */; };
+		D5FFD73927C536840032912D /* Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FFD73827C536840032912D /* Key.swift */; };
 		D5FFD73B27C536970032912D /* BombPile.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FFD73A27C536970032912D /* BombPile.swift */; };
 		E56CE0B227BCEF0C00962834 /* Bomb.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56CE0B127BCEF0C00962834 /* Bomb.swift */; };
 		E56CE0B427BD1F8D00962834 /* ActionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56CE0B327BD1F8D00962834 /* ActionManager.swift */; };
@@ -80,7 +80,7 @@
 		C8E502CD27C4E5C000706C71 /* TrapBomb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrapBomb.swift; sourceTree = "<group>"; };
 		D5FFD73427C4FAB20032912D /* GameScene1.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene1.sks; sourceTree = "<group>"; };
 		D5FFD73627C52BEC0032912D /* LootObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LootObject.swift; sourceTree = "<group>"; };
-		D5FFD73827C536840032912D /* key_one.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = key_one.swift; sourceTree = "<group>"; };
+		D5FFD73827C536840032912D /* Key.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Key.swift; sourceTree = "<group>"; };
 		D5FFD73A27C536970032912D /* BombPile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BombPile.swift; sourceTree = "<group>"; };
 		E56CE0B127BCEF0C00962834 /* Bomb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bomb.swift; sourceTree = "<group>"; };
 		E56CE0B327BD1F8D00962834 /* ActionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionManager.swift; sourceTree = "<group>"; };
@@ -156,7 +156,7 @@
 				C8E502CB27C4E59A00706C71 /* StandardBomb.swift */,
 				C8E502CD27C4E5C000706C71 /* TrapBomb.swift */,
 				D5FFD73627C52BEC0032912D /* LootObject.swift */,
-				D5FFD73827C536840032912D /* key_one.swift */,
+				D5FFD73827C536840032912D /* Key.swift */,
 				D5FFD73A27C536970032912D /* BombPile.swift */,
 			);
 			path = "Game Objects";
@@ -273,7 +273,7 @@
 				C89C6F1A27BC12B700C8AC0F /* BreakableObject.swift in Sources */,
 				D5FFD73B27C536970032912D /* BombPile.swift in Sources */,
 				33BFC5CA27BBA5A9008DBA03 /* StartMenuScene.swift in Sources */,
-				D5FFD73927C536840032912D /* key_one.swift in Sources */,
+				D5FFD73927C536840032912D /* Key.swift in Sources */,
 				C815F79827B400490084DE7A /* GameScene.swift in Sources */,
 				33B882A327BBC41A00BB897E /* MovementManager.swift in Sources */,
 				C8C7DC2F27BFD9990083656A /* PhysicsExtension.swift in Sources */,

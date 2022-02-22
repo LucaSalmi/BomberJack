@@ -8,7 +8,7 @@
 import Foundation
 import GameplayKit
 
-class keyOne: lootObject {
+class Key: LootObject {
     
     var gotKeyOne = false
     

@@ -8,7 +8,7 @@
 import Foundation
 import GameplayKit
 
-class lootObject: SKSpriteNode {
+class LootObject: SKSpriteNode {
     
     var keyTexture: SKSpriteNode! = SKSpriteNode()
     

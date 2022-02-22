@@ -8,7 +8,7 @@
 import Foundation
 import GameplayKit
 
-class bombPile: lootObject {
+class BombPile: LootObject {
     
     var gotBombs = false
     
