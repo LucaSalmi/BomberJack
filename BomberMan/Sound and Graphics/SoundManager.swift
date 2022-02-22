@@ -14,7 +14,8 @@ class SoundManager {
     
     static let explosionSFX = "explosion1"
     static let barrelShieldSFX = "barrel_shield"
-    //sfx 3 etc...
+    static let rushImpactSFX = "rush_impact"
+    //sfx 4 etc...
     
     static func playSFX(_ sfx: String) {
         
