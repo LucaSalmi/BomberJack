@@ -55,6 +55,7 @@ class GameScene: SKScene {
     
     override func sceneDidLoad() {
         
+        dataReaderWriter.loaduserData()
     
     }
     
@@ -299,6 +300,8 @@ class GameScene: SKScene {
         }
         
         player!.update()
+        
+        dataReaderWriter.saveUserData()
         
         if isGameOver{
             

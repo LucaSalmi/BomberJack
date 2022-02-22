@@ -43,7 +43,10 @@ class dataReaderWriter{
         defaultData.set(UserData.bombsDropped, forKey: DefaultKeys.bombsDroppedKey)
         defaultData.set(UserData.numberOfDeaths, forKey: DefaultKeys.numbOfDeathsKey)
         defaultData.set(UserData.barrelUsed, forKey: DefaultKeys.barrelUsedKey)
-        
+        print("data enemies: \(UserData.enemiesKilled)")
+        print("data bombs: \(UserData.bombsDropped)")
+        print("data deaths: \(UserData.numberOfDeaths)")
+        print("data barrel: \(UserData.barrelUsed)")
     }
     
     static func loaduserData(){
@@ -53,6 +56,10 @@ class dataReaderWriter{
         UserData.bombsDropped = defaultData.integer(forKey: DefaultKeys.bombsDroppedKey)
         UserData.numberOfDeaths = defaultData.integer(forKey: DefaultKeys.numbOfDeathsKey)
         UserData.barrelUsed = defaultData.integer(forKey: DefaultKeys.barrelUsedKey)
+        print("data enemies: \(UserData.enemiesKilled)")
+        print("data bombs: \(UserData.bombsDropped)")
+        print("data deaths: \(UserData.numberOfDeaths)")
+        print("data barrel: \(UserData.barrelUsed)")
     }
     
 }

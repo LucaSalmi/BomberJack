@@ -42,7 +42,6 @@ class ActionManagager{
                 
                 placeBomb(id: 0)
                 
-                
             }
             else if (currentNodeName == "shieldButton") {
                 activateShield()
@@ -55,11 +54,13 @@ class ActionManagager{
                 print("trapSet")
                 placeBomb(id: 1)
             }
-    
         }
     }
             
     func placeBomb(id: Int){
+        
+        //stat change
+        UserData.bombsDropped += 1
         
         var bomb: Bomb
         
@@ -119,6 +120,9 @@ class ActionManagager{
     }
     
     func activateShield() {
+        
+        //stat change
+        UserData.barrelUsed += 1
         
         if GameViewController.currentGameScene == nil  {
             return

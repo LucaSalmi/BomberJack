@@ -122,6 +122,9 @@ class Player: SKSpriteNode{
     
     func death(player: SKNode){
         
+        //stat change
+        UserData.numberOfDeaths += 1
+        
         player.removeFromParent()
         currentTexture.removeFromParent()
     }
