@@ -67,7 +67,7 @@ class GameScene: SKScene {
         rightUI = (camera.childNode(withName: "rightUI") as! SKSpriteNode)
       
         let zeroDistance = SKRange(constantValue: 0)
-        let playerConstraint = SKConstraint.distance(zeroDistance, to: player!)
+        let playerConstraint = SKConstraint.distance(zeroDistance, to: player!.playerTexture)
 
         let xInset = min((view?.bounds.width)!/2*camera.xScale, backgroundMap!.frame.width/2)
         let yInset = min((view?.bounds.height)!/2*camera.yScale, backgroundMap!.frame.height/2)

@@ -32,8 +32,7 @@ class Enemy: SKSpriteNode {
     init(_ texture: SKTexture, _ color: UIColor, _ size: CGSize) {
         super.init(texture: texture, color: color, size: size)
         
-        let physicsBodyPct = CGFloat(0.90)
-        physicsBody = SKPhysicsBody(circleOfRadius: (size.width/2) * physicsBodyPct)
+        physicsBody = SKPhysicsBody(circleOfRadius: (size.width/2) * PhysicsUtils.physicsBodyPct)
         physicsBody?.categoryBitMask = PhysicsCategory.Enemy
         physicsBody?.contactTestBitMask = PhysicsCategory.All
         physicsBody?.collisionBitMask = PhysicsCategory.Obstacle | PhysicsCategory.Breakable | PhysicsCategory.Bomb | PhysicsCategory.InactiveBomb
