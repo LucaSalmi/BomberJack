@@ -82,6 +82,7 @@ class Player: SKSpriteNode{
         GameViewController.currentGameScene!.run(SKAction.wait(forDuration: 1)) {
             smokeParticle!.removeFromParent()
         }
+        SoundManager.playSFX(SoundManager.barrelShieldSFX)
   
         physicsBody?.isDynamic = false
         shieldTick = 0.0
