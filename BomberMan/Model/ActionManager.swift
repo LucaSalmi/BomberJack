@@ -16,6 +16,7 @@ class ActionManagager{
     var rightUI: SKSpriteNode? = nil
     var nextLevelButton: SKSpriteNode? = nil
     var bombButton: SKSpriteNode? = nil
+    var shieldButton: SKSpriteNode? = nil
     var touchLocation: CGPoint? = nil
     
     init(_ context: GameScene, _ camera: SKCameraNode) {
@@ -26,42 +27,54 @@ class ActionManagager{
         rightUI = (context.childNode(withName: "camera/rightUI") as! SKSpriteNode)
         nextLevelButton = (context.childNode(withName: "camera/rightUI/nextLevelButton") as! SKSpriteNode)
         bombButton = (context.childNode(withName: "camera/rightUI/bombButton") as! SKSpriteNode)
+        shieldButton = (context.childNode(withName: "camera/rightUI/shieldButton") as! SKSpriteNode)
     }
     
     func checkInput(_ touches: Set<UITouch>, with event: UIEvent?){
         for touch in touches {
-            
-            
-            
             
             let location = touch.location(in: rightUI!)
             //print(location)
             let currentNode = rightUI!.atPoint(location)
             let currentNodeName = currentNode.name
             
-            
-            
             if (currentNodeName == "bombButton"){
-                
                 placeBomb()
-                
+            }
+            else if (currentNodeName == "shieldButton"){
+                activateShield()
             }
             else if (currentNodeName == "nextLevelButton") {
-                print("Presenting next level!")
-                if GameScene.viewController == nil {
-                    print("Could not find Game View Controller!")
-                    return
-                }
-                GameScene.viewController!.currentLevel += 1
-                if GameScene.viewController!.currentLevel > GameScene.viewController!.numberOfLevels {
-                    GameScene.viewController!.currentLevel = GameScene.viewController!.numberOfLevels
-                }
-                let nextScene = "GameScene" + String(GameScene.viewController!.currentLevel)
-                GameScene.viewController!.presentScene(nextScene)
+                nextLevel()
             }
             
             
         }
+    }
+    
+    func nextLevel() {
+        print("Presenting next level!")
+        if GameScene.viewController == nil {
+            print("Could not find Game View Controller!")
+            return
+        }
+        GameScene.viewController!.currentLevel += 1
+        if GameScene.viewController!.currentLevel > GameScene.viewController!.numberOfLevels {
+            GameScene.viewController!.currentLevel = GameScene.viewController!.numberOfLevels
+        }
+        let nextScene = "GameScene" + String(GameScene.viewController!.currentLevel)
+        GameScene.viewController!.presentScene(nextScene)
+    }
+    
+    func activateShield() {
+        
+        if GameViewController.currentGameScene == nil  {
+            return
+        }
+        
+        let player = GameViewController.currentGameScene!.player
+        player!.activateShield()
+
     }
     
     func placeBomb(){
