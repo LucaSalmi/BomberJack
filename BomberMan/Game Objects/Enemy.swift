@@ -55,6 +55,9 @@ class Enemy: SKSpriteNode {
                 }
                 let enemy = Enemy.enemies[i]
                 if enemy == self {
+                    
+                    //stat change
+                    UserData.enemiesKilled += 1
                     isAlive = false
                 }
             }
