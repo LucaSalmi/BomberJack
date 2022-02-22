@@ -24,6 +24,7 @@ class GameScene: SKScene {
     var enemyNode: SKNode? = SKNode()
     var breakablesNode: SKNode? = SKNode()
     var obstaclesNode: SKNode? = SKNode()
+    var lootNode: SKNode? = SKNode()
     var player: Player? = nil
     
     var movementManager: MovementManager? = nil
@@ -327,6 +328,9 @@ class GameScene: SKScene {
         Bomb.bombs.removeAll()
         Enemy.enemies.removeAll()
         ExplosionSettings.explosionsArray.removeAll()
+    }
+    func addloot() {
+        
     }
 }
 

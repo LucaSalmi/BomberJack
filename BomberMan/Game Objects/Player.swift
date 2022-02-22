@@ -12,9 +12,10 @@ enum PlayerSettings{
     static let playerSpeed: CGFloat = 1.5
     static var frame: Int = 0
     static var frameLimiter: Int = 1
-    static var canDropBomb: Bool = true
+    static var canDropBomb: Bool = true // temporary not using
     static let textureOffset = CGFloat(10) //temporary hard coded variable
     static let shieldDuration: CGFloat = 60 * 2
+    static var haveBombs: Bool = false
 }
 
 class Player: SKSpriteNode{
