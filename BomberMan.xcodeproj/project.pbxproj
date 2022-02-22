@@ -33,7 +33,8 @@
 		C8B7480127BF9A9A00D76B32 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B7480027BF9A9A00D76B32 /* Extensions.swift */; };
 		C8C7DC2F27BFD9990083656A /* PhysicsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C7DC2E27BFD9990083656A /* PhysicsExtension.swift */; };
 		C8C7DC3127BFDB470083656A /* Explosion.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C7DC3027BFDB470083656A /* Explosion.swift */; };
-		D53DC45C27C4DC5C00CA6175 /* GameScene1.sks in Resources */ = {isa = PBXBuildFile; fileRef = D53DC45B27C4DC5C00CA6175 /* GameScene1.sks */; };
+		C8E502CC27C4E59A00706C71 /* StandardBomb.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E502CB27C4E59A00706C71 /* StandardBomb.swift */; };
+		C8E502CE27C4E5C000706C71 /* TrapBomb.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E502CD27C4E5C000706C71 /* TrapBomb.swift */; };
 		E56CE0B227BCEF0C00962834 /* Bomb.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56CE0B127BCEF0C00962834 /* Bomb.swift */; };
 		E56CE0B427BD1F8D00962834 /* ActionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56CE0B327BD1F8D00962834 /* ActionManager.swift */; };
 		E56CE0B627BD3FFF00962834 /* GameSceneSKIP.sks in Resources */ = {isa = PBXBuildFile; fileRef = E56CE0B527BD3FFF00962834 /* GameSceneSKIP.sks */; };
@@ -67,7 +68,8 @@
 		C8B7480027BF9A9A00D76B32 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		C8C7DC2E27BFD9990083656A /* PhysicsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsExtension.swift; sourceTree = "<group>"; };
 		C8C7DC3027BFDB470083656A /* Explosion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Explosion.swift; sourceTree = "<group>"; };
-		D53DC45B27C4DC5C00CA6175 /* GameScene1.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene1.sks; sourceTree = "<group>"; };
+		C8E502CB27C4E59A00706C71 /* StandardBomb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardBomb.swift; sourceTree = "<group>"; };
+		C8E502CD27C4E5C000706C71 /* TrapBomb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrapBomb.swift; sourceTree = "<group>"; };
 		E56CE0B127BCEF0C00962834 /* Bomb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bomb.swift; sourceTree = "<group>"; };
 		E56CE0B327BD1F8D00962834 /* ActionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionManager.swift; sourceTree = "<group>"; };
 		E56CE0B527BD3FFF00962834 /* GameSceneSKIP.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameSceneSKIP.sks; sourceTree = "<group>"; };
@@ -139,6 +141,8 @@
 				33B882A627BBF2FB00BB897E /* TestEnemy.swift */,
 				3354DF2927BFDAE60019D640 /* RushEnemy.swift */,
 				E56CE0B127BCEF0C00962834 /* Bomb.swift */,
+				C8E502CB27C4E59A00706C71 /* StandardBomb.swift */,
+				C8E502CD27C4E5C000706C71 /* TrapBomb.swift */,
 			);
 			path = "Game Objects";
 			sourceTree = "<group>";
@@ -258,6 +262,7 @@
 				C815F79A27B400490084DE7A /* GameViewController.swift in Sources */,
 				33B882A727BBF2FB00BB897E /* TestEnemy.swift in Sources */,
 				33B882A527BBEF3500BB897E /* Enemy.swift in Sources */,
+				C8E502CC27C4E59A00706C71 /* StandardBomb.swift in Sources */,
 				C801D2EA27BBB031008B1CD5 /* Types.swift in Sources */,
 				C8B7480127BF9A9A00D76B32 /* Extensions.swift in Sources */,
 				C8C7DC3127BFDB470083656A /* Explosion.swift in Sources */,
@@ -266,6 +271,7 @@
 				C815F79227B400480084DE7A /* AppDelegate.swift in Sources */,
 				33D1493627C36C1E00B4BECA /* PhysicsUtils.swift in Sources */,
 				3354DF2A27BFDAE60019D640 /* RushEnemy.swift in Sources */,
+				C8E502CE27C4E5C000706C71 /* TrapBomb.swift in Sources */,
 				E56CE0B427BD1F8D00962834 /* ActionManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -430,7 +436,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.DanielFalkedal.BomberMan;
+				PRODUCT_BUNDLE_IDENTIFIER = com.LucaSalmi.BomberMan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -461,7 +467,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.DanielFalkedal.BomberMan;
+				PRODUCT_BUNDLE_IDENTIFIER = com.LucaSalmi.BomberMan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;

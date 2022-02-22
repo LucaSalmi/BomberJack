@@ -66,7 +66,7 @@ class ActionManagager{
     
     func placeBomb(){
         
-        let bomb = Bomb()
+        let bomb = StandardBomb()
         
         let backgroundMap = context.backgroundMap!
         let player = context.player!
@@ -98,7 +98,6 @@ class ActionManagager{
             if tileFound {break}
         }
         
-        bomb.texture = SKTexture(imageNamed: "bomb1")
         
         if !PhysicsUtils.checkIfOccupied(node: context.bombsNode!, object: bomb){
             
