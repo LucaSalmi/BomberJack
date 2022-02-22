@@ -14,6 +14,7 @@ enum PlayerSettings{
     static var frameLimiter: Int = 1
     static var canDropBomb: Bool = true
     static let textureOffset = CGFloat(10) //temporary hard coded variable
+    static let shieldDuration: CGFloat = 60 * 2
 }
 
 class Player: SKSpriteNode{
@@ -25,6 +26,10 @@ class Player: SKSpriteNode{
     var downAnimations: [SKAction] = []
     var playerTexture: SKSpriteNode! = SKSpriteNode()
     var isTrapped = false
+    var shieldTexture: SKSpriteNode! = SKSpriteNode()
+    var currentTexture: SKSpriteNode! = SKSpriteNode()
+    var isShielded = false
+    var shieldTick: CGFloat = 0.0
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("use init()")
@@ -49,15 +54,52 @@ class Player: SKSpriteNode{
         playerTexture = SKSpriteNode(texture: texture, color: UIColor(red: 0, green: 0, blue: 0, alpha: 0), size: textureSize)
         playerTexture.position = position
         playerTexture.zPosition = 50
+        currentTexture = playerTexture
         GameViewController.currentGameScene!.addChild(playerTexture)
+        
+        let barrelTexture = SKTexture(imageNamed: "barrel_shield")
+        let barrelTextureSize = CGSize(width: size.width, height: size.height*1.5)
+        shieldTexture = SKSpriteNode(texture: barrelTexture, color: .red, size: barrelTextureSize)
+        shieldTexture.position = position
+        shieldTexture.zPosition = 50
+        shieldTexture.alpha = 0
+        GameViewController.currentGameScene!.addChild(shieldTexture)
         
         createPlayerAnimations(character: "player_walk")
         
     }
     
+    func activateShield() {
+        if isShielded {
+            return
+        }
+  
+        physicsBody?.isDynamic = false
+        shieldTick = 0.0
+        shieldTexture.alpha = 1
+        playerTexture.alpha = 0
+        currentTexture = shieldTexture
+        isShielded = true
+    }
+    
+    func deactivateShield() {
+        
+        physicsBody?.isDynamic = true
+        shieldTexture.alpha = 0
+        playerTexture.alpha = 1
+        currentTexture = playerTexture
+        
+        shieldTick = 0
+        isShielded = false
+    }
+    
     func move(direction: CGPoint){
         
-        if !isTrapped{
+        if isShielded {
+            return
+        }
+        
+        if !isTrapped {
             
             self.position.x += (direction.x * PlayerSettings.playerSpeed)
             self.position.y += (direction.y * PlayerSettings.playerSpeed)
@@ -72,7 +114,7 @@ class Player: SKSpriteNode{
     func death(player: SKNode){
         
         player.removeFromParent()
-        playerTexture.removeFromParent()
+        currentTexture.removeFromParent()
     }
     
     func findDirection(playerDirection: CGPoint) -> Direction{
@@ -130,10 +172,17 @@ class Player: SKSpriteNode{
     
     func update() {
         
-        if playerTexture != nil{
+        if currentTexture != nil{
             
-            playerTexture.position.x = position.x
-            playerTexture.position.y = position.y + PlayerSettings.textureOffset
+            currentTexture.position.x = position.x
+            currentTexture.position.y = position.y + PlayerSettings.textureOffset
+        }
+        
+        if isShielded {
+            shieldTick += 1
+            if shieldTick >= PlayerSettings.shieldDuration {
+                deactivateShield()
+            }
         }
         
     }
