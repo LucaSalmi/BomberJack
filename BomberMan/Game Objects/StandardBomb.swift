@@ -22,8 +22,19 @@ class StandardBomb: Bomb{
         zPosition = 50
     }
     
+    override func createPhysicsBody() {
+        
+        physicsBody = SKPhysicsBody(circleOfRadius: (size.width/2) * PhysicsUtils.physicsBodyPct)
+        physicsBody?.categoryBitMask = PhysicsCategory.InactiveBomb
+        physicsBody?.collisionBitMask = 0
+        physicsBody?.isDynamic = true
+        physicsBody?.restitution = 0
+        physicsBody?.friction = 0
+        physicsBody?.allowsRotation = false
+    }
     
-    override func explosion(_ position: CGPoint){
+    
+    override func activation(_ position: CGPoint){
         
      
         let explosion0 = Explosion(position: position)
@@ -81,7 +92,7 @@ class StandardBomb: Bomb{
                 if bomb == self{
                     removeFromParent()
                     Bomb.bombs.remove(at: i)
-                    explosion(position)
+                    activation(position)
                     
                 }
             }

@@ -25,6 +25,9 @@ class Enemy: SKSpriteNode {
     var difficult: Int = 0
     var isAlive: Bool = true
     
+    //trap Boolean
+    var isTrapped = false
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("use init()")
     }
@@ -35,7 +38,7 @@ class Enemy: SKSpriteNode {
         physicsBody = SKPhysicsBody(circleOfRadius: (size.width/2) * PhysicsUtils.physicsBodyPct)
         physicsBody?.categoryBitMask = PhysicsCategory.Enemy
         physicsBody?.contactTestBitMask = PhysicsCategory.All
-        physicsBody?.collisionBitMask = PhysicsCategory.Obstacle | PhysicsCategory.Breakable | PhysicsCategory.Bomb | PhysicsCategory.InactiveBomb
+        physicsBody?.collisionBitMask = PhysicsCategory.Obstacle | PhysicsCategory.Breakable | PhysicsCategory.Bomb | PhysicsCategory.InactiveBomb | PhysicsCategory.TrapBomb
         physicsBody?.restitution = 0
         physicsBody?.allowsRotation = false
         
@@ -53,6 +56,19 @@ class Enemy: SKSpriteNode {
                 let enemy = Enemy.enemies[i]
                 if enemy == self {
                     isAlive = false
+                }
+            }
+        }
+        
+        if other is TrapBomb{
+            
+            for i in 0..<Enemy.enemies.count {
+                if i >= Enemy.enemies.count {
+                    return
+                }
+                let enemy = Enemy.enemies[i]
+                if enemy == self {
+                    isTrapped = true
                 }
             }
         }

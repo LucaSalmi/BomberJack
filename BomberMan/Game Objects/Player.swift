@@ -24,6 +24,7 @@ class Player: SKSpriteNode{
     var upAnimations: [SKAction] = []
     var downAnimations: [SKAction] = []
     var playerTexture: SKSpriteNode! = SKSpriteNode()
+    var isTrapped = false
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("use init()")
@@ -39,7 +40,7 @@ class Player: SKSpriteNode{
         
         physicsBody = SKPhysicsBody(circleOfRadius: (size.width/2) * PhysicsUtils.physicsBodyPct)
         physicsBody?.categoryBitMask = PhysicsCategory.Player
-        physicsBody?.collisionBitMask = PhysicsCategory.Bomb | PhysicsCategory.Obstacle | PhysicsCategory.Enemy | PhysicsCategory.Breakable
+        physicsBody?.collisionBitMask = PhysicsCategory.Bomb | PhysicsCategory.Obstacle | PhysicsCategory.Enemy | PhysicsCategory.Breakable | PhysicsCategory.TrapBomb
         //physicsBody?.contactTestBitMask = PhysicsCategory.Breakable
         physicsBody?.restitution = 0
         physicsBody?.allowsRotation = false
@@ -56,13 +57,16 @@ class Player: SKSpriteNode{
     
     func move(direction: CGPoint){
         
-        self.position.x += (direction.x * PlayerSettings.playerSpeed)
-        self.position.y += (direction.y * PlayerSettings.playerSpeed)
-        let direction = findDirection(playerDirection: direction)
+        if !isTrapped{
+            
+            self.position.x += (direction.x * PlayerSettings.playerSpeed)
+            self.position.y += (direction.y * PlayerSettings.playerSpeed)
+            let direction = findDirection(playerDirection: direction)
+            
+            runAnim(playerDirection: direction)
+        }
         
-        runAnim(playerDirection: direction)
-        //let move = SKAction.move(to: target, duration: 1)
-        //run(move)
+        
     }
     
     func death(player: SKNode){

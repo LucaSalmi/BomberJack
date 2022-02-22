@@ -12,6 +12,8 @@ enum BombSettings{
     
     static let explosionTime: Int = 60 * 3
     static let blastRadius: Int = 1
+    static let activateTrap: Int = 60 * 3
+    static let trapDuration: Int = 60 * 5
     
 }
 
@@ -20,7 +22,6 @@ class Bomb: SKSpriteNode{
     static var bombs = [Bomb]()
     var activePhysicsBody: SKPhysicsBody?
     var inactivePhysicsBody: SKPhysicsBody?
-    
     var tickingTime: Int = 0
     
     required init?(coder aDecoder: NSCoder) {
@@ -34,17 +35,10 @@ class Bomb: SKSpriteNode{
     }
     
     func createPhysicsBody(){
-        
-        physicsBody = SKPhysicsBody(circleOfRadius: (size.width/2) * PhysicsUtils.physicsBodyPct)
-        physicsBody?.categoryBitMask = PhysicsCategory.InactiveBomb
-        physicsBody?.collisionBitMask = 0
-        physicsBody?.isDynamic = true
-        physicsBody?.restitution = 0
-        physicsBody?.friction = 0
-        physicsBody?.allowsRotation = false
+        //overridden in subclasses
     }
     
-    func explosion(_ position: CGPoint){
+    func activation(_ position: CGPoint){
         //overridden in subclasses
     }
 
