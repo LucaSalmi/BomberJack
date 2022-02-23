@@ -140,8 +140,8 @@
 		C8C7DC3227BFF69B0083656A /* Scenes and Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				C815F79927B400490084DE7A /* GameViewController.swift */,
 				330D6EFC27C67E2F00444648 /* SwiftUIHostingController.swift */,
+				C815F79927B400490084DE7A /* GameViewController.swift */,
 				33BFC5C727BBA567008DBA03 /* StartMenuScene.sks */,
 				33BFC5C927BBA5A9008DBA03 /* StartMenuScene.swift */,
 				33FEE19D27BE96DF0036BC22 /* UIScene.sks */,
@@ -479,7 +479,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ProTeam.BomberMan;
+				PRODUCT_BUNDLE_IDENTIFIER = com.DanielFalkedal.BomberMan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -511,7 +511,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ProTeam.BomberMan;
+				PRODUCT_BUNDLE_IDENTIFIER = com.DanielFalkedal.BomberMan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;

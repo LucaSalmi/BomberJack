@@ -21,13 +21,16 @@ struct MyView: View {
         else {
             ZStack {
                 Image("mainmenu_no_props")
-                    
+                    .resizable()
+                    .scaledToFill()
                 Button(action: {
                     startGame = true
                 }, label: {
                     Text("Start Game")
+                        .foregroundColor(.black)
                 })
             }
+            .ignoresSafeArea()
         }
         
     }
