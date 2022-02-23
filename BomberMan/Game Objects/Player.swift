@@ -20,14 +20,16 @@ enum PlayerSettings{
 class Player: SKSpriteNode{
     
     static var camera: SKCameraNode! = SKCameraNode()
+    //Graphics variables
     var rightAnimations: [SKAction] = []
     var leftAnimations: [SKAction] = []
     var upAnimations: [SKAction] = []
     var downAnimations: [SKAction] = []
     var playerTexture: SKSpriteNode! = SKSpriteNode()
-    var isTrapped = false
     var shieldTexture: SKSpriteNode! = SKSpriteNode()
     var currentTexture: SKSpriteNode! = SKSpriteNode()
+    //Logic variables
+    var isTrapped = false
     var isShielded = false
     var shieldTick: CGFloat = 0.0
     
@@ -122,6 +124,16 @@ class Player: SKSpriteNode{
     }
     
     func death(player: SKNode){
+        
+        let deathParticle = SKEmitterNode(fileNamed: "EnemyDeath")
+        deathParticle!.particleTexture = playerTexture.texture
+        deathParticle!.position = playerTexture.position
+        deathParticle!.zPosition = 100
+        GameViewController.currentGameScene!.addChild(deathParticle!)
+        GameViewController.currentGameScene!.run(SKAction.wait(forDuration: 1)) {
+            deathParticle!.removeFromParent()
+        }
+        //Play sound SFX on death?
         
         //stat change
         UserData.numberOfDeaths += 1

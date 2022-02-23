@@ -54,7 +54,7 @@ class Enemy: SKSpriteNode {
         GameViewController.currentGameScene!.run(SKAction.wait(forDuration: 1)) {
             deathParticle!.removeFromParent()
         }
-        //Play sound SFX on enemy death?
+        //Play sound SFX on death?
     }
     
     func collision(with other: SKNode?) {
