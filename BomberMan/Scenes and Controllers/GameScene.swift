@@ -284,6 +284,7 @@ class GameScene: SKScene {
                         Enemy.enemies.remove(at: i)
                     }
                 }
+                enemy.deathParticle()
                 enemy.removeFromParent()
                 
                 return

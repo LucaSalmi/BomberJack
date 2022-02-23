@@ -45,6 +45,18 @@ class Enemy: SKSpriteNode {
         zPosition = 50
     }
     
+    func deathParticle() {
+        let deathParticle = SKEmitterNode(fileNamed: "EnemyDeath")
+        deathParticle!.particleTexture = texture
+        deathParticle!.position = position
+        deathParticle!.zPosition = 100
+        GameViewController.currentGameScene!.addChild(deathParticle!)
+        GameViewController.currentGameScene!.run(SKAction.wait(forDuration: 1)) {
+            deathParticle!.removeFromParent()
+        }
+        //Play sound SFX on enemy death?
+    }
+    
     func collision(with other: SKNode?) {
         //Override this in enemy subclasses
         
@@ -75,6 +87,7 @@ class Enemy: SKSpriteNode {
                 }
             }
         }
+        
     }
  
     func update() {

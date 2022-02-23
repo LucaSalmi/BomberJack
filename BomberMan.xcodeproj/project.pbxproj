@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3312D2A027C60A28004C0EEF /* EnemyDeath.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3312D29F27C60A28004C0EEF /* EnemyDeath.sks */; };
 		33201EDD27BD352F003B4EB4 /* ObstacleObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33201EDC27BD352F003B4EB4 /* ObstacleObject.swift */; };
 		3354DF2227BF841E0019D640 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3354DF2127BF841E0019D640 /* SoundManager.swift */; };
 		3354DF2427BF847F0019D640 /* explosion1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3354DF2327BF847F0019D640 /* explosion1.wav */; };
@@ -48,6 +49,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3312D29F27C60A28004C0EEF /* EnemyDeath.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = EnemyDeath.sks; sourceTree = "<group>"; };
 		33201EDC27BD352F003B4EB4 /* ObstacleObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObstacleObject.swift; sourceTree = "<group>"; };
 		3354DF2127BF841E0019D640 /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
 		3354DF2327BF847F0019D640 /* explosion1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = explosion1.wav; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 				33CC323527C5386F00856D82 /* rush_impact.wav */,
 				33CC322927C516FE00856D82 /* BarrelSmoke.sks */,
 				33CC323327C5343600856D82 /* RushStun.sks */,
+				3312D29F27C60A28004C0EEF /* EnemyDeath.sks */,
 			);
 			path = "Sound and Graphics";
 			sourceTree = "<group>";
@@ -252,6 +255,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				33FEE19E27BE96DF0036BC22 /* UIScene.sks in Resources */,
+				3312D2A027C60A28004C0EEF /* EnemyDeath.sks in Resources */,
 				33CC323627C5387000856D82 /* rush_impact.wav in Resources */,
 				C815F79D27B400490084DE7A /* Main.storyboard in Resources */,
 				D5FFD73527C4FAB20032912D /* GameScene1.sks in Resources */,
@@ -448,7 +452,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 3P2G45WJH3;
+				DEVELOPMENT_TEAM = 5C7SAYQ8DJ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -462,7 +466,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.LucaSalmi.BomberMan;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ProTeam.BomberMan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -479,7 +483,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 3P2G45WJH3;
+				DEVELOPMENT_TEAM = 5C7SAYQ8DJ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -493,7 +497,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.LucaSalmi.BomberMan;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ProTeam.BomberMan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
