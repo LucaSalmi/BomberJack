@@ -12,9 +12,11 @@ enum PlayerSettings{
     static let playerSpeed: CGFloat = 1.5
     static var frame: Int = 0
     static var frameLimiter: Int = 1
-    static var canDropBomb: Bool = true
+    static var canDropBomb: Bool = true // temporary not using
     static let textureOffset = CGFloat(10) //temporary hard coded variable
     static let shieldDuration: CGFloat = 60 * 2
+    static var haveBombs: Bool = false
+    static var amountOfKeys = 0
 }
 
 class Player: SKSpriteNode{
@@ -33,6 +35,7 @@ class Player: SKSpriteNode{
     var isShielded = false
     var shieldTick: CGFloat = 0.0
     
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("use init()")
     }
@@ -47,7 +50,7 @@ class Player: SKSpriteNode{
         
         physicsBody = SKPhysicsBody(circleOfRadius: (size.width/2) * PhysicsUtils.physicsBodyPct)
         physicsBody?.categoryBitMask = PhysicsCategory.Player
-        physicsBody?.collisionBitMask = PhysicsCategory.Bomb | PhysicsCategory.Obstacle | PhysicsCategory.Enemy | PhysicsCategory.Breakable | PhysicsCategory.TrapBomb
+        physicsBody?.collisionBitMask = PhysicsCategory.Bomb | PhysicsCategory.Obstacle | PhysicsCategory.Enemy | PhysicsCategory.Breakable | PhysicsCategory.TrapBomb | PhysicsCategory.Loot
         //physicsBody?.contactTestBitMask = PhysicsCategory.Breakable
         physicsBody?.restitution = 0
         physicsBody?.allowsRotation = false

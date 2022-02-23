@@ -28,6 +28,10 @@ class ActionManagager{
         nextLevelButton = (context.childNode(withName: "camera/rightUI/nextLevelButton") as! SKSpriteNode)
         bombButton = (context.childNode(withName: "camera/rightUI/bombButton") as! SKSpriteNode)
         shieldButton = (context.childNode(withName: "camera/rightUI/shieldButton") as! SKSpriteNode)
+        
+        if (PlayerSettings.haveBombs == false) {
+            bombButton?.alpha = 0.2
+        }
     }
     
     func checkInput(_ touches: Set<UITouch>, with event: UIEvent?){
@@ -38,7 +42,7 @@ class ActionManagager{
             let currentNode = rightUI!.atPoint(location)
             let currentNodeName = currentNode.name
             
-            if (currentNodeName == "bombButton"){
+            if (currentNodeName == "bombButton" && PlayerSettings.haveBombs == true){
                 
                 placeBomb(id: 0)
                 
