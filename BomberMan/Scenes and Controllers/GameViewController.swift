@@ -130,12 +130,15 @@ class GameViewController: UIViewController {
 
         GameViewController.currentInputKey = 0
         print(String(GameViewController.currentInputKey))
+        
+        /*
         var didHandleEvent = true
         
         if didHandleEvent == false {
             // Didn't handle this key press, so pass the event to the next responder.
             super.pressesBegan(presses, with: event)
         }
+         */
     }
     
 }
