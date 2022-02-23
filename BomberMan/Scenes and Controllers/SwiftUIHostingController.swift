@@ -15,8 +15,32 @@ struct MyView: View {
     var body: some View {
         
         if startGame {
-            ViewController()
-                .ignoresSafeArea()
+            ZStack {
+                VStack {
+                    HStack {
+                        Button(action: {
+                            startGame = false
+                        }, label: {
+                            Text("Main Menu")
+                                .foregroundColor(.black)
+                                .padding(8)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 5)
+                                        .stroke(Color.black, lineWidth: 1)
+                                )
+                        })
+                            .padding([.top], 20)
+                        Spacer()
+                    }
+                    Spacer()
+                }
+                
+                    .zIndex(2)
+                ViewController()
+                    .ignoresSafeArea()
+                    .zIndex(1)
+            }
+            
         }
         else {
             ZStack {
@@ -28,6 +52,11 @@ struct MyView: View {
                 }, label: {
                     Text("Start Game")
                         .foregroundColor(.black)
+                        .padding(8)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 5)
+                                .stroke(Color.black, lineWidth: 1)
+                        )
                 })
             }
             .ignoresSafeArea()
