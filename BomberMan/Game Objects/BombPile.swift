@@ -10,8 +10,6 @@ import GameplayKit
 
 class BombPile: LootObject {
     
-    var gotBombs = false
-    
     required init?(coder aDecoder: NSCoder) {
         fatalError("use init()")
     }
@@ -22,5 +20,14 @@ class BombPile: LootObject {
         super.init(texture, .white, (GameScene.tileSize)!)
         name = "bomb loot"
         zPosition = 50
+    }
+    override func collision(loot: SKNode?) {
+        
+        PlayerSettings.haveBombs = true
+        GameViewController.currentGameScene?.actionManager.bombButton?.alpha = 1
+        print("loot collision bombpile")
+        super.collision(loot: loot)
+        
+        
     }
 }

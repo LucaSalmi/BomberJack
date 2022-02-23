@@ -132,7 +132,7 @@ class GameScene: SKScene {
     }
     
     func setupLootObjects(){
-        guard let lootObjectTileMap = childNode(withName: "lootObject")as? SKTileMapNode else {
+        guard let lootObjectTileMap = childNode(withName: "lootObjects")as? SKTileMapNode else {
             return
         }
 
@@ -150,13 +150,17 @@ class GameScene: SKScene {
                         
                     case "keyOneLoot":
                         lootObject = Key()
+                        print("loot key created")
                         
                         
                     case "bombPile":
                         lootObject = BombPile()
+                        print("loot bombpile created")
+                        
                         
                     default:
                         lootObject = BombPile()
+                        print("loot mistarrryyy")
                         
                     }
                     

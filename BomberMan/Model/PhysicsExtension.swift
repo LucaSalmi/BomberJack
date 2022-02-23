@@ -65,6 +65,16 @@ extension GameScene: SKPhysicsContactDelegate{
                 
                 player.isTrapped = true
                 
+            case PhysicsCategory.Loot:
+                
+                let loot = getLoot(node: nodeB!)
+                
+                loot.collision(loot: nodeB)
+                
+                print("loot achived")
+                
+                
+                
                 
             default:
                 print("mystery")
@@ -233,7 +243,22 @@ extension GameScene: SKPhysicsContactDelegate{
             default:
                 print("mystery")
             }
-        
+        case PhysicsCategory.Loot:
+            
+            switch contact.bodyB.categoryBitMask{
+                
+            case PhysicsCategory.Player:
+                
+                let loot = getLoot(node: nodeA!)
+                
+                loot.collision(loot: nodeA)
+                
+                print("loot achived")
+                
+            default:
+            print("mistarry") // hampus was here
+                
+            }
         //default case for main switch
         default:
             print("mystery")
@@ -263,6 +288,10 @@ extension GameScene: SKPhysicsContactDelegate{
     
     func getExplosion(node: SKNode) -> Explosion{
         return node as! Explosion
+    }
+    
+    func getLoot(node: SKNode) -> LootObject{
+        return node as! LootObject
     }
     
     

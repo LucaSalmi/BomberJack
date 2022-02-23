@@ -10,7 +10,6 @@ import GameplayKit
 
 class Key: LootObject {
     
-    var gotKeyOne = false
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("use init()")
@@ -22,5 +21,12 @@ class Key: LootObject {
         super.init(texture, .white, (GameScene.tileSize)!)
         name = "key object"
         zPosition = 50
+    }
+    override func collision(loot: SKNode?) {
+        print("loot collision key")
+        PlayerSettings.amountOfKeys += 1
+        super.collision(loot: loot)
+        
+        
     }
 }
