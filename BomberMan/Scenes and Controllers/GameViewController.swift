@@ -30,6 +30,14 @@ class GameViewController: UIViewController {
         
         Player.camera = camera
         
+        //old start menu (before SwiftUI)
+        //presentOldStartMenu()
+        
+        let sceneName = "GameScene\(currentLevel)"
+        presentScene(sceneName)
+    }
+    
+    private func presentOldStartMenu() {
         // Load 'GameScene.sks' as a GKScene. This provides gameplay related content
         // including entities and graphs.
         if let scene = GKScene(fileNamed: "StartMenuScene") {
