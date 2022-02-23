@@ -45,6 +45,17 @@ class Enemy: SKSpriteNode {
         zPosition = 50
     }
     
+    func bloodParticle() {
+        let bloodParticle = SKEmitterNode(fileNamed: "BloodSplatter")
+        bloodParticle!.position = position
+        bloodParticle!.zPosition = 100
+        GameViewController.currentGameScene!.addChild(bloodParticle!)
+        GameViewController.currentGameScene!.run(SKAction.wait(forDuration: 1)) {
+            bloodParticle!.removeFromParent()
+        }
+        SoundManager.playSFX(SoundManager.bloodSplatterSFX)
+    }
+    
     func deathParticle() {
         let deathParticle = SKEmitterNode(fileNamed: "EnemyDeath")
         deathParticle!.particleTexture = texture
@@ -83,6 +94,9 @@ class Enemy: SKSpriteNode {
                 }
                 let enemy = Enemy.enemies[i]
                 if enemy == self {
+                    if !isTrapped {
+                        bloodParticle()
+                    }
                     isTrapped = true
                 }
             }

@@ -123,6 +123,17 @@ class Player: SKSpriteNode{
         
     }
     
+    func bloodParticle() {
+        let bloodParticle = SKEmitterNode(fileNamed: "BloodSplatter")
+        bloodParticle!.position = position
+        bloodParticle!.zPosition = 100
+        GameViewController.currentGameScene!.addChild(bloodParticle!)
+        GameViewController.currentGameScene!.run(SKAction.wait(forDuration: 1)) {
+            bloodParticle!.removeFromParent()
+        }
+        SoundManager.playSFX(SoundManager.bloodSplatterSFX)
+    }
+    
     func death(player: SKNode){
         
         let deathParticle = SKEmitterNode(fileNamed: "EnemyDeath")

@@ -64,6 +64,7 @@ extension GameScene: SKPhysicsContactDelegate{
             case PhysicsCategory.TrapBomb:
                 
                 player.isTrapped = true
+                player.bloodParticle()
                 
                 
             default:
@@ -229,6 +230,7 @@ extension GameScene: SKPhysicsContactDelegate{
                 
             case PhysicsCategory.Player:
                 player?.isTrapped = true
+                player?.bloodParticle()
                 
             default:
                 print("mystery")
