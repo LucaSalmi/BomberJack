@@ -24,12 +24,12 @@ class GameScene: SKScene {
     var enemyNode: SKNode? = SKNode()
     var breakablesNode: SKNode? = SKNode()
     var obstaclesNode: SKNode? = SKNode()
+    var lootNode: SKNode? = SKNode()
     var player: Player? = nil
     
     var movementManager: MovementManager? = nil
     
     var isGameOver = false
-    
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -49,13 +49,14 @@ class GameScene: SKScene {
         setupCamera()
         movementManager = MovementManager(self)
         actionManager = ActionManagager(self, camera!)
+        setupLootObjects()
     }
     
     
     
     override func sceneDidLoad() {
         
-        
+        dataReaderWriter.loaduserData()
     
     }
     
@@ -67,7 +68,7 @@ class GameScene: SKScene {
         rightUI = (camera.childNode(withName: "rightUI") as! SKSpriteNode)
       
         let zeroDistance = SKRange(constantValue: 0)
-        let playerConstraint = SKConstraint.distance(zeroDistance, to: player!)
+        let playerConstraint = SKConstraint.distance(zeroDistance, to: player!.playerTexture)
 
         let xInset = min((view?.bounds.width)!/2*camera.xScale, backgroundMap!.frame.width/2)
         let yInset = min((view?.bounds.height)!/2*camera.yScale, backgroundMap!.frame.height/2)
@@ -130,6 +131,49 @@ class GameScene: SKScene {
         breakablesTileMap.removeFromParent()
     }
     
+    func setupLootObjects(){
+        guard let lootObjectTileMap = childNode(withName: "lootObjects")as? SKTileMapNode else {
+            return
+        }
+
+        for row in 0..<lootObjectTileMap.numberOfRows{
+            for column in 0..<lootObjectTileMap.numberOfColumns{
+                
+                guard let tile = tile(in: lootObjectTileMap, at: (column, row)) else {continue}
+                guard tile.userData?.object(forKey: "lootObject") != nil else {continue}
+                
+                var lootObject: LootObject
+                
+                if tile.userData?.value(forKey: "lootObject") != nil{
+                    let value = tile.userData?.value(forKey: "lootObject") as! String
+                    switch value{
+                        
+                    case "keyOneLoot":
+                        lootObject = Key()
+                        print("loot key created")
+                        
+                        
+                    case "bombPile":
+                        lootObject = BombPile()
+                        print("loot bombpile created")
+                        
+                        
+                    default:
+                        lootObject = BombPile()
+                        print("loot mistarrryyy")
+                        
+                    }
+                    
+                    lootObject.position = lootObjectTileMap.centerOfTile(atColumn: column, row: row)
+                    lootNode!.addChild(lootObject)
+                }
+            }
+        }
+        
+        lootNode!.name = "lootObject"
+        addChild(lootNode!)
+        lootObjectTileMap.removeFromParent()
+    }
     
     
     func setupObstaclesPhysics(){
@@ -284,6 +328,7 @@ class GameScene: SKScene {
                         Enemy.enemies.remove(at: i)
                     }
                 }
+                enemy.deathParticle()
                 enemy.removeFromParent()
                 
                 return
@@ -300,6 +345,8 @@ class GameScene: SKScene {
         }
         
         player!.update()
+        
+        dataReaderWriter.saveUserData()
         
         if isGameOver{
             
@@ -327,6 +374,9 @@ class GameScene: SKScene {
         Bomb.bombs.removeAll()
         Enemy.enemies.removeAll()
         ExplosionSettings.explosionsArray.removeAll()
+    }
+    func addloot() {
+        
     }
 }
 

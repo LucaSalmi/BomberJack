@@ -25,6 +25,9 @@ class Enemy: SKSpriteNode {
     var difficult: Int = 0
     var isAlive: Bool = true
     
+    //trap Boolean
+    var isTrapped = false
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("use init()")
     }
@@ -32,15 +35,37 @@ class Enemy: SKSpriteNode {
     init(_ texture: SKTexture, _ color: UIColor, _ size: CGSize) {
         super.init(texture: texture, color: color, size: size)
         
-        let physicsBodyPct = CGFloat(0.90)
-        physicsBody = SKPhysicsBody(circleOfRadius: (size.width/2) * physicsBodyPct)
+        physicsBody = SKPhysicsBody(circleOfRadius: (size.width/2) * PhysicsUtils.physicsBodyPct)
         physicsBody?.categoryBitMask = PhysicsCategory.Enemy
         physicsBody?.contactTestBitMask = PhysicsCategory.All
-        physicsBody?.collisionBitMask = PhysicsCategory.Obstacle | PhysicsCategory.Breakable | PhysicsCategory.Bomb | PhysicsCategory.InactiveBomb
+        physicsBody?.collisionBitMask = PhysicsCategory.Obstacle | PhysicsCategory.Breakable | PhysicsCategory.Bomb | PhysicsCategory.InactiveBomb | PhysicsCategory.TrapBomb
         physicsBody?.restitution = 0
         physicsBody?.allowsRotation = false
         
         zPosition = 50
+    }
+    
+    func bloodParticle() {
+        let bloodParticle = SKEmitterNode(fileNamed: "BloodSplatter")
+        bloodParticle!.position = position
+        bloodParticle!.zPosition = 100
+        GameViewController.currentGameScene!.addChild(bloodParticle!)
+        GameViewController.currentGameScene!.run(SKAction.wait(forDuration: 1)) {
+            bloodParticle!.removeFromParent()
+        }
+        SoundManager.playSFX(SoundManager.bloodSplatterSFX)
+    }
+    
+    func deathParticle() {
+        let deathParticle = SKEmitterNode(fileNamed: "EnemyDeath")
+        deathParticle!.particleTexture = texture
+        deathParticle!.position = position
+        deathParticle!.zPosition = 100
+        GameViewController.currentGameScene!.addChild(deathParticle!)
+        GameViewController.currentGameScene!.run(SKAction.wait(forDuration: 1)) {
+            deathParticle!.removeFromParent()
+        }
+        //Play sound SFX on death?
     }
     
     func collision(with other: SKNode?) {
@@ -53,10 +78,30 @@ class Enemy: SKSpriteNode {
                 }
                 let enemy = Enemy.enemies[i]
                 if enemy == self {
+                    
+                    //stat change
+                    UserData.enemiesKilled += 1
                     isAlive = false
                 }
             }
         }
+        
+        if other is TrapBomb{
+            
+            for i in 0..<Enemy.enemies.count {
+                if i >= Enemy.enemies.count {
+                    return
+                }
+                let enemy = Enemy.enemies[i]
+                if enemy == self {
+                    if !isTrapped {
+                        bloodParticle()
+                    }
+                    isTrapped = true
+                }
+            }
+        }
+        
     }
  
     func update() {

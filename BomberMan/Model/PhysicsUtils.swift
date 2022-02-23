@@ -10,6 +10,8 @@ import GameplayKit
 
 class PhysicsUtils {
     
+    static let physicsBodyPct = CGFloat(0.90)
+    
     static func checkIfOccupied(node: SKNode, object: SKNode) -> Bool{
     
         let list = node.children
@@ -69,12 +71,7 @@ class PhysicsUtils {
 
         let actionSeq = SKAction.sequence(actionsArray);
         
-        scene.obstaclesNode!.run(actionSeq)
-        scene.breakablesNode!.run(actionSeq)
-        scene.player!.run(actionSeq)
-        scene.bombsNode!.run(actionSeq)
-        scene.enemyNode!.run(actionSeq)
-        scene.explosionsNode!.run(actionSeq)
+        scene.player!.playerTexture.run(actionSeq)
 
     }
     

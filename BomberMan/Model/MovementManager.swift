@@ -34,7 +34,7 @@ class MovementManager {
             node.alpha = 0.01
         }
         centerButton!.zPosition = 1
-        centerButton!.alpha = 1
+        centerButton!.alpha = 0.5
         
         stopMovement()
     }
@@ -78,7 +78,7 @@ class MovementManager {
             
             if (currentNodeName == "rightButton" || currentNodeName == "downButton" || currentNodeName == "leftButton") || currentNodeName == "upButton" {
                 currentJoystickButton = currentNode
-                virtualJoystick!.alpha = 1
+                virtualJoystick!.alpha = 0.5
             }
         }
         
@@ -89,7 +89,7 @@ class MovementManager {
     }
     
     func stopMovement() {
-        virtualJoystick!.alpha = 0
+        virtualJoystick!.alpha = 0.0
         currentJoystickButton = nil
         centerButton!.position = centerButtonPosition!
         touchLocation = nil
@@ -135,10 +135,10 @@ class MovementManager {
             direction.x = -1
         case 32:
             //space-button
-            context.actionManager.placeBomb()
+            context.actionManager.placeBomb(id: 0)
             GameViewController.currentInputKey = 0
         default:
-            let null = false
+            print("Keyboard key not implemented.")
             
         }
         

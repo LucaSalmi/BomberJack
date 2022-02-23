@@ -14,6 +14,10 @@ class RushEnemy: TestEnemy {
     let chargeSpeedMultiplier: CGFloat = 3.0
     var chargeSpeed: CGFloat = 0.0
     
+    var isStunned: Bool = false
+    let stunDuration: CGFloat = 60 * 3
+    var stunTick: CGFloat = 0
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("use init()")
     }
@@ -76,11 +80,42 @@ class RushEnemy: TestEnemy {
     override func collision(with other: SKNode?) {
         super.collision(with: other)
         
+        if !isStunned && isCharging {
+            isStunned = true
+            stunTick = 0
+            applyStun()
+        }
+        
         isCharging = false
+    }
+    
+    private func applyStun() {
+        let stunParticle = SKEmitterNode(fileNamed: "RushStun")
+        stunParticle!.position = position
+        stunParticle!.position.y += 16
+        stunParticle!.zPosition = 100
+        GameViewController.currentGameScene!.addChild(stunParticle!)
+        GameViewController.currentGameScene!.run(SKAction.wait(forDuration: Double(stunDuration))) {
+            stunParticle!.removeFromParent()
+        }
+        SoundManager.playSFX(SoundManager.rushImpactSFX)
     }
     
     override func update() {
         
+        if isTrapped {
+            return
+        }
+        
+        if isStunned {
+            stunTick += 1
+            if stunTick >= stunDuration {
+                stunTick = 0
+                isStunned = false
+            }
+            return
+        }
+            
         //base logic is same as parent Test Enemy
         if !isCharging {
             super.update()
@@ -105,11 +140,9 @@ class RushEnemy: TestEnemy {
         }
         
         //different logic when charging
-        
-        
         position.x += (direction.x * chargeSpeed)
         position.y += (direction.y * chargeSpeed)
+            
         
     }
-    
 }
