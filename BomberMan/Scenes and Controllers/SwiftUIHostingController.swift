@@ -9,17 +9,31 @@ import UIKit
 import SwiftUI
 
 struct MyView: View {
-  var body: some View {
-      NavigationView {
-                  NavigationLink(
-                      destination: ViewController(),
-                      label: {
-                          Text("Click me").foregroundColor(.white)
-                          Image(systemName: "chevron.forward.2").imageScale(.large)}
-                  )
-              }
-  }
+    
+    @State var startGame: Bool = false
+    
+    var body: some View {
+        
+        if startGame {
+            ViewController()
+                .ignoresSafeArea()
+        }
+        else {
+            ZStack {
+                Image("mainmenu_no_props")
+                    
+                Button(action: {
+                    startGame = true
+                }, label: {
+                    Text("Start Game")
+                })
+            }
+        }
+        
+    }
 }
+
+
 
 struct ViewController: UIViewControllerRepresentable {
     
@@ -37,7 +51,7 @@ struct ViewController: UIViewControllerRepresentable {
 class SwiftUIHostingController: UIHostingController<MyView> {
 
     required init?(coder: NSCoder) {
-        super.init(coder: coder,rootView: MyView());
+        super.init(coder: coder, rootView: MyView());
     }
 
     override func viewDidLoad() {
