@@ -16,6 +16,7 @@ class SoundManager {
     static let barrelShieldSFX = "barrel_shield"
     static let rushImpactSFX = "rush_impact"
     static let bloodSplatterSFX = "blood_splatter"
+    static let doorOpenSFX = "door_sound"
     
     static func playSFX(_ sfx: String) {
         
