@@ -88,7 +88,7 @@ class Player: SKSpriteNode{
             smokeParticle!.removeFromParent()
         }
         SoundManager.playSFX(SoundManager.barrelShieldSFX)
-  
+        
         physicsBody?.isDynamic = false
         shieldTick = 0.0
         shieldTexture.alpha = 1
@@ -110,18 +110,17 @@ class Player: SKSpriteNode{
     
     func move(direction: CGPoint){
         
-        if isShielded {
+        if isShielded || isTrapped{
             return
         }
         
-        if !isTrapped {
-            
-            self.position.x += (direction.x * PlayerSettings.playerSpeed)
-            self.position.y += (direction.y * PlayerSettings.playerSpeed)
-            let direction = findDirection(playerDirection: direction)
-            
-            runAnim(playerDirection: direction)
-        }
+        
+        self.position.x += (direction.x * PlayerSettings.playerSpeed)
+        self.position.y += (direction.y * PlayerSettings.playerSpeed)
+        let direction = findDirection(playerDirection: direction)
+        
+        runAnim(playerDirection: direction)
+        
         
         
     }
@@ -202,7 +201,7 @@ class Player: SKSpriteNode{
         PlayerSettings.frameLimiter += 1
         
     }
-
+    
     func collision(with other: SKNode?) {
         
         print("collision happened")
