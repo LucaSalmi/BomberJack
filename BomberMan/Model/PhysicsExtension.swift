@@ -70,6 +70,12 @@ extension GameScene: SKPhysicsContactDelegate{
                 player.isTrapped = true
                 player.bloodParticle()
                 
+            case PhysicsCategory.Loot:
+                
+                let loot = getLoot(node: nodeB!)
+                loot.collision(loot: nodeB)
+                print("loot achived")
+                
             default:
                 print("mistery")
             }
