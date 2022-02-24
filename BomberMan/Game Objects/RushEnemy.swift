@@ -77,19 +77,27 @@ class RushEnemy: TestEnemy {
         return CGPoint(x: 0, y: 0)
     }
     
-    override func collision(with other: SKNode?) {
-        super.collision(with: other)
+    private func knockBack() {
         
-        if !isStunned && isCharging {
-            isStunned = true
-            stunTick = 0
-            applyStun()
+        if direction.x > 0 {
+            position.x -= Enemy.knockbackMultiplier
+        }
+        else if direction.x < 0 {
+            position.x += Enemy.knockbackMultiplier
+        }
+        else if direction.y > 0 {
+            position.y -= Enemy.knockbackMultiplier
+        }
+        else if direction.y < 0 {
+            position.y += Enemy.knockbackMultiplier
         }
         
-        isCharging = false
+        position = centerInCurrentTile()
+        
     }
     
     private func applyStun() {
+        
         let stunParticle = SKEmitterNode(fileNamed: "RushStun")
         stunParticle!.position = position
         stunParticle!.position.y += 16
@@ -101,6 +109,19 @@ class RushEnemy: TestEnemy {
         SoundManager.playSFX(SoundManager.rushImpactSFX)
     }
     
+    override func collision(with other: SKNode?) {
+        
+        if !isCharging {
+            super.collision(with: other)
+        }
+        
+        if !isStunned && isCharging {
+            isStunned = true
+        }
+        
+        isCharging = false
+    }
+    
     override func update() {
         
         if isTrapped {
@@ -108,6 +129,10 @@ class RushEnemy: TestEnemy {
         }
         
         if isStunned {
+            if stunTick == 0 {
+                knockBack()
+                applyStun()
+            }
             stunTick += 1
             if stunTick >= stunDuration {
                 stunTick = 0
@@ -116,32 +141,31 @@ class RushEnemy: TestEnemy {
             return
         }
             
-        //base logic is same as parent Test Enemy
-        if !isCharging {
-            super.update()
+        //different logic when charging
+        if isCharging {
+            position.x += (direction.x * chargeSpeed)
+            position.y += (direction.y * chargeSpeed)
             
-            let rushDirection = searchForPlayer()
-            if rushDirection.x == 0 && rushDirection.y == 0 {
-                //No player found in path
-                return
-            }
-            else {
-                isCharging = true
-                direction = rushDirection
-                
-                guard let backgroundMap = GameViewController.currentGameScene!.childNode(withName: "background")as? SKTileMapNode else {
-                    return
-                }
-                let center = PhysicsUtils.findCenterOfClosestTile(map: backgroundMap, object: self)
-                if center != nil {
-                    self.position = center!
-                }
-            }
+            return
         }
         
-        //different logic when charging
-        position.x += (direction.x * chargeSpeed)
-        position.y += (direction.y * chargeSpeed)
+        //Normal update state
+        
+        super.update()
+        
+        let rushDirection = searchForPlayer()
+        if rushDirection.x == 0 && rushDirection.y == 0 {
+            //No player found in path
+            return
+        }
+        else {
+            isCharging = true
+            direction = rushDirection
+            
+            position = centerInCurrentTile()
+        }
+        
+        
             
         
     }
