@@ -8,6 +8,15 @@
 import UIKit
 import SwiftUI
 
+struct MyViewSettings {
+    
+    static let actionNextLevel = 0
+    static let actionDefaultBomb = 1
+    static let actionTrap = 2
+    static let actionShield = 3
+    
+}
+
 struct MyView: View {
     
     @State var startGame: Bool = false
@@ -87,7 +96,7 @@ struct GameUIView: View {
                     .padding([.top], 20)
                 Button(action: {
                     if GameViewController.currentGameScene?.actionManager != nil {
-                        GameViewController.currentGameScene?.actionManager.handleInput(id: 0, isPaused: isPaused)
+                        GameViewController.currentGameScene?.actionManager.handleInput(id: MyViewSettings.actionNextLevel, isPaused: isPaused)
                     }
                 }, label: {
                     Text("Next Level")
@@ -101,7 +110,7 @@ struct GameUIView: View {
                     .padding([.top], 20)
                 Button(action: {
                     if GameViewController.currentGameScene?.actionManager != nil {
-                        GameViewController.currentGameScene?.actionManager.handleInput(id: 1, isPaused: isPaused)
+                        GameViewController.currentGameScene?.actionManager.handleInput(id: MyViewSettings.actionDefaultBomb, isPaused: isPaused)
                     }
                 }, label: {
                     Text("Default Bomb")
@@ -115,7 +124,7 @@ struct GameUIView: View {
                     .padding([.top], 20)
                 Button(action: {
                     if GameViewController.currentGameScene?.actionManager != nil {
-                        GameViewController.currentGameScene?.actionManager.handleInput(id: 2, isPaused: isPaused)
+                        GameViewController.currentGameScene?.actionManager.handleInput(id: MyViewSettings.actionTrap, isPaused: isPaused)
                     }
                 }, label: {
                     Text("Trap")
@@ -129,7 +138,7 @@ struct GameUIView: View {
                     .padding([.top], 20)
                 Button(action: {
                     if GameViewController.currentGameScene?.actionManager != nil {
-                        GameViewController.currentGameScene?.actionManager.handleInput(id: 3, isPaused: isPaused)
+                        GameViewController.currentGameScene?.actionManager.handleInput(id: MyViewSettings.actionShield, isPaused: isPaused)
                     }
                 }, label: {
                     Text("Shield Barrel")

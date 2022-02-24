@@ -40,13 +40,13 @@ class ActionManagager{
         
         switch id {
             
-        case 0:
+        case MyViewSettings.actionNextLevel:
             nextLevel()
-        case 1:
+        case MyViewSettings.actionDefaultBomb:
             placeBomb(id: 0)
-        case 2:
+        case MyViewSettings.actionTrap:
             placeBomb(id: 1)
-        case 3:
+        case MyViewSettings.actionShield:
             activateShield()
         default:
             print("Unavailable action")
