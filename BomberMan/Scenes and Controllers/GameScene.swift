@@ -13,7 +13,7 @@ class GameScene: SKScene {
     
     static var viewController: GameViewController? = nil
     static var tileSize: CGSize? = CGSize(width: 32, height: 32)
-    @State static var gameState = GameState.play
+    static var gameState = GameState.play
     
     var leftUI: SKSpriteNode? = nil
     var rightUI: SKSpriteNode? = nil
