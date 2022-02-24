@@ -14,9 +14,6 @@ class ActionManagager{
     var camera: SKCameraNode? = nil
     
     var rightUI: SKSpriteNode? = nil
-    var nextLevelButton: SKSpriteNode? = nil
-    var bombButton: SKSpriteNode? = nil
-    var shieldButton: SKSpriteNode? = nil
     var touchLocation: CGPoint? = nil
     
     init(_ context: GameScene, _ camera: SKCameraNode) {
@@ -25,48 +22,35 @@ class ActionManagager{
         self.camera = camera
         
         rightUI = (context.childNode(withName: "camera/rightUI") as! SKSpriteNode)
-        nextLevelButton = (context.childNode(withName: "camera/rightUI/nextLevelButton") as! SKSpriteNode)
-        bombButton = (context.childNode(withName: "camera/rightUI/bombButton") as! SKSpriteNode)
-        shieldButton = (context.childNode(withName: "camera/rightUI/shieldButton") as! SKSpriteNode)
         
         if (PlayerSettings.haveBombs == false) {
-            bombButton?.alpha = 0.2
+            //bombButton?.alpha = 0.2
         }
     }
     
     func checkInput(_ touches: Set<UITouch>, with event: UIEvent?){
-        for touch in touches {
+        
+    }
+    
+    func handleInput(id: Int, isPaused: Bool) {
+        
+        if isPaused {
+            return
+        }
+        
+        switch id {
             
-            let location = touch.location(in: rightUI!)
-            //print(location)
-            let currentNode = rightUI!.atPoint(location)
-            let currentNodeName = currentNode.name
-            
-            if (currentNodeName == "bombButton" && PlayerSettings.haveBombs == true && GameScene.gameState == .play){
-                
-                placeBomb(id: 0)
-                
-            }
-            else if (currentNodeName == "shieldButton" && GameScene.gameState == .play) {
-                activateShield()
-            }
-            else if (currentNodeName == "nextLevelButton" && GameScene.gameState == .play) {
-                nextLevel()
-            }
-            else if currentNodeName == "trapButton" && GameScene.gameState == .play{
-                
-                print("trapSet")
-                placeBomb(id: 1)
-            }
-            else if currentNodeName == "pauseButton"{
-                
-                if GameScene.gameState == .play{
-                    GameScene.gameState = .pause
-                }else{
-                    GameScene.gameState = .play
-                }
-                
-            }
+        case 0:
+            nextLevel()
+        case 1:
+            placeBomb(id: 0)
+        case 2:
+            placeBomb(id: 1)
+        case 3:
+            activateShield()
+        default:
+            print("Unavailable action")
+
         }
     }
             

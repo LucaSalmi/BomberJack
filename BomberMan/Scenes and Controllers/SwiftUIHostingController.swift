@@ -70,8 +70,9 @@ struct GameUIView: View {
     
     var body: some View {
         
-        VStack {
-            HStack {
+        HStack {
+            Spacer()
+            VStack {
                 Button(action: {
                     startGame = false
                 }, label: {
@@ -86,7 +87,7 @@ struct GameUIView: View {
                     .padding([.top], 20)
                 Button(action: {
                     if GameViewController.currentGameScene?.actionManager != nil {
-                        GameViewController.currentGameScene?.actionManager.nextLevel()
+                        GameViewController.currentGameScene?.actionManager.handleInput(id: 0, isPaused: isPaused)
                     }
                 }, label: {
                     Text("Next Level")
@@ -100,7 +101,7 @@ struct GameUIView: View {
                     .padding([.top], 20)
                 Button(action: {
                     if GameViewController.currentGameScene?.actionManager != nil {
-                        GameViewController.currentGameScene?.actionManager.placeBomb(id: 0)
+                        GameViewController.currentGameScene?.actionManager.handleInput(id: 1, isPaused: isPaused)
                     }
                 }, label: {
                     Text("Default Bomb")
@@ -114,7 +115,7 @@ struct GameUIView: View {
                     .padding([.top], 20)
                 Button(action: {
                     if GameViewController.currentGameScene?.actionManager != nil {
-                        GameViewController.currentGameScene?.actionManager.placeBomb(id: 1)
+                        GameViewController.currentGameScene?.actionManager.handleInput(id: 2, isPaused: isPaused)
                     }
                 }, label: {
                     Text("Trap")
@@ -128,7 +129,7 @@ struct GameUIView: View {
                     .padding([.top], 20)
                 Button(action: {
                     if GameViewController.currentGameScene?.actionManager != nil {
-                        GameViewController.currentGameScene?.actionManager.activateShield()
+                        GameViewController.currentGameScene?.actionManager.handleInput(id: 3, isPaused: isPaused)
                     }
                 }, label: {
                     Text("Shield Barrel")
@@ -158,9 +159,7 @@ struct GameUIView: View {
                         )
                 })
                     .padding([.top], 20)
-                Spacer()
             }
-            Spacer()
         }
         
     }

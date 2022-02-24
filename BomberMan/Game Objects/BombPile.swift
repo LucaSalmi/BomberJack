@@ -24,7 +24,6 @@ class BombPile: LootObject {
     override func collision(loot: SKNode?) {
         
         PlayerSettings.haveBombs = true
-        GameViewController.currentGameScene?.actionManager.bombButton?.alpha = 1
         print("loot collision bombpile")
         super.collision(loot: loot)
         
