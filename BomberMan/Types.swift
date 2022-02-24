@@ -31,4 +31,9 @@ struct PhysicsCategory{
     
 }
 
+enum GameState: Int{
+    
+    case mainMenu = 0,  start, play, win, lose, pause
+}
+
 //test

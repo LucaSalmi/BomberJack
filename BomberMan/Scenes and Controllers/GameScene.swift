@@ -7,11 +7,13 @@
 
 import SpriteKit
 import GameplayKit
+import SwiftUI
 
 class GameScene: SKScene {
     
     static var viewController: GameViewController? = nil
     static var tileSize: CGSize? = CGSize(width: 32, height: 32)
+    @State static var gameState = GameState.play
     
     var leftUI: SKSpriteNode? = nil
     var rightUI: SKSpriteNode? = nil
@@ -330,6 +332,10 @@ class GameScene: SKScene {
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
+        
+        if GameScene.gameState == .pause{
+            return
+        }
         
         if isGameOver{
             //Deallocate all nodes/children from the old scene

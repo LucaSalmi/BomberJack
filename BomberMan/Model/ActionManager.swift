@@ -42,21 +42,30 @@ class ActionManagager{
             let currentNode = rightUI!.atPoint(location)
             let currentNodeName = currentNode.name
             
-            if (currentNodeName == "bombButton" && PlayerSettings.haveBombs == true){
+            if (currentNodeName == "bombButton" && PlayerSettings.haveBombs == true && GameScene.gameState == .play){
                 
                 placeBomb(id: 0)
                 
             }
-            else if (currentNodeName == "shieldButton") {
+            else if (currentNodeName == "shieldButton" && GameScene.gameState == .play) {
                 activateShield()
             }
-            else if (currentNodeName == "nextLevelButton") {
+            else if (currentNodeName == "nextLevelButton" && GameScene.gameState == .play) {
                 nextLevel()
             }
-            else if currentNodeName == "trapButton"{
+            else if currentNodeName == "trapButton" && GameScene.gameState == .play{
                 
                 print("trapSet")
                 placeBomb(id: 1)
+            }
+            else if currentNodeName == "pauseButton"{
+                
+                if GameScene.gameState == .play{
+                    GameScene.gameState = .pause
+                }else{
+                    GameScene.gameState = .play
+                }
+                
             }
         }
     }
