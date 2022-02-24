@@ -50,7 +50,7 @@ class Player: SKSpriteNode{
         
         physicsBody = SKPhysicsBody(circleOfRadius: (size.width/2) * PhysicsUtils.physicsBodyPct)
         physicsBody?.categoryBitMask = PhysicsCategory.Player
-        physicsBody?.collisionBitMask = PhysicsCategory.Bomb | PhysicsCategory.Obstacle | PhysicsCategory.Enemy | PhysicsCategory.Breakable | PhysicsCategory.TrapBomb | PhysicsCategory.Loot
+        physicsBody?.collisionBitMask = PhysicsCategory.Bomb | PhysicsCategory.Obstacle | PhysicsCategory.Enemy | PhysicsCategory.Breakable | PhysicsCategory.TrapBomb | PhysicsCategory.Loot | PhysicsCategory.Door
         //physicsBody?.contactTestBitMask = PhysicsCategory.Breakable
         physicsBody?.restitution = 0
         physicsBody?.allowsRotation = false

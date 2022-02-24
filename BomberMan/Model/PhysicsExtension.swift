@@ -79,6 +79,15 @@ extension GameScene: SKPhysicsContactDelegate{
                 loot.collision(loot: nodeB)
                 print("loot achived")
                 
+            case PhysicsCategory.Door:
+                
+                let door = getDoor(node: nodeB!)
+                
+                door.collision(with: nodeB)
+                
+                print("hi door")
+                
+  
             default:
                 print("mistery")
             }
@@ -202,7 +211,6 @@ extension GameScene: SKPhysicsContactDelegate{
                 print("mystery")
             }
             
-            
             // BodyA is an explosion
         case PhysicsCategory.Explosion:
             
@@ -266,7 +274,26 @@ extension GameScene: SKPhysicsContactDelegate{
                 print("mistarry") // hampus was here
                 
             }
+            
+        case PhysicsCategory.Door:
+            switch contact.bodyB.categoryBitMask {
+            case PhysicsCategory.Player:
+            
+                let door = getDoor(node: nodeA!)
+                
+                door.collision(with: nodeA)
+                
+                print("hi door")
+            
+            default:
+                print("mystery")
+            }
+            
+            
+        //default case for main switch
+
             //default case for main switch
+
         default:
             print("mystery")
         }
@@ -301,6 +328,10 @@ extension GameScene: SKPhysicsContactDelegate{
         return node as! LootObject
     }
     
+    func getDoor(node: SKNode) -> Door{
+        return node as! Door
+    }
+
     func getTrap(node: SKNode) -> TrapBomb{
         return node as! TrapBomb
     }

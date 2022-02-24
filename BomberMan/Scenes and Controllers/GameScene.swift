@@ -11,7 +11,7 @@ import GameplayKit
 class GameScene: SKScene {
     
     static var viewController: GameViewController? = nil
-    static var tileSize: CGSize? = nil
+    static var tileSize: CGSize? = CGSize(width: 32, height: 32)
     
     var leftUI: SKSpriteNode? = nil
     var rightUI: SKSpriteNode? = nil
@@ -187,7 +187,9 @@ class GameScene: SKScene {
                 guard let tile = tile(in: obstaclesTileMap, at: (column, row)) else {continue}
                 guard tile.userData?.object(forKey: "obstacle") != nil else {continue}
                 
-                var obstacle: ObstacleObject = ObstacleObject(texture: SKTexture(imageNamed: "wall"))
+                var obstacle: ObstacleObject?
+                var door: Door?
+                
                 
                 if tile.userData?.value(forKey: "obstacle") != nil{
                     let value = tile.userData?.value(forKey: "obstacle") as! String
@@ -196,20 +198,34 @@ class GameScene: SKScene {
                         let texture = SKTexture(imageNamed: "wall")
                         obstacle = ObstacleObject(texture: texture)
                         
+                    case "door":
+                        let texture = SKTexture(imageNamed: "bokeh")
+                        door = Door(texture: texture)
                         
                     default:
                         let texture = SKTexture()
                         obstacle = ObstacleObject(texture: texture)
+                        obstacle?.alpha = 0
                         
                     }
                     
                     
                 }
                 
-                obstacle.createPhysicsBody(tile: tile)
-                obstacle.position = obstaclesTileMap.centerOfTile(atColumn: column, row: row)
+                if obstacle != nil{
+                    obstacle?.createPhysicsBody(tile: tile)
+                    obstacle?.position = obstaclesTileMap.centerOfTile(atColumn: column, row: row)
+                    obstaclesNode!.addChild(obstacle!)
+                }
                 
-                obstaclesNode!.addChild(obstacle)
+                
+                if door != nil{
+                    door?.position = obstaclesTileMap.centerOfTile(atColumn: column, row: row)
+                    obstaclesNode!.addChild(door!)
+                }
+                
+                
+                
             }
         }
         
