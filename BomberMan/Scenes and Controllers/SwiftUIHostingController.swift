@@ -10,64 +10,54 @@ import SwiftUI
 
 struct MyView: View {
     
-    @State var startGame: Bool = false
+    @State public var startGame: Bool = false
     
     var body: some View {
         
         if startGame {
-            ZStack {
-                
-                //Game UI layer
-                VStack {
-                    HStack {
-                        Button(action: {
-                            startGame = false
-                        }, label: {
-                            Text("Main Menu")
-                                .foregroundColor(.black)
-                                .padding(8)
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 5)
-                                        .stroke(Color.black, lineWidth: 1)
-                                )
-                        })
-                            .padding([.top], 20)
-                        Button(action: {
-                            if GameViewController.currentGameScene?.actionManager != nil {
-                                GameViewController.currentGameScene?.actionManager.activateShield()
-                            }
-                        }, label: {
-                            Text("Shield Barrel")
-                                .foregroundColor(.black)
-                                .padding(8)
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 5)
-                                        .stroke(Color.black, lineWidth: 1)
-                                )
-                        })
-                            .padding([.top], 20)
-                        Spacer()
-                    }
-                    Spacer()
-                }
-                    .zIndex(2)
-                
-                //Game Scene Layer (ViewController)
-                ViewController()
-                    .ignoresSafeArea()
-                    .zIndex(1)
-            }
-            
+            GameView(startGame: $startGame)
         }
         else {
-            ZStack {
-                Image("mainmenu_no_props")
-                    .resizable()
-                    .scaledToFill()
+            MainMenyView(startGame: $startGame)
+        }
+        
+    }
+    
+}
+
+struct GameView: View {
+    
+    @Binding var startGame: Bool
+    
+    var body: some View {
+        
+        ZStack {
+            
+            //Game UI layer
+            GameUIView(startGame: $startGame)
+                .zIndex(2)
+            
+            //Game Scene Layer (ViewController)
+            ViewController()
+                .ignoresSafeArea()
+                .zIndex(1)
+        }
+        
+    }
+}
+
+struct GameUIView: View {
+    
+    @Binding var startGame: Bool
+    
+    var body: some View {
+        
+        VStack {
+            HStack {
                 Button(action: {
-                    startGame = true
+                    startGame = false
                 }, label: {
-                    Text("Start Game")
+                    Text("Main Menu")
                         .foregroundColor(.black)
                         .padding(8)
                         .overlay(
@@ -75,9 +65,53 @@ struct MyView: View {
                                 .stroke(Color.black, lineWidth: 1)
                         )
                 })
+                    .padding([.top], 20)
+                Button(action: {
+                    if GameViewController.currentGameScene?.actionManager != nil {
+                        GameViewController.currentGameScene?.actionManager.activateShield()
+                    }
+                }, label: {
+                    Text("Shield Barrel")
+                        .foregroundColor(.black)
+                        .padding(8)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 5)
+                                .stroke(Color.black, lineWidth: 1)
+                        )
+                })
+                    .padding([.top], 20)
+                Spacer()
             }
-            .ignoresSafeArea()
+            Spacer()
         }
+        
+    }
+    
+}
+
+struct MainMenyView: View {
+    
+    @Binding var startGame: Bool
+    
+    var body: some View {
+        
+        ZStack {
+            Image("mainmenu_no_props")
+                .resizable()
+                .scaledToFill()
+            Button(action: {
+                startGame = true
+            }, label: {
+                Text("Start Game")
+                    .foregroundColor(.black)
+                    .padding(8)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 5)
+                            .stroke(Color.black, lineWidth: 1)
+                    )
+            })
+        }
+        .ignoresSafeArea()
         
     }
     
