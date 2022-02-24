@@ -10,12 +10,21 @@ import SwiftUI
 
 struct MyView: View {
     
-    @State public var startGame: Bool = false
+    @State var startGame: Bool = false
+    @State var isPaused: Bool = false
     
     var body: some View {
         
         if startGame {
-            GameView(startGame: $startGame)
+            ZStack {
+                if isPaused {
+                    PauseMenu()
+                        .zIndex(2)
+                }
+                GameView(startGame: $startGame, isPaused: $isPaused)
+                    .zIndex(1)
+            }
+            
         }
         else {
             MainMenyView(startGame: $startGame)
@@ -25,16 +34,24 @@ struct MyView: View {
     
 }
 
+struct PauseMenu: View {
+    var body: some View {
+        Rectangle()
+            .frame(width: 300, height: 200)
+    }
+}
+
 struct GameView: View {
     
     @Binding var startGame: Bool
+    @Binding var isPaused: Bool
     
     var body: some View {
         
         ZStack {
             
             //Game UI layer
-            GameUIView(startGame: $startGame)
+            GameUIView(startGame: $startGame, isPaused: $isPaused)
                 .zIndex(2)
             
             //Game Scene Layer (ViewController)
@@ -49,6 +66,7 @@ struct GameView: View {
 struct GameUIView: View {
     
     @Binding var startGame: Bool
+    @Binding var isPaused: Bool
     
     var body: some View {
         
@@ -68,10 +86,70 @@ struct GameUIView: View {
                     .padding([.top], 20)
                 Button(action: {
                     if GameViewController.currentGameScene?.actionManager != nil {
+                        GameViewController.currentGameScene?.actionManager.nextLevel()
+                    }
+                }, label: {
+                    Text("Next Level")
+                        .foregroundColor(.black)
+                        .padding(8)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 5)
+                                .stroke(Color.black, lineWidth: 1)
+                        )
+                })
+                    .padding([.top], 20)
+                Button(action: {
+                    if GameViewController.currentGameScene?.actionManager != nil {
+                        GameViewController.currentGameScene?.actionManager.placeBomb(id: 0)
+                    }
+                }, label: {
+                    Text("Default Bomb")
+                        .foregroundColor(.black)
+                        .padding(8)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 5)
+                                .stroke(Color.black, lineWidth: 1)
+                        )
+                })
+                    .padding([.top], 20)
+                Button(action: {
+                    if GameViewController.currentGameScene?.actionManager != nil {
+                        GameViewController.currentGameScene?.actionManager.placeBomb(id: 1)
+                    }
+                }, label: {
+                    Text("Trap")
+                        .foregroundColor(.black)
+                        .padding(8)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 5)
+                                .stroke(Color.black, lineWidth: 1)
+                        )
+                })
+                    .padding([.top], 20)
+                Button(action: {
+                    if GameViewController.currentGameScene?.actionManager != nil {
                         GameViewController.currentGameScene?.actionManager.activateShield()
                     }
                 }, label: {
                     Text("Shield Barrel")
+                        .foregroundColor(.black)
+                        .padding(8)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 5)
+                                .stroke(Color.black, lineWidth: 1)
+                        )
+                })
+                    .padding([.top], 20)
+                Button(action: {
+                    isPaused.toggle()
+                    if isPaused {
+                        GameScene.gameState = .pause
+                    }
+                    else {
+                        GameScene.gameState = .play
+                    }
+                }, label: {
+                    Text("Pause")
                         .foregroundColor(.black)
                         .padding(8)
                         .overlay(
