@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		330D6EFD27C67E2F00444648 /* SwiftUIHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330D6EFC27C67E2F00444648 /* SwiftUIHostingController.swift */; };
 		3312D2A027C60A28004C0EEF /* EnemyDeath.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3312D29F27C60A28004C0EEF /* EnemyDeath.sks */; };
 		3312D2A227C612E3004C0EEF /* BloodSplatter.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3312D2A127C612E3004C0EEF /* BloodSplatter.sks */; };
 		3312D2A427C61539004C0EEF /* blood_splatter.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3312D2A327C61539004C0EEF /* blood_splatter.wav */; };
@@ -55,6 +56,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		330D6EFC27C67E2F00444648 /* SwiftUIHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIHostingController.swift; sourceTree = "<group>"; };
 		3312D29F27C60A28004C0EEF /* EnemyDeath.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = EnemyDeath.sks; sourceTree = "<group>"; };
 		3312D2A127C612E3004C0EEF /* BloodSplatter.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BloodSplatter.sks; sourceTree = "<group>"; };
 		3312D2A327C61539004C0EEF /* blood_splatter.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = blood_splatter.wav; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 		C8C7DC3227BFF69B0083656A /* Scenes and Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				330D6EFC27C67E2F00444648 /* SwiftUIHostingController.swift */,
 				C815F79927B400490084DE7A /* GameViewController.swift */,
 				33BFC5C727BBA567008DBA03 /* StartMenuScene.sks */,
 				33BFC5C927BBA5A9008DBA03 /* StartMenuScene.swift */,
@@ -324,6 +327,7 @@
 				C815F79227B400480084DE7A /* AppDelegate.swift in Sources */,
 				E5F0CAC827C784850000B9F4 /* Door.swift in Sources */,
 				33D1493627C36C1E00B4BECA /* PhysicsUtils.swift in Sources */,
+				330D6EFD27C67E2F00444648 /* SwiftUIHostingController.swift in Sources */,
 				3354DF2A27BFDAE60019D640 /* RushEnemy.swift in Sources */,
 				C8E502CE27C4E5C000706C71 /* TrapBomb.swift in Sources */,
 				E56CE0B427BD1F8D00962834 /* ActionManager.swift in Sources */,
@@ -491,7 +495,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.LucaSalmiBomberMan;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Luca.BomberMan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -523,7 +527,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.LucaSalmiBomberMan;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Luca.BomberMan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;

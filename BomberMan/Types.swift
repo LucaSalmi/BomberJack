@@ -21,11 +21,11 @@ struct PhysicsCategory{
     static let Player: UInt32 = 0b10
     static let Enemy: UInt32 = 0b100
     static let Bomb: UInt32 = 0b1000
-    static let InactiveBomb: UInt32 = 0b10000000
-    static let TrapBomb: UInt32 = 0b100000000
     static let Breakable: UInt32 = 0b10000
     static let Obstacle: UInt32 = 0b100000
     static let Explosion: UInt32 = 0b1000000
+    static let InactiveBomb: UInt32 = 0b10000000
+    static let TrapBomb: UInt32 = 0b100000000
     static let Loot: UInt32 = 0b1000000000
     static let Door: UInt32 = 0b10000000000
     
