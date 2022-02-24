@@ -315,6 +315,18 @@ class GameScene: SKScene {
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
         
+        if isGameOver{
+            //Deallocate all nodes/children from the old scene
+            self.removeAllChildren()
+            self.removeAllActions()
+            stopScene()
+            
+            //Present a new instance of the scene
+            let restartScene = "GameScene" + String(GameScene.viewController!.currentLevel)
+            GameScene.viewController!.presentScene(restartScene)
+            return
+        }
+        
         //Game logic for updating movement goes in movementManagers update()-method
         movementManager?.update()
         
@@ -348,16 +360,6 @@ class GameScene: SKScene {
         
         dataReaderWriter.saveUserData()
         
-        if isGameOver{
-            
-            self.removeAllChildren()
-            self.removeAllActions()
-            isGameOver = false
-            stopScene()
-            let restartScene = "GameScene" + String(GameScene.viewController!.currentLevel)
-            GameScene.viewController!.presentScene(restartScene)
-            
-        }
         
     }
     
