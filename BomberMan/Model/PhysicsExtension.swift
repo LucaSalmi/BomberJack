@@ -68,11 +68,7 @@ extension GameScene: SKPhysicsContactDelegate{
                 trap.isTrapActive = true
                 trap.physicsBody = nil
                 player.isTrapped = true
-                print("position player \(player.position)")
-                print("position trap \(trap.position)")
-                player.position = trap.position
-                print("position player 2 \(player.position)")
-                player.bloodParticle()
+                player.changePlayerPosition(newPos: trap.position)
                 
             case PhysicsCategory.Loot:
                 
@@ -250,11 +246,11 @@ extension GameScene: SKPhysicsContactDelegate{
             case PhysicsCategory.Player:
                 
                 let trap = getTrap(node: nodeA!)
+                let player = getPlayer(node: nodeB!)
                 trap.isTrapActive = true
                 trap.physicsBody = nil
-                player?.position = trap.position
-                player?.isTrapped = true
-                player?.bloodParticle()
+                player.isTrapped = true
+                player.changePlayerPosition(newPos: trap.position)
                 
             default:
                 print("mystery")

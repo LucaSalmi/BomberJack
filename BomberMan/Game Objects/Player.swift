@@ -208,6 +208,15 @@ class Player: SKSpriteNode{
         
     }
     
+    func changePlayerPosition(newPos: CGPoint){
+        
+        let pB = self.physicsBody
+        self.physicsBody = nil
+        self.position = newPos
+        self.physicsBody = pB
+        self.bloodParticle()
+    }
+    
     func update() {
         
         if currentTexture != nil{
