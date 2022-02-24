@@ -16,6 +16,8 @@ struct MyView: View {
         
         if startGame {
             ZStack {
+                
+                //Game UI layer
                 VStack {
                     HStack {
                         Button(action: {
@@ -30,12 +32,27 @@ struct MyView: View {
                                 )
                         })
                             .padding([.top], 20)
+                        Button(action: {
+                            if GameViewController.currentGameScene?.actionManager != nil {
+                                GameViewController.currentGameScene?.actionManager.activateShield()
+                            }
+                        }, label: {
+                            Text("Shield Barrel")
+                                .foregroundColor(.black)
+                                .padding(8)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 5)
+                                        .stroke(Color.black, lineWidth: 1)
+                                )
+                        })
+                            .padding([.top], 20)
                         Spacer()
                     }
                     Spacer()
                 }
-                
                     .zIndex(2)
+                
+                //Game Scene Layer (ViewController)
                 ViewController()
                     .ignoresSafeArea()
                     .zIndex(1)
@@ -63,9 +80,8 @@ struct MyView: View {
         }
         
     }
+    
 }
-
-
 
 struct ViewController: UIViewControllerRepresentable {
     
