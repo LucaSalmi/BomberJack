@@ -23,17 +23,18 @@ class TrapBomb: Bomb{
         let texture = SKTexture(imageNamed: "trap")
         super.init(texture, .white, (GameScene.tileSize)!)
         name = "Bomb Object"
-        zPosition = 50
+        zPosition = 40
     }
     
     
     override func createPhysicsBody() {
         
         physicsBody = SKPhysicsBody(circleOfRadius: (size.width/2) * PhysicsUtils.physicsBodyPct)
-        //physicsBody?.categoryBitMask = PhysicsCategory.TrapBomb
+        physicsBody?.categoryBitMask = PhysicsCategory.InactiveBomb
         physicsBody?.collisionBitMask = PhysicsCategory.Player | PhysicsCategory.Enemy
         physicsBody?.contactTestBitMask = PhysicsCategory.Player | PhysicsCategory.Enemy
         physicsBody?.isDynamic = false
+        
         
     }
     

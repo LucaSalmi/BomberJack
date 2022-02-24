@@ -90,7 +90,8 @@ class Enemy: SKSpriteNode {
             
             let trap = other as! TrapBomb
             trap.isTrapActive = true
-            trap.physicsBody = nil
+            other?.physicsBody = nil
+            self.position = other!.position
             
             for i in 0..<Enemy.enemies.count {
                 if i >= Enemy.enemies.count {

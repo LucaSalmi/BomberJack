@@ -66,27 +66,13 @@ extension GameScene: SKPhysicsContactDelegate{
                 let trap = getTrap(node: nodeB!)
                 trap.isTrapActive = true
                 trap.physicsBody = nil
+                player.position = trap.position
                 player.isTrapped = true
                 player.bloodParticle()
                 
-            case PhysicsCategory.Loot:
-                
-                let loot = getLoot(node: nodeB!)
-                
-                loot.collision(loot: nodeB)
-                
-                print("loot achived")
-                
-                
-                
-                
             default:
-                print("mystery")
+                print("mistery")
             }
-            
-        // BodyA is an Enemy
-        case PhysicsCategory.Enemy:
-            
                         
             switch contact.bodyB.categoryBitMask{
             // BodyB is Player
@@ -246,6 +232,7 @@ extension GameScene: SKPhysicsContactDelegate{
                 let trap = getTrap(node: nodeA!)
                 trap.isTrapActive = true
                 trap.physicsBody = nil
+                player?.position = trap.position
                 player?.isTrapped = true
                 player?.bloodParticle()
                 
@@ -273,7 +260,6 @@ extension GameScene: SKPhysicsContactDelegate{
             print("mystery")
         }
 
-    }
     
     func getEnemy(node: SKNode) -> Enemy{
         return node as! Enemy
@@ -308,4 +294,5 @@ extension GameScene: SKPhysicsContactDelegate{
     }
     
     
+    }
 }
