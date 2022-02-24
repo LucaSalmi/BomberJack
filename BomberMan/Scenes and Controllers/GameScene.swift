@@ -52,6 +52,7 @@ class GameScene: SKScene {
         movementManager = MovementManager(self)
         actionManager = ActionManagager(self, camera!)
         setupLootObjects()
+        
     }
     
     

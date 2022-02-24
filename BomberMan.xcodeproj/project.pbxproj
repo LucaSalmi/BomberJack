@@ -26,6 +26,8 @@
 		33CC323627C5387000856D82 /* rush_impact.wav in Resources */ = {isa = PBXBuildFile; fileRef = 33CC323527C5386F00856D82 /* rush_impact.wav */; };
 		33D1493627C36C1E00B4BECA /* PhysicsUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D1493527C36C1E00B4BECA /* PhysicsUtils.swift */; };
 		33D36F0027BD0137002DDB49 /* GameScene2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 33D36EFF27BD0137002DDB49 /* GameScene2.sks */; };
+		33E8104C27C8318B001D52EE /* main_menu_bgm.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 33E8104B27C8318B001D52EE /* main_menu_bgm.mp3 */; };
+		33E8104E27C8355F001D52EE /* in_game_bgm.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 33E8104D27C8355F001D52EE /* in_game_bgm.mp3 */; };
 		33FEE19E27BE96DF0036BC22 /* UIScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 33FEE19D27BE96DF0036BC22 /* UIScene.sks */; };
 		C801D2E827BBAF2F008B1CD5 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = C801D2E727BBAF2F008B1CD5 /* Player.swift */; };
 		C801D2EA27BBB031008B1CD5 /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = C801D2E927BBB031008B1CD5 /* Types.swift */; };
@@ -75,6 +77,8 @@
 		33CC323527C5386F00856D82 /* rush_impact.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = rush_impact.wav; sourceTree = "<group>"; };
 		33D1493527C36C1E00B4BECA /* PhysicsUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsUtils.swift; sourceTree = "<group>"; };
 		33D36EFF27BD0137002DDB49 /* GameScene2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene2.sks; sourceTree = "<group>"; };
+		33E8104B27C8318B001D52EE /* main_menu_bgm.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = main_menu_bgm.mp3; sourceTree = "<group>"; };
+		33E8104D27C8355F001D52EE /* in_game_bgm.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = in_game_bgm.mp3; sourceTree = "<group>"; };
 		33FEE19D27BE96DF0036BC22 /* UIScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = UIScene.sks; sourceTree = "<group>"; };
 		C801D2E727BBAF2F008B1CD5 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		C801D2E927BBB031008B1CD5 /* Types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
@@ -199,6 +203,8 @@
 				33CC323327C5343600856D82 /* RushStun.sks */,
 				3312D29F27C60A28004C0EEF /* EnemyDeath.sks */,
 				3312D2A127C612E3004C0EEF /* BloodSplatter.sks */,
+				33E8104B27C8318B001D52EE /* main_menu_bgm.mp3 */,
+				33E8104D27C8355F001D52EE /* in_game_bgm.mp3 */,
 			);
 			path = "Sound and Graphics";
 			sourceTree = "<group>";
@@ -277,9 +283,11 @@
 			files = (
 				33FEE19E27BE96DF0036BC22 /* UIScene.sks in Resources */,
 				3312D2A027C60A28004C0EEF /* EnemyDeath.sks in Resources */,
+				33E8104E27C8355F001D52EE /* in_game_bgm.mp3 in Resources */,
 				33CC323627C5387000856D82 /* rush_impact.wav in Resources */,
 				C815F79D27B400490084DE7A /* Main.storyboard in Resources */,
 				3312D2A427C61539004C0EEF /* blood_splatter.wav in Resources */,
+				33E8104C27C8318B001D52EE /* main_menu_bgm.mp3 in Resources */,
 				D5FFD73527C4FAB20032912D /* GameScene1.sks in Resources */,
 				33CC322B27C516FE00856D82 /* BarrelSmoke.sks in Resources */,
 				3312D2A227C612E3004C0EEF /* BloodSplatter.sks in Resources */,

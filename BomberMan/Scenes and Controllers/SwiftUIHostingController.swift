@@ -36,9 +36,22 @@ struct MyView: View {
             
         }
         else {
+            MusicView(bgmString: SoundManager.mainMenuBGM)
             MainMenyView(startGame: $startGame)
         }
         
+    }
+    
+}
+
+struct MusicView: View {
+    
+    init(bgmString: String) {
+        SoundManager.playBGM(bgmString: bgmString)
+    }
+    
+    var body: some View {
+        Text("")
     }
     
 }
@@ -206,6 +219,7 @@ struct MainMenyView: View {
 struct ViewController: UIViewControllerRepresentable {
     
     func makeUIViewController(context: Context) -> some UIViewController {
+        SoundManager.playBGM(bgmString: SoundManager.inGameBGM)
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let controller = storyboard.instantiateViewController(identifier: "gameViewController")
         return controller
