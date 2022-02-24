@@ -23,7 +23,6 @@ extension GameScene: SKPhysicsContactDelegate{
         if nodeB is Enemy {
             let enemyB = nodeB as! Enemy
             enemyB.collision(with: nodeA)
-            print("test my ass xx")
             
         }
         if nodeA is Enemy && nodeB is Enemy {
@@ -38,7 +37,6 @@ extension GameScene: SKPhysicsContactDelegate{
         case PhysicsCategory.Player:
             
             let player = getPlayer(node: nodeA!)
-            print("test my ass")
             
             switch contact.bodyB.categoryBitMask{
                 
@@ -69,8 +67,11 @@ extension GameScene: SKPhysicsContactDelegate{
                 let trap = getTrap(node: nodeB!)
                 trap.isTrapActive = true
                 trap.physicsBody = nil
-                player.position = trap.position
                 player.isTrapped = true
+                print("position player \(player.position)")
+                print("position trap \(trap.position)")
+                player.position = trap.position
+                print("position player 2 \(player.position)")
                 player.bloodParticle()
                 
             case PhysicsCategory.Loot:
