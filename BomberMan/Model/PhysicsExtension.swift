@@ -230,7 +230,8 @@ extension GameScene: SKPhysicsContactDelegate{
                 }
                 
             case PhysicsCategory.Bomb:
-                print("Explosion-Bomb")
+                let bomb = nodeB as! Bomb
+                bomb.tickingTime = BombSettings.explosionTime
                 
             case PhysicsCategory.Obstacle:
                 print("Explosion-Obstacle")
