@@ -21,7 +21,6 @@
 		33BFC5C827BBA567008DBA03 /* StartMenuScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 33BFC5C727BBA567008DBA03 /* StartMenuScene.sks */; };
 		33BFC5CA27BBA5A9008DBA03 /* StartMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BFC5C927BBA5A9008DBA03 /* StartMenuScene.swift */; };
 		33CC322B27C516FE00856D82 /* BarrelSmoke.sks in Resources */ = {isa = PBXBuildFile; fileRef = 33CC322927C516FE00856D82 /* BarrelSmoke.sks */; };
-		33CC322F27C51A3600856D82 /* TestFire.sks in Resources */ = {isa = PBXBuildFile; fileRef = 33CC322D27C51A3600856D82 /* TestFire.sks */; };
 		33CC323227C5297400856D82 /* barrel_shield.wav in Resources */ = {isa = PBXBuildFile; fileRef = 33CC323127C5297400856D82 /* barrel_shield.wav */; };
 		33CC323427C5343600856D82 /* RushStun.sks in Resources */ = {isa = PBXBuildFile; fileRef = 33CC323327C5343600856D82 /* RushStun.sks */; };
 		33CC323627C5387000856D82 /* rush_impact.wav in Resources */ = {isa = PBXBuildFile; fileRef = 33CC323527C5386F00856D82 /* rush_impact.wav */; };
@@ -71,7 +70,6 @@
 		33BFC5C727BBA567008DBA03 /* StartMenuScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = StartMenuScene.sks; sourceTree = "<group>"; };
 		33BFC5C927BBA5A9008DBA03 /* StartMenuScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartMenuScene.swift; sourceTree = "<group>"; };
 		33CC322927C516FE00856D82 /* BarrelSmoke.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BarrelSmoke.sks; sourceTree = "<group>"; };
-		33CC322D27C51A3600856D82 /* TestFire.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TestFire.sks; sourceTree = "<group>"; };
 		33CC323127C5297400856D82 /* barrel_shield.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = barrel_shield.wav; sourceTree = "<group>"; };
 		33CC323327C5343600856D82 /* RushStun.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = RushStun.sks; sourceTree = "<group>"; };
 		33CC323527C5386F00856D82 /* rush_impact.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = rush_impact.wav; sourceTree = "<group>"; };
@@ -209,7 +207,6 @@
 			isa = PBXGroup;
 			children = (
 				33D1493527C36C1E00B4BECA /* PhysicsUtils.swift */,
-				33CC322D27C51A3600856D82 /* TestFire.sks */,
 				C8C7DC2E27BFD9990083656A /* PhysicsExtension.swift */,
 				C8B747FE27BF992F00D76B32 /* Animatable.swift */,
 				C8B7480027BF9A9A00D76B32 /* Extensions.swift */,
@@ -296,7 +293,6 @@
 				E56CE0B627BD3FFF00962834 /* GameScene3.sks in Resources */,
 				C815F7A227B400490084DE7A /* LaunchScreen.storyboard in Resources */,
 				33CC323227C5297400856D82 /* barrel_shield.wav in Resources */,
-				33CC322F27C51A3600856D82 /* TestFire.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
