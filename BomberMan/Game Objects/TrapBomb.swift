@@ -27,11 +27,10 @@ class TrapBomb: Bomb{
     }
     
     
-    override func activation(_ position: CGPoint) {
-         
-        self.isTrapActive = true
+    override func createPhysicsBody() {
+        
         physicsBody = SKPhysicsBody(circleOfRadius: (size.width/2) * PhysicsUtils.physicsBodyPct)
-        physicsBody?.categoryBitMask = PhysicsCategory.TrapBomb
+        //physicsBody?.categoryBitMask = PhysicsCategory.TrapBomb
         physicsBody?.collisionBitMask = PhysicsCategory.Player | PhysicsCategory.Enemy
         physicsBody?.contactTestBitMask = PhysicsCategory.Player | PhysicsCategory.Enemy
         physicsBody?.isDynamic = false
@@ -40,43 +39,43 @@ class TrapBomb: Bomb{
     
     override func update() {
         
-        tickingTime += 1
+        let scene = GameViewController.currentGameScene
+        let distanceX = abs((scene?.player?.position.x)! - position.x)
+        let distanceY = abs((scene?.player?.position.y)! - position.y)
         
-        if tickingTime >= BombSettings.activateTrap {
-            for i in 0..<Bomb.bombs.count {
-                if i >= Bomb.bombs.count {return}
-                let bomb = Bomb.bombs[i]
-                if bomb == self && !self.isTrapActive{
-                                        
-                    activation(position)
-                    print("trap active")
+        if distanceX >= GameScene.tileSize!.width || distanceY >= GameScene.tileSize!.height{
+            
+            physicsBody?.categoryBitMask = PhysicsCategory.TrapBomb
+        }
+        
+        for i in 0..<Bomb.bombs.count {
+            if i >= Bomb.bombs.count {return}
+            let bomb = Bomb.bombs[i]
+            
+            if bomb == self && self.isTrapActive{
+                
+                trapActive += 1
+                
+                if trapActive >= BombSettings.trapDuration{
                     
-                }else if bomb == self && self.isTrapActive{
-                    
-                    trapActive += 1
-                    
-                    if trapActive >= BombSettings.trapDuration{
-                        
-                        print("trap removed")
-                        resetBools()
-                        Bomb.bombs.remove(at: i)
-                        bomb.removeFromParent()
-                    }
-
+                    print("trap removed")
+                    resetBools()
+                    Bomb.bombs.remove(at: i)
+                    bomb.removeFromParent()
                 }
             }
         }
     }
-    
-    func resetBools(){
         
-        let scene = GameViewController.currentGameScene
-        scene?.player?.isTrapped = false
-        for enemy in Enemy.enemies{
-            if enemy.isTrapped{
-                enemy.isTrapped = false
+        func resetBools(){
+            
+            let scene = GameViewController.currentGameScene
+            scene?.player?.isTrapped = false
+            for enemy in Enemy.enemies{
+                if enemy.isTrapped{
+                    enemy.isTrapped = false
+                }
             }
+            
         }
-        
     }
-}

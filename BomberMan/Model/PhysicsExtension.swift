@@ -63,6 +63,9 @@ extension GameScene: SKPhysicsContactDelegate{
                 
             case PhysicsCategory.TrapBomb:
                 
+                let trap = getTrap(node: nodeB!)
+                trap.isTrapActive = true
+                trap.physicsBody = nil
                 player.isTrapped = true
                 player.bloodParticle()
                 
@@ -239,6 +242,10 @@ extension GameScene: SKPhysicsContactDelegate{
             switch contact.bodyB.categoryBitMask{
                 
             case PhysicsCategory.Player:
+                
+                let trap = getTrap(node: nodeA!)
+                trap.isTrapActive = true
+                trap.physicsBody = nil
                 player?.isTrapped = true
                 player?.bloodParticle()
                 
@@ -296,6 +303,9 @@ extension GameScene: SKPhysicsContactDelegate{
         return node as! LootObject
     }
     
+    func getTrap(node: SKNode) -> TrapBomb{
+        return node as! TrapBomb
+    }
     
     
 }
