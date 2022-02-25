@@ -16,7 +16,7 @@ class BombPile: LootObject {
     
     init() {
         
-        let texture = SKTexture(imageNamed: "bombPile")
+        let texture = SKTexture(imageNamed: "BombPile")
         super.init(texture, .white, (GameScene.tileSize)!)
         name = "bomb loot"
         zPosition = 50
@@ -24,7 +24,6 @@ class BombPile: LootObject {
     override func collision(loot: SKNode?) {
         
         PlayerSettings.haveBombs = true
-        GameViewController.currentGameScene?.actionManager.bombButton?.alpha = 1
         print("loot collision bombpile")
         super.collision(loot: loot)
         

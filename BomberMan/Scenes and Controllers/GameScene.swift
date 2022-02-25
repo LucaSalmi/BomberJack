@@ -7,11 +7,13 @@
 
 import SpriteKit
 import GameplayKit
+import SwiftUI
 
 class GameScene: SKScene {
     
     static var viewController: GameViewController? = nil
-    static var tileSize: CGSize? = nil
+    static var tileSize: CGSize? = CGSize(width: 32, height: 32)
+    static var gameState = GameState.play
     
     var leftUI: SKSpriteNode? = nil
     var rightUI: SKSpriteNode? = nil
@@ -50,6 +52,7 @@ class GameScene: SKScene {
         movementManager = MovementManager(self)
         actionManager = ActionManagager(self, camera!)
         setupLootObjects()
+        
     }
     
     
@@ -187,7 +190,9 @@ class GameScene: SKScene {
                 guard let tile = tile(in: obstaclesTileMap, at: (column, row)) else {continue}
                 guard tile.userData?.object(forKey: "obstacle") != nil else {continue}
                 
-                var obstacle: ObstacleObject = ObstacleObject(texture: SKTexture(imageNamed: "wall"))
+                var obstacle: ObstacleObject?
+                var door: Door?
+                
                 
                 if tile.userData?.value(forKey: "obstacle") != nil{
                     let value = tile.userData?.value(forKey: "obstacle") as! String
@@ -196,20 +201,34 @@ class GameScene: SKScene {
                         let texture = SKTexture(imageNamed: "wall")
                         obstacle = ObstacleObject(texture: texture)
                         
+                    case "door":
+                        let texture = SKTexture(imageNamed: "bokeh")
+                        door = Door(texture: texture)
                         
                     default:
                         let texture = SKTexture()
                         obstacle = ObstacleObject(texture: texture)
+                        obstacle?.alpha = 0
                         
                     }
                     
                     
                 }
                 
-                obstacle.createPhysicsBody(tile: tile)
-                obstacle.position = obstaclesTileMap.centerOfTile(atColumn: column, row: row)
+                if obstacle != nil{
+                    obstacle?.createPhysicsBody(tile: tile)
+                    obstacle?.position = obstaclesTileMap.centerOfTile(atColumn: column, row: row)
+                    obstaclesNode!.addChild(obstacle!)
+                }
                 
-                obstaclesNode!.addChild(obstacle)
+                
+                if door != nil{
+                    door?.position = obstaclesTileMap.centerOfTile(atColumn: column, row: row)
+                    obstaclesNode!.addChild(door!)
+                }
+                
+                
+                
             }
         }
         
@@ -315,6 +334,22 @@ class GameScene: SKScene {
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
         
+        if GameScene.gameState == .pause{
+            return
+        }
+        
+        if isGameOver{
+            //Deallocate all nodes/children from the old scene
+            self.removeAllChildren()
+            self.removeAllActions()
+            stopScene()
+            
+            //Present a new instance of the scene
+            let restartScene = "GameScene" + String(GameScene.viewController!.currentLevel)
+            GameScene.viewController!.presentScene(restartScene)
+            return
+        }
+        
         //Game logic for updating movement goes in movementManagers update()-method
         movementManager?.update()
         
@@ -348,16 +383,6 @@ class GameScene: SKScene {
         
         dataReaderWriter.saveUserData()
         
-        if isGameOver{
-            
-            self.removeAllChildren()
-            self.removeAllActions()
-            isGameOver = false
-            stopScene()
-            let restartScene = "GameScene" + String(GameScene.viewController!.currentLevel)
-            GameScene.viewController!.presentScene(restartScene)
-            
-        }
         
     }
     

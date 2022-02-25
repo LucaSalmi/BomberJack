@@ -60,20 +60,14 @@ class TestEnemy: Enemy {
     
     private func updateDirection(newDirection: CGPoint) {
         
-        guard let backgroundMap = GameViewController.currentGameScene!.childNode(withName: "background")as? SKTileMapNode else {
-            return
-        }
-        let center = PhysicsUtils.findCenterOfClosestTile(map: backgroundMap, object: self)
-        if center != nil {
-            self.position = center!
-        }
+        self.position = centerInCurrentTile()
         
         direction = newDirection
     }
     
     override func collision(with other: SKNode?) {
         super.collision(with: other)
-        
+
         let oldDirection = direction
         var newDirection = direction
         //loop until the new direction is different from the old direction

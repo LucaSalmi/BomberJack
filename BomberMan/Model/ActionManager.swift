@@ -14,9 +14,6 @@ class ActionManagager{
     var camera: SKCameraNode? = nil
     
     var rightUI: SKSpriteNode? = nil
-    var nextLevelButton: SKSpriteNode? = nil
-    var bombButton: SKSpriteNode? = nil
-    var shieldButton: SKSpriteNode? = nil
     var touchLocation: CGPoint? = nil
     
     init(_ context: GameScene, _ camera: SKCameraNode) {
@@ -25,39 +22,35 @@ class ActionManagager{
         self.camera = camera
         
         rightUI = (context.childNode(withName: "camera/rightUI") as! SKSpriteNode)
-        nextLevelButton = (context.childNode(withName: "camera/rightUI/nextLevelButton") as! SKSpriteNode)
-        bombButton = (context.childNode(withName: "camera/rightUI/bombButton") as! SKSpriteNode)
-        shieldButton = (context.childNode(withName: "camera/rightUI/shieldButton") as! SKSpriteNode)
         
         if (PlayerSettings.haveBombs == false) {
-            bombButton?.alpha = 0.2
+            //bombButton?.alpha = 0.2
         }
     }
     
     func checkInput(_ touches: Set<UITouch>, with event: UIEvent?){
-        for touch in touches {
+        
+    }
+    
+    func handleInput(id: Int, isPaused: Bool) {
+        
+        if isPaused {
+            return
+        }
+        
+        switch id {
             
-            let location = touch.location(in: rightUI!)
-            //print(location)
-            let currentNode = rightUI!.atPoint(location)
-            let currentNodeName = currentNode.name
-            
-            if (currentNodeName == "bombButton" && PlayerSettings.haveBombs == true){
-                
-                placeBomb(id: 0)
-                
-            }
-            else if (currentNodeName == "shieldButton") {
-                activateShield()
-            }
-            else if (currentNodeName == "nextLevelButton") {
-                nextLevel()
-            }
-            else if currentNodeName == "trapButton"{
-                
-                print("trapSet")
-                placeBomb(id: 1)
-            }
+        case MyViewSettings.actionNextLevel:
+            nextLevel()
+        case MyViewSettings.actionDefaultBomb:
+            placeBomb(id: 0)
+        case MyViewSettings.actionTrap:
+            placeBomb(id: 1)
+        case MyViewSettings.actionShield:
+            activateShield()
+        default:
+            print("Unavailable action")
+
         }
     }
             
@@ -83,6 +76,9 @@ class ActionManagager{
             bomb = StandardBomb()
         }
         
+        if bomb is StandardBomb && !PlayerSettings.haveBombs {
+            return
+        }
         
         let backgroundMap = context.backgroundMap!
         let player = context.player!

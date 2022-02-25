@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		330D6EFD27C67E2F00444648 /* SwiftUIHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330D6EFC27C67E2F00444648 /* SwiftUIHostingController.swift */; };
 		3312D2A027C60A28004C0EEF /* EnemyDeath.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3312D29F27C60A28004C0EEF /* EnemyDeath.sks */; };
 		3312D2A227C612E3004C0EEF /* BloodSplatter.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3312D2A127C612E3004C0EEF /* BloodSplatter.sks */; };
 		3312D2A427C61539004C0EEF /* blood_splatter.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3312D2A327C61539004C0EEF /* blood_splatter.wav */; };
@@ -20,12 +21,13 @@
 		33BFC5C827BBA567008DBA03 /* StartMenuScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 33BFC5C727BBA567008DBA03 /* StartMenuScene.sks */; };
 		33BFC5CA27BBA5A9008DBA03 /* StartMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BFC5C927BBA5A9008DBA03 /* StartMenuScene.swift */; };
 		33CC322B27C516FE00856D82 /* BarrelSmoke.sks in Resources */ = {isa = PBXBuildFile; fileRef = 33CC322927C516FE00856D82 /* BarrelSmoke.sks */; };
-		33CC322F27C51A3600856D82 /* TestFire.sks in Resources */ = {isa = PBXBuildFile; fileRef = 33CC322D27C51A3600856D82 /* TestFire.sks */; };
 		33CC323227C5297400856D82 /* barrel_shield.wav in Resources */ = {isa = PBXBuildFile; fileRef = 33CC323127C5297400856D82 /* barrel_shield.wav */; };
 		33CC323427C5343600856D82 /* RushStun.sks in Resources */ = {isa = PBXBuildFile; fileRef = 33CC323327C5343600856D82 /* RushStun.sks */; };
 		33CC323627C5387000856D82 /* rush_impact.wav in Resources */ = {isa = PBXBuildFile; fileRef = 33CC323527C5386F00856D82 /* rush_impact.wav */; };
 		33D1493627C36C1E00B4BECA /* PhysicsUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D1493527C36C1E00B4BECA /* PhysicsUtils.swift */; };
 		33D36F0027BD0137002DDB49 /* GameScene2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 33D36EFF27BD0137002DDB49 /* GameScene2.sks */; };
+		33E8104C27C8318B001D52EE /* main_menu_bgm.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 33E8104B27C8318B001D52EE /* main_menu_bgm.mp3 */; };
+		33E8104E27C8355F001D52EE /* in_game_bgm.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 33E8104D27C8355F001D52EE /* in_game_bgm.mp3 */; };
 		33FEE19E27BE96DF0036BC22 /* UIScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 33FEE19D27BE96DF0036BC22 /* UIScene.sks */; };
 		C801D2E827BBAF2F008B1CD5 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = C801D2E727BBAF2F008B1CD5 /* Player.swift */; };
 		C801D2EA27BBB031008B1CD5 /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = C801D2E927BBB031008B1CD5 /* Types.swift */; };
@@ -48,12 +50,15 @@
 		D5FFD73727C52BEC0032912D /* LootObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FFD73627C52BEC0032912D /* LootObject.swift */; };
 		D5FFD73927C536840032912D /* Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FFD73827C536840032912D /* Key.swift */; };
 		D5FFD73B27C536970032912D /* BombPile.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FFD73A27C536970032912D /* BombPile.swift */; };
+		E52D5F8527C7A6CB00BBB4BE /* doorsound.wav in Resources */ = {isa = PBXBuildFile; fileRef = E52D5F8427C7A6CB00BBB4BE /* doorsound.wav */; };
 		E56CE0B227BCEF0C00962834 /* Bomb.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56CE0B127BCEF0C00962834 /* Bomb.swift */; };
 		E56CE0B427BD1F8D00962834 /* ActionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56CE0B327BD1F8D00962834 /* ActionManager.swift */; };
 		E56CE0B627BD3FFF00962834 /* GameScene3.sks in Resources */ = {isa = PBXBuildFile; fileRef = E56CE0B527BD3FFF00962834 /* GameScene3.sks */; };
+		E5F0CAC827C784850000B9F4 /* Door.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F0CAC727C784850000B9F4 /* Door.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		330D6EFC27C67E2F00444648 /* SwiftUIHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIHostingController.swift; sourceTree = "<group>"; };
 		3312D29F27C60A28004C0EEF /* EnemyDeath.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = EnemyDeath.sks; sourceTree = "<group>"; };
 		3312D2A127C612E3004C0EEF /* BloodSplatter.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BloodSplatter.sks; sourceTree = "<group>"; };
 		3312D2A327C61539004C0EEF /* blood_splatter.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = blood_splatter.wav; sourceTree = "<group>"; };
@@ -67,12 +72,13 @@
 		33BFC5C727BBA567008DBA03 /* StartMenuScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = StartMenuScene.sks; sourceTree = "<group>"; };
 		33BFC5C927BBA5A9008DBA03 /* StartMenuScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartMenuScene.swift; sourceTree = "<group>"; };
 		33CC322927C516FE00856D82 /* BarrelSmoke.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BarrelSmoke.sks; sourceTree = "<group>"; };
-		33CC322D27C51A3600856D82 /* TestFire.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TestFire.sks; sourceTree = "<group>"; };
 		33CC323127C5297400856D82 /* barrel_shield.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = barrel_shield.wav; sourceTree = "<group>"; };
 		33CC323327C5343600856D82 /* RushStun.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = RushStun.sks; sourceTree = "<group>"; };
 		33CC323527C5386F00856D82 /* rush_impact.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = rush_impact.wav; sourceTree = "<group>"; };
 		33D1493527C36C1E00B4BECA /* PhysicsUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsUtils.swift; sourceTree = "<group>"; };
 		33D36EFF27BD0137002DDB49 /* GameScene2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene2.sks; sourceTree = "<group>"; };
+		33E8104B27C8318B001D52EE /* main_menu_bgm.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = main_menu_bgm.mp3; sourceTree = "<group>"; };
+		33E8104D27C8355F001D52EE /* in_game_bgm.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = in_game_bgm.mp3; sourceTree = "<group>"; };
 		33FEE19D27BE96DF0036BC22 /* UIScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = UIScene.sks; sourceTree = "<group>"; };
 		C801D2E727BBAF2F008B1CD5 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		C801D2E927BBB031008B1CD5 /* Types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
@@ -96,9 +102,11 @@
 		D5FFD73627C52BEC0032912D /* LootObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LootObject.swift; sourceTree = "<group>"; };
 		D5FFD73827C536840032912D /* Key.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Key.swift; sourceTree = "<group>"; };
 		D5FFD73A27C536970032912D /* BombPile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BombPile.swift; sourceTree = "<group>"; };
+		E52D5F8427C7A6CB00BBB4BE /* doorsound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = doorsound.wav; sourceTree = "<group>"; };
 		E56CE0B127BCEF0C00962834 /* Bomb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bomb.swift; sourceTree = "<group>"; };
 		E56CE0B327BD1F8D00962834 /* ActionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionManager.swift; sourceTree = "<group>"; };
 		E56CE0B527BD3FFF00962834 /* GameScene3.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene3.sks; sourceTree = "<group>"; };
+		E5F0CAC727C784850000B9F4 /* Door.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Door.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +152,7 @@
 		C8C7DC3227BFF69B0083656A /* Scenes and Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				330D6EFC27C67E2F00444648 /* SwiftUIHostingController.swift */,
 				C815F79927B400490084DE7A /* GameViewController.swift */,
 				33BFC5C727BBA567008DBA03 /* StartMenuScene.sks */,
 				33BFC5C927BBA5A9008DBA03 /* StartMenuScene.swift */,
@@ -172,6 +181,7 @@
 				D5FFD73627C52BEC0032912D /* LootObject.swift */,
 				D5FFD73827C536840032912D /* Key.swift */,
 				D5FFD73A27C536970032912D /* BombPile.swift */,
+				E5F0CAC727C784850000B9F4 /* Door.swift */,
 			);
 			path = "Game Objects";
 			sourceTree = "<group>";
@@ -185,6 +195,7 @@
 				C815F79E27B400490084DE7A /* Assets.xcassets */,
 				C869390C27BA66E100EEF877 /* TileSet Placeholder.sks */,
 				3354DF2327BF847F0019D640 /* explosion1.wav */,
+				E52D5F8427C7A6CB00BBB4BE /* doorsound.wav */,
 				33CC323127C5297400856D82 /* barrel_shield.wav */,
 				33CC323527C5386F00856D82 /* rush_impact.wav */,
 				3312D2A327C61539004C0EEF /* blood_splatter.wav */,
@@ -192,6 +203,8 @@
 				33CC323327C5343600856D82 /* RushStun.sks */,
 				3312D29F27C60A28004C0EEF /* EnemyDeath.sks */,
 				3312D2A127C612E3004C0EEF /* BloodSplatter.sks */,
+				33E8104B27C8318B001D52EE /* main_menu_bgm.mp3 */,
+				33E8104D27C8355F001D52EE /* in_game_bgm.mp3 */,
 			);
 			path = "Sound and Graphics";
 			sourceTree = "<group>";
@@ -200,7 +213,6 @@
 			isa = PBXGroup;
 			children = (
 				33D1493527C36C1E00B4BECA /* PhysicsUtils.swift */,
-				33CC322D27C51A3600856D82 /* TestFire.sks */,
 				C8C7DC2E27BFD9990083656A /* PhysicsExtension.swift */,
 				C8B747FE27BF992F00D76B32 /* Animatable.swift */,
 				C8B7480027BF9A9A00D76B32 /* Extensions.swift */,
@@ -271,9 +283,11 @@
 			files = (
 				33FEE19E27BE96DF0036BC22 /* UIScene.sks in Resources */,
 				3312D2A027C60A28004C0EEF /* EnemyDeath.sks in Resources */,
+				33E8104E27C8355F001D52EE /* in_game_bgm.mp3 in Resources */,
 				33CC323627C5387000856D82 /* rush_impact.wav in Resources */,
 				C815F79D27B400490084DE7A /* Main.storyboard in Resources */,
 				3312D2A427C61539004C0EEF /* blood_splatter.wav in Resources */,
+				33E8104C27C8318B001D52EE /* main_menu_bgm.mp3 in Resources */,
 				D5FFD73527C4FAB20032912D /* GameScene1.sks in Resources */,
 				33CC322B27C516FE00856D82 /* BarrelSmoke.sks in Resources */,
 				3312D2A227C612E3004C0EEF /* BloodSplatter.sks in Resources */,
@@ -283,10 +297,10 @@
 				C815F79F27B400490084DE7A /* Assets.xcassets in Resources */,
 				C869390D27BA66E100EEF877 /* TileSet Placeholder.sks in Resources */,
 				33CC323427C5343600856D82 /* RushStun.sks in Resources */,
+				E52D5F8527C7A6CB00BBB4BE /* doorsound.wav in Resources */,
 				E56CE0B627BD3FFF00962834 /* GameScene3.sks in Resources */,
 				C815F7A227B400490084DE7A /* LaunchScreen.storyboard in Resources */,
 				33CC323227C5297400856D82 /* barrel_shield.wav in Resources */,
-				33CC322F27C51A3600856D82 /* TestFire.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,7 +333,9 @@
 				E56CE0B227BCEF0C00962834 /* Bomb.swift in Sources */,
 				C801D2E827BBAF2F008B1CD5 /* Player.swift in Sources */,
 				C815F79227B400480084DE7A /* AppDelegate.swift in Sources */,
+				E5F0CAC827C784850000B9F4 /* Door.swift in Sources */,
 				33D1493627C36C1E00B4BECA /* PhysicsUtils.swift in Sources */,
+				330D6EFD27C67E2F00444648 /* SwiftUIHostingController.swift in Sources */,
 				3354DF2A27BFDAE60019D640 /* RushEnemy.swift in Sources */,
 				C8E502CE27C4E5C000706C71 /* TrapBomb.swift in Sources */,
 				E56CE0B427BD1F8D00962834 /* ActionManager.swift in Sources */,
@@ -487,7 +503,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.LucaSalmi.BomberMan;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Luca.BomberMan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -519,7 +535,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.LucaSalmi.BomberMan;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Luca.BomberMan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;

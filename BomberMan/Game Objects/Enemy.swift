@@ -20,6 +20,8 @@ class Enemy: SKSpriteNode {
     static let hard: Int = 3
     static let superHard: Int = 4
     
+    static let knockbackMultiplier = 16.0
+    
     //change these variables in enemy subclass
     var enemySpeed: CGFloat = 0.0
     var difficult: Int = 0
@@ -68,6 +70,17 @@ class Enemy: SKSpriteNode {
         //Play sound SFX on death?
     }
     
+    func centerInCurrentTile() -> CGPoint {
+        guard let backgroundMap = GameViewController.currentGameScene!.childNode(withName: "background")as? SKTileMapNode else {
+            return self.position
+        }
+        let center = PhysicsUtils.findCenterOfClosestTile(map: backgroundMap, object: self)
+        if center != nil {
+            return center!
+        }
+        return self.position
+    }
+    
     func collision(with other: SKNode?) {
         //Override this in enemy subclasses
         
@@ -87,6 +100,11 @@ class Enemy: SKSpriteNode {
         }
         
         if other is TrapBomb{
+            
+            let trap = other as! TrapBomb
+            trap.isTrapActive = true
+            other?.physicsBody = nil
+            self.position = other!.position
             
             for i in 0..<Enemy.enemies.count {
                 if i >= Enemy.enemies.count {

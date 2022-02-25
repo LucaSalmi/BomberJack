@@ -16,7 +16,8 @@ class ObstacleObject: SKSpriteNode{
     
     init(texture: SKTexture){
         
-        super.init(texture: texture, color: .white, size: texture.size())
+        super.init(texture: texture, color: .white, size: GameScene.tileSize!)
+        
         name = "Obstacle Object"
         zPosition = 50
     }
@@ -29,11 +30,13 @@ class ObstacleObject: SKSpriteNode{
         physicsBody?.isDynamic = false
         physicsBody?.friction = 0
         physicsBody?.allowsRotation = false
+        
+        
     }
     
     func collision(with other: SKNode?) {
         
-       
+       print("hihi")
         
     }
 }

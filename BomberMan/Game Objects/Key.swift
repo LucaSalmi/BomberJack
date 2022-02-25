@@ -17,7 +17,7 @@ class Key: LootObject {
     
     init() {
         
-        let texture = SKTexture(imageNamed: "keyOneLoot")
+        let texture = SKTexture(imageNamed: "KeyOneLoot")
         super.init(texture, .white, (GameScene.tileSize)!)
         name = "key object"
         zPosition = 50

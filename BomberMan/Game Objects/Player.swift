@@ -50,7 +50,7 @@ class Player: SKSpriteNode{
         
         physicsBody = SKPhysicsBody(circleOfRadius: (size.width/2) * PhysicsUtils.physicsBodyPct)
         physicsBody?.categoryBitMask = PhysicsCategory.Player
-        physicsBody?.collisionBitMask = PhysicsCategory.Bomb | PhysicsCategory.Obstacle | PhysicsCategory.Enemy | PhysicsCategory.Breakable | PhysicsCategory.TrapBomb | PhysicsCategory.Loot
+        physicsBody?.collisionBitMask = PhysicsCategory.Bomb | PhysicsCategory.Obstacle | PhysicsCategory.Enemy | PhysicsCategory.Breakable | PhysicsCategory.TrapBomb | PhysicsCategory.Loot | PhysicsCategory.Door
         //physicsBody?.contactTestBitMask = PhysicsCategory.Breakable
         physicsBody?.restitution = 0
         physicsBody?.allowsRotation = false
@@ -88,7 +88,7 @@ class Player: SKSpriteNode{
             smokeParticle!.removeFromParent()
         }
         SoundManager.playSFX(SoundManager.barrelShieldSFX)
-  
+        
         physicsBody?.isDynamic = false
         shieldTick = 0.0
         shieldTexture.alpha = 1
@@ -110,18 +110,17 @@ class Player: SKSpriteNode{
     
     func move(direction: CGPoint){
         
-        if isShielded {
+        if isShielded || isTrapped{
             return
         }
         
-        if !isTrapped {
-            
-            self.position.x += (direction.x * PlayerSettings.playerSpeed)
-            self.position.y += (direction.y * PlayerSettings.playerSpeed)
-            let direction = findDirection(playerDirection: direction)
-            
-            runAnim(playerDirection: direction)
-        }
+        
+        self.position.x += (direction.x * PlayerSettings.playerSpeed)
+        self.position.y += (direction.y * PlayerSettings.playerSpeed)
+        let direction = findDirection(playerDirection: direction)
+        
+        runAnim(playerDirection: direction)
+        
         
         
     }
@@ -138,7 +137,7 @@ class Player: SKSpriteNode{
     }
     
     func death(player: SKNode){
-        
+        //
         let deathParticle = SKEmitterNode(fileNamed: "EnemyDeath")
         deathParticle!.particleTexture = playerTexture.texture
         deathParticle!.position = playerTexture.position
@@ -202,11 +201,20 @@ class Player: SKSpriteNode{
         PlayerSettings.frameLimiter += 1
         
     }
-
+    
     func collision(with other: SKNode?) {
         
         print("collision happened")
         
+    }
+    
+    func changePlayerPosition(newPos: CGPoint){
+        
+        let pB = self.physicsBody
+        self.physicsBody = nil
+        self.position = newPos
+        self.physicsBody = pB
+        self.bloodParticle()
     }
     
     func update() {
