@@ -76,6 +76,9 @@ class ActionManagager{
             bomb = StandardBomb()
         }
         
+        if bomb is StandardBomb && !PlayerSettings.haveBombs {
+            return
+        }
         
         let backgroundMap = context.backgroundMap!
         let player = context.player!
