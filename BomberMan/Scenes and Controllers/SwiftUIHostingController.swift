@@ -191,6 +191,7 @@ struct GameUIView: View {
 struct MainMenyView: View {
     
     @Binding var startGame: Bool
+    @State var button: Bool = false
     
     var body: some View {
         
@@ -199,7 +200,8 @@ struct MainMenyView: View {
                 .resizable()
                 .scaledToFill()
             Button(action: {
-                startGame = true
+                //startGame = true
+                button = true
             }, label: {
                 Text("Start Game")
                     .foregroundColor(.black)
@@ -211,10 +213,36 @@ struct MainMenyView: View {
             })
         }
         .ignoresSafeArea()
-        
+        .sheet(isPresented: $button, onDismiss: {button = false}, content: {menu()})
     }
     
 }
+
+struct menu: View{
+    
+    @State private var isShown = false
+    
+    var body: some View{
+        
+        VStack {            // container to animate transition !!
+            if isShown {
+                VStack(spacing: 8) {
+                    Text("A great content of my new sheet")
+                    Label("still not done", systemImage: "guitars")
+                    Text("I'm done now")
+                }
+                .transition(.move(edge: .leading))
+            }
+        }
+        .animation(.easeInOut(duration: 2.0), value: isShown)
+        .onAppear {
+            isShown = true       // << activate !!
+        }
+    }
+    
+    
+}
+
 
 struct ViewController: UIViewControllerRepresentable {
     
