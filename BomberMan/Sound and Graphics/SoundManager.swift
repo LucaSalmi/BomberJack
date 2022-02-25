@@ -50,6 +50,7 @@ class SoundManager {
             
         }
         musicPlayer!.play()
+        musicPlayer!.numberOfLoops = -1
     }
     
 }
