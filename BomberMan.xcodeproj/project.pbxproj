@@ -168,20 +168,10 @@
 		C8C7DC3327BFF76D0083656A /* Game Objects */ = {
 			isa = PBXGroup;
 			children = (
-				C89C6F1927BC12B700C8AC0F /* BreakableObject.swift */,
-				C8C7DC3027BFDB470083656A /* Explosion.swift */,
-				33201EDC27BD352F003B4EB4 /* ObstacleObject.swift */,
+				C8E0653427C8BCAB00DC7226 /* Enemy */,
+				C8E0653327C8BCA500DC7226 /* Bomb */,
+				C8E0653227C8BC7B00DC7226 /* Static Objects */,
 				C801D2E727BBAF2F008B1CD5 /* Player.swift */,
-				33B882A427BBEF3500BB897E /* Enemy.swift */,
-				33B882A627BBF2FB00BB897E /* TestEnemy.swift */,
-				3354DF2927BFDAE60019D640 /* RushEnemy.swift */,
-				E56CE0B127BCEF0C00962834 /* Bomb.swift */,
-				C8E502CB27C4E59A00706C71 /* StandardBomb.swift */,
-				C8E502CD27C4E5C000706C71 /* TrapBomb.swift */,
-				D5FFD73627C52BEC0032912D /* LootObject.swift */,
-				D5FFD73827C536840032912D /* Key.swift */,
-				D5FFD73A27C536970032912D /* BombPile.swift */,
-				E5F0CAC727C784850000B9F4 /* Door.swift */,
 			);
 			path = "Game Objects";
 			sourceTree = "<group>";
@@ -189,22 +179,13 @@
 		C8C7DC3427BFF7AD0083656A /* Sound and Graphics */ = {
 			isa = PBXGroup;
 			children = (
+				C8E0653127C8BC4600DC7226 /* Particle Effects */,
+				C8E0653027C8BC1E00DC7226 /* Music Tracks */,
 				3354DF2127BF841E0019D640 /* SoundManager.swift */,
 				C815F79B27B400490084DE7A /* Main.storyboard */,
 				C815F7A027B400490084DE7A /* LaunchScreen.storyboard */,
 				C815F79E27B400490084DE7A /* Assets.xcassets */,
 				C869390C27BA66E100EEF877 /* TileSet Placeholder.sks */,
-				3354DF2327BF847F0019D640 /* explosion1.wav */,
-				E52D5F8427C7A6CB00BBB4BE /* doorsound.wav */,
-				33CC323127C5297400856D82 /* barrel_shield.wav */,
-				33CC323527C5386F00856D82 /* rush_impact.wav */,
-				3312D2A327C61539004C0EEF /* blood_splatter.wav */,
-				33CC322927C516FE00856D82 /* BarrelSmoke.sks */,
-				33CC323327C5343600856D82 /* RushStun.sks */,
-				3312D29F27C60A28004C0EEF /* EnemyDeath.sks */,
-				3312D2A127C612E3004C0EEF /* BloodSplatter.sks */,
-				33E8104B27C8318B001D52EE /* main_menu_bgm.mp3 */,
-				33E8104D27C8355F001D52EE /* in_game_bgm.mp3 */,
 			);
 			path = "Sound and Graphics";
 			sourceTree = "<group>";
@@ -221,6 +202,65 @@
 				C8E502D327C525C100706C71 /* UserData.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		C8E0653027C8BC1E00DC7226 /* Music Tracks */ = {
+			isa = PBXGroup;
+			children = (
+				3354DF2327BF847F0019D640 /* explosion1.wav */,
+				E52D5F8427C7A6CB00BBB4BE /* doorsound.wav */,
+				33CC323127C5297400856D82 /* barrel_shield.wav */,
+				33CC323527C5386F00856D82 /* rush_impact.wav */,
+				3312D2A327C61539004C0EEF /* blood_splatter.wav */,
+				33E8104B27C8318B001D52EE /* main_menu_bgm.mp3 */,
+				33E8104D27C8355F001D52EE /* in_game_bgm.mp3 */,
+			);
+			path = "Music Tracks";
+			sourceTree = "<group>";
+		};
+		C8E0653127C8BC4600DC7226 /* Particle Effects */ = {
+			isa = PBXGroup;
+			children = (
+				33CC322927C516FE00856D82 /* BarrelSmoke.sks */,
+				33CC323327C5343600856D82 /* RushStun.sks */,
+				3312D29F27C60A28004C0EEF /* EnemyDeath.sks */,
+				3312D2A127C612E3004C0EEF /* BloodSplatter.sks */,
+			);
+			path = "Particle Effects";
+			sourceTree = "<group>";
+		};
+		C8E0653227C8BC7B00DC7226 /* Static Objects */ = {
+			isa = PBXGroup;
+			children = (
+				C89C6F1927BC12B700C8AC0F /* BreakableObject.swift */,
+				33201EDC27BD352F003B4EB4 /* ObstacleObject.swift */,
+				D5FFD73627C52BEC0032912D /* LootObject.swift */,
+				D5FFD73827C536840032912D /* Key.swift */,
+				D5FFD73A27C536970032912D /* BombPile.swift */,
+				E5F0CAC727C784850000B9F4 /* Door.swift */,
+			);
+			path = "Static Objects";
+			sourceTree = "<group>";
+		};
+		C8E0653327C8BCA500DC7226 /* Bomb */ = {
+			isa = PBXGroup;
+			children = (
+				C8C7DC3027BFDB470083656A /* Explosion.swift */,
+				E56CE0B127BCEF0C00962834 /* Bomb.swift */,
+				C8E502CB27C4E59A00706C71 /* StandardBomb.swift */,
+				C8E502CD27C4E5C000706C71 /* TrapBomb.swift */,
+			);
+			path = Bomb;
+			sourceTree = "<group>";
+		};
+		C8E0653427C8BCAB00DC7226 /* Enemy */ = {
+			isa = PBXGroup;
+			children = (
+				33B882A427BBEF3500BB897E /* Enemy.swift */,
+				33B882A627BBF2FB00BB897E /* TestEnemy.swift */,
+				3354DF2927BFDAE60019D640 /* RushEnemy.swift */,
+			);
+			path = Enemy;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
