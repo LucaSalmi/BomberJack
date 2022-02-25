@@ -195,52 +195,96 @@ struct MainMenyView: View {
     
     var body: some View {
         
-        ZStack {
-            Image("mainmenu_no_props")
-                .resizable()
-                .scaledToFill()
-            Button(action: {
-                //startGame = true
-                button = true
-            }, label: {
-                Text("Start Game")
-                    .foregroundColor(.black)
-                    .padding(8)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 5)
-                            .stroke(Color.black, lineWidth: 1)
-                    )
-            })
+        
+        TabView{
+            
+            TabOne()
+            TabTwo()
+            TabThree()
+            
         }
+        .tabViewStyle(.page)
+        .indexViewStyle(.page(backgroundDisplayMode: .always))
         .ignoresSafeArea()
-        .sheet(isPresented: $button, onDismiss: {button = false}, content: {menu()})
+        
+        //        ZStack {
+        //            Image("mainmenu_no_props")
+        //                .resizable()
+        //                .scaledToFill()
+        //            TabView{
+        //                TabOne()
+        //                Text("WHAT")
+        //            }
+        //            .tabViewStyle(.page)
+        //            .indexViewStyle(.page(backgroundDisplayMode: .always))
+        //
+        //            Button(action: {
+        //                //startGame = true
+        //                button = true
+        //            }, label: {
+        //                Text("Start Game")
+        //                    .foregroundColor(.black)
+        //                    .padding(8)
+        //                    .overlay(
+        //                        RoundedRectangle(cornerRadius: 5)
+        //                            .stroke(Color.black, lineWidth: 1)
+        //                    )
+        //            })
+        //        }
+        //        .ignoresSafeArea()
     }
     
 }
 
-struct menu: View{
+struct TabOne: View{
     
-    @State private var isShown = false
     
     var body: some View{
         
-        VStack {            // container to animate transition !!
-            if isShown {
-                VStack(spacing: 8) {
-                    Text("A great content of my new sheet")
-                    Label("still not done", systemImage: "guitars")
-                    Text("I'm done now")
-                }
-                .transition(.move(edge: .leading))
-            }
-        }
-        .animation(.easeInOut(duration: 2.0), value: isShown)
-        .onAppear {
-            isShown = true       // << activate !!
+        ZStack{
+            
+            Image("page_view_one")
+                .resizable()
+                .scaledToFill()
+            
+            Text("First Tab")
+            
         }
     }
+}
+
+struct TabTwo: View{
     
     
+    var body: some View{
+        
+        ZStack{
+            
+            Image("page_view_two")
+                .resizable()
+                .scaledToFill()
+            
+            Text("Second Tab")
+            
+        }
+    }
+}
+
+struct TabThree: View{
+    
+    
+    var body: some View{
+        
+        ZStack{
+            
+            Image("page_view_three")
+                .resizable()
+                .scaledToFill()
+            
+            Text("Third Tab")
+            
+        }
+    }
 }
 
 
@@ -254,16 +298,16 @@ struct ViewController: UIViewControllerRepresentable {
     }
     
     func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
-       
+        
     }
 }
 
 class SwiftUIHostingController: UIHostingController<MyView> {
-
+    
     required init?(coder: NSCoder) {
         super.init(coder: coder, rootView: MyView());
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
