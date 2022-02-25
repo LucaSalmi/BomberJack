@@ -16,7 +16,7 @@ class BombPile: LootObject {
     
     init() {
         
-        let texture = SKTexture(imageNamed: "BombPile")
+        let texture = SKTexture(imageNamed: "bombPile")
         super.init(texture, .white, (GameScene.tileSize)!)
         name = "bomb loot"
         zPosition = 50
