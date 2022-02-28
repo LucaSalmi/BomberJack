@@ -11,6 +11,7 @@ import GameplayKit
 class Dialogue: SKNode {
     
     let shapeNode: SKShapeNode
+    let labelNode: SKLabelNode
     
     let dialogueText: String!
     let showingTime = 60 * 3
@@ -21,17 +22,25 @@ class Dialogue: SKNode {
     }
     
     init(dialogueText: String) {
-        self.shapeNode = SKShapeNode(rectOf: CGSize(width: 400, height: 200), cornerRadius: 10.0)
+        self.shapeNode = SKShapeNode(rectOf: CGSize(width: 450, height: 150), cornerRadius: 10.0)
+        self.labelNode = SKLabelNode()
         self.dialogueText = dialogueText
         super.init()
         setupShapeNode()
+        setupLabelNode()
         zPosition = 100
     }
     
     private func setupShapeNode() {
         shapeNode.fillColor = .black
-        shapeNode.alpha = 0.5
+        shapeNode.alpha = 0.8
         addChild(shapeNode)
+    }
+    
+    private func setupLabelNode() {
+        labelNode.text = dialogueText
+        labelNode.fontSize = 26
+        addChild(labelNode)
     }
     
     func update() {
