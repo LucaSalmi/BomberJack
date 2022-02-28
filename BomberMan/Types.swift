@@ -28,6 +28,7 @@ struct PhysicsCategory{
     static let TrapBomb: UInt32 = 0b100000000
     static let Loot: UInt32 = 0b1000000000
     static let Door: UInt32 = 0b10000000000
+    static let Event: UInt32 = 0b100000000000
     
 }
 

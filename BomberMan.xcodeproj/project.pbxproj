@@ -12,6 +12,8 @@
 		3312D2A227C612E3004C0EEF /* BloodSplatter.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3312D2A127C612E3004C0EEF /* BloodSplatter.sks */; };
 		3312D2A427C61539004C0EEF /* blood_splatter.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3312D2A327C61539004C0EEF /* blood_splatter.wav */; };
 		33201EDD27BD352F003B4EB4 /* ObstacleObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33201EDC27BD352F003B4EB4 /* ObstacleObject.swift */; };
+		334F89CD27CCCD6A007A1857 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334F89CC27CCCD6A007A1857 /* Event.swift */; };
+		334F89D227CCD8E9007A1857 /* NeedBombsEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334F89D127CCD8E9007A1857 /* NeedBombsEvent.swift */; };
 		3354DF2227BF841E0019D640 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3354DF2127BF841E0019D640 /* SoundManager.swift */; };
 		3354DF2427BF847F0019D640 /* explosion1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3354DF2327BF847F0019D640 /* explosion1.wav */; };
 		3354DF2A27BFDAE60019D640 /* RushEnemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3354DF2927BFDAE60019D640 /* RushEnemy.swift */; };
@@ -63,6 +65,8 @@
 		3312D2A127C612E3004C0EEF /* BloodSplatter.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BloodSplatter.sks; sourceTree = "<group>"; };
 		3312D2A327C61539004C0EEF /* blood_splatter.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = blood_splatter.wav; sourceTree = "<group>"; };
 		33201EDC27BD352F003B4EB4 /* ObstacleObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObstacleObject.swift; sourceTree = "<group>"; };
+		334F89CC27CCCD6A007A1857 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		334F89D127CCD8E9007A1857 /* NeedBombsEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NeedBombsEvent.swift; sourceTree = "<group>"; };
 		3354DF2127BF841E0019D640 /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
 		3354DF2327BF847F0019D640 /* explosion1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = explosion1.wav; sourceTree = "<group>"; };
 		3354DF2927BFDAE60019D640 /* RushEnemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RushEnemy.swift; sourceTree = "<group>"; };
@@ -120,6 +124,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		334F89CE27CCCF0E007A1857 /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				334F89CC27CCCD6A007A1857 /* Event.swift */,
+				334F89D127CCD8E9007A1857 /* NeedBombsEvent.swift */,
+			);
+			path = Events;
+			sourceTree = "<group>";
+		};
 		C815F78527B400480084DE7A = {
 			isa = PBXGroup;
 			children = (
@@ -171,6 +184,7 @@
 				C8E0653427C8BCAB00DC7226 /* Enemy */,
 				C8E0653327C8BCA500DC7226 /* Bomb */,
 				C8E0653227C8BC7B00DC7226 /* Static Objects */,
+				334F89CE27CCCF0E007A1857 /* Events */,
 				C801D2E727BBAF2F008B1CD5 /* Player.swift */,
 			);
 			path = "Game Objects";
@@ -359,6 +373,7 @@
 				33B882A327BBC41A00BB897E /* MovementManager.swift in Sources */,
 				C8C7DC2F27BFD9990083656A /* PhysicsExtension.swift in Sources */,
 				C8B747FF27BF992F00D76B32 /* Animatable.swift in Sources */,
+				334F89D227CCD8E9007A1857 /* NeedBombsEvent.swift in Sources */,
 				33201EDD27BD352F003B4EB4 /* ObstacleObject.swift in Sources */,
 				3354DF2227BF841E0019D640 /* SoundManager.swift in Sources */,
 				C815F79A27B400490084DE7A /* GameViewController.swift in Sources */,
@@ -370,6 +385,7 @@
 				C801D2EA27BBB031008B1CD5 /* Types.swift in Sources */,
 				C8B7480127BF9A9A00D76B32 /* Extensions.swift in Sources */,
 				C8C7DC3127BFDB470083656A /* Explosion.swift in Sources */,
+				334F89CD27CCCD6A007A1857 /* Event.swift in Sources */,
 				E56CE0B227BCEF0C00962834 /* Bomb.swift in Sources */,
 				C801D2E827BBAF2F008B1CD5 /* Player.swift in Sources */,
 				C815F79227B400480084DE7A /* AppDelegate.swift in Sources */,

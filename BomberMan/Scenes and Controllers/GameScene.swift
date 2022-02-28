@@ -27,6 +27,7 @@ class GameScene: SKScene {
     var breakablesNode: SKNode? = SKNode()
     var obstaclesNode: SKNode? = SKNode()
     var lootNode: SKNode? = SKNode()
+    var eventsNode: SKNode? = SKNode()
     var player: Player? = nil
     
     var movementManager: MovementManager? = nil
@@ -52,6 +53,7 @@ class GameScene: SKScene {
         movementManager = MovementManager(self)
         actionManager = ActionManagager(self, camera!)
         setupLootObjects()
+        setupEvents()
         
     }
     
@@ -132,6 +134,46 @@ class GameScene: SKScene {
         breakablesNode!.name = "BreakableObjects"
         addChild(breakablesNode!)
         breakablesTileMap.removeFromParent()
+    }
+    
+    func setupEvents() {
+
+        guard let eventsTileMap = childNode(withName: "events")as? SKTileMapNode else {
+            return
+        }
+
+        let eventKey: String = "eventType"
+        
+        for row in 0..<eventsTileMap.numberOfRows{
+            for column in 0..<eventsTileMap.numberOfColumns{
+                
+                guard let tile = tile(in: eventsTileMap, at: (column, row)) else {continue}
+                guard tile.userData?.object(forKey: eventKey) != nil else {continue}
+                
+                var event: Event
+                
+                if tile.userData?.value(forKey: eventKey) != nil{
+                    let value = tile.userData?.value(forKey: eventKey) as! String
+                    switch value{
+                        
+                    case "needBombsHint":
+                        event = NeedBombsEvent()
+                        
+                    default:
+                        event = NeedBombsEvent()
+                        
+                    }
+                    
+                    event.position = eventsTileMap.centerOfTile(atColumn: column, row: row)
+                    eventsNode!.addChild(event)
+                }
+            }
+        }
+        
+        eventsNode!.name = "event"
+        addChild(eventsNode!)
+        eventsTileMap.removeFromParent()
+        
     }
     
     func setupLootObjects(){

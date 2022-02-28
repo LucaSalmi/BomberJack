@@ -84,6 +84,10 @@ extension GameScene: SKPhysicsContactDelegate{
                 
                 print("hi door")
                 
+            case PhysicsCategory.Event:
+                
+                let event = getEvent(node: nodeB!)
+                event.collision(node: nodeA!)
   
             default:
                 print("mistery")
@@ -287,6 +291,19 @@ extension GameScene: SKPhysicsContactDelegate{
                 print("mystery")
             }
             
+        case PhysicsCategory.Event:
+            
+            switch contact.bodyB.categoryBitMask {
+                
+            case PhysicsCategory.Player:
+                
+                let event = getEvent(node: nodeA!)
+                event.collision(node: nodeB!)
+                
+            default:
+                print("mystery")
+                
+            }
             
         //default case for main switch
 
@@ -332,6 +349,10 @@ extension GameScene: SKPhysicsContactDelegate{
 
     func getTrap(node: SKNode) -> TrapBomb{
         return node as! TrapBomb
+    }
+    
+    func getEvent(node: SKNode) -> Event {
+        return node as! Event
     }
     
 }
