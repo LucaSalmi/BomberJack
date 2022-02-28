@@ -35,7 +35,7 @@ class GameScene: SKScene {
     
     var isGameOver = false
     var isDoorOpen = false
-    
+        
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         backgroundMap = (childNode(withName: "background") as! SKTileMapNode)
@@ -156,11 +156,11 @@ class GameScene: SKScene {
     }
     
     func setupEvents() {
-
+        
         guard let eventsTileMap = childNode(withName: "events")as? SKTileMapNode else {
             return
         }
-
+        
         let eventKey: String = "eventType"
         
         for row in 0..<eventsTileMap.numberOfRows{
@@ -374,7 +374,6 @@ class GameScene: SKScene {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
-        
         movementManager!.updateJoystickPosition(touches, with: event)
         
         actionManager.checkInput(touches, with: event)
@@ -400,50 +399,53 @@ class GameScene: SKScene {
         checkVictory()
         
         if isGameOver{
+                        
             //Deallocate all nodes/children from the old scene
             self.removeAllChildren()
             self.removeAllActions()
-            stopScene()
+            self.stopScene()
             
             //Present a new instance of the scene
             let restartScene = "GameScene" + String(GameScene.viewController!.currentLevel)
             GameScene.viewController!.presentScene(restartScene)
             return
-        }
-        
-        //Game logic for updating movement goes in movementManagers update()-method
-        movementManager?.update()
-        
-        //Call update()-method on all enemies
-        for enemy in Enemy.enemies {
-            if !enemy.isAlive {
-                for i in 0..<Enemy.enemies.count {
-                    if i >= Enemy.enemies.count { continue }
-                    let checkEnemy = Enemy.enemies[i]
-                    if checkEnemy == enemy {
-                        Enemy.enemies.remove(at: i)
+                        
+        }else{
+            
+            //Game logic for updating movement goes in movementManagers update()-method
+            movementManager?.update()
+            
+            //Call update()-method on all enemies
+            for enemy in Enemy.enemies {
+                if !enemy.isAlive {
+                    for i in 0..<Enemy.enemies.count {
+                        if i >= Enemy.enemies.count { continue }
+                        let checkEnemy = Enemy.enemies[i]
+                        if checkEnemy == enemy {
+                            Enemy.enemies.remove(at: i)
+                        }
                     }
+                    enemy.deathParticle()
+                    enemy.removeFromParent()
+                    
+                    return
                 }
-                enemy.deathParticle()
-                enemy.removeFromParent()
-                
-                return
+                enemy.update()
             }
-            enemy.update()
+            
+            for explosion in ExplosionSettings.explosionsArray{
+                explosion.update()
+            }
+            
+            for bomb in Bomb.bombs {
+                bomb.update()
+            }
+            
+            player!.update()
+            
         }
-        
-        for explosion in ExplosionSettings.explosionsArray{
-            explosion.update()
-        }
-        
-        for bomb in Bomb.bombs {
-            bomb.update()
-        }
-        
-        player!.update()
         
         dataReaderWriter.saveUserData()
-        
         
     }
     
@@ -456,12 +458,14 @@ class GameScene: SKScene {
         obstaclesNode = nil
         player = nil
         movementManager = nil
+        actionManager = nil
         bombsNode = nil
         Bomb.bombs.removeAll()
         Enemy.enemies.removeAll()
         ExplosionSettings.explosionsArray.removeAll()
     }
     
+    //checks the current level´s victory condition and, if met, brings the player to the next level.
     func checkVictory(){
         
         if victoryCondition != nil{
@@ -491,12 +495,12 @@ class GameScene: SKScene {
                     isDoorOpen = true
                 }
                 
-            
+                
                 if isDoorOpen{
                     
-                GameScene.viewController?.currentLevel += 1
-                isGameOver = true
-                print("keys found and door opened, good job...")
+                    GameScene.viewController?.currentLevel += 1
+                    isGameOver = true
+                    print("keys found and door opened, good job...")
                     
                 }
                 
@@ -508,5 +512,7 @@ class GameScene: SKScene {
             print("no victory condition assigned")
         }
     }
+    
+    
 }
 
