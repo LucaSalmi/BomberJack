@@ -35,7 +35,10 @@ class GameScene: SKScene {
     
     var isGameOver = false
     var isDoorOpen = false
-        
+    
+    let endLevelDelay = 60
+    var endLevelCounter = 0
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         backgroundMap = (childNode(withName: "background") as! SKTileMapNode)
@@ -396,10 +399,17 @@ class GameScene: SKScene {
             return
         }
         
-        checkVictory()
-        
         if isGameOver{
-                        
+            
+            if endLevelCounter < endLevelDelay{
+                endLevelCounter += 1
+                return
+                
+            }else{
+                
+                endLevelCounter = 0
+            }
+            
             //Deallocate all nodes/children from the old scene
             self.removeAllChildren()
             self.removeAllActions()
@@ -409,8 +419,10 @@ class GameScene: SKScene {
             let restartScene = "GameScene" + String(GameScene.viewController!.currentLevel)
             GameScene.viewController!.presentScene(restartScene)
             return
-                        
+            
         }else{
+            
+            checkVictory()
             
             //Game logic for updating movement goes in movementManagers update()-method
             movementManager?.update()
