@@ -192,7 +192,7 @@ struct MainMenyView: View {
     
     @Binding var startGame: Bool
     @State var button: Bool = false
-    @State var selectedTab = "MainMenu"
+    @State var index = 0
     
     var body: some View {
         
@@ -200,39 +200,70 @@ struct MainMenyView: View {
         
         ScrollView([.horizontal]){
             
-            VStack{
+            ZStack{
                 
-                HStack{
-                    
-                    Text("Options")
-                    Text("Main Menu")
-                    Text("Play")
+                TabView{
+                    TabOne()
+                    TabTwo()
+                    TabThree()
+                }
+                .tabViewStyle(.page(indexDisplayMode: .never))
+                .indexViewStyle(.page(backgroundDisplayMode: .always))
+                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height + 50)
+                
+                VStack{
+                    Spacer()
+                 
+                    HStack(spacing: 0){
+                        
+                        Text("Options")
+                            .foregroundColor(self.index == 0 ? .white : .white.opacity(0.7))
+                            .fontWeight(.bold)
+                            .padding(.vertical, 10)
+                            .padding(.horizontal, 20)
+                            .background(.black.opacity(self.index == 0 ? 1 : 0))
+                            .clipShape(Capsule())
+                            .onTapGesture {
+                                self.index = 0
+                            }
+                        
+                        Text("Home")
+                            .foregroundColor(self.index == 1 ? .white : .white.opacity(0.7))
+                            .fontWeight(.bold)
+                            .padding(.vertical, 10)
+                            .padding(.horizontal, 20)
+                            .background(.black.opacity(self.index == 1 ? 1 : 0))
+                            .clipShape(Capsule())
+                            .onTapGesture {
+                                self.index = 1
+                            }
+                        
+                        Text("Play")
+                            .foregroundColor(self.index == 2 ? .white : .white.opacity(0.7))
+                            .fontWeight(.bold)
+                            .padding(.vertical, 10)
+                            .padding(.horizontal, 20)
+                            .background(.black.opacity(self.index == 2 ? 1 : 0))
+                            .clipShape(Capsule())
+                            .onTapGesture {
+                                self.index = 2
+                            }
+                    }
+                    .background(Color.black.opacity(0.1))
+                    .clipShape(Capsule())
+                    .padding(.horizontal)
+                    .padding(.bottom, 40)
                     
                 }
-                
-                
             }
             
-            TabView(selection: $selectedTab){
-                
-                TabOne()
-                    .tabItem{
-                        Text("Options")
-                    }
-                TabTwo()
-                TabThree().tag("Play")
-                
-            }
             
-            .tabViewStyle(.page)
-            .indexViewStyle(.page(backgroundDisplayMode: .always))
-            .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height + 50)
             
-            }.edgesIgnoringSafeArea(.all)
+        }.edgesIgnoringSafeArea(.all)
             .scaledToFill()
-            
-            
-            
+        
+        
+        
         
         
         
@@ -298,7 +329,7 @@ struct TabTwo: View{
                 } label: {
                     Text("Options")
                 }
-
+                
                 
                 
             }
