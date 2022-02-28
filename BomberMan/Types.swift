@@ -11,6 +11,11 @@ enum Direction: Int{
     case forward = 0, backward, left, right
 }
 
+enum VictoryConditions: Int{
+    
+    case openDoor = 0, killAll
+}
+
 typealias tileCoordinates = (column: Int, row: Int)
 
 struct PhysicsCategory{
