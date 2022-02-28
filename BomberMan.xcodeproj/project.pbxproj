@@ -43,6 +43,7 @@
 		C815F7A227B400490084DE7A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C815F7A027B400490084DE7A /* LaunchScreen.storyboard */; };
 		C869390D27BA66E100EEF877 /* TileSet Placeholder.sks in Resources */ = {isa = PBXBuildFile; fileRef = C869390C27BA66E100EEF877 /* TileSet Placeholder.sks */; };
 		C89C6F1A27BC12B700C8AC0F /* BreakableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = C89C6F1927BC12B700C8AC0F /* BreakableObject.swift */; };
+		C8A7490327CD0C2F00AD68E8 /* OptionsMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A7490227CD0C2F00AD68E8 /* OptionsMenu.swift */; };
 		C8B747FF27BF992F00D76B32 /* Animatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B747FE27BF992F00D76B32 /* Animatable.swift */; };
 		C8B7480127BF9A9A00D76B32 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B7480027BF9A9A00D76B32 /* Extensions.swift */; };
 		C8C7DC2F27BFD9990083656A /* PhysicsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C7DC2E27BFD9990083656A /* PhysicsExtension.swift */; };
@@ -99,6 +100,7 @@
 		C815F7A127B400490084DE7A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C869390C27BA66E100EEF877 /* TileSet Placeholder.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "TileSet Placeholder.sks"; sourceTree = "<group>"; };
 		C89C6F1927BC12B700C8AC0F /* BreakableObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreakableObject.swift; sourceTree = "<group>"; };
+		C8A7490227CD0C2F00AD68E8 /* OptionsMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsMenu.swift; sourceTree = "<group>"; };
 		C8B747FE27BF992F00D76B32 /* Animatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animatable.swift; sourceTree = "<group>"; };
 		C8B7480027BF9A9A00D76B32 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		C8C7DC2E27BFD9990083656A /* PhysicsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsExtension.swift; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 				33D36EFF27BD0137002DDB49 /* GameScene2.sks */,
 				D5FFD73427C4FAB20032912D /* GameScene1.sks */,
 				C815F79727B400490084DE7A /* GameScene.swift */,
+				C8A7490227CD0C2F00AD68E8 /* OptionsMenu.swift */,
 			);
 			path = "Scenes and Controllers";
 			sourceTree = "<group>";
@@ -410,6 +413,7 @@
 				330D6EFD27C67E2F00444648 /* SwiftUIHostingController.swift in Sources */,
 				3354DF2A27BFDAE60019D640 /* RushEnemy.swift in Sources */,
 				C8E502CE27C4E5C000706C71 /* TrapBomb.swift in Sources */,
+				C8A7490327CD0C2F00AD68E8 /* OptionsMenu.swift in Sources */,
 				E56CE0B427BD1F8D00962834 /* ActionManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
