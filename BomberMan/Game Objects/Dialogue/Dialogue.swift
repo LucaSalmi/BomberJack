@@ -40,6 +40,7 @@ class Dialogue: SKNode {
     private func setupLabelNode() {
         labelNode.text = dialogueText
         labelNode.fontSize = 26
+        labelNode.alpha = 1
         addChild(labelNode)
     }
     

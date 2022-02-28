@@ -26,6 +26,7 @@ class Event: SKSpriteNode {
         
         let texture = SKTexture(imageNamed: "event")
         super.init(texture: texture, color: color, size: size)
+        alpha = 0
         print("event initilized")
         createPhysicsBody()
     }

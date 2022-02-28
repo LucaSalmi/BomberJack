@@ -37,6 +37,8 @@ class NeedBombsEvent: Event {
         gameScene.currentDialogue = needBombsDialogue
         gameScene.addChild(needBombsDialogue)
         
+        
+        
     }
     
 }
