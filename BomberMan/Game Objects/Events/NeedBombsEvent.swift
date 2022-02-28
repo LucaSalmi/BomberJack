@@ -30,7 +30,14 @@ class NeedBombsEvent: Event {
     
     override func triggerEvent() {
         
+        guard let gameScene = GameViewController.currentGameScene else { return }
+        
         //Unique logarithm for this event goes here
+        let needBombsDialogue = NeedBombsDialogue()
+        gameScene.currentDialogue = needBombsDialogue
+        gameScene.addChild(needBombsDialogue)
+        
+        
         
     }
     
