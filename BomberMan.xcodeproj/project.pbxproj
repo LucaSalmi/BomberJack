@@ -51,6 +51,7 @@
 		D5FFD73927C536840032912D /* Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FFD73827C536840032912D /* Key.swift */; };
 		D5FFD73B27C536970032912D /* BombPile.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FFD73A27C536970032912D /* BombPile.swift */; };
 		E52D5F8527C7A6CB00BBB4BE /* doorsound.wav in Resources */ = {isa = PBXBuildFile; fileRef = E52D5F8427C7A6CB00BBB4BE /* doorsound.wav */; };
+		E55958DC27CD0F0400B81578 /* MenuOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55958DB27CD0F0400B81578 /* MenuOptions.swift */; };
 		E56CE0B227BCEF0C00962834 /* Bomb.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56CE0B127BCEF0C00962834 /* Bomb.swift */; };
 		E56CE0B427BD1F8D00962834 /* ActionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56CE0B327BD1F8D00962834 /* ActionManager.swift */; };
 		E56CE0B627BD3FFF00962834 /* GameScene3.sks in Resources */ = {isa = PBXBuildFile; fileRef = E56CE0B527BD3FFF00962834 /* GameScene3.sks */; };
@@ -103,6 +104,7 @@
 		D5FFD73827C536840032912D /* Key.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Key.swift; sourceTree = "<group>"; };
 		D5FFD73A27C536970032912D /* BombPile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BombPile.swift; sourceTree = "<group>"; };
 		E52D5F8427C7A6CB00BBB4BE /* doorsound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = doorsound.wav; sourceTree = "<group>"; };
+		E55958DB27CD0F0400B81578 /* MenuOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuOptions.swift; sourceTree = "<group>"; };
 		E56CE0B127BCEF0C00962834 /* Bomb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bomb.swift; sourceTree = "<group>"; };
 		E56CE0B327BD1F8D00962834 /* ActionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionManager.swift; sourceTree = "<group>"; };
 		E56CE0B527BD3FFF00962834 /* GameScene3.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene3.sks; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				330D6EFC27C67E2F00444648 /* SwiftUIHostingController.swift */,
+				E55958DB27CD0F0400B81578 /* MenuOptions.swift */,
 				C815F79927B400490084DE7A /* GameViewController.swift */,
 				33BFC5C727BBA567008DBA03 /* StartMenuScene.sks */,
 				33BFC5C927BBA5A9008DBA03 /* StartMenuScene.swift */,
@@ -355,6 +358,7 @@
 				D5FFD73B27C536970032912D /* BombPile.swift in Sources */,
 				33BFC5CA27BBA5A9008DBA03 /* StartMenuScene.swift in Sources */,
 				D5FFD73927C536840032912D /* Key.swift in Sources */,
+				E55958DC27CD0F0400B81578 /* MenuOptions.swift in Sources */,
 				C815F79827B400490084DE7A /* GameScene.swift in Sources */,
 				33B882A327BBC41A00BB897E /* MovementManager.swift in Sources */,
 				C8C7DC2F27BFD9990083656A /* PhysicsExtension.swift in Sources */,

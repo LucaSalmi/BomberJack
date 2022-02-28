@@ -192,7 +192,8 @@ struct MainMenyView: View {
     
     @Binding var startGame: Bool
     @State var button: Bool = false
-    @State var index = 0
+    @State var index = 1
+    @State var offset: CGFloat = 200.0
     
     var body: some View {
         
@@ -202,14 +203,17 @@ struct MainMenyView: View {
             
             ZStack{
                 
-                TabView{
-                    TabOne()
-                    TabTwo()
-                    TabThree()
+                TabView(selection: $index){
+                    TabOne().tag(0)
+                    TabTwo().tag(1)
+                    TabThree().tag(2)
                 }
+                .transition(.slide)
+                .animation(.easeInOut)
                 .tabViewStyle(.page(indexDisplayMode: .never))
                 .indexViewStyle(.page(backgroundDisplayMode: .always))
                 .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height + 50)
+                
                 
                 VStack{
                     Spacer()
@@ -318,7 +322,7 @@ struct TabOne: View{
 }
 
 struct TabTwo: View{
-    
+  
     
     var body: some View{
         
