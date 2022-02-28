@@ -31,6 +31,7 @@ class NeedBombsEvent: Event {
     override func triggerEvent() {
         
         //Unique logarithm for this event goes here
+        GameViewController.currentGameScene?.currentDialogue = NeedBombsDialogue()
         
     }
     

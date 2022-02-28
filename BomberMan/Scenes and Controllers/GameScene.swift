@@ -28,6 +28,7 @@ class GameScene: SKScene {
     var obstaclesNode: SKNode? = SKNode()
     var lootNode: SKNode? = SKNode()
     var eventsNode: SKNode? = SKNode()
+    var currentDialogue: Dialogue? = nil
     var player: Player? = nil
     var victoryCondition: VictoryConditions?
     
@@ -438,6 +439,10 @@ class GameScene: SKScene {
         
         for bomb in Bomb.bombs {
             bomb.update()
+        }
+        
+        if let currentDialogue = currentDialogue {
+            currentDialogue.update()
         }
         
         player!.update()
