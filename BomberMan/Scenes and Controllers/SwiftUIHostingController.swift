@@ -192,20 +192,52 @@ struct MainMenyView: View {
     
     @Binding var startGame: Bool
     @State var button: Bool = false
+    @State var selectedTab = "MainMenu"
     
     var body: some View {
         
         
-        TabView{
+        
+        ScrollView([.horizontal]){
             
-            TabOne()
-            TabTwo()
-            TabThree()
+            VStack{
+                
+                HStack{
+                    
+                    Text("Options")
+                    Text("Main Menu")
+                    Text("Play")
+                    
+                }
+                
+                
+            }
             
-        }
-        .tabViewStyle(.page)
-        .indexViewStyle(.page(backgroundDisplayMode: .always))
-        .ignoresSafeArea()
+            TabView(selection: $selectedTab){
+                
+                TabOne()
+                    .tabItem{
+                        Text("Options")
+                    }
+                TabTwo()
+                TabThree().tag("Play")
+                
+            }
+            
+            .tabViewStyle(.page)
+            .indexViewStyle(.page(backgroundDisplayMode: .always))
+            .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height + 50)
+            
+            }.edgesIgnoringSafeArea(.all)
+            .scaledToFill()
+            
+            
+            
+        
+        
+        
+        
+        
         
         //        ZStack {
         //            Image("mainmenu_no_props")
@@ -234,6 +266,7 @@ struct MainMenyView: View {
         //        .ignoresSafeArea()
     }
     
+    
 }
 
 struct TabOne: View{
@@ -259,6 +292,17 @@ struct TabTwo: View{
     var body: some View{
         
         ZStack{
+            HStack{
+                Button {
+                    
+                } label: {
+                    Text("Options")
+                }
+
+                
+                
+            }
+            
             
             Image("page_view_two")
                 .resizable()
