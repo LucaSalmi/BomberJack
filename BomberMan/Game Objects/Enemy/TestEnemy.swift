@@ -79,6 +79,12 @@ class TestEnemy: Enemy {
     
     override func update() {
         
+        super.update()
+        
+        if !(self is TestEnemy) {
+            return
+        }
+        
         if !isTrapped{
             
             position.x += (direction.x * enemySpeed)
@@ -89,7 +95,6 @@ class TestEnemy: Enemy {
                 updateDirection(newDirection: getRandomDirection())
             }
         }
-        
         
     }
     
