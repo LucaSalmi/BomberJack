@@ -22,6 +22,7 @@ struct MyView: View {
     @State var startGame: Bool = false
     @State var isPaused: Bool = false
     
+    
     var body: some View {
         
         if startGame {
@@ -91,6 +92,7 @@ struct MainMenyView: View {
     
     var body: some View {
         
+        
         ZStack {
             Image("mainmenu_no_props")
                 .resizable()
@@ -135,5 +137,6 @@ class SwiftUIHostingController: UIHostingController<MyView> {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        dataReaderWriter.loaduserData()
     }
 }

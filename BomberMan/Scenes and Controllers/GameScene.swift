@@ -67,7 +67,6 @@ class GameScene: SKScene {
     
     override func sceneDidLoad() {
         
-        dataReaderWriter.loaduserData()
         setupVictoryCond()
         
     }
