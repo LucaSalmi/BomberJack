@@ -12,6 +12,7 @@
 		3312D2A227C612E3004C0EEF /* BloodSplatter.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3312D2A127C612E3004C0EEF /* BloodSplatter.sks */; };
 		3312D2A427C61539004C0EEF /* blood_splatter.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3312D2A327C61539004C0EEF /* blood_splatter.wav */; };
 		33201EDD27BD352F003B4EB4 /* ObstacleObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33201EDC27BD352F003B4EB4 /* ObstacleObject.swift */; };
+		33250F4027CE073F0019AAB1 /* GameUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33250F3F27CE073F0019AAB1 /* GameUIView.swift */; };
 		334F89CD27CCCD6A007A1857 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334F89CC27CCCD6A007A1857 /* Event.swift */; };
 		334F89D227CCD8E9007A1857 /* NeedBombsEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334F89D127CCD8E9007A1857 /* NeedBombsEvent.swift */; };
 		334F89D527CCDAE3007A1857 /* Dialogue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334F89D427CCDAE3007A1857 /* Dialogue.swift */; };
@@ -67,6 +68,7 @@
 		3312D2A127C612E3004C0EEF /* BloodSplatter.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BloodSplatter.sks; sourceTree = "<group>"; };
 		3312D2A327C61539004C0EEF /* blood_splatter.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = blood_splatter.wav; sourceTree = "<group>"; };
 		33201EDC27BD352F003B4EB4 /* ObstacleObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObstacleObject.swift; sourceTree = "<group>"; };
+		33250F3F27CE073F0019AAB1 /* GameUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameUIView.swift; sourceTree = "<group>"; };
 		334F89CC27CCCD6A007A1857 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		334F89D127CCD8E9007A1857 /* NeedBombsEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NeedBombsEvent.swift; sourceTree = "<group>"; };
 		334F89D427CCDAE3007A1857 /* Dialogue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dialogue.swift; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 			children = (
 				330D6EFC27C67E2F00444648 /* SwiftUIHostingController.swift */,
 				C815F79927B400490084DE7A /* GameViewController.swift */,
+				33250F3F27CE073F0019AAB1 /* GameUIView.swift */,
 				33BFC5C727BBA567008DBA03 /* StartMenuScene.sks */,
 				33BFC5C927BBA5A9008DBA03 /* StartMenuScene.swift */,
 				33FEE19D27BE96DF0036BC22 /* UIScene.sks */,
@@ -386,6 +389,7 @@
 				334F89D527CCDAE3007A1857 /* Dialogue.swift in Sources */,
 				C815F79827B400490084DE7A /* GameScene.swift in Sources */,
 				33B882A327BBC41A00BB897E /* MovementManager.swift in Sources */,
+				33250F4027CE073F0019AAB1 /* GameUIView.swift in Sources */,
 				C8C7DC2F27BFD9990083656A /* PhysicsExtension.swift in Sources */,
 				C8B747FF27BF992F00D76B32 /* Animatable.swift in Sources */,
 				334F89D227CCD8E9007A1857 /* NeedBombsEvent.swift in Sources */,
