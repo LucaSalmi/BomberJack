@@ -185,12 +185,10 @@ struct GameUIView: View {
 struct MainMenyView: View {
     
     @Binding var startGame: Bool
-    @State var button: Bool = false
     @State var index = 1
     @State var offset: CGFloat = 200.0
     
     var body: some View {
-        
         
         
         ScrollView([.horizontal]){
@@ -200,9 +198,10 @@ struct MainMenyView: View {
                 TabView(selection: $index){
                     TabOne().tag(0)
                     TabTwo().tag(1)
-                    TabThree().tag(2)
+                    TabThree(startGame: $startGame).tag(2)
                 }
                 .transition(.slide)
+                //Calle was here
                 .animation(.easeInOut)
                 .tabViewStyle(.page(indexDisplayMode: .never))
                 .indexViewStyle(.page(backgroundDisplayMode: .always))
@@ -311,10 +310,10 @@ struct TabThree: View{
     
     @State private var showMapMenu: Bool = false
     
+    @Binding var startGame: Bool
+    
     
     var body: some View{
-        
-        
         
         ZStack{
             
@@ -330,9 +329,7 @@ struct TabThree: View{
                     
                     Spacer()
                     
-                    SideViewMapMenu()
-                        //.offset(x: 0)
-                        //.offset(x: UIScreen.main.bounds.width)
+                    SideViewMapMenu(startGame: $startGame)
                         .offset ( x: showMapMenu ? 0 : UIScreen.main.bounds.width)
                 }
                 
@@ -345,8 +342,11 @@ struct TabThree: View{
                     Image(systemName: "plus")
                         .font(.title)
                         .foregroundColor(.black)
+                        .padding(30)
                     
                 }
+                
+                Spacer()
             }
         }
     }
