@@ -39,9 +39,7 @@ struct MyView: View {
             MusicView(bgmString: SoundManager.mainMenuBGM)
             MainMenyView(startGame: $startGame)
         }
-        
     }
-    
 }
 
 struct MusicView: View {
@@ -53,7 +51,6 @@ struct MusicView: View {
     var body: some View {
         Text("")
     }
-    
 }
 
 struct PauseMenu: View {
@@ -81,7 +78,6 @@ struct GameView: View {
                 .ignoresSafeArea()
                 .zIndex(1)
         }
-        
     }
 }
 
@@ -183,9 +179,7 @@ struct GameUIView: View {
                     .padding([.top], 20)
             }
         }
-        
     }
-    
 }
 
 struct MainMenyView: View {
@@ -217,7 +211,7 @@ struct MainMenyView: View {
                 
                 VStack{
                     Spacer()
-                 
+                    
                     HStack(spacing: 0){
                         
                         Text("Options")
@@ -266,42 +260,7 @@ struct MainMenyView: View {
         }.edgesIgnoringSafeArea(.all)
             .scaledToFill()
         
-        
-        
-        
-        
-        
-        
-        
-        
-        //        ZStack {
-        //            Image("mainmenu_no_props")
-        //                .resizable()
-        //                .scaledToFill()
-        //            TabView{
-        //                TabOne()
-        //                Text("WHAT")
-        //            }
-        //            .tabViewStyle(.page)
-        //            .indexViewStyle(.page(backgroundDisplayMode: .always))
-        //
-        //            Button(action: {
-        //                //startGame = true
-        //                button = true
-        //            }, label: {
-        //                Text("Start Game")
-        //                    .foregroundColor(.black)
-        //                    .padding(8)
-        //                    .overlay(
-        //                        RoundedRectangle(cornerRadius: 5)
-        //                            .stroke(Color.black, lineWidth: 1)
-        //                    )
-        //            })
-        //        }
-        //        .ignoresSafeArea()
     }
-    
-    
 }
 
 struct TabOne: View{
@@ -317,12 +276,14 @@ struct TabOne: View{
             
             Text("First Tab")
             
+            
+            
         }
     }
 }
 
 struct TabTwo: View{
-  
+    
     
     var body: some View{
         
@@ -332,12 +293,9 @@ struct TabTwo: View{
                     
                 } label: {
                     Text("Options")
+                    
                 }
-                
-                
-                
             }
-            
             
             Image("page_view_two")
                 .resizable()
@@ -351,8 +309,12 @@ struct TabTwo: View{
 
 struct TabThree: View{
     
+    @State private var showMapMenu: Bool = false
+    
     
     var body: some View{
+        
+        
         
         ZStack{
             
@@ -362,6 +324,30 @@ struct TabThree: View{
             
             Text("Third Tab")
             
+            GeometryReader { _ in
+                
+                HStack {
+                    
+                    Spacer()
+                    
+                    SideViewMapMenu()
+                        //.offset(x: 0)
+                        //.offset(x: UIScreen.main.bounds.width)
+                        .offset ( x: showMapMenu ? 0 : UIScreen.main.bounds.width)
+                }
+                
+            }
+            
+            HStack {
+                Button {
+                    self.showMapMenu.toggle()
+                } label: {
+                    Image(systemName: "plus")
+                        .font(.title)
+                        .foregroundColor(.black)
+                    
+                }
+            }
         }
     }
 }
