@@ -52,11 +52,13 @@
 		C8E502CC27C4E59A00706C71 /* StandardBomb.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E502CB27C4E59A00706C71 /* StandardBomb.swift */; };
 		C8E502CE27C4E5C000706C71 /* TrapBomb.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E502CD27C4E5C000706C71 /* TrapBomb.swift */; };
 		C8E502D427C525C100706C71 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E502D327C525C100706C71 /* UserData.swift */; };
+		D5A24D2627CE144000AD62F1 /* SideViewMapMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A24D2527CE144000AD62F1 /* SideViewMapMenu.swift */; };
 		D5FFD73527C4FAB20032912D /* GameScene1.sks in Resources */ = {isa = PBXBuildFile; fileRef = D5FFD73427C4FAB20032912D /* GameScene1.sks */; };
 		D5FFD73727C52BEC0032912D /* LootObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FFD73627C52BEC0032912D /* LootObject.swift */; };
 		D5FFD73927C536840032912D /* Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FFD73827C536840032912D /* Key.swift */; };
 		D5FFD73B27C536970032912D /* BombPile.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FFD73A27C536970032912D /* BombPile.swift */; };
 		E52D5F8527C7A6CB00BBB4BE /* doorsound.wav in Resources */ = {isa = PBXBuildFile; fileRef = E52D5F8427C7A6CB00BBB4BE /* doorsound.wav */; };
+		E55958DC27CD0F0400B81578 /* MenuOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55958DB27CD0F0400B81578 /* MenuOptions.swift */; };
 		E56CE0B227BCEF0C00962834 /* Bomb.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56CE0B127BCEF0C00962834 /* Bomb.swift */; };
 		E56CE0B427BD1F8D00962834 /* ActionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56CE0B327BD1F8D00962834 /* ActionManager.swift */; };
 		E56CE0B627BD3FFF00962834 /* GameScene3.sks in Resources */ = {isa = PBXBuildFile; fileRef = E56CE0B527BD3FFF00962834 /* GameScene3.sks */; };
@@ -110,11 +112,13 @@
 		C8E502CB27C4E59A00706C71 /* StandardBomb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardBomb.swift; sourceTree = "<group>"; };
 		C8E502CD27C4E5C000706C71 /* TrapBomb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrapBomb.swift; sourceTree = "<group>"; };
 		C8E502D327C525C100706C71 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		D5A24D2527CE144000AD62F1 /* SideViewMapMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideViewMapMenu.swift; sourceTree = "<group>"; };
 		D5FFD73427C4FAB20032912D /* GameScene1.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene1.sks; sourceTree = "<group>"; };
 		D5FFD73627C52BEC0032912D /* LootObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LootObject.swift; sourceTree = "<group>"; };
 		D5FFD73827C536840032912D /* Key.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Key.swift; sourceTree = "<group>"; };
 		D5FFD73A27C536970032912D /* BombPile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BombPile.swift; sourceTree = "<group>"; };
 		E52D5F8427C7A6CB00BBB4BE /* doorsound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = doorsound.wav; sourceTree = "<group>"; };
+		E55958DB27CD0F0400B81578 /* MenuOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuOptions.swift; sourceTree = "<group>"; };
 		E56CE0B127BCEF0C00962834 /* Bomb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bomb.swift; sourceTree = "<group>"; };
 		E56CE0B327BD1F8D00962834 /* ActionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionManager.swift; sourceTree = "<group>"; };
 		E56CE0B527BD3FFF00962834 /* GameScene3.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene3.sks; sourceTree = "<group>"; };
@@ -183,6 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				330D6EFC27C67E2F00444648 /* SwiftUIHostingController.swift */,
+				E55958DB27CD0F0400B81578 /* MenuOptions.swift */,
 				C815F79927B400490084DE7A /* GameViewController.swift */,
 				33250F3F27CE073F0019AAB1 /* GameUIView.swift */,
 				33BFC5C727BBA567008DBA03 /* StartMenuScene.sks */,
@@ -193,6 +198,7 @@
 				D5FFD73427C4FAB20032912D /* GameScene1.sks */,
 				C815F79727B400490084DE7A /* GameScene.swift */,
 				C8A7490227CD0C2F00AD68E8 /* OptionsMenu.swift */,
+				D5A24D2527CE144000AD62F1 /* SideViewMapMenu.swift */,
 			);
 			path = "Scenes and Controllers";
 			sourceTree = "<group>";
@@ -388,8 +394,10 @@
 				C89C6F1A27BC12B700C8AC0F /* BreakableObject.swift in Sources */,
 				D5FFD73B27C536970032912D /* BombPile.swift in Sources */,
 				33BFC5CA27BBA5A9008DBA03 /* StartMenuScene.swift in Sources */,
+				D5A24D2627CE144000AD62F1 /* SideViewMapMenu.swift in Sources */,
 				D5FFD73927C536840032912D /* Key.swift in Sources */,
 				334F89D527CCDAE3007A1857 /* Dialogue.swift in Sources */,
+				E55958DC27CD0F0400B81578 /* MenuOptions.swift in Sources */,
 				C815F79827B400490084DE7A /* GameScene.swift in Sources */,
 				33B882A327BBC41A00BB897E /* MovementManager.swift in Sources */,
 				33250F4027CE073F0019AAB1 /* GameUIView.swift in Sources */,
@@ -568,7 +576,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 3P2G45WJH3;
+				DEVELOPMENT_TEAM = 4S7BBW6D46;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -600,7 +608,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 3P2G45WJH3;
+				DEVELOPMENT_TEAM = 4S7BBW6D46;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;

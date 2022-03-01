@@ -40,9 +40,7 @@ struct MyView: View {
             MusicView(bgmString: SoundManager.mainMenuBGM)
             MainMenyView(startGame: $startGame)
         }
-        
     }
-    
 }
 
 struct MusicView: View {
@@ -54,7 +52,6 @@ struct MusicView: View {
     var body: some View {
         Text("")
     }
-    
 }
 
 struct PauseMenu: View {
@@ -82,36 +79,277 @@ struct GameView: View {
                 .ignoresSafeArea()
                 .zIndex(1)
         }
+    }
+}
+
+struct GameUIView: View {
+    
+    @Binding var startGame: Bool
+    @Binding var isPaused: Bool
+    
+    var body: some View {
         
+        HStack {
+            Spacer()
+            VStack {
+                Button(action: {
+                    startGame = false
+                }, label: {
+                    Text("Main Menu")
+                        .foregroundColor(.black)
+                        .padding(8)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 5)
+                                .stroke(Color.black, lineWidth: 1)
+                        )
+                })
+                    .padding([.top], 20)
+                Button(action: {
+                    if GameViewController.currentGameScene?.actionManager != nil {
+                        GameViewController.currentGameScene?.actionManager.handleInput(id: MyViewSettings.actionNextLevel, isPaused: isPaused)
+                    }
+                }, label: {
+                    Text("Next Level")
+                        .foregroundColor(.black)
+                        .padding(8)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 5)
+                                .stroke(Color.black, lineWidth: 1)
+                        )
+                })
+                    .padding([.top], 20)
+                Button(action: {
+                    if GameViewController.currentGameScene?.actionManager != nil {
+                        GameViewController.currentGameScene?.actionManager.handleInput(id: MyViewSettings.actionDefaultBomb, isPaused: isPaused)
+                    }
+                }, label: {
+                    Text("Default Bomb")
+                        .foregroundColor(.black)
+                        .padding(8)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 5)
+                                .stroke(Color.black, lineWidth: 1)
+                        )
+                })
+                    .padding([.top], 20)
+                Button(action: {
+                    if GameViewController.currentGameScene?.actionManager != nil {
+                        GameViewController.currentGameScene?.actionManager.handleInput(id: MyViewSettings.actionTrap, isPaused: isPaused)
+                    }
+                }, label: {
+                    Text("Trap")
+                        .foregroundColor(.black)
+                        .padding(8)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 5)
+                                .stroke(Color.black, lineWidth: 1)
+                        )
+                })
+                    .padding([.top], 20)
+                Button(action: {
+                    if GameViewController.currentGameScene?.actionManager != nil {
+                        GameViewController.currentGameScene?.actionManager.handleInput(id: MyViewSettings.actionShield, isPaused: isPaused)
+                    }
+                }, label: {
+                    Text("Shield Barrel")
+                        .foregroundColor(.black)
+                        .padding(8)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 5)
+                                .stroke(Color.black, lineWidth: 1)
+                        )
+                })
+                    .padding([.top], 20)
+                Button(action: {
+                    isPaused.toggle()
+                    if isPaused {
+                        GameScene.gameState = .pause
+                    }
+                    else {
+                        GameScene.gameState = .play
+                    }
+                }, label: {
+                    Text("Pause")
+                        .foregroundColor(.black)
+                        .padding(8)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 5)
+                                .stroke(Color.black, lineWidth: 1)
+                        )
+                })
+                    .padding([.top], 20)
+            }
+        }
     }
 }
 
 struct MainMenyView: View {
     
     @Binding var startGame: Bool
+    @State var index = 1
+    @State var offset: CGFloat = 200.0
     
     var body: some View {
         
         
-        ZStack {
-            Image("mainmenu_no_props")
+        ScrollView([.horizontal]){
+            
+            ZStack{
+                
+                TabView(selection: $index){
+                    TabOne().tag(0)
+                    TabTwo().tag(1)
+                    TabThree(startGame: $startGame).tag(2)
+                }
+                .transition(.slide)
+                //Calle was here
+                .animation(.easeInOut)
+                .tabViewStyle(.page(indexDisplayMode: .never))
+                .indexViewStyle(.page(backgroundDisplayMode: .always))
+                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height + 50)
+                
+                
+                VStack{
+                    Spacer()
+                    
+                    HStack(spacing: 0){
+                        
+                        Text("Options")
+                            .foregroundColor(self.index == 0 ? .white : .white.opacity(0.7))
+                            .fontWeight(.bold)
+                            .padding(.vertical, 10)
+                            .padding(.horizontal, 20)
+                            .background(.black.opacity(self.index == 0 ? 1 : 0))
+                            .clipShape(Capsule())
+                            .onTapGesture {
+                                self.index = 0
+                            }
+                        
+                        Text("Home")
+                            .foregroundColor(self.index == 1 ? .white : .white.opacity(0.7))
+                            .fontWeight(.bold)
+                            .padding(.vertical, 10)
+                            .padding(.horizontal, 20)
+                            .background(.black.opacity(self.index == 1 ? 1 : 0))
+                            .clipShape(Capsule())
+                            .onTapGesture {
+                                self.index = 1
+                            }
+                        
+                        Text("Play")
+                            .foregroundColor(self.index == 2 ? .white : .white.opacity(0.7))
+                            .fontWeight(.bold)
+                            .padding(.vertical, 10)
+                            .padding(.horizontal, 20)
+                            .background(.black.opacity(self.index == 2 ? 1 : 0))
+                            .clipShape(Capsule())
+                            .onTapGesture {
+                                self.index = 2
+                            }
+                    }
+                    .background(Color.black.opacity(0.1))
+                    .clipShape(Capsule())
+                    .padding(.horizontal)
+                    .padding(.bottom, 40)
+                    
+                }
+            }
+            
+            
+            
+        }.edgesIgnoringSafeArea(.all)
+            .scaledToFill()
+        
+    }
+}
+
+struct TabOne: View{
+    
+    
+    var body: some View{
+        
+        ZStack{
+            
+            Image("page_view_one")
                 .resizable()
                 .scaledToFill()
             
-            Button(action: {
-                startGame = true
-            }, label: {
-                Text("Start Game")
-                    .foregroundColor(.black)
-                    .padding(8)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 5)
-                            .stroke(Color.black, lineWidth: 1)
-                    )
-            })
+            Text("First Tab")
+            
+            
+            
         }
-        .ignoresSafeArea()
+    }
+}
+
+struct TabTwo: View{
+    
+    
+    var body: some View{
         
+        ZStack{
+            HStack{
+                Button {
+                    
+                } label: {
+                    Text("Options")
+                    
+                }
+            }
+            
+            Image("page_view_two")
+                .resizable()
+                .scaledToFill()
+            
+            Text("Second Tab")
+            
+        }
+    }
+}
+
+struct TabThree: View{
+    
+    @State private var showMapMenu: Bool = false
+    
+    @Binding var startGame: Bool
+    
+    
+    var body: some View{
+        
+        ZStack{
+            
+            Image("page_view_three")
+                .resizable()
+                .scaledToFill()
+            
+            Text("Third Tab")
+            
+            GeometryReader { _ in
+                
+                HStack {
+                    
+                    Spacer()
+                    
+                    SideViewMapMenu(startGame: $startGame)
+                        .offset ( x: showMapMenu ? 0 : UIScreen.main.bounds.width)
+                }
+                
+            }
+            
+            HStack {
+                Button {
+                    self.showMapMenu.toggle()
+                } label: {
+                    Image(systemName: "plus")
+                        .font(.title)
+                        .foregroundColor(.black)
+                        .padding(30)
+                    
+                }
+                
+                Spacer()
+            }
+        }
     }
 }
 
@@ -125,16 +363,16 @@ struct ViewController: UIViewControllerRepresentable {
     }
     
     func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
-       
+        
     }
 }
 
 class SwiftUIHostingController: UIHostingController<MyView> {
-
+    
     required init?(coder: NSCoder) {
         super.init(coder: coder, rootView: MyView());
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         dataReaderWriter.loaduserData()

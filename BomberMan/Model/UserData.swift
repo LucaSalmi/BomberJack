@@ -13,6 +13,9 @@ enum UserData{
     static var standardBombsAmmo: Int = 0
     static var trapBombsAmmo: Int = 0
     
+    // Temporary start variable
+    static var startGame: Bool = false
+    
     //Playable Charachter
     static var lives: Int = 3
     static var currentLevel: Int = 0
