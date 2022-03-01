@@ -9,6 +9,10 @@ import SwiftUI
 
 struct OptionsMenu: View {
     
+    @State var music = true
+    @State var sfx = true
+    @State var cameraShake = true
+    
     var body: some View {
         
         let myStats: [String: Int] = [
@@ -22,40 +26,58 @@ struct OptionsMenu: View {
             
             Image("page_view_one")
                 .resizable()
-                .scaledToFit()
-                
+                .scaledToFill()
             
-            HStack(alignment: .top){
-                
-                Text("Options")
-                    .font(.largeTitle)
-                    .padding()
-                //First Column
-                VStack{
-                    
-                    
-                    List(){
-                        
-                        ForEach(myStats.sorted(by: >), id: \.key) { key, value in
-                            
-                            
-                            Text(key + ": " + String(value)).listRowBackground(Color.clear)
+            VStack{
                                 
-                        }
+                HStack{
+                    
+                    Spacer()
+                    
+                    Text("Options")
+                        .font(.largeTitle)
+                        .padding()
+                    
+                    Spacer()
+                                    
+                    Text("Stats")
+                        .font(.largeTitle)
+                        .padding()
+                    
+                    Spacer()
+                }
+                .padding()
+                
+                HStack{
+                    
+                    //First Column
+                    VStack(alignment: .center){
+  
+                        Toggle("Music", isOn: $music)
+                        Toggle("Sound Effects", isOn: $sfx)
+                        Toggle("Camera Shake", isOn: $cameraShake)
+                        
                     }
-                    .background(.black.opacity(0.4))
-                    .onAppear(perform: {
-                        UITableView.appearance().backgroundColor = .clear
-                    })
-                    
-                    
-                    
-                    
+                    .padding()
                     
                     //Second Column
-                    VStack{
-                        
+                    VStack(alignment: .center){
+                                            
+                        List(){
+                                       
+                            ForEach(myStats.sorted(by: >), id: \.key) { key, value in
+                                HStack{
+                                    Spacer()
+                                    Text(key + ": " + String(value)).listRowBackground(Color.clear)
+                                    Spacer()
+                                }
+                            }
+                        }
+                        .onAppear(perform: {
+                            UITableView.appearance().backgroundColor = .clear
+                        })
                     }
+                    .padding()
                 }
             }
         }
@@ -66,8 +88,11 @@ struct OptionsMenu: View {
     
     struct OptionsMenu_Previews: PreviewProvider {
         static var previews: some View {
-            OptionsMenu()
-                .previewInterfaceOrientation(.landscapeLeft)
+            Group {
+                OptionsMenu()
+                    .previewInterfaceOrientation(.landscapeLeft)
+                
+            }
         }
     }
 }

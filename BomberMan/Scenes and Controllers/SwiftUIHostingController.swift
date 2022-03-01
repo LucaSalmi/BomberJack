@@ -22,6 +22,7 @@ struct MyView: View {
     @State var startGame: Bool = false
     @State var isPaused: Bool = false
     
+    
     var body: some View {
         
         if startGame {
@@ -194,23 +195,25 @@ struct MainMenyView: View {
     
     var body: some View {
         
-        ZStack {
-            Image("mainmenu_no_props")
-                .resizable()
-                .scaledToFill()
-            Button(action: {
-                startGame = true
-            }, label: {
-                Text("Start Game")
-                    .foregroundColor(.black)
-                    .padding(8)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 5)
-                            .stroke(Color.black, lineWidth: 1)
-                    )
-            })
-        }
-        .ignoresSafeArea()
+        OptionsMenu()
+        
+//        ZStack {
+//            Image("mainmenu_no_props")
+//                .resizable()
+//                .scaledToFill()
+//            Button(action: {
+//                startGame = true
+//            }, label: {
+//                Text("Start Game")
+//                    .foregroundColor(.black)
+//                    .padding(8)
+//                    .overlay(
+//                        RoundedRectangle(cornerRadius: 5)
+//                            .stroke(Color.black, lineWidth: 1)
+//                    )
+//            })
+//        }
+//        .ignoresSafeArea()
         
     }
     
@@ -238,5 +241,6 @@ class SwiftUIHostingController: UIHostingController<MyView> {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        dataReaderWriter.loaduserData()
     }
 }
