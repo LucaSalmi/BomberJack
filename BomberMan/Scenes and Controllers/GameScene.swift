@@ -27,11 +27,18 @@ class GameScene: SKScene {
     var breakablesNode: SKNode? = SKNode()
     var obstaclesNode: SKNode? = SKNode()
     var lootNode: SKNode? = SKNode()
+    var eventsNode: SKNode? = SKNode()
+    var currentDialogue: Dialogue? = nil
     var player: Player? = nil
+    var victoryCondition: VictoryConditions?
     
     var movementManager: MovementManager? = nil
     
     var isGameOver = false
+    var isDoorOpen = false
+    
+    let endLevelDelay = 60
+    var endLevelCounter = 0
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -52,6 +59,7 @@ class GameScene: SKScene {
         movementManager = MovementManager(self)
         actionManager = ActionManagager(self, camera!)
         setupLootObjects()
+        setupEvents()
         
     }
     
@@ -59,8 +67,24 @@ class GameScene: SKScene {
     
     override func sceneDidLoad() {
         
-        dataReaderWriter.loaduserData()
+        setupVictoryCond()
+        
+    }
     
+    func setupVictoryCond(){
+        
+        switch GameScene.viewController!.currentLevel{
+            
+        case 1:
+            victoryCondition = VictoryConditions.openDoor
+            
+        case 2:
+            victoryCondition = VictoryConditions.killAll
+            
+        default:
+            victoryCondition = VictoryConditions.killAll
+            
+        }
     }
     
     func setupCamera(){
@@ -69,23 +93,23 @@ class GameScene: SKScene {
         
         leftUI = (camera.childNode(withName: "leftUI") as! SKSpriteNode)
         rightUI = (camera.childNode(withName: "rightUI") as! SKSpriteNode)
-      
+        
         let zeroDistance = SKRange(constantValue: 0)
         let playerConstraint = SKConstraint.distance(zeroDistance, to: player!.playerTexture)
-
+        
         let xInset = min((view?.bounds.width)!/2*camera.xScale, backgroundMap!.frame.width/2)
         let yInset = min((view?.bounds.height)!/2*camera.yScale, backgroundMap!.frame.height/2)
-
+        
         let constrainRect = backgroundMap!.frame.insetBy(dx: xInset, dy: yInset)
-
+        
         let xRange = SKRange(lowerLimit: constrainRect.minX, upperLimit: constrainRect.maxX)
         let yRange = SKRange(lowerLimit: constrainRect.minY, upperLimit: constrainRect.maxY)
-
+        
         let edgeConstraint = SKConstraint.positionX(xRange, y: yRange)
         edgeConstraint.referenceNode = backgroundMap
-
+        
         camera.constraints = [playerConstraint, edgeConstraint]
-
+        
         camera.removeFromParent()
         self.camera = camera
         addChild(camera)
@@ -102,7 +126,7 @@ class GameScene: SKScene {
         guard let breakablesTileMap = childNode(withName: "breakables")as? SKTileMapNode else {
             return
         }
-
+        
         for row in 0..<breakablesTileMap.numberOfRows{
             for column in 0..<breakablesTileMap.numberOfColumns{
                 
@@ -134,11 +158,51 @@ class GameScene: SKScene {
         breakablesTileMap.removeFromParent()
     }
     
+    func setupEvents() {
+        
+        guard let eventsTileMap = childNode(withName: "events")as? SKTileMapNode else {
+            return
+        }
+        
+        let eventKey: String = "eventType"
+        
+        for row in 0..<eventsTileMap.numberOfRows{
+            for column in 0..<eventsTileMap.numberOfColumns{
+                
+                guard let tile = tile(in: eventsTileMap, at: (column, row)) else {continue}
+                guard tile.userData?.object(forKey: eventKey) != nil else {continue}
+                
+                var event: Event
+                
+                if tile.userData?.value(forKey: eventKey) != nil{
+                    let value = tile.userData?.value(forKey: eventKey) as! String
+                    switch value{
+                        
+                    case "needBombsHint":
+                        event = NeedBombsEvent()
+                        
+                    default:
+                        event = NeedBombsEvent()
+                        
+                    }
+                    
+                    event.position = eventsTileMap.centerOfTile(atColumn: column, row: row)
+                    eventsNode!.addChild(event)
+                }
+            }
+        }
+        
+        eventsNode!.name = "event"
+        addChild(eventsNode!)
+        eventsTileMap.removeFromParent()
+        
+    }
+    
     func setupLootObjects(){
         guard let lootObjectTileMap = childNode(withName: "lootObjects")as? SKTileMapNode else {
             return
         }
-
+        
         for row in 0..<lootObjectTileMap.numberOfRows{
             for column in 0..<lootObjectTileMap.numberOfColumns{
                 
@@ -183,7 +247,7 @@ class GameScene: SKScene {
         guard let obstaclesTileMap = childNode(withName: "obstacles")as? SKTileMapNode else {
             return
         }
-
+        
         for row in 0..<obstaclesTileMap.numberOfRows{
             for column in 0..<obstaclesTileMap.numberOfColumns{
                 
@@ -211,8 +275,6 @@ class GameScene: SKScene {
                         obstacle?.alpha = 0
                         
                     }
-                    
-                    
                 }
                 
                 if obstacle != nil{
@@ -258,12 +320,12 @@ class GameScene: SKScene {
                     
                     if value == "rushEnemy" {
                         enemy = RushEnemy()
-
+                        
                     }
                     else {
                         enemy = TestEnemy()
                     }
-                
+                    
                     enemy.position = enemiesMap.centerOfTile(atColumn: column, row: row)
                     Enemy.enemies.append(enemy)
                     enemyNode!.addChild(enemy)
@@ -293,7 +355,7 @@ class GameScene: SKScene {
                 }
                 
                 if tile.userData?.object(forKey: "player") != nil {
-                
+                    
                     player = Player()
                     player!.position = playerMap.centerOfTile(atColumn: column, row: row)
                     player!.playerTexture.position.x = player!.position.x
@@ -310,17 +372,16 @@ class GameScene: SKScene {
     }
     
     func tile(in tileMap: SKTileMapNode, at coordinates: tileCoordinates) -> SKTileDefinition?{
-      return tileMap.tileDefinition(atColumn: coordinates.column, row: coordinates.row)
+        return tileMap.tileDefinition(atColumn: coordinates.column, row: coordinates.row)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-
         
         movementManager!.updateJoystickPosition(touches, with: event)
         
         actionManager.checkInput(touches, with: event)
         movementManager!.checkInput(touches, with: event)
-
+        
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -339,50 +400,70 @@ class GameScene: SKScene {
         }
         
         if isGameOver{
+            
+            if endLevelCounter < endLevelDelay{
+                endLevelCounter += 1
+                return
+                
+            }else{
+                
+                endLevelCounter = 0
+            }
+            
             //Deallocate all nodes/children from the old scene
             self.removeAllChildren()
             self.removeAllActions()
-            stopScene()
+            self.stopScene()
             
             //Present a new instance of the scene
             let restartScene = "GameScene" + String(GameScene.viewController!.currentLevel)
             GameScene.viewController!.presentScene(restartScene)
             return
-        }
-        
-        //Game logic for updating movement goes in movementManagers update()-method
-        movementManager?.update()
-        
-        //Call update()-method on all enemies
-        for enemy in Enemy.enemies {
-            if !enemy.isAlive {
-                for i in 0..<Enemy.enemies.count {
-                    if i >= Enemy.enemies.count { continue }
-                    let checkEnemy = Enemy.enemies[i]
-                    if checkEnemy == enemy {
-                        Enemy.enemies.remove(at: i)
+            
+        }else{
+            
+            checkVictory()
+            
+            //Game logic for updating movement goes in movementManagers update()-method
+            movementManager?.update()
+            
+            //Call update()-method on all enemies
+            for enemy in Enemy.enemies {
+                if !enemy.isAlive {
+                    for i in 0..<Enemy.enemies.count {
+                        if i >= Enemy.enemies.count { continue }
+                        let checkEnemy = Enemy.enemies[i]
+                        if checkEnemy == enemy {
+                            Enemy.enemies.remove(at: i)
+                        }
                     }
+                    enemy.deathParticle()
+                    enemy.removeFromParent()
+                    
+                    return
                 }
-                enemy.deathParticle()
-                enemy.removeFromParent()
-                
-                return
+                enemy.update()
             }
-            enemy.update()
+            
+            for explosion in ExplosionSettings.explosionsArray{
+                explosion.update()
+            }
+            
+            for bomb in Bomb.bombs {
+                bomb.update()
+            }
+            
+            player!.update()
+            
         }
         
-        for explosion in ExplosionSettings.explosionsArray{
-            explosion.update()
-        }
-        
-        for bomb in Bomb.bombs {
-            bomb.update()
+        if let currentDialogue = currentDialogue {
+            currentDialogue.update()
         }
         
         player!.update()
         
         dataReaderWriter.saveUserData()
-        
         
     }
     
@@ -395,13 +476,61 @@ class GameScene: SKScene {
         obstaclesNode = nil
         player = nil
         movementManager = nil
+        actionManager = nil
         bombsNode = nil
         Bomb.bombs.removeAll()
         Enemy.enemies.removeAll()
         ExplosionSettings.explosionsArray.removeAll()
     }
-    func addloot() {
+    
+    //checks the current level´s victory condition and, if met, brings the player to the next level.
+    func checkVictory(){
         
+        if victoryCondition != nil{
+            
+            switch victoryCondition{
+                
+            case .killAll:
+                
+                if Enemy.enemies.count <= 0{
+                    
+                    GameScene.viewController?.currentLevel += 1
+                    isGameOver = true
+                    print("you killed everyone, you monster.....")
+                }
+                
+            case .openDoor:
+                
+                guard let obstaclesArray = obstaclesNode?.children else {return}
+                for obj in obstaclesArray{
+                    
+                    if obj.name == "Door Object"{
+                        return
+                    }
+                }
+                
+                if PlayerSettings.haveBombs{
+                    isDoorOpen = true
+                }
+                
+                
+                if isDoorOpen{
+                    
+                    GameScene.viewController?.currentLevel += 1
+                    isGameOver = true
+                    print("keys found and door opened, good job...")
+                    
+                }
+                
+            default:
+                print("something went VERY wrong...")
+            }
+            
+        }else {
+            print("no victory condition assigned")
+        }
     }
+    
+    
 }
 

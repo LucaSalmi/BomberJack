@@ -12,6 +12,11 @@
 		3312D2A227C612E3004C0EEF /* BloodSplatter.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3312D2A127C612E3004C0EEF /* BloodSplatter.sks */; };
 		3312D2A427C61539004C0EEF /* blood_splatter.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3312D2A327C61539004C0EEF /* blood_splatter.wav */; };
 		33201EDD27BD352F003B4EB4 /* ObstacleObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33201EDC27BD352F003B4EB4 /* ObstacleObject.swift */; };
+		33250F4027CE073F0019AAB1 /* GameUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33250F3F27CE073F0019AAB1 /* GameUIView.swift */; };
+		334F89CD27CCCD6A007A1857 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334F89CC27CCCD6A007A1857 /* Event.swift */; };
+		334F89D227CCD8E9007A1857 /* NeedBombsEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334F89D127CCD8E9007A1857 /* NeedBombsEvent.swift */; };
+		334F89D527CCDAE3007A1857 /* Dialogue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334F89D427CCDAE3007A1857 /* Dialogue.swift */; };
+		334F89D727CCDBDA007A1857 /* NeedBombsDialogue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334F89D627CCDBDA007A1857 /* NeedBombsDialogue.swift */; };
 		3354DF2227BF841E0019D640 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3354DF2127BF841E0019D640 /* SoundManager.swift */; };
 		3354DF2427BF847F0019D640 /* explosion1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3354DF2327BF847F0019D640 /* explosion1.wav */; };
 		3354DF2A27BFDAE60019D640 /* RushEnemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3354DF2927BFDAE60019D640 /* RushEnemy.swift */; };
@@ -39,6 +44,7 @@
 		C815F7A227B400490084DE7A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C815F7A027B400490084DE7A /* LaunchScreen.storyboard */; };
 		C869390D27BA66E100EEF877 /* TileSet Placeholder.sks in Resources */ = {isa = PBXBuildFile; fileRef = C869390C27BA66E100EEF877 /* TileSet Placeholder.sks */; };
 		C89C6F1A27BC12B700C8AC0F /* BreakableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = C89C6F1927BC12B700C8AC0F /* BreakableObject.swift */; };
+		C8A7490327CD0C2F00AD68E8 /* OptionsMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A7490227CD0C2F00AD68E8 /* OptionsMenu.swift */; };
 		C8B747FF27BF992F00D76B32 /* Animatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B747FE27BF992F00D76B32 /* Animatable.swift */; };
 		C8B7480127BF9A9A00D76B32 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B7480027BF9A9A00D76B32 /* Extensions.swift */; };
 		C8C7DC2F27BFD9990083656A /* PhysicsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C7DC2E27BFD9990083656A /* PhysicsExtension.swift */; };
@@ -63,6 +69,11 @@
 		3312D2A127C612E3004C0EEF /* BloodSplatter.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BloodSplatter.sks; sourceTree = "<group>"; };
 		3312D2A327C61539004C0EEF /* blood_splatter.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = blood_splatter.wav; sourceTree = "<group>"; };
 		33201EDC27BD352F003B4EB4 /* ObstacleObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObstacleObject.swift; sourceTree = "<group>"; };
+		33250F3F27CE073F0019AAB1 /* GameUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameUIView.swift; sourceTree = "<group>"; };
+		334F89CC27CCCD6A007A1857 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		334F89D127CCD8E9007A1857 /* NeedBombsEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NeedBombsEvent.swift; sourceTree = "<group>"; };
+		334F89D427CCDAE3007A1857 /* Dialogue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dialogue.swift; sourceTree = "<group>"; };
+		334F89D627CCDBDA007A1857 /* NeedBombsDialogue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeedBombsDialogue.swift; sourceTree = "<group>"; };
 		3354DF2127BF841E0019D640 /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
 		3354DF2327BF847F0019D640 /* explosion1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = explosion1.wav; sourceTree = "<group>"; };
 		3354DF2927BFDAE60019D640 /* RushEnemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RushEnemy.swift; sourceTree = "<group>"; };
@@ -91,6 +102,7 @@
 		C815F7A127B400490084DE7A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C869390C27BA66E100EEF877 /* TileSet Placeholder.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "TileSet Placeholder.sks"; sourceTree = "<group>"; };
 		C89C6F1927BC12B700C8AC0F /* BreakableObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreakableObject.swift; sourceTree = "<group>"; };
+		C8A7490227CD0C2F00AD68E8 /* OptionsMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsMenu.swift; sourceTree = "<group>"; };
 		C8B747FE27BF992F00D76B32 /* Animatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animatable.swift; sourceTree = "<group>"; };
 		C8B7480027BF9A9A00D76B32 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		C8C7DC2E27BFD9990083656A /* PhysicsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsExtension.swift; sourceTree = "<group>"; };
@@ -120,6 +132,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		334F89CE27CCCF0E007A1857 /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				334F89CC27CCCD6A007A1857 /* Event.swift */,
+				334F89D127CCD8E9007A1857 /* NeedBombsEvent.swift */,
+			);
+			path = Events;
+			sourceTree = "<group>";
+		};
+		334F89D327CCDACD007A1857 /* Dialogue */ = {
+			isa = PBXGroup;
+			children = (
+				334F89D427CCDAE3007A1857 /* Dialogue.swift */,
+				334F89D627CCDBDA007A1857 /* NeedBombsDialogue.swift */,
+			);
+			path = Dialogue;
+			sourceTree = "<group>";
+		};
 		C815F78527B400480084DE7A = {
 			isa = PBXGroup;
 			children = (
@@ -154,6 +184,7 @@
 			children = (
 				330D6EFC27C67E2F00444648 /* SwiftUIHostingController.swift */,
 				C815F79927B400490084DE7A /* GameViewController.swift */,
+				33250F3F27CE073F0019AAB1 /* GameUIView.swift */,
 				33BFC5C727BBA567008DBA03 /* StartMenuScene.sks */,
 				33BFC5C927BBA5A9008DBA03 /* StartMenuScene.swift */,
 				33FEE19D27BE96DF0036BC22 /* UIScene.sks */,
@@ -161,6 +192,7 @@
 				33D36EFF27BD0137002DDB49 /* GameScene2.sks */,
 				D5FFD73427C4FAB20032912D /* GameScene1.sks */,
 				C815F79727B400490084DE7A /* GameScene.swift */,
+				C8A7490227CD0C2F00AD68E8 /* OptionsMenu.swift */,
 			);
 			path = "Scenes and Controllers";
 			sourceTree = "<group>";
@@ -168,20 +200,12 @@
 		C8C7DC3327BFF76D0083656A /* Game Objects */ = {
 			isa = PBXGroup;
 			children = (
-				C89C6F1927BC12B700C8AC0F /* BreakableObject.swift */,
-				C8C7DC3027BFDB470083656A /* Explosion.swift */,
-				33201EDC27BD352F003B4EB4 /* ObstacleObject.swift */,
+				C8E0653427C8BCAB00DC7226 /* Enemy */,
+				C8E0653327C8BCA500DC7226 /* Bomb */,
+				C8E0653227C8BC7B00DC7226 /* Static Objects */,
+				334F89CE27CCCF0E007A1857 /* Events */,
+				334F89D327CCDACD007A1857 /* Dialogue */,
 				C801D2E727BBAF2F008B1CD5 /* Player.swift */,
-				33B882A427BBEF3500BB897E /* Enemy.swift */,
-				33B882A627BBF2FB00BB897E /* TestEnemy.swift */,
-				3354DF2927BFDAE60019D640 /* RushEnemy.swift */,
-				E56CE0B127BCEF0C00962834 /* Bomb.swift */,
-				C8E502CB27C4E59A00706C71 /* StandardBomb.swift */,
-				C8E502CD27C4E5C000706C71 /* TrapBomb.swift */,
-				D5FFD73627C52BEC0032912D /* LootObject.swift */,
-				D5FFD73827C536840032912D /* Key.swift */,
-				D5FFD73A27C536970032912D /* BombPile.swift */,
-				E5F0CAC727C784850000B9F4 /* Door.swift */,
 			);
 			path = "Game Objects";
 			sourceTree = "<group>";
@@ -189,22 +213,13 @@
 		C8C7DC3427BFF7AD0083656A /* Sound and Graphics */ = {
 			isa = PBXGroup;
 			children = (
+				C8E0653127C8BC4600DC7226 /* Particle Effects */,
+				C8E0653027C8BC1E00DC7226 /* Music Tracks */,
 				3354DF2127BF841E0019D640 /* SoundManager.swift */,
 				C815F79B27B400490084DE7A /* Main.storyboard */,
 				C815F7A027B400490084DE7A /* LaunchScreen.storyboard */,
 				C815F79E27B400490084DE7A /* Assets.xcassets */,
 				C869390C27BA66E100EEF877 /* TileSet Placeholder.sks */,
-				3354DF2327BF847F0019D640 /* explosion1.wav */,
-				E52D5F8427C7A6CB00BBB4BE /* doorsound.wav */,
-				33CC323127C5297400856D82 /* barrel_shield.wav */,
-				33CC323527C5386F00856D82 /* rush_impact.wav */,
-				3312D2A327C61539004C0EEF /* blood_splatter.wav */,
-				33CC322927C516FE00856D82 /* BarrelSmoke.sks */,
-				33CC323327C5343600856D82 /* RushStun.sks */,
-				3312D29F27C60A28004C0EEF /* EnemyDeath.sks */,
-				3312D2A127C612E3004C0EEF /* BloodSplatter.sks */,
-				33E8104B27C8318B001D52EE /* main_menu_bgm.mp3 */,
-				33E8104D27C8355F001D52EE /* in_game_bgm.mp3 */,
 			);
 			path = "Sound and Graphics";
 			sourceTree = "<group>";
@@ -221,6 +236,65 @@
 				C8E502D327C525C100706C71 /* UserData.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		C8E0653027C8BC1E00DC7226 /* Music Tracks */ = {
+			isa = PBXGroup;
+			children = (
+				3354DF2327BF847F0019D640 /* explosion1.wav */,
+				E52D5F8427C7A6CB00BBB4BE /* doorsound.wav */,
+				33CC323127C5297400856D82 /* barrel_shield.wav */,
+				33CC323527C5386F00856D82 /* rush_impact.wav */,
+				3312D2A327C61539004C0EEF /* blood_splatter.wav */,
+				33E8104B27C8318B001D52EE /* main_menu_bgm.mp3 */,
+				33E8104D27C8355F001D52EE /* in_game_bgm.mp3 */,
+			);
+			path = "Music Tracks";
+			sourceTree = "<group>";
+		};
+		C8E0653127C8BC4600DC7226 /* Particle Effects */ = {
+			isa = PBXGroup;
+			children = (
+				33CC322927C516FE00856D82 /* BarrelSmoke.sks */,
+				33CC323327C5343600856D82 /* RushStun.sks */,
+				3312D29F27C60A28004C0EEF /* EnemyDeath.sks */,
+				3312D2A127C612E3004C0EEF /* BloodSplatter.sks */,
+			);
+			path = "Particle Effects";
+			sourceTree = "<group>";
+		};
+		C8E0653227C8BC7B00DC7226 /* Static Objects */ = {
+			isa = PBXGroup;
+			children = (
+				C89C6F1927BC12B700C8AC0F /* BreakableObject.swift */,
+				33201EDC27BD352F003B4EB4 /* ObstacleObject.swift */,
+				D5FFD73627C52BEC0032912D /* LootObject.swift */,
+				D5FFD73827C536840032912D /* Key.swift */,
+				D5FFD73A27C536970032912D /* BombPile.swift */,
+				E5F0CAC727C784850000B9F4 /* Door.swift */,
+			);
+			path = "Static Objects";
+			sourceTree = "<group>";
+		};
+		C8E0653327C8BCA500DC7226 /* Bomb */ = {
+			isa = PBXGroup;
+			children = (
+				C8C7DC3027BFDB470083656A /* Explosion.swift */,
+				E56CE0B127BCEF0C00962834 /* Bomb.swift */,
+				C8E502CB27C4E59A00706C71 /* StandardBomb.swift */,
+				C8E502CD27C4E5C000706C71 /* TrapBomb.swift */,
+			);
+			path = Bomb;
+			sourceTree = "<group>";
+		};
+		C8E0653427C8BCAB00DC7226 /* Enemy */ = {
+			isa = PBXGroup;
+			children = (
+				33B882A427BBEF3500BB897E /* Enemy.swift */,
+				33B882A627BBF2FB00BB897E /* TestEnemy.swift */,
+				3354DF2927BFDAE60019D640 /* RushEnemy.swift */,
+			);
+			path = Enemy;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -315,11 +389,15 @@
 				D5FFD73B27C536970032912D /* BombPile.swift in Sources */,
 				33BFC5CA27BBA5A9008DBA03 /* StartMenuScene.swift in Sources */,
 				D5FFD73927C536840032912D /* Key.swift in Sources */,
+				334F89D527CCDAE3007A1857 /* Dialogue.swift in Sources */,
 				C815F79827B400490084DE7A /* GameScene.swift in Sources */,
 				33B882A327BBC41A00BB897E /* MovementManager.swift in Sources */,
+				33250F4027CE073F0019AAB1 /* GameUIView.swift in Sources */,
 				C8C7DC2F27BFD9990083656A /* PhysicsExtension.swift in Sources */,
 				C8B747FF27BF992F00D76B32 /* Animatable.swift in Sources */,
+				334F89D227CCD8E9007A1857 /* NeedBombsEvent.swift in Sources */,
 				33201EDD27BD352F003B4EB4 /* ObstacleObject.swift in Sources */,
+				334F89D727CCDBDA007A1857 /* NeedBombsDialogue.swift in Sources */,
 				3354DF2227BF841E0019D640 /* SoundManager.swift in Sources */,
 				C815F79A27B400490084DE7A /* GameViewController.swift in Sources */,
 				33B882A727BBF2FB00BB897E /* TestEnemy.swift in Sources */,
@@ -330,6 +408,7 @@
 				C801D2EA27BBB031008B1CD5 /* Types.swift in Sources */,
 				C8B7480127BF9A9A00D76B32 /* Extensions.swift in Sources */,
 				C8C7DC3127BFDB470083656A /* Explosion.swift in Sources */,
+				334F89CD27CCCD6A007A1857 /* Event.swift in Sources */,
 				E56CE0B227BCEF0C00962834 /* Bomb.swift in Sources */,
 				C801D2E827BBAF2F008B1CD5 /* Player.swift in Sources */,
 				C815F79227B400480084DE7A /* AppDelegate.swift in Sources */,
@@ -338,6 +417,7 @@
 				330D6EFD27C67E2F00444648 /* SwiftUIHostingController.swift in Sources */,
 				3354DF2A27BFDAE60019D640 /* RushEnemy.swift in Sources */,
 				C8E502CE27C4E5C000706C71 /* TrapBomb.swift in Sources */,
+				C8A7490327CD0C2F00AD68E8 /* OptionsMenu.swift in Sources */,
 				E56CE0B427BD1F8D00962834 /* ActionManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

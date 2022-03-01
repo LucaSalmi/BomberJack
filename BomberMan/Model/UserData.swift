@@ -23,7 +23,7 @@ enum UserData{
     static var bombsDropped: Int = 0
     static var numberOfDeaths: Int = 0
     static var barrelUsed: Int = 0
-
+    
 }
 
 struct DefaultKeys{
@@ -43,10 +43,7 @@ class dataReaderWriter{
         defaultData.set(UserData.bombsDropped, forKey: DefaultKeys.bombsDroppedKey)
         defaultData.set(UserData.numberOfDeaths, forKey: DefaultKeys.numbOfDeathsKey)
         defaultData.set(UserData.barrelUsed, forKey: DefaultKeys.barrelUsedKey)
-        print("data enemies: \(UserData.enemiesKilled)")
-        print("data bombs: \(UserData.bombsDropped)")
-        print("data deaths: \(UserData.numberOfDeaths)")
-        print("data barrel: \(UserData.barrelUsed)")
+       
     }
     
     static func loaduserData(){
@@ -56,10 +53,34 @@ class dataReaderWriter{
         UserData.bombsDropped = defaultData.integer(forKey: DefaultKeys.bombsDroppedKey)
         UserData.numberOfDeaths = defaultData.integer(forKey: DefaultKeys.numbOfDeathsKey)
         UserData.barrelUsed = defaultData.integer(forKey: DefaultKeys.barrelUsedKey)
-        print("data enemies: \(UserData.enemiesKilled)")
-        print("data bombs: \(UserData.bombsDropped)")
-        print("data deaths: \(UserData.numberOfDeaths)")
-        print("data barrel: \(UserData.barrelUsed)")
+
+    }
+    
+}
+
+class Options: ObservableObject{
+    
+    @Published var isMusicOn = true
+    @Published var areSFXOn = true
+    @Published var isScreenShakeOn = true
+    
+    static let options = Options()
+    
+    init(){}
+    
+    func getValues(id: String) -> Bool{
+        
+        switch id{
+            
+        case "isMusicOn":
+            return isMusicOn
+        case "areSFXOn":
+            return areSFXOn
+        case "isScreenShakeOn":
+            return isScreenShakeOn
+        default:
+            return false
+        }
     }
     
 }

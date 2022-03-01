@@ -29,6 +29,7 @@ class Enemy: SKSpriteNode {
     
     //trap Boolean
     var isTrapped = false
+    var trapPosition: CGPoint?
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("use init()")
@@ -103,27 +104,22 @@ class Enemy: SKSpriteNode {
             
             let trap = other as! TrapBomb
             trap.isTrapActive = true
-            other?.physicsBody = nil
-            self.position = other!.position
+            trap.physicsBody = nil
+            trapPosition = trap.position
+            isTrapped = true
             
-            for i in 0..<Enemy.enemies.count {
-                if i >= Enemy.enemies.count {
-                    return
-                }
-                let enemy = Enemy.enemies[i]
-                if enemy == self {
-                    if !isTrapped {
-                        bloodParticle()
-                    }
-                    isTrapped = true
-                }
-            }
         }
         
     }
  
     func update() {
-        //Override this in enemy subclasses
+        
+        if trapPosition != nil {
+            position = trapPosition!
+            bloodParticle()
+            trapPosition = nil
+        }
+        
     }
     
 }

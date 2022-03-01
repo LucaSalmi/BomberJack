@@ -11,6 +11,11 @@ enum Direction: Int{
     case forward = 0, backward, left, right
 }
 
+enum VictoryConditions: Int{
+    
+    case openDoor = 0, killAll
+}
+
 typealias tileCoordinates = (column: Int, row: Int)
 
 struct PhysicsCategory{
@@ -28,6 +33,7 @@ struct PhysicsCategory{
     static let TrapBomb: UInt32 = 0b100000000
     static let Loot: UInt32 = 0b1000000000
     static let Door: UInt32 = 0b10000000000
+    static let Event: UInt32 = 0b100000000000
     
 }
 

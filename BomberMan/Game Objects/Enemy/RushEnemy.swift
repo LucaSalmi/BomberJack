@@ -111,11 +111,11 @@ class RushEnemy: TestEnemy {
     
     override func collision(with other: SKNode?) {
         
-        if !isCharging {
+        if !isCharging || other is TrapBomb {
             super.collision(with: other)
         }
         
-        if !isStunned && isCharging {
+        if !isStunned && isCharging && !(other is TrapBomb) {
             isStunned = true
         }
         
@@ -123,6 +123,12 @@ class RushEnemy: TestEnemy {
     }
     
     override func update() {
+        
+        if trapPosition != nil {
+            isCharging = false
+            super.update()
+            return
+        }
         
         if isTrapped {
             return

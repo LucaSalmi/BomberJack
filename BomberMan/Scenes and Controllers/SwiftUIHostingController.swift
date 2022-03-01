@@ -22,6 +22,7 @@ struct MyView: View {
     @State var startGame: Bool = false
     @State var isPaused: Bool = false
     
+    
     var body: some View {
         
         if startGame {
@@ -85,119 +86,18 @@ struct GameView: View {
     }
 }
 
-struct GameUIView: View {
-    
-    @Binding var startGame: Bool
-    @Binding var isPaused: Bool
-    
-    var body: some View {
-        
-        HStack {
-            Spacer()
-            VStack {
-                Button(action: {
-                    startGame = false
-                }, label: {
-                    Text("Main Menu")
-                        .foregroundColor(.black)
-                        .padding(8)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 5)
-                                .stroke(Color.black, lineWidth: 1)
-                        )
-                })
-                    .padding([.top], 20)
-                Button(action: {
-                    if GameViewController.currentGameScene?.actionManager != nil {
-                        GameViewController.currentGameScene?.actionManager.handleInput(id: MyViewSettings.actionNextLevel, isPaused: isPaused)
-                    }
-                }, label: {
-                    Text("Next Level")
-                        .foregroundColor(.black)
-                        .padding(8)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 5)
-                                .stroke(Color.black, lineWidth: 1)
-                        )
-                })
-                    .padding([.top], 20)
-                Button(action: {
-                    if GameViewController.currentGameScene?.actionManager != nil {
-                        GameViewController.currentGameScene?.actionManager.handleInput(id: MyViewSettings.actionDefaultBomb, isPaused: isPaused)
-                    }
-                }, label: {
-                    Text("Default Bomb")
-                        .foregroundColor(.black)
-                        .padding(8)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 5)
-                                .stroke(Color.black, lineWidth: 1)
-                        )
-                })
-                    .padding([.top], 20)
-                Button(action: {
-                    if GameViewController.currentGameScene?.actionManager != nil {
-                        GameViewController.currentGameScene?.actionManager.handleInput(id: MyViewSettings.actionTrap, isPaused: isPaused)
-                    }
-                }, label: {
-                    Text("Trap")
-                        .foregroundColor(.black)
-                        .padding(8)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 5)
-                                .stroke(Color.black, lineWidth: 1)
-                        )
-                })
-                    .padding([.top], 20)
-                Button(action: {
-                    if GameViewController.currentGameScene?.actionManager != nil {
-                        GameViewController.currentGameScene?.actionManager.handleInput(id: MyViewSettings.actionShield, isPaused: isPaused)
-                    }
-                }, label: {
-                    Text("Shield Barrel")
-                        .foregroundColor(.black)
-                        .padding(8)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 5)
-                                .stroke(Color.black, lineWidth: 1)
-                        )
-                })
-                    .padding([.top], 20)
-                Button(action: {
-                    isPaused.toggle()
-                    if isPaused {
-                        GameScene.gameState = .pause
-                    }
-                    else {
-                        GameScene.gameState = .play
-                    }
-                }, label: {
-                    Text("Pause")
-                        .foregroundColor(.black)
-                        .padding(8)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 5)
-                                .stroke(Color.black, lineWidth: 1)
-                        )
-                })
-                    .padding([.top], 20)
-            }
-        }
-        
-    }
-    
-}
-
 struct MainMenyView: View {
     
     @Binding var startGame: Bool
     
     var body: some View {
         
+        
         ZStack {
             Image("mainmenu_no_props")
                 .resizable()
                 .scaledToFill()
+            
             Button(action: {
                 startGame = true
             }, label: {
@@ -213,7 +113,6 @@ struct MainMenyView: View {
         .ignoresSafeArea()
         
     }
-    
 }
 
 struct ViewController: UIViewControllerRepresentable {
@@ -238,5 +137,6 @@ class SwiftUIHostingController: UIHostingController<MyView> {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        dataReaderWriter.loaduserData()
     }
 }

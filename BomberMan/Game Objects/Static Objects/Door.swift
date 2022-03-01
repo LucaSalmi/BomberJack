@@ -31,9 +31,7 @@ class Door: SKSpriteNode{
         physicsBody?.contactTestBitMask = PhysicsCategory.Player
         physicsBody?.collisionBitMask = PhysicsCategory.Player
         physicsBody?.isDynamic = false
-        
-        print("DOOR CREATED HELLO")
-    
+            
     }
     
     func collision(with other: SKNode?) {
@@ -44,7 +42,7 @@ class Door: SKSpriteNode{
             SoundManager.playSFX("doorsound")
         }
         
-       print("hihi")
+       
         
         
     }
