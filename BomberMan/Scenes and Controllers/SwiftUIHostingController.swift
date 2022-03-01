@@ -195,25 +195,24 @@ struct MainMenyView: View {
     
     var body: some View {
         
-        OptionsMenu()
         
-//        ZStack {
-//            Image("mainmenu_no_props")
-//                .resizable()
-//                .scaledToFill()
-//            Button(action: {
-//                startGame = true
-//            }, label: {
-//                Text("Start Game")
-//                    .foregroundColor(.black)
-//                    .padding(8)
-//                    .overlay(
-//                        RoundedRectangle(cornerRadius: 5)
-//                            .stroke(Color.black, lineWidth: 1)
-//                    )
-//            })
-//        }
-//        .ignoresSafeArea()
+        ZStack {
+            Image("mainmenu_no_props")
+                .resizable()
+                .scaledToFill()
+            Button(action: {
+                startGame = true
+            }, label: {
+                Text("Start Game")
+                    .foregroundColor(.black)
+                    .padding(8)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 5)
+                            .stroke(Color.black, lineWidth: 1)
+                    )
+            })
+        }
+        .ignoresSafeArea()
         
     }
     

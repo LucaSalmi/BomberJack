@@ -30,7 +30,7 @@ struct OptionsMenu: View {
             
             VStack{
                 
-                Spacer(minLength: 20)
+                Spacer(minLength: 50)
                                 
                 HStack{
                     
@@ -38,16 +38,15 @@ struct OptionsMenu: View {
                     
                     Text("Options")
                         .font(.largeTitle)
-                        .padding()
                     
                     Spacer()
                                     
-                    Text("Stats")
+                    Text("Statistics")
                         .font(.largeTitle)
-                        .padding()
                     
                     Spacer()
                 }
+                .scaledToFit()
                 .padding()
                 
                 HStack{
@@ -89,6 +88,7 @@ struct OptionsMenu: View {
                     }
                     Spacer()
                 }
+                
             }
         }
         .ignoresSafeArea()
