@@ -55,6 +55,8 @@ class PhysicsUtils {
         
         guard let scene = GameViewController.currentGameScene else {return}
         
+        if Options.options.isScreenShakeOn == false{return}
+        
         let amplitudeX: CGFloat = 10;
         let amplitudeY: CGFloat = 6;
         let numberOfShakes = duration / 0.04;

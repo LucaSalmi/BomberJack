@@ -97,6 +97,7 @@ struct MainMenyView: View {
             Image("mainmenu_no_props")
                 .resizable()
                 .scaledToFill()
+            
             Button(action: {
                 startGame = true
             }, label: {
@@ -112,7 +113,6 @@ struct MainMenyView: View {
         .ignoresSafeArea()
         
     }
-    
 }
 
 struct ViewController: UIViewControllerRepresentable {

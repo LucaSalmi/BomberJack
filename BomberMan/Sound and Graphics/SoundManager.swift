@@ -27,7 +27,7 @@ class SoundManager {
     
     static func playSFX(_ sfx: String) {
         
-        if GameViewController.currentGameScene == nil {
+        if GameViewController.currentGameScene == nil || Options.options.areSFXOn == false{
             return
         }
         
@@ -39,6 +39,10 @@ class SoundManager {
     static func playBGM(bgmString: String) {
         
         musicPlayer?.stop()
+        
+        if Options.options.isMusicOn == false{
+            return
+        }
         
         let bgm = Bundle.main.path(forResource: bgmString, ofType: "mp3")
         

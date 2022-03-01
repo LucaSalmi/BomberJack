@@ -9,9 +9,7 @@ import SwiftUI
 
 struct OptionsMenu: View {
     
-    @State var music = true
-    @State var sfx = true
-    @State var cameraShake = true
+    @ObservedObject var options = Options.options
     
     var body: some View {
         
@@ -55,11 +53,11 @@ struct OptionsMenu: View {
                     VStack(){
                         
   
-                        Toggle("Music", isOn: $music)
+                        Toggle("Music", isOn: self.$options.isMusicOn)
                             .padding()
-                        Toggle("Sound Effects", isOn: $sfx)
+                        Toggle("Sound Effects", isOn: self.$options.areSFXOn)
                             .padding()
-                        Toggle("Camera Shake", isOn: $cameraShake)
+                        Toggle("Camera Shake", isOn: self.$options.isScreenShakeOn)
                             .padding()
                         
                         Spacer()
@@ -88,7 +86,6 @@ struct OptionsMenu: View {
                     }
                     Spacer()
                 }
-                
             }
         }
         .ignoresSafeArea()

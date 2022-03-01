@@ -24,7 +24,6 @@ enum UserData{
     static var numberOfDeaths: Int = 0
     static var barrelUsed: Int = 0
     
-
 }
 
 struct DefaultKeys{
@@ -55,6 +54,33 @@ class dataReaderWriter{
         UserData.numberOfDeaths = defaultData.integer(forKey: DefaultKeys.numbOfDeathsKey)
         UserData.barrelUsed = defaultData.integer(forKey: DefaultKeys.barrelUsedKey)
 
+    }
+    
+}
+
+class Options: ObservableObject{
+    
+    @Published var isMusicOn = true
+    @Published var areSFXOn = true
+    @Published var isScreenShakeOn = true
+    
+    static let options = Options()
+    
+    init(){}
+    
+    func getValues(id: String) -> Bool{
+        
+        switch id{
+            
+        case "isMusicOn":
+            return isMusicOn
+        case "areSFXOn":
+            return areSFXOn
+        case "isScreenShakeOn":
+            return isScreenShakeOn
+        default:
+            return false
+        }
     }
     
 }
