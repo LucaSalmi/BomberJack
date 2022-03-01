@@ -30,7 +30,7 @@ struct OptionsMenu: View {
             
             VStack{
                 
-                Spacer()
+                Spacer(minLength: 20)
                                 
                 HStack{
                     
@@ -74,6 +74,7 @@ struct OptionsMenu: View {
                         List(){
                                        
                             ForEach(myStats.sorted(by: >), id: \.key) { key, value in
+                                
                                 HStack{
                                     Spacer()
                                     Text(key + ": " + String(value)).listRowBackground(Color.clear)
@@ -84,8 +85,8 @@ struct OptionsMenu: View {
                         .onAppear(perform: {
                             UITableView.appearance().backgroundColor = .clear
                         })
+                        .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 50))
                     }
-                    .padding()
                     Spacer()
                 }
             }
