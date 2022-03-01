@@ -29,6 +29,8 @@ struct OptionsMenu: View {
                 .scaledToFill()
             
             VStack{
+                
+                Spacer()
                                 
                 HStack{
                     
@@ -51,17 +53,23 @@ struct OptionsMenu: View {
                 HStack{
                     
                     //First Column
-                    VStack(alignment: .center){
+                    VStack(){
+                        
   
                         Toggle("Music", isOn: $music)
+                            .padding()
                         Toggle("Sound Effects", isOn: $sfx)
+                            .padding()
                         Toggle("Camera Shake", isOn: $cameraShake)
+                            .padding()
+                        
+                        Spacer()
                         
                     }
                     .padding()
                     
                     //Second Column
-                    VStack(alignment: .center){
+                    VStack(){
                                             
                         List(){
                                        
@@ -78,6 +86,7 @@ struct OptionsMenu: View {
                         })
                     }
                     .padding()
+                    Spacer()
                 }
             }
         }
