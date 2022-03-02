@@ -30,6 +30,8 @@ struct MyView: View {
                 if isPaused {
                     PauseMenu(startGame: $startGame, isPaused: $isPaused)
                         .zIndex(2)
+                        //.transition(.slide)
+                        //.animation(.easeInOut)
                 }
                 GameView(startGame: $startGame, isPaused: $isPaused)
                     .zIndex(1)
@@ -97,7 +99,7 @@ struct MainMenyView: View {
                 }
                 .transition(.slide)
                 //Calle was here
-                .animation(.easeInOut)
+                .animation(.easeIn)
                 .tabViewStyle(.page(indexDisplayMode: .never))
                 .indexViewStyle(.page(backgroundDisplayMode: .always))
                 .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height + 50)

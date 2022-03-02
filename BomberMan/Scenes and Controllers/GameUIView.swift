@@ -24,8 +24,13 @@ struct GameUIView: View {
                 VStack {
                     
                     Button(action: {
-                        isPaused = true
                         GameScene.gameState = .pause
+                        withAnimation(.easeOut(duration: 0.3)){
+                            
+                            isPaused = true
+                    }
+                        
+                        
                     }, label: {
                         
                         HStack {
@@ -83,7 +88,8 @@ struct GameUIView: View {
                 }
                 
             }
-        }//HStack
+        }
+        .padding(.horizontal, 40)
         
     }
     
@@ -113,7 +119,7 @@ struct PauseMenu: View {
             
             RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
                 .foregroundColor(.black)
-                .frame(width: 500, height: 200)
+                .frame(width: 300, height: 200)
                 .overlay(
                     RoundedRectangle(cornerRadius: cornerRadius)
                         .stroke(Color.white, lineWidth: borderWidth)
@@ -123,7 +129,10 @@ struct PauseMenu: View {
                 
                 Button(action: {
                     if GameViewController.currentGameScene?.actionManager != nil {
-                        isPaused = false
+                        withAnimation(.easeOut(duration: 0.3)){
+                            isPaused = false
+                        }
+                        
                         GameScene.gameState = .play
                     }
                 }, label: {
