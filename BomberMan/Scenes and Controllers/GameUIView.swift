@@ -216,6 +216,7 @@ struct PauseMenu: View {
                 Button(action: {
                     startGame = false
                     isPaused = false
+                    GameScene.gameState = .play
                 }, label: {
 //                    Text("Main Menu")
 //                        .foregroundColor(.white)
