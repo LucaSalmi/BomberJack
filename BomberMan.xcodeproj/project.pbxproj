@@ -59,7 +59,6 @@
 		D5FFD73927C536840032912D /* Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FFD73827C536840032912D /* Key.swift */; };
 		D5FFD73B27C536970032912D /* BombPile.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FFD73A27C536970032912D /* BombPile.swift */; };
 		E52D5F8527C7A6CB00BBB4BE /* doorsound.wav in Resources */ = {isa = PBXBuildFile; fileRef = E52D5F8427C7A6CB00BBB4BE /* doorsound.wav */; };
-		E55958DC27CD0F0400B81578 /* MenuOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55958DB27CD0F0400B81578 /* MenuOptions.swift */; };
 		E56CE0B227BCEF0C00962834 /* Bomb.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56CE0B127BCEF0C00962834 /* Bomb.swift */; };
 		E56CE0B427BD1F8D00962834 /* ActionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56CE0B327BD1F8D00962834 /* ActionManager.swift */; };
 		E56CE0B627BD3FFF00962834 /* GameScene3.sks in Resources */ = {isa = PBXBuildFile; fileRef = E56CE0B527BD3FFF00962834 /* GameScene3.sks */; };
@@ -120,7 +119,6 @@
 		D5FFD73827C536840032912D /* Key.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Key.swift; sourceTree = "<group>"; };
 		D5FFD73A27C536970032912D /* BombPile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BombPile.swift; sourceTree = "<group>"; };
 		E52D5F8427C7A6CB00BBB4BE /* doorsound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = doorsound.wav; sourceTree = "<group>"; };
-		E55958DB27CD0F0400B81578 /* MenuOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuOptions.swift; sourceTree = "<group>"; };
 		E56CE0B127BCEF0C00962834 /* Bomb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bomb.swift; sourceTree = "<group>"; };
 		E56CE0B327BD1F8D00962834 /* ActionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionManager.swift; sourceTree = "<group>"; };
 		E56CE0B527BD3FFF00962834 /* GameScene3.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene3.sks; sourceTree = "<group>"; };
@@ -189,7 +187,6 @@
 			isa = PBXGroup;
 			children = (
 				330D6EFC27C67E2F00444648 /* SwiftUIHostingController.swift */,
-				E55958DB27CD0F0400B81578 /* MenuOptions.swift */,
 				C815F79927B400490084DE7A /* GameViewController.swift */,
 				33250F3F27CE073F0019AAB1 /* GameUIView.swift */,
 				33BFC5C727BBA567008DBA03 /* StartMenuScene.sks */,
@@ -400,7 +397,6 @@
 				D5A24D2627CE144000AD62F1 /* SideViewMapMenu.swift in Sources */,
 				D5FFD73927C536840032912D /* Key.swift in Sources */,
 				334F89D527CCDAE3007A1857 /* Dialogue.swift in Sources */,
-				E55958DC27CD0F0400B81578 /* MenuOptions.swift in Sources */,
 				C815F79827B400490084DE7A /* GameScene.swift in Sources */,
 				33B882A327BBC41A00BB897E /* MovementManager.swift in Sources */,
 				33250F4027CE073F0019AAB1 /* GameUIView.swift in Sources */,
@@ -580,7 +576,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 4S7BBW6D46;
+				DEVELOPMENT_TEAM = 3P2G45WJH3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -595,7 +591,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.CalleHoglund.BomberMan;
+				PRODUCT_BUNDLE_IDENTIFIER = com.LucaSalmi.BomberMan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -612,7 +608,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 4S7BBW6D46;
+				DEVELOPMENT_TEAM = 3P2G45WJH3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -627,7 +623,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.CalleHoglund.BomberMan;
+				PRODUCT_BUNDLE_IDENTIFIER = com.LucaSalmi.BomberMan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
