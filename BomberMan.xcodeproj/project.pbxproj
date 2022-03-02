@@ -183,22 +183,38 @@
 			path = BomberMan;
 			sourceTree = "<group>";
 		};
-		C8C7DC3227BFF69B0083656A /* Scenes and Controllers */ = {
+		C84B3AF727CF9F1E00224426 /* SwiftUI Interfaces */ = {
 			isa = PBXGroup;
 			children = (
 				330D6EFC27C67E2F00444648 /* SwiftUIHostingController.swift */,
 				C815F79927B400490084DE7A /* GameViewController.swift */,
-				33250F3F27CE073F0019AAB1 /* GameUIView.swift */,
-				33BFC5C727BBA567008DBA03 /* StartMenuScene.sks */,
 				33BFC5C927BBA5A9008DBA03 /* StartMenuScene.swift */,
+				33250F3F27CE073F0019AAB1 /* GameUIView.swift */,
+				C8CEDCDB27CF6ACD008C5A64 /* TabMenu.swift */,
+				C8A7490227CD0C2F00AD68E8 /* OptionsMenu.swift */,
+				D5A24D2527CE144000AD62F1 /* SideViewMapMenu.swift */,
+			);
+			path = "SwiftUI Interfaces";
+			sourceTree = "<group>";
+		};
+		C84B3AF827CF9F4400224426 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				33BFC5C727BBA567008DBA03 /* StartMenuScene.sks */,
 				33FEE19D27BE96DF0036BC22 /* UIScene.sks */,
 				E56CE0B527BD3FFF00962834 /* GameScene3.sks */,
 				33D36EFF27BD0137002DDB49 /* GameScene2.sks */,
 				D5FFD73427C4FAB20032912D /* GameScene1.sks */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		C8C7DC3227BFF69B0083656A /* Scenes and Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				C84B3AF827CF9F4400224426 /* Scenes */,
+				C84B3AF727CF9F1E00224426 /* SwiftUI Interfaces */,
 				C815F79727B400490084DE7A /* GameScene.swift */,
-				C8CEDCDB27CF6ACD008C5A64 /* TabMenu.swift */,
-				C8A7490227CD0C2F00AD68E8 /* OptionsMenu.swift */,
-				D5A24D2527CE144000AD62F1 /* SideViewMapMenu.swift */,
 			);
 			path = "Scenes and Controllers";
 			sourceTree = "<group>";
