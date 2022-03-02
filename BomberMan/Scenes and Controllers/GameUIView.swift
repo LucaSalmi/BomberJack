@@ -110,7 +110,6 @@ struct PauseMenu: View {
             RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
                 .foregroundColor(.white)
                 .frame(width: frameWidth, height: frameHeight)
-                //.border(Color.white, width: 2)
             
             RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
                 .foregroundColor(.black)
