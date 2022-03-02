@@ -218,6 +218,16 @@ class Player: SKSpriteNode{
         self.bloodParticle()
     }
     
+    func resetInventory(){
+        
+        PlayerSettings.amountOfKeys = 0
+        if GameScene.viewController?.currentLevel == 1{
+            PlayerSettings.haveBombs = false
+        }
+        
+        
+    }
+    
     func update() {
         
         if currentTexture != nil{

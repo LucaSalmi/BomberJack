@@ -217,6 +217,7 @@ struct PauseMenu: View {
                     startGame = false
                     isPaused = false
                     GameScene.gameState = .play
+                    GameViewController.currentGameScene?.player?.resetInventory()
                 }, label: {
 //                    Text("Main Menu")
 //                        .foregroundColor(.white)
