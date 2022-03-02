@@ -63,7 +63,7 @@ class dataReaderWriter{
 
 class Options: ObservableObject{
         
-    @Published var isMusicOn = true
+    @Published var isMusicOn = false
     @Published var areSFXOn = true
     @Published var isScreenShakeOn = true
     
