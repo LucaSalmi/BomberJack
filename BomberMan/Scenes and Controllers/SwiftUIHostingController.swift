@@ -85,6 +85,7 @@ struct GameView: View {
 struct MainMenyView: View {
     
     @Binding var startGame: Bool
+    @State var showMapMenu: Bool = false
     @State var index = 1
     @State var offset: CGFloat = 200.0
     
@@ -97,8 +98,20 @@ struct MainMenyView: View {
                 
                 TabView(selection: $index){
                     OptionsMenu().tag(0)
+                        .onAppear {
+                            showMapMenu = false
+                        }
+                
                     TabTwo().tag(1)
-                    TabThree(startGame: $startGame).tag(2)
+                        .onAppear {
+                            showMapMenu = false
+                        }
+                
+                    TabThree(showMapMenu: $showMapMenu, startGame: $startGame).tag(2)
+                        .onAppear {
+                            showMapMenu = true
+                        }
+                
                 }
                 .transition(.slide)
                 //Calle was here
@@ -189,7 +202,7 @@ struct TabTwo: View{
 
 struct TabThree: View{
     
-    @State private var showMapMenu: Bool = false
+    @Binding var showMapMenu: Bool
     
     @Binding var startGame: Bool
     
@@ -198,11 +211,10 @@ struct TabThree: View{
         
         ZStack{
             
+            
             Image("page_view_three")
                 .resizable()
                 .scaledToFill()
-            
-            Text("Third Tab")
             
             GeometryReader { _ in
                 
@@ -212,23 +224,25 @@ struct TabThree: View{
                     
                     SideViewMapMenu(startGame: $startGame)
                         .offset ( x: showMapMenu ? 0 : UIScreen.main.bounds.width)
+                        .animation(.easeInOut(duration: 1), value: showMapMenu)
+                        
                 }
                 
             }
             
-            HStack {
-                Button {
-                    self.showMapMenu.toggle()
-                } label: {
-                    Image(systemName: "plus")
-                        .font(.title)
-                        .foregroundColor(.black)
-                        .padding(30)
-                    
-                }
-                
-                Spacer()
-            }
+//            HStack {
+//                Button {
+//                    self.showMapMenu.toggle()
+//                } label: {
+//                    Image(systemName: "plus")
+//                        .font(.title)
+//                        .foregroundColor(.black)
+//                        .padding(30)
+//
+//                }
+//
+//                Spacer()
+//            }
         }
     }
 }
