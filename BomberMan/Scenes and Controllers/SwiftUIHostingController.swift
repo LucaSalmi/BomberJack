@@ -28,8 +28,10 @@ struct MyView: View {
         if startGame {
             ZStack {
                 if isPaused {
-                    PauseMenu()
+                    PauseMenu(startGame: $startGame, isPaused: $isPaused)
                         .zIndex(2)
+                        //.transition(.slide)
+                        //.animation(.easeInOut)
                 }
                 GameView(startGame: $startGame, isPaused: $isPaused)
                     .zIndex(1)
@@ -54,13 +56,6 @@ struct MusicView: View {
     }
 }
 
-struct PauseMenu: View {
-    var body: some View {
-        Rectangle()
-            .frame(width: 300, height: 200)
-    }
-}
-
 struct GameView: View {
     
     @Binding var startGame: Bool
@@ -78,8 +73,10 @@ struct GameView: View {
             ViewController()
                 .ignoresSafeArea()
                 .zIndex(1)
+                .blur(radius: (self.isPaused == true ? 3 : 0))
         }
     }
+    
 }
 
 struct MainMenyView: View {
@@ -115,7 +112,7 @@ struct MainMenyView: View {
                 }
                 .transition(.slide)
                 //Calle was here
-                .animation(.easeInOut)
+                .animation(.easeIn)
                 .tabViewStyle(.page(indexDisplayMode: .never))
                 .indexViewStyle(.page(backgroundDisplayMode: .always))
                 .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height + 50)

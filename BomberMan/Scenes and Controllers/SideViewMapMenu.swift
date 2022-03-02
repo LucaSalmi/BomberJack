@@ -22,8 +22,13 @@ struct SideViewMapMenu: View {
                     Button {
                     
                         print("level 1 pressed")
-                        startGame = true
                         
+                        
+                        withAnimation(.easeIn(duration: 0.3)){
+                            startGame = true
+                            
+                        }
+                    
                     } label: {
                         Text("level 1")
                     }
