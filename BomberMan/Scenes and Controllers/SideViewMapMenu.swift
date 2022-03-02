@@ -18,7 +18,7 @@ struct SideViewMapMenu: View {
             
             VStack{
                 
-                HStack(spacing: 100){
+                HStack(spacing: 150){
                     Button {
                     
                         print("level 1 pressed")
@@ -54,12 +54,12 @@ struct SideViewMapMenu: View {
                     .font(.largeTitle)
 
                 }
-                .padding(30)
-                .padding(.horizontal, 30)
+                .padding(40)
+                .padding(.horizontal, 60)
                 
                 
                 
-                HStack(spacing: 100){
+                HStack(spacing: 150){
                     Button {
                     
                         print("level 2 pressed")
@@ -94,8 +94,8 @@ struct SideViewMapMenu: View {
                     .font(.largeTitle)
 
                 }
-                .padding(30)
-                .padding(.horizontal, 30)
+                .padding(40)
+                .padding(.horizontal, 60)
             }
             Spacer()
             
