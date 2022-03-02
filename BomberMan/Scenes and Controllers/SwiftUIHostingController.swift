@@ -71,8 +71,10 @@ struct GameView: View {
             ViewController()
                 .ignoresSafeArea()
                 .zIndex(1)
+                .blur(radius: (self.isPaused == true ? 3 : 0))
         }
     }
+    
 }
 
 struct MainMenyView: View {
