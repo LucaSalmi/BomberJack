@@ -28,7 +28,7 @@ struct MyView: View {
         if startGame {
             ZStack {
                 if isPaused {
-                    PauseMenu()
+                    PauseMenu(startGame: $startGame, isPaused: $isPaused)
                         .zIndex(2)
                 }
                 GameView(startGame: $startGame, isPaused: $isPaused)
@@ -51,13 +51,6 @@ struct MusicView: View {
     
     var body: some View {
         Text("")
-    }
-}
-
-struct PauseMenu: View {
-    var body: some View {
-        Rectangle()
-            .frame(width: 300, height: 200)
     }
 }
 
