@@ -19,6 +19,8 @@ struct SideViewMapMenu: View {
             VStack{
                 
                 HStack(spacing: 150){
+                    
+                    
                     Button {
                     
                         print("level 1 pressed")
@@ -35,6 +37,7 @@ struct SideViewMapMenu: View {
                     .foregroundColor(.white)
                     .font(Font.body.bold())
                     .font(.largeTitle)
+                    .padding(.leading, 100)
                     
                     Button {
                     
@@ -75,6 +78,7 @@ struct SideViewMapMenu: View {
                     .foregroundColor(.white)
                     .font(Font.body.bold())
                     .font(.largeTitle)
+                    .padding(.leading, 100)
                     
                     Button {
                     
@@ -107,7 +111,8 @@ struct SideViewMapMenu: View {
         }
         .scaledToFill()
         .foregroundColor(.white)
-        .background(.black).opacity(0.5)
+        .background(Image("MapRoll").resizable().scaledToFit())
+        
         .edgesIgnoringSafeArea(.trailing)
     }
 }
