@@ -25,10 +25,9 @@ struct OptionsMenu: View {
                 RoundedRectangle(cornerRadius: 40)
                     .padding(.top, 25)
                     .padding(.bottom, 100)
-                    .padding(.horizontal)
-                    .padding(.trailing, 20)
+                    .padding(.leading, 25)
+                    .padding(.trailing, 25)
                     .opacity(0.5)
-                    
             
             VStack{
                 CustomTopTabBar(tabIndex: $tabIndex)
@@ -40,11 +39,11 @@ struct OptionsMenu: View {
                 }
                 Spacer()
             }
-            .frame(width: UIScreen.main.bounds.width - 70, alignment: .center)
+            .frame(width: UIScreen.main.bounds.width - 30, alignment: .top)
             .padding(30)
             .foregroundColor(.white).opacity(1.0)
             }
-            .padding(20)
+            .padding()
         }
     }
 }
@@ -161,29 +160,33 @@ struct StatisticsTab: View{
         "Killed Enemies": UserData.enemiesKilled,
         "Bombs Dropped": UserData.bombsDropped,
         "Hidden in Barrel": UserData.barrelUsed,
-        "Number of Deaths": UserData.numberOfDeaths,
+        "Number of Deaths": UserData.numberOfDeaths
     ]
     
     var body: some View{
         
-        VStack(){
+        HStack(){
             
-            List(){
+            let columns: [GridItem] =
+            Array(repeating: .init(.flexible()), count: 2)
+
+            ScrollView{
                 
-                ForEach(myStats.sorted(by: >), id: \.key) { key, value in
+                LazyVGrid(columns: columns){
                     
-                    HStack{
-                        Spacer()
-                        Text(key + ": " + String(value)).listRowBackground(Color.clear)
-                            .foregroundColor(.black)
-                        Spacer()
+                    ForEach(myStats.sorted(by: >), id: \.key) { key, value in
+                        HStack{
+                            
+                            Text(key + ": " + String(value)).listRowBackground(Color.clear)
+                                .foregroundColor(.white)
+                                .font(.custom("Avenir", size: 30))
+                        }
                     }
                 }
+                .padding(EdgeInsets(top: 0, leading: 0, bottom: 70, trailing: 30))
+                
+                
             }
-            .onAppear(perform: {
-                UITableView.appearance().backgroundColor = .clear
-            })
-            .padding(EdgeInsets(top: 0, leading: 50, bottom: 0, trailing: 50))
         }
     }
 }
