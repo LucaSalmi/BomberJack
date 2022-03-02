@@ -31,7 +31,7 @@ class ObstacleObject: SKSpriteNode{
         physicsBody?.friction = 0
         physicsBody?.allowsRotation = false
         
-        
+        lightingBitMask = 1
     }
     
     func collision(with other: SKNode?) {

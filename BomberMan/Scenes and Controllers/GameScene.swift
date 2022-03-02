@@ -18,6 +18,8 @@ class GameScene: SKScene {
     var leftUI: SKSpriteNode? = nil
     var rightUI: SKSpriteNode? = nil
     
+    var lightNode: SKLightNode? = nil
+    
     var bombsNode: SKNode? = SKNode()
     var explosionsNode: SKNode? = SKNode()
     var actionManager: ActionManagager!
@@ -60,7 +62,7 @@ class GameScene: SKScene {
         actionManager = ActionManagager(self, camera!)
         setupLootObjects()
         setupEvents()
-        
+        setupLightning()
     }
     
     
@@ -69,6 +71,16 @@ class GameScene: SKScene {
         
         setupVictoryCond()
         
+    }
+    
+    func setupLightning() {
+        guard let node = childNode(withName: "lightNode") else { return }
+        if !(node is SKLightNode) {
+            return
+        }
+        lightNode = (node as! SKLightNode)
+        lightNode!.position = player!.position
+        lightNode!.falloff = 4
     }
     
     func setupVictoryCond(){
@@ -454,6 +466,10 @@ class GameScene: SKScene {
             }
             
             player!.update()
+            
+            if let lightNode = lightNode {
+                lightNode.position = player!.position
+            }
             
         }
         

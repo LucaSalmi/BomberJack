@@ -72,6 +72,7 @@ class Player: SKSpriteNode{
         
         createPlayerAnimations(character: "player_walk")
         
+        lightingBitMask = 1
     }
     
     func activateShield() {

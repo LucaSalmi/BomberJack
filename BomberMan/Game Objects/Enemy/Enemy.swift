@@ -46,6 +46,8 @@ class Enemy: SKSpriteNode {
         physicsBody?.allowsRotation = false
         
         zPosition = 50
+        
+        lightingBitMask = 1
     }
     
     func bloodParticle() {
