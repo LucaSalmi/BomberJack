@@ -55,6 +55,13 @@ struct OptionsMenu: View {
   
                         Toggle("Music", isOn: self.$options.isMusicOn)
                             .padding()
+                            .onReceive([self.$options.isMusicOn].publisher.first(), perform: { (value) in
+                                if options.isMusicOn{
+                                    SoundManager.playBGM(bgmString: SoundManager.mainMenuBGM)
+                                }else{
+                                    SoundManager.playBGM(bgmString: SoundManager.mainMenuBGM)
+                                }
+                            })
                         Toggle("Sound Effects", isOn: self.$options.areSFXOn)
                             .padding()
                         Toggle("Camera Shake", isOn: self.$options.isScreenShakeOn)

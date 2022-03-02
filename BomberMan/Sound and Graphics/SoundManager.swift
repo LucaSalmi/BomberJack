@@ -57,4 +57,14 @@ class SoundManager {
         musicPlayer!.numberOfLoops = -1
     }
     
+    
+    static func stopBGM(){
+        
+        if musicPlayer != nil && Options.options.isMusicOn == false{
+            
+            musicPlayer?.stop()
+            
+        }
+        
+    }
 }

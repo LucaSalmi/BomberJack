@@ -62,7 +62,7 @@ class dataReaderWriter{
 }
 
 class Options: ObservableObject{
-    
+        
     @Published var isMusicOn = true
     @Published var areSFXOn = true
     @Published var isScreenShakeOn = true
@@ -70,21 +70,6 @@ class Options: ObservableObject{
     static let options = Options()
     
     init(){}
-    
-    func getValues(id: String) -> Bool{
-        
-        switch id{
-            
-        case "isMusicOn":
-            return isMusicOn
-        case "areSFXOn":
-            return areSFXOn
-        case "isScreenShakeOn":
-            return isScreenShakeOn
-        default:
-            return false
-        }
-    }
     
 }
 
