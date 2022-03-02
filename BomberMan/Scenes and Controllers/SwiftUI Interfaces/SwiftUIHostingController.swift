@@ -178,20 +178,54 @@ struct TabTwo: View{
     var body: some View{
         
         ZStack{
-            HStack{
-                Button {
-                    
-                } label: {
-                    Text("Options")
-                    
-                }
-            }
             
             Image("page_view_two")
                 .resizable()
                 .scaledToFill()
+            VStack {
+                
+                HStack{
+                    
+                    Image("Game_Title")
+                        .resizable()
+                        .padding(.top, 60)
+                        .padding(.leading, 20)
+                        .scaledToFit()
+                    
+                    Spacer(minLength: 400)
+                }
+                
+                HStack {
+                    
+                    ZStack{
+                        
+                        Rectangle()
+                            .cornerRadius(20)
+                            .foregroundColor(.black).opacity(0.5)
+                            .frame(width: 200, height: 100)
+                        
+                        Text("Credits: Luca\nDaniel, Calle & Hampus")
+                            .foregroundColor(.white)
+                            .frame(width: 180, height: 80)
+                        
+                    }
+                    .padding(.leading, 100)
+                    .padding(.top, 30)
+                    
+                    Spacer()
+                    
+                    Image("sitting_Dawg")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 300, height: 200)
+                    
+                }
+                
+                Spacer()
+                
+            }
             
-            Text("Second Tab")
+            
             
         }
     }
