@@ -19,6 +19,7 @@ class GameScene: SKScene {
     var rightUI: SKSpriteNode? = nil
     
     var lightNode: SKLightNode? = nil
+    var darknessMaskNode: SKSpriteNode? = nil
     
     var bombsNode: SKNode? = SKNode()
     var explosionsNode: SKNode? = SKNode()
@@ -81,6 +82,10 @@ class GameScene: SKScene {
         lightNode = (node as! SKLightNode)
         lightNode!.position = player!.position
         lightNode!.falloff = 4
+        
+        guard let darknessNode = childNode(withName: "darknessMask") else { return }
+        darknessMaskNode = (darknessNode as! SKSpriteNode)
+        darknessMaskNode!.position = player!.position
     }
     
     func setupVictoryCond(){
@@ -472,6 +477,10 @@ class GameScene: SKScene {
             
             if let lightNode = lightNode {
                 lightNode.position = player!.position
+            }
+            
+            if let darknessMaskNode = darknessMaskNode {
+                darknessMaskNode.position = player!.position
             }
             
         }
