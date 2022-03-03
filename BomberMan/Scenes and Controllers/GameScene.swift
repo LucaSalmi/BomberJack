@@ -193,6 +193,9 @@ class GameScene: SKScene {
                     case "needBombsHint":
                         event = NeedBombsEvent()
                         
+                    case "needKeyHint":
+                        event = NeedKeyEvent()
+                        
                     default:
                         event = NeedBombsEvent()
                         

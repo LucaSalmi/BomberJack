@@ -28,7 +28,7 @@ class Dialogue: SKNode {
         super.init()
         setupShapeNode()
         setupLabelNode()
-        zPosition = 100
+        zPosition = 70
     }
     
     private func setupShapeNode() {
