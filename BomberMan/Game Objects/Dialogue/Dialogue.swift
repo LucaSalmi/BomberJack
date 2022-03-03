@@ -29,6 +29,7 @@ class Dialogue: SKNode {
         setupShapeNode()
         setupLabelNode()
         zPosition = 70
+        //
     }
     
     private func setupShapeNode() {
