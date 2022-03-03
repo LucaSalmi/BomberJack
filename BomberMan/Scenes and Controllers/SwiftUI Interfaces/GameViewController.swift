@@ -125,7 +125,7 @@ class GameViewController: UIViewController {
             
             if key.characters.first != nil {
                 GameViewController.currentInputKey = keyAscii!
-                print(GameViewController.currentInputKey)
+                //print(GameViewController.currentInputKey)
                 didHandleEvent = true
             }
             
@@ -141,7 +141,6 @@ class GameViewController: UIViewController {
         // Stop running when the user releases the left or right arrow key.
 
         GameViewController.currentInputKey = 0
-        print(String(GameViewController.currentInputKey))
         
         /*
         var didHandleEvent = true
