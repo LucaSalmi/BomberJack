@@ -10,45 +10,59 @@ import GameplayKit
 
 class Dialogue: SKNode {
     
-    let shapeNode: SKShapeNode
-    let labelNode: SKLabelNode
+    var shapeNode: SKShapeNode? = nil
+    var labelNode: SKLabelNode? = nil
     
     let dialogueText: String!
     let showingTime = 60 * 3
     var ticks: Int = 0
+    
+    let positionOffsetY: CGFloat = 150
+    let textPadding: CGFloat = 50
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("use init()")
     }
     
     init(dialogueText: String) {
-        self.shapeNode = SKShapeNode(rectOf: CGSize(width: 450, height: 150), cornerRadius: 10.0)
-        self.labelNode = SKLabelNode()
+        
         self.dialogueText = dialogueText
         super.init()
-        setupShapeNode()
+        
+        self.labelNode = SKLabelNode()
         setupLabelNode()
+        let width = labelNode!.frame.width + textPadding
+        let height = labelNode!.frame.height + textPadding
+        self.shapeNode = SKShapeNode(rectOf: CGSize(width: width, height: height), cornerRadius: 10.0)
+        setupShapeNode()
+        
+        
+        position.y += positionOffsetY
         zPosition = 70
-        //
     }
     
     private func setupShapeNode() {
-        shapeNode.fillColor = .black
-        shapeNode.alpha = 0.8
-        addChild(shapeNode)
+        shapeNode!.fillColor = .black
+        shapeNode!.alpha = 0.8
+        shapeNode!.zPosition = 51
+        addChild(shapeNode!)
     }
     
     private func setupLabelNode() {
-        labelNode.text = dialogueText
-        labelNode.fontSize = 26
-        labelNode.alpha = 1
-        addChild(labelNode)
+        labelNode!.text = dialogueText
+        labelNode!.fontColor = .white
+        labelNode!.fontName = "Chalkduster"
+        labelNode!.fontSize = 26
+        labelNode!.alpha = 1
+        labelNode!.zPosition = 52
+        addChild(labelNode!)
     }
     
     func update() {
         
         if let player = GameViewController.currentGameScene?.player {
             position = player.position
+            position.y += positionOffsetY
         }
         
         ticks += 1
@@ -60,3 +74,4 @@ class Dialogue: SKNode {
     }
     
 }
+
