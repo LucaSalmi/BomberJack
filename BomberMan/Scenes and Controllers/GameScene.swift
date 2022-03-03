@@ -281,14 +281,19 @@ class GameScene: SKScene {
                 if tile.userData?.value(forKey: "obstacle") != nil{
                     let value = tile.userData?.value(forKey: "obstacle") as! String
                     switch value{
+                    
                     case "wall":
                         let texture = SKTexture(imageNamed: "wall")
                         obstacle = ObstacleObject(texture: texture)
                         
-                    case "door":
-                        let texture = SKTexture(imageNamed: "bokeh")
-                        door = Door(texture: texture)
+                    case "doorHorizontal":
+                        let texture = SKTexture(imageNamed: "doorone")
+                        door = DoorHorizontal(texture: texture)
                         
+                    case "doorVertical":
+                        let texture = SKTexture(imageNamed: "doortwo")
+                        door = DoorVertical(texture: texture)
+                    
                     default:
                         let texture = SKTexture()
                         obstacle = ObstacleObject(texture: texture)
