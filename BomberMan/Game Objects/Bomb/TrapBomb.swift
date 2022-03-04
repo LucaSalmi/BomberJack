@@ -20,7 +20,7 @@ class TrapBomb: Bomb{
     
     init() {
         
-        let texture = SKTexture(imageNamed: "trap")
+        let texture = SKTexture(imageNamed: "trap_bomb_flat")
         super.init(texture, .white, (GameScene.tileSize)!)
         name = "Bomb Object"
         zPosition = 40
