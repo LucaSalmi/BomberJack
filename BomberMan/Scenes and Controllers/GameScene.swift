@@ -165,7 +165,6 @@ class GameScene: SKScene {
                 breakable.createPhysicsBody(tile: tile)
                 breakable.position = breakablesTileMap.centerOfTile(atColumn: column, row: row)
                 GameScene.updateZPosition(object: breakable)
-                print("DANNE BREAKABLE: \(breakable.zPosition)")
                 
                 breakablesNode!.addChild(breakable)
                 

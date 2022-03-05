@@ -125,8 +125,6 @@ class Player: SKSpriteNode{
         GameScene.updateZPosition(object: playerTexture)
         GameScene.updateZPosition(object: shieldTexture)
         zPosition = playerTexture.zPosition-1
-        print("DANNE: \(playerTexture.zPosition)")
-        
         
     }
     
