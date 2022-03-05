@@ -164,7 +164,8 @@ class GameScene: SKScene {
                 
                 breakable.createPhysicsBody(tile: tile)
                 breakable.position = breakablesTileMap.centerOfTile(atColumn: column, row: row)
-                breakable.zPosition = round(position.y/32) * -1
+                GameScene.updateZPosition(object: breakable)
+                print("DANNE BREAKABLE: \(breakable.zPosition)")
                 
                 breakablesNode!.addChild(breakable)
                 
@@ -253,6 +254,7 @@ class GameScene: SKScene {
                     }
                     
                     lootObject.position = lootObjectTileMap.centerOfTile(atColumn: column, row: row)
+                    GameScene.updateZPosition(object: lootObject)
                     lootNode!.addChild(lootObject)
                 }
             }
@@ -304,14 +306,16 @@ class GameScene: SKScene {
                 }
                 
                 if obstacle != nil{
-                    obstacle?.createPhysicsBody(tile: tile)
-                    obstacle?.position = obstaclesTileMap.centerOfTile(atColumn: column, row: row)
+                    obstacle!.createPhysicsBody(tile: tile)
+                    obstacle!.position = obstaclesTileMap.centerOfTile(atColumn: column, row: row)
+                    GameScene.updateZPosition(object: obstacle!)
                     obstaclesNode!.addChild(obstacle!)
                 }
                 
                 
                 if door != nil{
-                    door?.position = obstaclesTileMap.centerOfTile(atColumn: column, row: row)
+                    door!.position = obstaclesTileMap.centerOfTile(atColumn: column, row: row)
+                    GameScene.updateZPosition(object: door!)
                     obstaclesNode!.addChild(door!)
                 }
                 
@@ -565,6 +569,10 @@ class GameScene: SKScene {
         }
     }
     
+    static func updateZPosition(object: SKNode) {
+        guard let tileSize = tileSize else { return }
+        object.zPosition = round(object.position.y/tileSize.height) * -1
+    }
     
 }
 

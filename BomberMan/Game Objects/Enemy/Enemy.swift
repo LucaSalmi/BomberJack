@@ -116,12 +116,18 @@ class Enemy: SKSpriteNode {
  
     func update() {
         
+        updateZPosition()
+        
         if trapPosition != nil {
             position = trapPosition!
             bloodParticle()
             trapPosition = nil
         }
         
+    }
+    
+    func updateZPosition() {
+        GameScene.updateZPosition(object: self)
     }
     
 }
