@@ -122,6 +122,8 @@ class Player: SKSpriteNode{
         
         runAnim(playerDirection: direction)
         
+        playerTexture.zPosition = round(position.y/32) * -1
+        print("DANNE: \(playerTexture.zPosition)")
         
         
     }

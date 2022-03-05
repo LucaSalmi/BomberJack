@@ -17,7 +17,9 @@ class BreakableObject: SKSpriteNode{
     init(){
         
         let texture = SKTexture(imageNamed: "tree")
-        super.init(texture: texture, color: .white, size: texture.size())
+        var size = texture.size()
+        size.height = 32+16
+        super.init(texture: texture, color: .white, size: size)
         name = "Breakable Object"
         zPosition = 50
     }
