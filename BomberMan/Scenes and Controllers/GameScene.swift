@@ -165,20 +165,26 @@ class GameScene: SKScene {
                 
                 var breakable: BreakableObject
                 //eventualy different types of breakable obj???
-                if tile.userData?.value(forKey: "breakable") as! Bool == true{
+                if tile.userData?.value(forKey: "breakable") != nil{
                     
-                    breakable = BreakableObject()
+                    let textureName = tile.userData!.value(forKey: "breakable") as! String
+                    
+                    breakable = BreakableObject(textureName: textureName)
                     
                 }else{
                     
-                    breakable = BreakableObject()
+                    breakable = BreakableObject(textureName: "tree_tall")
                 }
                 
                 breakable.createPhysicsBody(tile: tile)
                 breakable.position = breakablesTileMap.centerOfTile(atColumn: column, row: row)
+                breakable.breakableTexture.position = breakable.position
                 GameScene.updateZPosition(object: breakable)
+                breakable.breakableTexture.zPosition = breakable.zPosition
+                breakable.breakableTexture.position.y += PlayerSettings.textureOffset
                 
                 breakablesNode!.addChild(breakable)
+                breakablesNode!.addChild(breakable.breakableTexture)
                 
             }
         }
