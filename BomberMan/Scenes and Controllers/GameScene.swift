@@ -173,7 +173,7 @@ class GameScene: SKScene {
                     
                 }else{
                     
-                    breakable = BreakableObject(textureName: "tree_tall")
+                    breakable = BreakableObject(textureName: "tree_medium_style_1")
                 }
                 
                 breakable.createPhysicsBody(tile: tile)

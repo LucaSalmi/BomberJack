@@ -28,6 +28,7 @@ class BreakableObject: SKSpriteNode{
         let objTexture = SKTexture(imageNamed: textureName)
         var size = GameScene.tileSize
         size?.height += BreakableSettings.sizeOffset
+        size?.width += 8
         breakableTexture = SKSpriteNode(texture: objTexture, color: .clear, size: size!)
         
         super.init(texture: nil, color: .clear, size: GameScene.tileSize!)
