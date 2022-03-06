@@ -69,6 +69,7 @@ extension GameScene: SKPhysicsContactDelegate{
                 trap.physicsBody = nil
                 player.isTrapped = true
                 player.changePlayerPosition(newPos: trap.position)
+                trap.texture = SKTexture(imageNamed: "trap_bomb_folded")
                 
             case PhysicsCategory.Loot:
                 

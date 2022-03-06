@@ -10,7 +10,7 @@ import SpriteKit
 
 enum BreakableSettings{
     
-    static let sizeOffset: CGFloat = 16
+    static let sizeOffset: CGFloat = 25
     
 }
 

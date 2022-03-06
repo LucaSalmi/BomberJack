@@ -88,7 +88,7 @@ struct GameUIView: View {
                                 GameViewController.currentGameScene?.actionManager.handleInput(id: MyViewSettings.actionTrap, isPaused: isPaused)
                             }
                         }, label: {
-                            Image("trap")
+                            Image("trap_bomb_flat")
                                 .resizable()
                                 .frame(width: 50, height: 50, alignment: .center)
                         })
@@ -99,7 +99,7 @@ struct GameUIView: View {
                                 GameViewController.currentGameScene?.actionManager.handleInput(id: MyViewSettings.actionDefaultBomb, isPaused: isPaused)
                             }
                         }, label: {
-                            Image("bomb1")
+                            Image("bomb")
                                 .resizable()
                                 .frame(width: 55, height: 50, alignment: .center)
                         })
