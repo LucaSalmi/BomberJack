@@ -90,7 +90,7 @@ class GameScene: SKScene {
         guard let darknessNode = childNode(withName: "darknessMask") else { return }
         darknessMaskNode = (darknessNode as! SKSpriteNode)
         darknessMaskNode!.position = player!.position
-
+        
     }
     
     func setupVictoryCond(){
@@ -293,19 +293,22 @@ class GameScene: SKScene {
             for column in 0..<obstaclesTileMap.numberOfColumns{
                 
                 guard let tile = tile(in: obstaclesTileMap, at: (column, row)) else {continue}
-                guard tile.userData?.object(forKey: "obstacle") != nil else {continue}
+                guard tile.userData?.object(forKey: "obstacle") != nil || tile.userData?.object(forKey: "door") != nil else {continue}
                 
                 var obstacle: ObstacleObject?
                 var door: Door?
                 
                 
                 if tile.userData?.value(forKey: "obstacle") != nil{
-                    let value = tile.userData?.value(forKey: "obstacle") as! String
-                    switch value{
+                    let textureName = tile.userData?.value(forKey: "obstacle") as! String
                     
-                    case "wall":
-                        let texture = SKTexture(imageNamed: "wall")
-                        obstacle = ObstacleObject(texture: texture)
+                    obstacle = ObstacleObject(textureName: textureName)
+                    
+                    
+                }else if tile.userData?.value(forKey: "door") != nil{
+                    let doorType = tile.userData?.value(forKey: "door") as! String
+                    
+                    switch doorType{
                         
                     case "doorHorizontal":
                         let texture = SKTexture(imageNamed: "doorone")
@@ -314,11 +317,9 @@ class GameScene: SKScene {
                     case "doorVertical":
                         let texture = SKTexture(imageNamed: "doortwo")
                         door = DoorVertical(texture: texture)
-                    
+                        
                     default:
-                        let texture = SKTexture()
-                        obstacle = ObstacleObject(texture: texture)
-                        obstacle?.alpha = 0
+                        return
                         
                     }
                 }
@@ -326,8 +327,14 @@ class GameScene: SKScene {
                 if obstacle != nil{
                     obstacle!.createPhysicsBody(tile: tile)
                     obstacle!.position = obstaclesTileMap.centerOfTile(atColumn: column, row: row)
+                    obstacle?.obstacleTexture.position = obstacle!.position
                     GameScene.updateZPosition(object: obstacle!)
+                    obstacle?.obstacleTexture.zPosition = obstacle!.zPosition
+                    obstacle?.obstacleTexture.position.y += PlayerSettings.textureOffset
+                    
                     obstaclesNode!.addChild(obstacle!)
+                    obstaclesNode?.addChild(obstacle!.obstacleTexture)
+                    
                 }
                 
                 

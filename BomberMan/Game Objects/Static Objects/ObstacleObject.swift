@@ -10,14 +10,32 @@ import SpriteKit
 
 class ObstacleObject: SKSpriteNode{
     
+    var obstacleTexture: SKSpriteNode
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("use init()")
     }
     
-    init(texture: SKTexture){
+    init(textureName: String){
         
-        super.init(texture: texture, color: .white, size: GameScene.tileSize!)
+        //Texture Init
+            
+        let objTexture = SKTexture(imageNamed: textureName)
         
+        var size = GameScene.tileSize
+        size?.height += BreakableSettings.sizeOffset
+        //size?.width += 8 // temporary
+        if textureName != "barricade"{
+            
+            obstacleTexture = SKSpriteNode(texture: objTexture, color: .clear, size: size!)
+            
+        }else{
+            
+            obstacleTexture = SKSpriteNode(texture: nil, color: .clear, size: size!)
+        }
+        
+        
+        super.init(texture: nil, color: .clear, size: GameScene.tileSize!)
         name = "Obstacle Object"
         zPosition = 50
     }
