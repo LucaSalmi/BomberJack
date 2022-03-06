@@ -124,6 +124,8 @@ class RushEnemy: TestEnemy {
     
     override func update() {
         
+        updateZPosition()
+        
         if trapPosition != nil {
             isCharging = false
             super.update()

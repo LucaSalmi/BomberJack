@@ -13,6 +13,9 @@ enum UserData{
     static var standardBombsAmmo: Int = 0
     static var trapBombsAmmo: Int = 0
     
+    // Temporary start variable
+    static var startGame: Bool = false
+    
     //Playable Charachter
     static var lives: Int = 3
     static var currentLevel: Int = 0
@@ -59,29 +62,14 @@ class dataReaderWriter{
 }
 
 class Options: ObservableObject{
-    
-    @Published var isMusicOn = true
+        
+    @Published var isMusicOn = false
     @Published var areSFXOn = true
     @Published var isScreenShakeOn = true
     
     static let options = Options()
     
     init(){}
-    
-    func getValues(id: String) -> Bool{
-        
-        switch id{
-            
-        case "isMusicOn":
-            return isMusicOn
-        case "areSFXOn":
-            return areSFXOn
-        case "isScreenShakeOn":
-            return isScreenShakeOn
-        default:
-            return false
-        }
-    }
     
 }
 

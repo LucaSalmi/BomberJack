@@ -18,6 +18,9 @@ class GameScene: SKScene {
     var leftUI: SKSpriteNode? = nil
     var rightUI: SKSpriteNode? = nil
     
+    var lightNode: SKLightNode? = nil
+    var darknessMaskNode: SKSpriteNode? = nil
+    
     var bombsNode: SKNode? = SKNode()
     var explosionsNode: SKNode? = SKNode()
     var actionManager: ActionManagager!
@@ -56,18 +59,37 @@ class GameScene: SKScene {
         setupEnemiesPhysics()
         setupPlayer()
         setupCamera()
+        setupVictoryCond()
         movementManager = MovementManager(self)
         actionManager = ActionManagager(self, camera!)
         setupLootObjects()
         setupEvents()
-        
+        setupLightning()
     }
     
     
     
     override func sceneDidLoad() {
         
-        setupVictoryCond()
+        
+        
+    }
+    
+    func setupLightning() {
+        
+        guard let node = childNode(withName: "lightNode") else {
+            return
+        }
+        if !(node is SKLightNode) {
+            return
+        }
+        lightNode = (node as! SKLightNode)
+        lightNode!.position = player!.position
+        lightNode!.falloff = 4
+        
+        guard let darknessNode = childNode(withName: "darknessMask") else { return }
+        darknessMaskNode = (darknessNode as! SKSpriteNode)
+        darknessMaskNode!.position = player!.position
         
     }
     
@@ -80,9 +102,14 @@ class GameScene: SKScene {
             
         case 2:
             victoryCondition = VictoryConditions.killAll
+            let newScale: SKAction = SKAction.scale(by: 0.6, duration: 1)
+            Player.camera!.run(newScale)
             
         default:
             victoryCondition = VictoryConditions.killAll
+            Player.camera!.setScale(CGFloat(0.42))
+            let newScale: SKAction = SKAction.scale(by: 1.66, duration: 1)
+            Player.camera!.run(newScale)
             
         }
     }
@@ -90,6 +117,8 @@ class GameScene: SKScene {
     func setupCamera(){
         
         let camera = Player.camera!
+        
+        camera.setScale(CGFloat(0.7))
         
         leftUI = (camera.childNode(withName: "leftUI") as! SKSpriteNode)
         rightUI = (camera.childNode(withName: "rightUI") as! SKSpriteNode)
@@ -136,19 +165,26 @@ class GameScene: SKScene {
                 
                 var breakable: BreakableObject
                 //eventualy different types of breakable obj???
-                if tile.userData?.value(forKey: "breakable") as! Bool == true{
+                if tile.userData?.value(forKey: "breakable") != nil{
                     
-                    breakable = BreakableObject()
+                    let textureName = tile.userData!.value(forKey: "breakable") as! String
+                    
+                    breakable = BreakableObject(textureName: textureName)
                     
                 }else{
                     
-                    breakable = BreakableObject()
+                    breakable = BreakableObject(textureName: "tree_medium_style_1")
                 }
                 
                 breakable.createPhysicsBody(tile: tile)
                 breakable.position = breakablesTileMap.centerOfTile(atColumn: column, row: row)
+                breakable.breakableTexture.position = breakable.position
+                GameScene.updateZPosition(object: breakable)
+                breakable.breakableTexture.zPosition = breakable.zPosition
+                breakable.breakableTexture.position.y += PlayerSettings.textureOffset
                 
                 breakablesNode!.addChild(breakable)
+                breakablesNode!.addChild(breakable.breakableTexture)
                 
             }
         }
@@ -180,6 +216,9 @@ class GameScene: SKScene {
                         
                     case "needBombsHint":
                         event = NeedBombsEvent()
+                        
+                    case "needKeyHint":
+                        event = NeedKeyEvent()
                         
                     default:
                         event = NeedBombsEvent()
@@ -232,6 +271,8 @@ class GameScene: SKScene {
                     }
                     
                     lootObject.position = lootObjectTileMap.centerOfTile(atColumn: column, row: row)
+                    GameScene.updateZPosition(object: lootObject)
+                    lootObject.zPosition -= 1
                     lootNode!.addChild(lootObject)
                 }
             }
@@ -252,40 +293,54 @@ class GameScene: SKScene {
             for column in 0..<obstaclesTileMap.numberOfColumns{
                 
                 guard let tile = tile(in: obstaclesTileMap, at: (column, row)) else {continue}
-                guard tile.userData?.object(forKey: "obstacle") != nil else {continue}
+                guard tile.userData?.object(forKey: "obstacle") != nil || tile.userData?.object(forKey: "door") != nil else {continue}
                 
                 var obstacle: ObstacleObject?
                 var door: Door?
                 
                 
                 if tile.userData?.value(forKey: "obstacle") != nil{
-                    let value = tile.userData?.value(forKey: "obstacle") as! String
-                    switch value{
-                    case "wall":
-                        let texture = SKTexture(imageNamed: "wall")
-                        obstacle = ObstacleObject(texture: texture)
+                    let textureName = tile.userData?.value(forKey: "obstacle") as! String
+                    
+                    obstacle = ObstacleObject(textureName: textureName)
+                    
+                    
+                }else if tile.userData?.value(forKey: "door") != nil{
+                    let doorType = tile.userData?.value(forKey: "door") as! String
+                    
+                    switch doorType{
                         
-                    case "door":
-                        let texture = SKTexture(imageNamed: "bokeh")
-                        door = Door(texture: texture)
+                    case "doorHorizontal":
+                        let texture = SKTexture(imageNamed: "doorone")
+                        door = DoorHorizontal(texture: texture)
+                        
+                    case "doorVertical":
+                        let texture = SKTexture(imageNamed: "doortwo")
+                        door = DoorVertical(texture: texture)
                         
                     default:
-                        let texture = SKTexture()
-                        obstacle = ObstacleObject(texture: texture)
-                        obstacle?.alpha = 0
+                        return
                         
                     }
                 }
                 
                 if obstacle != nil{
-                    obstacle?.createPhysicsBody(tile: tile)
-                    obstacle?.position = obstaclesTileMap.centerOfTile(atColumn: column, row: row)
+                    obstacle!.createPhysicsBody(tile: tile)
+                    obstacle!.position = obstaclesTileMap.centerOfTile(atColumn: column, row: row)
+                    obstacle?.obstacleTexture.position = obstacle!.position
+                    GameScene.updateZPosition(object: obstacle!)
+                    obstacle?.obstacleTexture.zPosition = obstacle!.zPosition
+                    obstacle?.obstacleTexture.position.y += PlayerSettings.textureOffset
+                    
                     obstaclesNode!.addChild(obstacle!)
+                    obstaclesNode?.addChild(obstacle!.obstacleTexture)
+                    
                 }
                 
                 
                 if door != nil{
-                    door?.position = obstaclesTileMap.centerOfTile(atColumn: column, row: row)
+                    door!.position = obstaclesTileMap.centerOfTile(atColumn: column, row: row)
+                    GameScene.updateZPosition(object: door!)
                     obstaclesNode!.addChild(door!)
                 }
                 
@@ -455,6 +510,14 @@ class GameScene: SKScene {
             
             player!.update()
             
+            if let lightNode = lightNode {
+                lightNode.position = player!.position
+            }
+            
+            if let darknessMaskNode = darknessMaskNode {
+                darknessMaskNode.position = player!.position
+            }
+            
         }
         
         if let currentDialogue = currentDialogue {
@@ -531,6 +594,10 @@ class GameScene: SKScene {
         }
     }
     
+    static func updateZPosition(object: SKNode) {
+        guard let tileSize = tileSize else { return }
+        object.zPosition = round(object.position.y/tileSize.height) * -1
+    }
     
 }
 

@@ -38,9 +38,13 @@ class Door: SKSpriteNode{
         
         if PlayerSettings.amountOfKeys > 0{
             PlayerSettings.amountOfKeys -= 1
-            other?.removeFromParent()
+            other?.physicsBody = nil
             SoundManager.playSFX("doorsound")
+            
+            
         }
+        
+        
         
        
         

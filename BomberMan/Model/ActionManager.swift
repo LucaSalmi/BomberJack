@@ -101,6 +101,7 @@ class ActionManagager{
                 if player.position.x > leftSide && player.position.x < rightSide{
                     if player.position.y > bottomSide && player.position.y < topSide{
                         bomb.position = tilePosition
+                        GameScene.updateZPosition(object: bomb)
                         tileFound = true
                         break
                     }

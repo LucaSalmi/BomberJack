@@ -72,6 +72,7 @@ class Player: SKSpriteNode{
         
         createPlayerAnimations(character: "player_walk")
         
+        lightingBitMask = 1
     }
     
     func activateShield() {
@@ -217,12 +218,30 @@ class Player: SKSpriteNode{
         self.bloodParticle()
     }
     
+    func resetInventory(){
+        
+        PlayerSettings.amountOfKeys = 0
+        if GameScene.viewController?.currentLevel == 1{
+            PlayerSettings.haveBombs = false
+        }
+        
+        
+    }
+    
     func update() {
+        
+        GameScene.updateZPosition(object: self)
         
         if currentTexture != nil{
             
             currentTexture.position.x = position.x
             currentTexture.position.y = position.y + PlayerSettings.textureOffset
+            
+            let oldPosition = currentTexture.position
+            currentTexture.position = position
+            GameScene.updateZPosition(object: currentTexture)
+            currentTexture.position = oldPosition
+            zPosition = playerTexture.zPosition-1
         }
         
         if isShielded {

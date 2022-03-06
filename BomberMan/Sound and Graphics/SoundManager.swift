@@ -33,7 +33,7 @@ class SoundManager {
         
         let sfxName = sfx + sfxExtension
         let sfxAction = SKAction.playSoundFileNamed(sfxName, waitForCompletion: false)
-        GameViewController.currentGameScene!.run(sfxAction)
+            GameViewController.currentGameScene!.run(sfxAction)
     }
     
     static func playBGM(bgmString: String) {
@@ -57,4 +57,14 @@ class SoundManager {
         musicPlayer!.numberOfLoops = -1
     }
     
+    
+    static func stopBGM(){
+        
+        if musicPlayer != nil && Options.options.isMusicOn == false{
+            
+            musicPlayer?.stop()
+            
+        }
+        
+    }
 }

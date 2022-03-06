@@ -138,7 +138,7 @@ class MovementManager {
             context.actionManager.placeBomb(id: 0)
             GameViewController.currentInputKey = 0
         default:
-            print("Keyboard key not implemented.")
+            let _: Bool?
             
         }
         

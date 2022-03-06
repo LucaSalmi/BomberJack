@@ -8,18 +8,36 @@
 import Foundation
 import SpriteKit
 
+enum BreakableSettings{
+    
+    static let sizeOffset: CGFloat = 25
+    
+}
+
 class BreakableObject: SKSpriteNode{
+    
+    var breakableTexture: SKSpriteNode
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("use init()")
     }
     
-    init(){
+    init(textureName: String){
         
-        let texture = SKTexture(imageNamed: "tree")
-        super.init(texture: texture, color: .white, size: texture.size())
+        //Texture Init
+        let objTexture = SKTexture(imageNamed: textureName)
+        var size = GameScene.tileSize
+        size?.height += BreakableSettings.sizeOffset
+        size?.width += 8 // temporary
+        breakableTexture = SKSpriteNode(texture: objTexture, color: .clear, size: size!)
+        
+        super.init(texture: nil, color: .clear, size: GameScene.tileSize!)
         name = "Breakable Object"
         zPosition = 50
+        
+        
+        
+        
     }
     
     func createPhysicsBody(tile: SKTileDefinition){
@@ -28,10 +46,14 @@ class BreakableObject: SKSpriteNode{
         physicsBody?.categoryBitMask = PhysicsCategory.Breakable
         physicsBody?.collisionBitMask = 0
         physicsBody?.isDynamic = true
+        
+        lightingBitMask = 1
     }
     
     func collision(breakable: SKNode?) {
         
+        let obj = breakable as! BreakableObject
+        obj.breakableTexture.removeFromParent()
         breakable?.removeFromParent()
         breakable?.physicsBody = nil
         

@@ -16,7 +16,7 @@ class StandardBomb: Bomb{
     
     init() {
         
-        let texture = SKTexture(imageNamed: "bomb1")
+        let texture = SKTexture(imageNamed: "bomb")
         super.init(texture, .white, (GameScene.tileSize)!)
         name = "Bomb Object"
         zPosition = 50
