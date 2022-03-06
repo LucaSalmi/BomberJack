@@ -122,9 +122,7 @@ class Player: SKSpriteNode{
         
         runAnim(playerDirection: direction)
         
-        GameScene.updateZPosition(object: playerTexture)
-        GameScene.updateZPosition(object: shieldTexture)
-        zPosition = playerTexture.zPosition-1
+        
         
     }
     
@@ -232,10 +230,18 @@ class Player: SKSpriteNode{
     
     func update() {
         
+        GameScene.updateZPosition(object: self)
+        
         if currentTexture != nil{
             
             currentTexture.position.x = position.x
             currentTexture.position.y = position.y + PlayerSettings.textureOffset
+            
+            let oldPosition = currentTexture.position
+            currentTexture.position = position
+            GameScene.updateZPosition(object: currentTexture)
+            currentTexture.position = oldPosition
+            zPosition = playerTexture.zPosition-1
         }
         
         if isShielded {

@@ -59,6 +59,7 @@ class GameScene: SKScene {
         setupEnemiesPhysics()
         setupPlayer()
         setupCamera()
+        setupVictoryCond()
         movementManager = MovementManager(self)
         actionManager = ActionManagager(self, camera!)
         setupLootObjects()
@@ -70,12 +71,15 @@ class GameScene: SKScene {
     
     override func sceneDidLoad() {
         
-        setupVictoryCond()
+        
         
     }
     
     func setupLightning() {
-        guard let node = childNode(withName: "lightNode") else { return }
+        
+        guard let node = childNode(withName: "lightNode") else {
+            return
+        }
         if !(node is SKLightNode) {
             return
         }
@@ -86,6 +90,7 @@ class GameScene: SKScene {
         guard let darknessNode = childNode(withName: "darknessMask") else { return }
         darknessMaskNode = (darknessNode as! SKSpriteNode)
         darknessMaskNode!.position = player!.position
+
     }
     
     func setupVictoryCond(){
@@ -97,9 +102,14 @@ class GameScene: SKScene {
             
         case 2:
             victoryCondition = VictoryConditions.killAll
+            let newScale: SKAction = SKAction.scale(by: 0.6, duration: 1)
+            Player.camera!.run(newScale)
             
         default:
             victoryCondition = VictoryConditions.killAll
+            Player.camera!.setScale(CGFloat(0.42))
+            let newScale: SKAction = SKAction.scale(by: 1.66, duration: 1)
+            Player.camera!.run(newScale)
             
         }
     }
@@ -107,6 +117,8 @@ class GameScene: SKScene {
     func setupCamera(){
         
         let camera = Player.camera!
+        
+        camera.setScale(CGFloat(0.7))
         
         leftUI = (camera.childNode(withName: "leftUI") as! SKSpriteNode)
         rightUI = (camera.childNode(withName: "rightUI") as! SKSpriteNode)
@@ -254,6 +266,7 @@ class GameScene: SKScene {
                     
                     lootObject.position = lootObjectTileMap.centerOfTile(atColumn: column, row: row)
                     GameScene.updateZPosition(object: lootObject)
+                    lootObject.zPosition -= 1
                     lootNode!.addChild(lootObject)
                 }
             }
