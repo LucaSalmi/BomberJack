@@ -44,6 +44,8 @@
 		C815F79D27B400490084DE7A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C815F79B27B400490084DE7A /* Main.storyboard */; };
 		C815F79F27B400490084DE7A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C815F79E27B400490084DE7A /* Assets.xcassets */; };
 		C815F7A227B400490084DE7A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C815F7A027B400490084DE7A /* LaunchScreen.storyboard */; };
+		C82A154027D5F4E1006B6C6B /* Breakable Fence.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82A153F27D5F4E1006B6C6B /* Breakable Fence.swift */; };
+		C82A154227D5F4F2006B6C6B /* Breakable Tree.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82A154127D5F4F2006B6C6B /* Breakable Tree.swift */; };
 		C869390D27BA66E100EEF877 /* TileSet Placeholder.sks in Resources */ = {isa = PBXBuildFile; fileRef = C869390C27BA66E100EEF877 /* TileSet Placeholder.sks */; };
 		C89C6F1A27BC12B700C8AC0F /* BreakableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = C89C6F1927BC12B700C8AC0F /* BreakableObject.swift */; };
 		C8A7490327CD0C2F00AD68E8 /* OptionsMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A7490227CD0C2F00AD68E8 /* OptionsMenu.swift */; };
@@ -108,6 +110,8 @@
 		C815F79C27B400490084DE7A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C815F79E27B400490084DE7A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C815F7A127B400490084DE7A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C82A153F27D5F4E1006B6C6B /* Breakable Fence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Breakable Fence.swift"; sourceTree = "<group>"; };
+		C82A154127D5F4F2006B6C6B /* Breakable Tree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Breakable Tree.swift"; sourceTree = "<group>"; };
 		C869390C27BA66E100EEF877 /* TileSet Placeholder.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "TileSet Placeholder.sks"; sourceTree = "<group>"; };
 		C89C6F1927BC12B700C8AC0F /* BreakableObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreakableObject.swift; sourceTree = "<group>"; };
 		C8A7490227CD0C2F00AD68E8 /* OptionsMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsMenu.swift; sourceTree = "<group>"; };
@@ -299,6 +303,8 @@
 			isa = PBXGroup;
 			children = (
 				C89C6F1927BC12B700C8AC0F /* BreakableObject.swift */,
+				C82A154127D5F4F2006B6C6B /* Breakable Tree.swift */,
+				C82A153F27D5F4E1006B6C6B /* Breakable Fence.swift */,
 				33201EDC27BD352F003B4EB4 /* ObstacleObject.swift */,
 				D5FFD73627C52BEC0032912D /* LootObject.swift */,
 				D5FFD73827C536840032912D /* Key.swift */,
@@ -447,9 +453,11 @@
 				C8C7DC3127BFDB470083656A /* Explosion.swift in Sources */,
 				338D408B27D0A0E20003C3A6 /* NeedKeyDialogue.swift in Sources */,
 				334F89CD27CCCD6A007A1857 /* Event.swift in Sources */,
+				C82A154227D5F4F2006B6C6B /* Breakable Tree.swift in Sources */,
 				E56CE0B227BCEF0C00962834 /* Bomb.swift in Sources */,
 				C801D2E827BBAF2F008B1CD5 /* Player.swift in Sources */,
 				C815F79227B400480084DE7A /* AppDelegate.swift in Sources */,
+				C82A154027D5F4E1006B6C6B /* Breakable Fence.swift in Sources */,
 				E5F0CAC827C784850000B9F4 /* Door.swift in Sources */,
 				33D1493627C36C1E00B4BECA /* PhysicsUtils.swift in Sources */,
 				330D6EFD27C67E2F00444648 /* SwiftUIHostingController.swift in Sources */,

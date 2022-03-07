@@ -32,12 +32,8 @@ class BreakableObject: SKSpriteNode{
         breakableTexture = SKSpriteNode(texture: objTexture, color: .clear, size: size!)
         
         super.init(texture: nil, color: .clear, size: GameScene.tileSize!)
-        name = "Breakable Object"
         zPosition = 50
-        
-        
-        
-        
+
     }
     
     func createPhysicsBody(tile: SKTileDefinition){
@@ -52,8 +48,6 @@ class BreakableObject: SKSpriteNode{
     
     func collision(breakable: SKNode?) {
         
-        let obj = breakable as! BreakableObject
-        obj.breakableTexture.removeFromParent()
         breakable?.removeFromParent()
         breakable?.physicsBody = nil
         

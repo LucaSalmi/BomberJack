@@ -161,19 +161,24 @@ class GameScene: SKScene {
                 
                 guard let tile = tile(in: breakablesTileMap, at: (column, row)) else {continue}
                 GameScene.tileSize = tile.size
-                guard tile.userData?.object(forKey: "breakable") != nil else {continue}
+                guard tile.userData?.object(forKey: "tree") != nil || tile.userData?.object(forKey: "fence") != nil else {continue}
                 
                 var breakable: BreakableObject
                 //eventualy different types of breakable obj???
-                if tile.userData?.value(forKey: "breakable") != nil{
+                
+                if tile.userData?.value(forKey: "tree") != nil{
                     
-                    let textureName = tile.userData!.value(forKey: "breakable") as! String
+                    let textureName = tile.userData!.value(forKey: "tree") as! String
                     
-                    breakable = BreakableObject(textureName: textureName)
+                    breakable = Tree(textureName: textureName)
                     
+                }else if tile.userData?.value(forKey: "fence") != nil{
+                    
+                    let textureName = tile.userData!.value(forKey: "fence") as! String
+                    
+                    breakable = Fence(textureName: textureName)
                 }else{
-                    
-                    breakable = BreakableObject(textureName: "tree_medium_style_1")
+                    return
                 }
                 
                 breakable.createPhysicsBody(tile: tile)
