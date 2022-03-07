@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreData
 
 enum UserData{
     
@@ -59,6 +60,26 @@ class dataReaderWriter{
 
     }
     
+    static func updateEnemiesKilled(){
+        
+        let viewContext = PersistenceController.shared.container.viewContext
+        
+        let fetchRequest = NSFetchRequest<Statistics>(entityName: "Statistics")
+        
+        do{
+            let result = try viewContext.fetch(fetchRequest)
+            print(result)
+            let statistics = result[0]
+            statistics.killedEnemies += 1
+        
+        }catch{
+            print("result error")
+            
+        }
+        
+        
+    }
+    
 }
 
 class Options: ObservableObject{
@@ -72,5 +93,7 @@ class Options: ObservableObject{
     init(){}
     
 }
+
+
 
 

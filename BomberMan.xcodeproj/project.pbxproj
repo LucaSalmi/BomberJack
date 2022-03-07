@@ -65,6 +65,8 @@
 		E52D5F8527C7A6CB00BBB4BE /* doorsound.wav in Resources */ = {isa = PBXBuildFile; fileRef = E52D5F8427C7A6CB00BBB4BE /* doorsound.wav */; };
 		E533BFB227D0D7D000FDBFAD /* DoorHorizontal.swift in Sources */ = {isa = PBXBuildFile; fileRef = E533BFB127D0D7D000FDBFAD /* DoorHorizontal.swift */; };
 		E533BFB427D0D98500FDBFAD /* DoorVertical.swift in Sources */ = {isa = PBXBuildFile; fileRef = E533BFB327D0D98500FDBFAD /* DoorVertical.swift */; };
+		E533BFB927D5F8A600FDBFAD /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = E533BFB827D5F8A600FDBFAD /* Persistence.swift */; };
+		E533BFBC27D5FE7500FDBFAD /* BomberMan.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E533BFBA27D5FE7500FDBFAD /* BomberMan.xcdatamodeld */; };
 		E56CE0B227BCEF0C00962834 /* Bomb.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56CE0B127BCEF0C00962834 /* Bomb.swift */; };
 		E56CE0B427BD1F8D00962834 /* ActionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56CE0B327BD1F8D00962834 /* ActionManager.swift */; };
 		E56CE0B627BD3FFF00962834 /* GameScene3.sks in Resources */ = {isa = PBXBuildFile; fileRef = E56CE0B527BD3FFF00962834 /* GameScene3.sks */; };
@@ -131,6 +133,8 @@
 		E52D5F8427C7A6CB00BBB4BE /* doorsound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = doorsound.wav; sourceTree = "<group>"; };
 		E533BFB127D0D7D000FDBFAD /* DoorHorizontal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoorHorizontal.swift; sourceTree = "<group>"; };
 		E533BFB327D0D98500FDBFAD /* DoorVertical.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoorVertical.swift; sourceTree = "<group>"; };
+		E533BFB827D5F8A600FDBFAD /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		E533BFBB27D5FE7500FDBFAD /* BomberMan.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BomberMan.xcdatamodel; sourceTree = "<group>"; };
 		E56CE0B127BCEF0C00962834 /* Bomb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bomb.swift; sourceTree = "<group>"; };
 		E56CE0B327BD1F8D00962834 /* ActionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionManager.swift; sourceTree = "<group>"; };
 		E56CE0B527BD3FFF00962834 /* GameScene3.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene3.sks; sourceTree = "<group>"; };
@@ -171,6 +175,7 @@
 		C815F78527B400480084DE7A = {
 			isa = PBXGroup;
 			children = (
+				E533BFBA27D5FE7500FDBFAD /* BomberMan.xcdatamodeld */,
 				C815F79027B400480084DE7A /* BomberMan */,
 				C815F78F27B400480084DE7A /* Products */,
 			);
@@ -192,6 +197,7 @@
 				C8C7DC3327BFF76D0083656A /* Game Objects */,
 				C8C7DC3227BFF69B0083656A /* Scenes and Controllers */,
 				C815F79127B400480084DE7A /* AppDelegate.swift */,
+				E533BFB827D5F8A600FDBFAD /* Persistence.swift */,
 				C801D2E927BBB031008B1CD5 /* Types.swift */,
 			);
 			path = BomberMan;
@@ -452,6 +458,7 @@
 				C89C6F1A27BC12B700C8AC0F /* BreakableObject.swift in Sources */,
 				D5FFD73B27C536970032912D /* BombPile.swift in Sources */,
 				33BFC5CA27BBA5A9008DBA03 /* StartMenuScene.swift in Sources */,
+				E533BFB927D5F8A600FDBFAD /* Persistence.swift in Sources */,
 				D5A24D2627CE144000AD62F1 /* SideViewMapMenu.swift in Sources */,
 				D5FFD73927C536840032912D /* Key.swift in Sources */,
 				334F89D527CCDAE3007A1857 /* Dialogue.swift in Sources */,
@@ -459,6 +466,7 @@
 				E533BFB227D0D7D000FDBFAD /* DoorHorizontal.swift in Sources */,
 				33B882A327BBC41A00BB897E /* MovementManager.swift in Sources */,
 				33250F4027CE073F0019AAB1 /* GameUIView.swift in Sources */,
+				E533BFBC27D5FE7500FDBFAD /* BomberMan.xcdatamodeld in Sources */,
 				C8C7DC2F27BFD9990083656A /* PhysicsExtension.swift in Sources */,
 				C8B747FF27BF992F00D76B32 /* Animatable.swift in Sources */,
 				334F89D227CCD8E9007A1857 /* NeedBombsEvent.swift in Sources */,
@@ -718,6 +726,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		E533BFBA27D5FE7500FDBFAD /* BomberMan.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				E533BFBB27D5FE7500FDBFAD /* BomberMan.xcdatamodel */,
+			);
+			currentVersion = E533BFBB27D5FE7500FDBFAD /* BomberMan.xcdatamodel */;
+			path = BomberMan.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = C815F78627B400480084DE7A /* Project object */;
 }

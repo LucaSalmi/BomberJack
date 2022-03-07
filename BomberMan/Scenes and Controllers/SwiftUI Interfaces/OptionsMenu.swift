@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SceneKit
+import CoreData
 
 struct OptionsMenu: View {
     
@@ -168,7 +169,34 @@ struct StatisticsTab: View{
         "Number of Deaths": UserData.numberOfDeaths
     ]
     
+    @FetchRequest
+    var statisticsData: FetchedResults<Statistics>
+    
+    init(){
+        let sortingPredicate = [NSSortDescriptor(keyPath: \Statistics.killedEnemies, ascending: false)]
+        
+        let animation = Animation.default
+        
+        _statisticsData = FetchRequest<Statistics>(sortDescriptors: sortingPredicate, animation: animation)
+        
+//        print("\(statisticsData.count)")
+//        if statisticsData.isEmpty{
+//            let statistics = Statistics(context: viewContext)
+//            statistics.killedEnemies = 0
+//            do{
+//                try viewContext.save()
+//            }
+//            catch{
+//                print("database error")
+//            }
+//        }
+        
+    }
+    
+    
     var body: some View{
+        
+        
         
         HStack(){
             
@@ -181,18 +209,26 @@ struct StatisticsTab: View{
                     
                     ForEach(myStats.sorted(by: >), id: \.key) { key, value in
                         HStack{
-                            
+
                             Text(key + ": " + String(value)).listRowBackground(Color.clear)
                                 .foregroundColor(.white)
                                 .font(.custom("Avenir", size: 30))
                         }
                     }
+                    
+                    if !statisticsData.isEmpty {
+                        Text("Database test: \(statisticsData[0].killedEnemies)")
+                    }
+                    
+                    
                 }
                 .padding(EdgeInsets(top: 0, leading: 0, bottom: 70, trailing: 30))
                 
                 
             }
+            
         }
+        
     }
 }
 
