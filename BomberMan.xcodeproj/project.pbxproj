@@ -197,6 +197,37 @@
 			path = BomberMan;
 			sourceTree = "<group>";
 		};
+		C82A154327D5FE04006B6C6B /* Breakable */ = {
+			isa = PBXGroup;
+			children = (
+				C89C6F1927BC12B700C8AC0F /* BreakableObject.swift */,
+				C82A154127D5F4F2006B6C6B /* Breakable Tree.swift */,
+				C82A153F27D5F4E1006B6C6B /* Breakable Fence.swift */,
+			);
+			path = Breakable;
+			sourceTree = "<group>";
+		};
+		C82A154427D5FE20006B6C6B /* Loot */ = {
+			isa = PBXGroup;
+			children = (
+				D5FFD73627C52BEC0032912D /* LootObject.swift */,
+				D5FFD73827C536840032912D /* Key.swift */,
+				D5FFD73A27C536970032912D /* BombPile.swift */,
+			);
+			path = Loot;
+			sourceTree = "<group>";
+		};
+		C82A154527D5FE30006B6C6B /* Obstacles */ = {
+			isa = PBXGroup;
+			children = (
+				33201EDC27BD352F003B4EB4 /* ObstacleObject.swift */,
+				E5F0CAC727C784850000B9F4 /* Door.swift */,
+				E533BFB127D0D7D000FDBFAD /* DoorHorizontal.swift */,
+				E533BFB327D0D98500FDBFAD /* DoorVertical.swift */,
+			);
+			path = Obstacles;
+			sourceTree = "<group>";
+		};
 		C84B3AF727CF9F1E00224426 /* SwiftUI Interfaces */ = {
 			isa = PBXGroup;
 			children = (
@@ -302,16 +333,9 @@
 		C8E0653227C8BC7B00DC7226 /* Static Objects */ = {
 			isa = PBXGroup;
 			children = (
-				C89C6F1927BC12B700C8AC0F /* BreakableObject.swift */,
-				C82A154127D5F4F2006B6C6B /* Breakable Tree.swift */,
-				C82A153F27D5F4E1006B6C6B /* Breakable Fence.swift */,
-				33201EDC27BD352F003B4EB4 /* ObstacleObject.swift */,
-				D5FFD73627C52BEC0032912D /* LootObject.swift */,
-				D5FFD73827C536840032912D /* Key.swift */,
-				D5FFD73A27C536970032912D /* BombPile.swift */,
-				E5F0CAC727C784850000B9F4 /* Door.swift */,
-				E533BFB127D0D7D000FDBFAD /* DoorHorizontal.swift */,
-				E533BFB327D0D98500FDBFAD /* DoorVertical.swift */,
+				C82A154527D5FE30006B6C6B /* Obstacles */,
+				C82A154427D5FE20006B6C6B /* Loot */,
+				C82A154327D5FE04006B6C6B /* Breakable */,
 			);
 			path = "Static Objects";
 			sourceTree = "<group>";
