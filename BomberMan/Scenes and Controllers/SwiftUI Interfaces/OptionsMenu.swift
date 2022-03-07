@@ -163,7 +163,7 @@ struct OptionsTab: View{
 struct StatisticsTab: View{
     
     let myStats: [String: Int] = [
-        "Killed Enemies": UserData.enemiesKilled,
+        //"Killed Enemies": UserData.enemiesKilled,
         "Bombs Dropped": UserData.bombsDropped,
         "Hidden in Barrel": UserData.barrelUsed,
         "Number of Deaths": UserData.numberOfDeaths

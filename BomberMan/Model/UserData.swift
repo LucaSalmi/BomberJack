@@ -23,7 +23,7 @@ enum UserData{
     static var score: Int = 0
     
     //Stats
-    static var enemiesKilled: Int = 0
+    static var enemiesKilled: Int64 = 0
     static var bombsDropped: Int = 0
     static var numberOfDeaths: Int = 0
     static var barrelUsed: Int = 0
@@ -43,7 +43,7 @@ class dataReaderWriter{
     static func saveUserData(){
         
         let defaultData = UserDefaults.standard
-        defaultData.set(UserData.enemiesKilled, forKey: DefaultKeys.enemyKillsKey)
+        //defaultData.set(UserData.enemiesKilled, forKey: DefaultKeys.enemyKillsKey)
         defaultData.set(UserData.bombsDropped, forKey: DefaultKeys.bombsDroppedKey)
         defaultData.set(UserData.numberOfDeaths, forKey: DefaultKeys.numbOfDeathsKey)
         defaultData.set(UserData.barrelUsed, forKey: DefaultKeys.barrelUsedKey)
@@ -53,7 +53,7 @@ class dataReaderWriter{
     static func loaduserData(){
         
         let defaultData = UserDefaults.standard
-        UserData.enemiesKilled = defaultData.integer(forKey: DefaultKeys.enemyKillsKey)
+        //UserData.enemiesKilled = defaultData.integer(forKey: DefaultKeys.enemyKillsKey)
         UserData.bombsDropped = defaultData.integer(forKey: DefaultKeys.bombsDroppedKey)
         UserData.numberOfDeaths = defaultData.integer(forKey: DefaultKeys.numbOfDeathsKey)
         UserData.barrelUsed = defaultData.integer(forKey: DefaultKeys.barrelUsedKey)
@@ -70,7 +70,8 @@ class dataReaderWriter{
             let result = try viewContext.fetch(fetchRequest)
             print(result)
             let statistics = result[0]
-            statistics.killedEnemies += 1
+            statistics.killedEnemies += UserData.enemiesKilled
+            UserData.enemiesKilled = 0
         
         }catch{
             print("result error")
