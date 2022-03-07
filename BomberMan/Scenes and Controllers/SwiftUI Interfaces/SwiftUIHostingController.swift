@@ -179,7 +179,7 @@ struct TabTwo: View{
         
         ZStack{
             
-            Image("page_view_two")
+            Image("main_menu_home")
                 .resizable()
                 .scaledToFill()
             VStack {
@@ -209,8 +209,9 @@ struct TabTwo: View{
                             .frame(width: 180, height: 80)
                         
                     }
-                    .padding(.leading, 100)
+                    .padding(.leading, 70)
                     .padding(.top, 30)
+                    .padding(.bottom, 40)
                     
                     Spacer()
                     
@@ -224,9 +225,6 @@ struct TabTwo: View{
                 Spacer()
                 
             }
-            
-            
-            
         }
     }
 }
@@ -243,7 +241,7 @@ struct TabThree: View{
         ZStack{
             
             
-            Image("page_view_three")
+            Image("main_menu_play")
                 .resizable()
                 .scaledToFill()
             
@@ -258,22 +256,7 @@ struct TabThree: View{
                         .animation(.easeInOut(duration: 1), value: showMapMenu)
                         
                 }
-                
             }
-            
-//            HStack {
-//                Button {
-//                    self.showMapMenu.toggle()
-//                } label: {
-//                    Image(systemName: "plus")
-//                        .font(.title)
-//                        .foregroundColor(.black)
-//                        .padding(30)
-//
-//                }
-//
-//                Spacer()
-//            }
         }
     }
 }

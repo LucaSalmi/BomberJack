@@ -16,34 +16,39 @@ struct OptionsMenu: View {
         
         ZStack{
             
-            Image("page_view_one")
+            Image("main_menu_options")
                 .resizable()
                 .scaledToFill()
-            
-            ZStack{
-                
-                RoundedRectangle(cornerRadius: 40)
-                    .padding(.top, 25)
-                    .padding(.bottom, 100)
-                    .padding(.leading, 25)
-                    .padding(.trailing, 25)
-                    .opacity(0.5)
-            
+                        
             VStack{
-                CustomTopTabBar(tabIndex: $tabIndex)
-                if tabIndex == 0 {
-                    OptionsTab()
+                
+                ZStack{
+                    
+                    RoundedRectangle(cornerRadius: 40)
+                        .padding(.top, 25)
+                        .padding(.bottom, 110)
+                        .padding(.leading, 25)
+                        .padding(.trailing, 25)
+                        .opacity(0.5)
+                    
+                    VStack{
+                        CustomTopTabBar(tabIndex: $tabIndex)
+                            .padding(.horizontal, 40)
+                            .padding(.vertical, 25)
+                        if tabIndex == 0 {
+                            OptionsTab()
+                        }
+                        else {
+                            StatisticsTab()
+                        }
+                        Spacer()
+                    }
+                    .frame(width: UIScreen.main.bounds.width - 30, alignment: .top)
+                    .foregroundColor(.white).opacity(1.0)
                 }
-                else {
-                    StatisticsTab()
-                }
-                Spacer()
             }
-            .frame(width: UIScreen.main.bounds.width - 30, alignment: .top)
-            .padding(30)
-            .foregroundColor(.white).opacity(1.0)
-            }
-            .padding()
+            .padding(.top, 50)
+            
         }
     }
 }
@@ -169,7 +174,7 @@ struct StatisticsTab: View{
             
             let columns: [GridItem] =
             Array(repeating: .init(.flexible()), count: 2)
-
+            
             ScrollView{
                 
                 LazyVGrid(columns: columns){
