@@ -7,6 +7,7 @@
 
 import UIKit
 import SwiftUI
+import CoreData
 
 struct MyViewSettings {
     
@@ -22,6 +23,25 @@ struct MyView: View {
     @State var startGame: Bool = false
     @State var isPaused: Bool = false
     
+    @Environment(\.managedObjectContext) private var viewContext
+    
+    @FetchRequest
+    var result: FetchedResults<Statistics>
+    
+    init(){
+        let sortingPredicate = [NSSortDescriptor(keyPath: \Statistics.killedEnemies, ascending: false)]
+        
+        let animation = Animation.default
+        
+        //let fetchRequest = FetchRequest<Statistics>(sortDescriptors: sortingPredicate, animation: animation)
+        
+//        let fetchRequest = NSFetchRequest<Statistics>(entityName: "Statistics")
+        
+        
+        _result = FetchRequest<Statistics>(sortDescriptors: sortingPredicate, animation: animation)
+        
+        
+    }
     
     var body: some View {
         
@@ -41,7 +61,37 @@ struct MyView: View {
         else {
             MusicView(bgmString: SoundManager.mainMenuBGM)
             MainMenyView(startGame: $startGame)
+                .onAppear(perform: {
+                    cleanUpDatabase()
+                    
+                })
         }
+    }
+    func cleanUpDatabase(){
+        
+        do{
+            //let result = try viewContext.fetch
+            print(result.count)
+            
+            
+            
+            for i in 0..<result.count{
+                let statisticsData = result[i]
+                if i >= 10{
+                    viewContext.delete(statisticsData)
+                    
+                }
+                
+                
+            }
+            try viewContext.save()
+            
+            
+        }catch{
+            print("result error")
+            
+        }
+        
     }
 }
 
