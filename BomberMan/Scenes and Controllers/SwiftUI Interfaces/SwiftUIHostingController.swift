@@ -81,8 +81,6 @@ struct MyView: View {
                     viewContext.delete(statisticsData)
                     
                 }
-                
-                
             }
             try viewContext.save()
             
