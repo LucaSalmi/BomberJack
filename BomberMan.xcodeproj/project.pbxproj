@@ -70,6 +70,7 @@
 		E56CE0B227BCEF0C00962834 /* Bomb.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56CE0B127BCEF0C00962834 /* Bomb.swift */; };
 		E56CE0B427BD1F8D00962834 /* ActionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56CE0B327BD1F8D00962834 /* ActionManager.swift */; };
 		E56CE0B627BD3FFF00962834 /* GameScene3.sks in Resources */ = {isa = PBXBuildFile; fileRef = E56CE0B527BD3FFF00962834 /* GameScene3.sks */; };
+		E5DCA41427D7619A00DC05EA /* GameScene4.sks in Resources */ = {isa = PBXBuildFile; fileRef = E5DCA41327D7619A00DC05EA /* GameScene4.sks */; };
 		E5F0CAC827C784850000B9F4 /* Door.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F0CAC727C784850000B9F4 /* Door.swift */; };
 /* End PBXBuildFile section */
 
@@ -138,6 +139,7 @@
 		E56CE0B127BCEF0C00962834 /* Bomb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bomb.swift; sourceTree = "<group>"; };
 		E56CE0B327BD1F8D00962834 /* ActionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionManager.swift; sourceTree = "<group>"; };
 		E56CE0B527BD3FFF00962834 /* GameScene3.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene3.sks; sourceTree = "<group>"; };
+		E5DCA41327D7619A00DC05EA /* GameScene4.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene4.sks; sourceTree = "<group>"; };
 		E5F0CAC727C784850000B9F4 /* Door.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Door.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -254,6 +256,7 @@
 				33BFC5C727BBA567008DBA03 /* StartMenuScene.sks */,
 				33FEE19D27BE96DF0036BC22 /* UIScene.sks */,
 				E56CE0B527BD3FFF00962834 /* GameScene3.sks */,
+				E5DCA41327D7619A00DC05EA /* GameScene4.sks */,
 				33D36EFF27BD0137002DDB49 /* GameScene2.sks */,
 				D5FFD73427C4FAB20032912D /* GameScene1.sks */,
 			);
@@ -425,6 +428,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E5DCA41427D7619A00DC05EA /* GameScene4.sks in Resources */,
 				33FEE19E27BE96DF0036BC22 /* UIScene.sks in Resources */,
 				3312D2A027C60A28004C0EEF /* EnemyDeath.sks in Resources */,
 				33E8104E27C8355F001D52EE /* in_game_bgm.mp3 in Resources */,
