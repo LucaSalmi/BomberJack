@@ -544,6 +544,8 @@ class GameScene: SKScene {
         movementManager = nil
         actionManager = nil
         bombsNode = nil
+        lootNode = nil
+        eventsNode = nil
         Bomb.bombs.removeAll()
         Enemy.enemies.removeAll()
         ExplosionSettings.explosionsArray.removeAll()
@@ -570,8 +572,11 @@ class GameScene: SKScene {
                 guard let obstaclesArray = obstaclesNode?.children else {return}
                 for obj in obstaclesArray{
                     
-                    if obj.name == "Door Object"{
-                        return
+                    if obj is Door {
+                        let door = obj as! Door
+                        if !door.isOpened {
+                            return
+                        }
                     }
                 }
                 

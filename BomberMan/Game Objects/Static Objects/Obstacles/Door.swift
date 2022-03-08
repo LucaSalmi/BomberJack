@@ -11,6 +11,7 @@ import SpriteKit
 class Door: SKSpriteNode{
     
     var doorTexture: SKSpriteNode
+    var isOpened: Bool = false
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("use init()")
@@ -47,6 +48,7 @@ class Door: SKSpriteNode{
         if PlayerSettings.amountOfKeys > 0{
             PlayerSettings.amountOfKeys -= 1
             other?.physicsBody = nil
+            self.isOpened = true
             SoundManager.playSFX("doorsound")
             
             
