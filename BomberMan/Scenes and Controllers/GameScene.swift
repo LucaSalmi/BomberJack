@@ -313,8 +313,12 @@ class GameScene: SKScene {
                 }else if tile.userData?.value(forKey: "door") != nil{
                     let doorType = tile.userData?.value(forKey: "door") as! String
                     
-                    door = DoorHorizontal(textureName: doorType)
-                    
+                    switch doorType {
+                    case "door_horizontal":
+                        door = DoorHorizontal(textureName: doorType)
+                    default:
+                        door = DoorVertical(textureName: doorType)
+                    }
                     
                 }
                 
