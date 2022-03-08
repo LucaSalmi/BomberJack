@@ -24,18 +24,17 @@ enum UserData{
     
     //Stats
     static var enemiesKilled: Int64 = 0
-    static var bombsDropped: Int = 0
-    static var numberOfDeaths: Int = 0
-    static var barrelUsed: Int = 0
+    static var bombsDropped: Int64 = 0
+    static var numberOfDeaths: Int64 = 0
+    static var barrelUsed: Int64 = 0
     
 }
 
 struct DefaultKeys{
     
-    static let enemyKillsKey = "enemiesKilled"
-    static let bombsDroppedKey = "bombsDropped"
-    static let numbOfDeathsKey = "numberOfDeaths"
-    static let barrelUsedKey = "barrelUsed"
+    static let musicToggleKey = "isMusicOn"
+    static let sFXToggleKey = "areSFXOn"
+    static let screenShakeToggleKey = "isScreenShakeOn"
 }
 
 class dataReaderWriter{
@@ -43,24 +42,23 @@ class dataReaderWriter{
     static func saveUserData(){
         
         let defaultData = UserDefaults.standard
-        //defaultData.set(UserData.enemiesKilled, forKey: DefaultKeys.enemyKillsKey)
-        defaultData.set(UserData.bombsDropped, forKey: DefaultKeys.bombsDroppedKey)
-        defaultData.set(UserData.numberOfDeaths, forKey: DefaultKeys.numbOfDeathsKey)
-        defaultData.set(UserData.barrelUsed, forKey: DefaultKeys.barrelUsedKey)
+        defaultData.set(Options.options.isMusicOn, forKey: DefaultKeys.musicToggleKey)
+        defaultData.set(Options.options.areSFXOn, forKey: DefaultKeys.sFXToggleKey)
+        defaultData.set(Options.options.isScreenShakeOn, forKey: DefaultKeys.screenShakeToggleKey)
+
        
     }
     
     static func loaduserData(){
         
         let defaultData = UserDefaults.standard
-        //UserData.enemiesKilled = defaultData.integer(forKey: DefaultKeys.enemyKillsKey)
-        UserData.bombsDropped = defaultData.integer(forKey: DefaultKeys.bombsDroppedKey)
-        UserData.numberOfDeaths = defaultData.integer(forKey: DefaultKeys.numbOfDeathsKey)
-        UserData.barrelUsed = defaultData.integer(forKey: DefaultKeys.barrelUsedKey)
+        Options.options.isMusicOn = defaultData.bool(forKey: DefaultKeys.musicToggleKey)
+        Options.options.areSFXOn = defaultData.bool(forKey: DefaultKeys.sFXToggleKey)
+        Options.options.isScreenShakeOn = defaultData.bool(forKey: DefaultKeys.screenShakeToggleKey)
 
     }
     
-    static func updateEnemiesKilled(){
+    static func updateDatabase(){
         
         let viewContext = PersistenceController.shared.container.viewContext
         
@@ -68,10 +66,17 @@ class dataReaderWriter{
         
         do{
             let result = try viewContext.fetch(fetchRequest)
-            print(result)
             let statistics = result[0]
+            //update data in Database
             statistics.killedEnemies += UserData.enemiesKilled
+            statistics.bombsDropped += UserData.bombsDropped
+            statistics.numberOfDeaths += UserData.numberOfDeaths
+            statistics.usedBarrel += UserData.barrelUsed
+            //reset local data
             UserData.enemiesKilled = 0
+            UserData.bombsDropped = 0
+            UserData.numberOfDeaths = 0
+            UserData.barrelUsed = 0
         
         }catch{
             print("result error")
@@ -82,7 +87,7 @@ class dataReaderWriter{
 
 class Options: ObservableObject{
         
-    @Published var isMusicOn = false
+    @Published var isMusicOn = true
     @Published var areSFXOn = true
     @Published var isScreenShakeOn = true
     

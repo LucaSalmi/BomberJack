@@ -132,17 +132,7 @@ struct PauseMenu: View {
         ZStack {
         
             let cornerRadius = CGFloat(10)
-//            let frameWidth = CGFloat(500)
-//            let frameHeight = CGFloat(200)
             let borderWidth = CGFloat(2)
-//
-//            RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
-//                .foregroundColor(.white)
-//                .frame(width: frameWidth, height: frameHeight)
-//
-//            RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
-//                .foregroundColor(.black)
-//                .frame(width: frameWidth-borderWidth, height: frameHeight-borderWidth)
             
             RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
                 .foregroundColor(.gray)
@@ -164,15 +154,6 @@ struct PauseMenu: View {
                         GameScene.gameState = .play
                     }
                 }, label: {
-                    
-//                        Text("Continue")
-//                            .foregroundColor(.white)
-//                            .padding(8)
-//                            .overlay(
-//                                RoundedRectangle(cornerRadius: 5)
-//                                    .stroke(Color.white, lineWidth: 1)
-//                            )
-//                        Image("house")
                     
                     Label("Continue", systemImage: "arrowtriangle.right.circle")
                         .foregroundColor(Color.white)
@@ -218,16 +199,9 @@ struct PauseMenu: View {
                     isPaused = false
                     GameScene.gameState = .play
                     GameViewController.currentGameScene?.player?.resetInventory()
+                    dataReaderWriter.updateDatabase()
                 }, label: {
-//                    Text("Main Menu")
-//                        .foregroundColor(.white)
-//                        .padding(8)
-//                        .overlay(
-//                            RoundedRectangle(cornerRadius: 5)
-//                                .stroke(Color.white, lineWidth: 1)
-//
-//
-//                        )
+
                     Label("Main Menu", systemImage: "house")
                         .foregroundColor(Color.white)
                         .padding(10)

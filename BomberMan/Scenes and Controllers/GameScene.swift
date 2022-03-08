@@ -39,9 +39,12 @@ class GameScene: SKScene {
     
     var isGameOver = false
     var isDoorOpen = false
-    
+        
     let endLevelDelay = 60
     var endLevelCounter = 0
+    
+    let databaseUpdateLimit = 60 * 120
+    var databaseUpdateCounter = 0
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -510,7 +513,7 @@ class GameScene: SKScene {
             for bomb in Bomb.bombs {
                 bomb.update()
             }
-            
+            //call update method on Player
             player!.update()
             
             if let lightNode = lightNode {
@@ -529,7 +532,14 @@ class GameScene: SKScene {
         
         player!.update()
         
-        dataReaderWriter.saveUserData()
+        if databaseUpdateCounter < databaseUpdateLimit{
+            databaseUpdateCounter += 1
+        }else{
+            databaseUpdateCounter = 0
+            dataReaderWriter.updateDatabase()
+            print("Luca: Database Updated")
+        }
+        
         
     }
     

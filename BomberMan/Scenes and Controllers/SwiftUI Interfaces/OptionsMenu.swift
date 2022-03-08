@@ -20,7 +20,7 @@ struct OptionsMenu: View {
             Image("main_menu_options")
                 .resizable()
                 .scaledToFill()
-                        
+            
             VStack{
                 
                 ZStack{
@@ -157,17 +157,13 @@ struct OptionsTab: View{
         }
         .padding()
         .scaledToFit()
+        .onDisappear(perform: {
+            dataReaderWriter.saveUserData()
+        })
     }
 }
 
 struct StatisticsTab: View{
-    
-    let myStats: [String: Int] = [
-        //"Killed Enemies": UserData.enemiesKilled,
-        "Bombs Dropped": UserData.bombsDropped,
-        "Hidden in Barrel": UserData.barrelUsed,
-        "Number of Deaths": UserData.numberOfDeaths
-    ]
     
     @FetchRequest
     var statisticsData: FetchedResults<Statistics>
@@ -179,24 +175,9 @@ struct StatisticsTab: View{
         
         _statisticsData = FetchRequest<Statistics>(sortDescriptors: sortingPredicate, animation: animation)
         
-//        print("\(statisticsData.count)")
-//        if statisticsData.isEmpty{
-//            let statistics = Statistics(context: viewContext)
-//            statistics.killedEnemies = 0
-//            do{
-//                try viewContext.save()
-//            }
-//            catch{
-//                print("database error")
-//            }
-//        }
-        
     }
     
-    
     var body: some View{
-        
-        
         
         HStack(){
             
@@ -207,19 +188,33 @@ struct StatisticsTab: View{
                 
                 LazyVGrid(columns: columns){
                     
-                    ForEach(myStats.sorted(by: >), id: \.key) { key, value in
-                        HStack{
-
-                            Text(key + ": " + String(value)).listRowBackground(Color.clear)
-                                .foregroundColor(.white)
-                                .font(.custom("Avenir", size: 30))
-                        }
+                    VStack{
+                        
+                        Text("Enemies Killed \(statisticsData[0].killedEnemies)").listRowBackground(Color.clear)
+                            .foregroundColor(.white)
+                            .font(.custom("Avenir", size: 30))
+                        
+                        Spacer()
+                        
+                        Text("Bombs Dropped \(statisticsData[0].bombsDropped)").listRowBackground(Color.clear)
+                            .foregroundColor(.white)
+                            .font(.custom("Avenir", size: 30))
+                        
                     }
                     
-                    if !statisticsData.isEmpty {
-                        Text("Database test: \(statisticsData[0].killedEnemies)")
+                    VStack{
+                        
+                        Text("Barrel Used \(statisticsData[0].usedBarrel)").listRowBackground(Color.clear)
+                            .foregroundColor(.white)
+                            .font(.custom("Avenir", size: 30))
+                        
+                        Spacer()
+                        
+                        Text("Number of Deaths \(statisticsData[0].numberOfDeaths)").listRowBackground(Color.clear)
+                            .foregroundColor(.white)
+                            .font(.custom("Avenir", size: 30))
+                        
                     }
-                    
                     
                 }
                 .padding(EdgeInsets(top: 0, leading: 0, bottom: 70, trailing: 30))
