@@ -32,7 +32,7 @@ struct GameUIView: View {
                         Button(action: {
                             
                             GameScene.gameState = .pause
-                        
+                            
                             
                             withAnimation(.easeIn(duration: 0.4)){
                                 isPaused = true
@@ -73,11 +73,11 @@ struct GameUIView: View {
                             Image("barrel_shield")
                                 .resizable()
                                 .frame(width: 35, height: 50, alignment: .center)
-                                
+                            
                         })
                             .padding(20)
-                            
-                            
+                        
+                        
                     }
                     
                     HStack{
@@ -104,22 +104,12 @@ struct GameUIView: View {
                                 .frame(width: 55, height: 50, alignment: .center)
                         })
                             .padding(20)
-                            
                         
                     }
-                    
-                    
-                    
-                    
-                        
                 }
-                
             }
         }
-        
-        
     }
-    
 }
 
 struct PauseMenu: View {
@@ -130,7 +120,7 @@ struct PauseMenu: View {
     var body: some View {
         
         ZStack {
-        
+            
             let cornerRadius = CGFloat(10)
             let borderWidth = CGFloat(2)
             
@@ -141,8 +131,8 @@ struct PauseMenu: View {
                     RoundedRectangle(cornerRadius: cornerRadius)
                         .stroke(Color.white, lineWidth: borderWidth)
                 )
-                
-         
+            
+            
             VStack {
                 
                 Button(action: {
@@ -160,13 +150,13 @@ struct PauseMenu: View {
                         .padding(10)
                         .overlay(RoundedRectangle(cornerRadius: 5)
                                     .stroke(Color.white, lineWidth: 1))
-                        
+                    
                     
                 })
-                    
+                
                     .background(Color.black)
                     .cornerRadius(5)
-                    
+                
                 
                 
                 
@@ -177,13 +167,7 @@ struct PauseMenu: View {
                         GameViewController.currentGameScene?.actionManager.handleInput(id: MyViewSettings.actionNextLevel, isPaused: isPaused)
                     }
                 }, label: {
-//                    Text("Next Level")
-//                        .foregroundColor(.white)
-//                        .padding(8)
-//                        .overlay(
-//                            RoundedRectangle(cornerRadius: 5)
-//                                .stroke(Color.white, lineWidth: 1)
-//                        )
+                    
                     Label("Next Level", systemImage: "arrowshape.turn.up.right")
                         .foregroundColor(Color.white)
                         .padding(10)
@@ -201,7 +185,7 @@ struct PauseMenu: View {
                     GameViewController.currentGameScene?.player?.resetInventory()
                     dataReaderWriter.updateDatabase()
                 }, label: {
-
+                    
                     Label("Main Menu", systemImage: "house")
                         .foregroundColor(Color.white)
                         .padding(10)
@@ -214,8 +198,6 @@ struct PauseMenu: View {
                     .cornerRadius(5)
                 
             }
-            
-            
         }
     }
 }

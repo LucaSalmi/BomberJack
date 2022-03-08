@@ -179,51 +179,35 @@ struct StatisticsTab: View{
     
     var body: some View{
         
+        let statsArray: [String: Int64] = [
+            
+            "Enemies Killed:" : statisticsData[0].killedEnemies,
+            "Bombs Dropped:" : statisticsData[0].bombsDropped,
+            "Barrel Used:" : statisticsData[0].usedBarrel,
+            "Number of Deaths:" : statisticsData[0].numberOfDeaths
+        ]
+        
         HStack(){
             
             let columns: [GridItem] =
             Array(repeating: .init(.flexible()), count: 2)
             
-            ScrollView{
                 
                 LazyVGrid(columns: columns){
-                    
-                    VStack{
                         
-                        Text("Enemies Killed \(statisticsData[0].killedEnemies)").listRowBackground(Color.clear)
-                            .foregroundColor(.white)
-                            .font(.custom("Avenir", size: 30))
-                        
-                        Spacer()
-                        
-                        Text("Bombs Dropped \(statisticsData[0].bombsDropped)").listRowBackground(Color.clear)
-                            .foregroundColor(.white)
-                            .font(.custom("Avenir", size: 30))
-                        
-                    }
-                    
-                    VStack{
-                        
-                        Text("Barrel Used \(statisticsData[0].usedBarrel)").listRowBackground(Color.clear)
-                            .foregroundColor(.white)
-                            .font(.custom("Avenir", size: 30))
-                        
-                        Spacer()
-                        
-                        Text("Number of Deaths \(statisticsData[0].numberOfDeaths)").listRowBackground(Color.clear)
-                            .foregroundColor(.white)
-                            .font(.custom("Avenir", size: 30))
-                        
-                    }
-                    
+                        ForEach(statsArray.sorted(by: >), id: \.key) { key, value in
+                            
+                            HStack{
+                                
+                                Text("\(key) \(value)").listRowBackground(Color.clear)
+                                    .foregroundColor(.white)
+                                    .font(.custom("Avenir", size: 30))
+                                
+                            }
+                        }
                 }
                 .padding(EdgeInsets(top: 0, leading: 0, bottom: 70, trailing: 30))
-                
-                
-            }
-            
         }
-        
     }
 }
 

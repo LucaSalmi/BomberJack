@@ -224,8 +224,6 @@ class Player: SKSpriteNode{
         if GameScene.viewController?.currentLevel == 1{
             PlayerSettings.haveBombs = false
         }
-        
-        
     }
     
     func update() {
