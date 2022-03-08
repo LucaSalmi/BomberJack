@@ -97,7 +97,7 @@ class Enemy: SKSpriteNode {
                     
                     //stat change
                     UserData.enemiesKilled += 1
-                    dataReaderWriter.updateEnemiesKilled()
+                    dataReaderWriter.updateDatabase()
                     isAlive = false
                 }
             }
