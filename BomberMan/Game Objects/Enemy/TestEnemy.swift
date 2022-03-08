@@ -23,8 +23,10 @@ class TestEnemy: Enemy {
     }
     
     init(){
-        let texture = SKTexture(imageNamed: "bug_ft1")
-        super.init(texture, .white, texture.size())
+        let size: CGSize = CGSize(width: 32, height: 32)
+        let tempColor = UIColor(red: 100, green: 100, blue: 100, alpha: 0)
+        super.init(SKTexture(imageNamed: "enemy_walk_animation_down"), tempColor, size)
+        
         name = "Test Enemy"
         
         enemySpeed = 0.5
