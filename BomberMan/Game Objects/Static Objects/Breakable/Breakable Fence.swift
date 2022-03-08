@@ -8,14 +8,20 @@
 import Foundation
 import SpriteKit
 
+enum FenceSettings{
+    
+    static let sizeOffset: CGFloat = 10
+    
+}
+
 class Fence: BreakableObject{
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("use init()")
     }
     
-    override init(textureName: String) {
-        super.init(textureName: textureName)
+    init(textureName: String) {
+        super.init(textureName: textureName, yOffset: FenceSettings.sizeOffset)
         name = "Breakable Fence"
     }
     

@@ -8,14 +8,20 @@
 import Foundation
 import SpriteKit
 
+enum TreeSettings{
+    
+    static let sizeOffset: CGFloat = 35
+    
+}
+
 class Tree: BreakableObject{
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("use init()")
     }
     
-    override init(textureName: String) {
-        super.init(textureName: textureName)
+    init(textureName: String) {
+        super.init(textureName: textureName, yOffset: TreeSettings.sizeOffset)
         name = "Breakable Tree"
     }
     

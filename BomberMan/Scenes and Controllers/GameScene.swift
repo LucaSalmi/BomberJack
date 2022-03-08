@@ -604,7 +604,8 @@ class GameScene: SKScene {
     
     static func updateZPosition(object: SKNode) {
         guard let tileSize = tileSize else { return }
-        object.zPosition = round(object.position.y/tileSize.height) * -1
+        let margin: CGFloat = 10
+        object.zPosition = round(object.position.y/(tileSize.height-margin)) * -1
     }
     
 }
