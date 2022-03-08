@@ -43,7 +43,8 @@ class GameScene: SKScene {
     let endLevelDelay = 60
     var endLevelCounter = 0
     
-    var databaseUpdateTimer = 120
+    let databaseUpdateLimit = 60 * 120
+    var databaseUpdateCounter = 0
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -531,10 +532,10 @@ class GameScene: SKScene {
         
         player!.update()
         
-        if databaseUpdateTimer > 0{
-            databaseUpdateTimer -= 1
+        if databaseUpdateCounter < databaseUpdateLimit{
+            databaseUpdateCounter += 1
         }else{
-            databaseUpdateTimer = 120
+            databaseUpdateCounter = 0
             dataReaderWriter.updateDatabase()
             print("Luca: Database Updated")
         }
