@@ -22,12 +22,12 @@ class BreakableObject: SKSpriteNode{
         fatalError("use init()")
     }
     
-    init(textureName: String){
+    init(textureName: String, yOffset: CGFloat){
         
         //Texture Init
         let objTexture = SKTexture(imageNamed: textureName)
         var size = GameScene.tileSize
-        size?.height += BreakableSettings.sizeOffset
+        size?.height += yOffset
         size?.width += 8 // temporary
         breakableTexture = SKSpriteNode(texture: objTexture, color: .clear, size: size!)
         

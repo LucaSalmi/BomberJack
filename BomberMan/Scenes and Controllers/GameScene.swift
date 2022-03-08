@@ -15,6 +15,8 @@ class GameScene: SKScene {
     static var tileSize: CGSize? = CGSize(width: 32, height: 32)
     static var gameState = GameState.play
     
+    var isCaveLevel: Bool = false
+    
     var leftUI: SKSpriteNode? = nil
     var rightUI: SKSpriteNode? = nil
     
@@ -94,6 +96,7 @@ class GameScene: SKScene {
         darknessMaskNode = (darknessNode as! SKSpriteNode)
         darknessMaskNode!.position = player!.position
         
+        isCaveLevel = true
     }
     
     func setupVictoryCond(){
@@ -614,7 +617,8 @@ class GameScene: SKScene {
     
     static func updateZPosition(object: SKNode) {
         guard let tileSize = tileSize else { return }
-        object.zPosition = round(object.position.y/tileSize.height) * -1
+        let margin: CGFloat = 10
+        object.zPosition = round(object.position.y/(tileSize.height-margin)) * -1
     }
     
 }
