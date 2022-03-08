@@ -14,7 +14,7 @@ class DoorVertical: Door{
         
         if PlayerSettings.amountOfKeys > 0{
             super.collision(with: other)
-            self.texture = SKTexture(imageNamed: "doorone")
+            self.doorTexture.texture = SKTexture(imageNamed: "door_horizontal")
             
         }
     }

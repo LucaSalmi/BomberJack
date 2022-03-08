@@ -313,20 +313,9 @@ class GameScene: SKScene {
                 }else if tile.userData?.value(forKey: "door") != nil{
                     let doorType = tile.userData?.value(forKey: "door") as! String
                     
-                    switch doorType{
-                        
-                    case "doorHorizontal":
-                        let texture = SKTexture(imageNamed: "doorone")
-                        door = DoorHorizontal(texture: texture)
-                        
-                    case "doorVertical":
-                        let texture = SKTexture(imageNamed: "doortwo")
-                        door = DoorVertical(texture: texture)
-                        
-                    default:
-                        return
-                        
-                    }
+                    door = DoorHorizontal(textureName: doorType)
+                    
+                    
                 }
                 
                 if obstacle != nil{
@@ -345,8 +334,13 @@ class GameScene: SKScene {
                 
                 if door != nil{
                     door!.position = obstaclesTileMap.centerOfTile(atColumn: column, row: row)
+                    door?.doorTexture.position = door!.position
                     GameScene.updateZPosition(object: door!)
+                    door?.doorTexture.zPosition = door!.zPosition
+                    door?.doorTexture.position.y += PlayerSettings.textureOffset
+                    
                     obstaclesNode!.addChild(door!)
+                    obstaclesNode?.addChild(door!.doorTexture)
                 }
                 
                 

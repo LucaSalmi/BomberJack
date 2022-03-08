@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "doortwo.png",
+      "filename" : "door_horizontal.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
