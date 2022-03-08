@@ -77,10 +77,7 @@ class dataReaderWriter{
             print("result error")
             
         }
-        
-        
     }
-    
 }
 
 class Options: ObservableObject{
