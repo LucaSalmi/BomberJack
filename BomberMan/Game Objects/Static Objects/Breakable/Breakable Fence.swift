@@ -33,6 +33,16 @@ class Fence: BreakableObject{
         
         let obj = breakable as! Fence
         obj.breakableTexture.removeFromParent()
+        
+        let smokeParticle = SKEmitterNode(fileNamed: "BarrelSmoke")
+        smokeParticle!.position = position
+        smokeParticle!.position.y += 16
+        smokeParticle!.zPosition = 100
+        GameViewController.currentGameScene!.addChild(smokeParticle!)
+        GameViewController.currentGameScene!.run(SKAction.wait(forDuration: 1)) {
+            smokeParticle!.removeFromParent()
+        }
+        
         changeTexture(obj: obj)
         super.collision(breakable: breakable)
         
