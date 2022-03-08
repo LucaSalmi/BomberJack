@@ -152,8 +152,12 @@ class Player: SKSpriteNode{
         //stat change
         UserData.numberOfDeaths += 1
         
+        resetInventory()
+        
         player.removeFromParent()
         currentTexture.removeFromParent()
+        
+        GameViewController.currentGameScene!.isGameOver = true
     }
     
     func findDirection(playerDirection: CGPoint) -> Direction{
