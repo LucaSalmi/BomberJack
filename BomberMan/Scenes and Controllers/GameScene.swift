@@ -107,7 +107,6 @@ class GameScene: SKScene {
             
         case 1:
             victoryCondition = VictoryConditions.openDoor
-            cutsceneRunning = true
             
         case 2:
             victoryCondition = VictoryConditions.killAll
@@ -427,7 +426,6 @@ class GameScene: SKScene {
                     player!.position = playerMap.centerOfTile(atColumn: column, row: row)
                     player!.playerTexture.position.x = player!.position.x
                     player!.playerTexture.position.y = player!.position.y + PlayerSettings.textureOffset
-                    player!.hidePlayer()
                 }
                 
                 if tile.userData?.object(forKey: "playerCutscene") != nil {
@@ -439,6 +437,10 @@ class GameScene: SKScene {
                     
                 }
             }
+        }
+        
+        if playerCutscene != nil {
+            player!.hidePlayer()
         }
         
         addChild(player!)

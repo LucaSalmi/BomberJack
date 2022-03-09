@@ -239,7 +239,7 @@ class Player: SKSpriteNode{
     func showPlayer() {
         self.alpha = 1
         playerTexture.alpha = 1
-        shieldTexture.alpha = 1
+        shieldTexture.alpha = 0
         
         GameViewController.currentGameScene!.playerCutscene!.removeFromParent()
         GameViewController.currentGameScene!.playerCutscene = nil
