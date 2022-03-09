@@ -20,6 +20,7 @@ enum UserData{
     //Playable Charachter
     static var lives: Int = 3
     static var currentLevel: Int = 1
+    static var lastSavedLevel: Int = 0
     static let numberOfLevels: Int = 4
     
     //Stats
@@ -60,13 +61,23 @@ class dataReaderWriter{
     
     static func saveLocalSaveData(){
         
-        DefaultKeys.defaultData.set(UserData.currentLevel, forKey: DefaultKeys.lastPlayedLevelKey)
+        if UserData.currentLevel < UserData.lastSavedLevel{
+            
+            DefaultKeys.defaultData.set(UserData.lastSavedLevel, forKey: DefaultKeys.lastPlayedLevelKey)
+            
+        }else{
+            
+            DefaultKeys.defaultData.set(UserData.currentLevel, forKey: DefaultKeys.lastPlayedLevelKey)
+        }
+        
         
     }
     
     static func loadLocalSaveData(){
         
         UserData.currentLevel = DefaultKeys.defaultData.integer(forKey: DefaultKeys.lastPlayedLevelKey)
+        UserData.lastSavedLevel = UserData.currentLevel
+        
         if UserData.currentLevel == 0{
             UserData.currentLevel = 1
         }

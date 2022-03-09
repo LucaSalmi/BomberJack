@@ -567,7 +567,7 @@ class GameScene: SKScene {
     }
     
     private func updateCutscene() {
-        switch GameScene.viewController!.currentLevel {
+        switch UserData.currentLevel {
         case 1:
             playerCutscene?.update()
         default:

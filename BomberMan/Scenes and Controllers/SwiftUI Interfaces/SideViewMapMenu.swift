@@ -152,8 +152,18 @@ struct SideViewMapMenu: View {
         
         print(UserData.currentLevel)
         
-        if UserData.currentLevel >= id{
+        if UserData.currentLevel == id{
             
+            return true
+            
+        }else if UserData.currentLevel > id{
+            
+            UserData.currentLevel = id
+            return true
+            
+        }else if UserData.currentLevel < id && UserData.lastSavedLevel >= id{
+            
+            UserData.currentLevel = id
             return true
         }
         

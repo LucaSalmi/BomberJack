@@ -38,7 +38,7 @@ class PlayerCutscene: SKSpriteNode {
     
     func update() {
         
-        switch GameScene.viewController!.currentLevel {
+        switch UserData.currentLevel {
         case 1:
             
             if floatUp {

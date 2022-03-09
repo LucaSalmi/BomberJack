@@ -144,7 +144,7 @@ struct PauseMenu: View {
                     Text("GAME OVER")
                     
                     Button(action: {
-                        let levelNumber = GameScene.viewController!.getCurrentLevel()
+                        let levelNumber = UserData.currentLevel
                         GameScene.viewController!.presentScene("GameScene\(levelNumber)")
                         
                         isPaused = false
