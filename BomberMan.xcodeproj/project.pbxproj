@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		330C62E927D8BDE800E01C98 /* PlayerCutscene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330C62E827D8BDE800E01C98 /* PlayerCutscene.swift */; };
+		330C62EB27D8C8B600E01C98 /* Level1IntroDialogue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330C62EA27D8C8B600E01C98 /* Level1IntroDialogue.swift */; };
 		330D6EFD27C67E2F00444648 /* SwiftUIHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330D6EFC27C67E2F00444648 /* SwiftUIHostingController.swift */; };
 		3312D2A027C60A28004C0EEF /* EnemyDeath.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3312D29F27C60A28004C0EEF /* EnemyDeath.sks */; };
 		3312D2A227C612E3004C0EEF /* BloodSplatter.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3312D2A127C612E3004C0EEF /* BloodSplatter.sks */; };
@@ -76,6 +78,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		330C62E827D8BDE800E01C98 /* PlayerCutscene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerCutscene.swift; sourceTree = "<group>"; };
+		330C62EA27D8C8B600E01C98 /* Level1IntroDialogue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level1IntroDialogue.swift; sourceTree = "<group>"; };
 		330D6EFC27C67E2F00444648 /* SwiftUIHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIHostingController.swift; sourceTree = "<group>"; };
 		3312D29F27C60A28004C0EEF /* EnemyDeath.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = EnemyDeath.sks; sourceTree = "<group>"; };
 		3312D2A127C612E3004C0EEF /* BloodSplatter.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BloodSplatter.sks; sourceTree = "<group>"; };
@@ -172,6 +176,7 @@
 				334F89D427CCDAE3007A1857 /* Dialogue.swift */,
 				334F89D627CCDBDA007A1857 /* NeedBombsDialogue.swift */,
 				338D408A27D0A0E20003C3A6 /* NeedKeyDialogue.swift */,
+				330C62EA27D8C8B600E01C98 /* Level1IntroDialogue.swift */,
 			);
 			path = Dialogue;
 			sourceTree = "<group>";
@@ -285,6 +290,7 @@
 				334F89CE27CCCF0E007A1857 /* Events */,
 				334F89D327CCDACD007A1857 /* Dialogue */,
 				C801D2E727BBAF2F008B1CD5 /* Player.swift */,
+				330C62E827D8BDE800E01C98 /* PlayerCutscene.swift */,
 			);
 			path = "Game Objects";
 			sourceTree = "<group>";
@@ -472,6 +478,7 @@
 				C815F79827B400490084DE7A /* GameScene.swift in Sources */,
 				E533BFB227D0D7D000FDBFAD /* DoorHorizontal.swift in Sources */,
 				E5DCA41727D8D62400DC05EA /* BomberMan.xcdatamodeld in Sources */,
+				330C62EB27D8C8B600E01C98 /* Level1IntroDialogue.swift in Sources */,
 				33B882A327BBC41A00BB897E /* MovementManager.swift in Sources */,
 				33250F4027CE073F0019AAB1 /* GameUIView.swift in Sources */,
 				C8C7DC2F27BFD9990083656A /* PhysicsExtension.swift in Sources */,
@@ -482,6 +489,7 @@
 				3354DF2227BF841E0019D640 /* SoundManager.swift in Sources */,
 				C815F79A27B400490084DE7A /* GameViewController.swift in Sources */,
 				33B882A727BBF2FB00BB897E /* TestEnemy.swift in Sources */,
+				330C62E927D8BDE800E01C98 /* PlayerCutscene.swift in Sources */,
 				33B882A527BBEF3500BB897E /* Enemy.swift in Sources */,
 				D5FFD73727C52BEC0032912D /* LootObject.swift in Sources */,
 				C8E502CC27C4E59A00706C71 /* StandardBomb.swift in Sources */,

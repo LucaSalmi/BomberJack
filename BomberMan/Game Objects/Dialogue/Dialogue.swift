@@ -24,7 +24,7 @@ class Dialogue: SKNode {
     var labelNode: SKLabelNode? = nil
     
     let dialogueText: String!
-    let showingTime = 60 * 3
+    let showingTime = 60 * 4
     var ticks: Int = 0
     
     let positionOffsetY: CGFloat = 150

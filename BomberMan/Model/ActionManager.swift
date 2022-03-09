@@ -34,6 +34,10 @@ class ActionManagager{
     
     func handleInput(id: Int, isPaused: Bool) {
         
+        if context.cutsceneRunning {
+            return
+        }
+        
         if isPaused {
             return
         }
