@@ -96,6 +96,8 @@ class dataReaderWriter{
             //update data in Database
             statistics.lastCompletedLevel = Int64(UserData.currentLevel)
             print("level save completed")
+            print(statistics.lastCompletedLevel)
+            print(UserData.currentLevel)
         
         }catch{
             print("level save error")

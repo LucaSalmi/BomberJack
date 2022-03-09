@@ -26,6 +26,7 @@ struct SideViewMapMenu: View {
         _startGame = startBool
         
         
+        
     }
     
     var body: some View {
@@ -48,6 +49,8 @@ struct SideViewMapMenu: View {
                         
                         withAnimation(.easeIn(duration: 0.3)){
                             
+                            print(statisticsData.count)
+                            
                             if checkAndStartLevel(id: 1){
                                 
                                 startGame = true
@@ -66,6 +69,11 @@ struct SideViewMapMenu: View {
                         
                         print("level 3 pressed")
                         
+                        if checkAndStartLevel(id: 3){
+                            
+                            startGame = true
+                        }
+                        
                     } label: {
                         Text("level 3")
                     }
@@ -76,6 +84,11 @@ struct SideViewMapMenu: View {
                     Button {
                         
                         print("level 5 pressed")
+                        
+                        if checkAndStartLevel(id: 5){
+                            
+                            startGame = true
+                        }
                         
                     } label: {
                         Text("level 5")
@@ -95,8 +108,15 @@ struct SideViewMapMenu: View {
                         
                         print("level 2 pressed")
                         
+                        if checkAndStartLevel(id: 2){
+                            
+                            startGame = true
+                        }
+                        
                     } label: {
                         Text("level 2")
+                        
+                        
                     }
                     .foregroundColor(.white)
                     .font(Font.body.bold())
@@ -106,6 +126,11 @@ struct SideViewMapMenu: View {
                     Button {
                         
                         print("level 4 pressed")
+                        
+                        if checkAndStartLevel(id: 4){
+                            
+                            startGame = true
+                        }
                         
                     } label: {
                         Text("level 4")
@@ -117,6 +142,11 @@ struct SideViewMapMenu: View {
                     Button {
                         
                         print("level 6 pressed")
+                        
+                        if checkAndStartLevel(id: 6){
+                            
+                            startGame = true
+                        }
                         
                     } label: {
                         Text("level 6")
@@ -148,9 +178,11 @@ struct SideViewMapMenu: View {
             
             if UserData.currentLevel == 0{
                 UserData.currentLevel = 1
+                statisticsData[0].lastCompletedLevel = 1
             }
             
             if UserData.currentLevel >= id{
+                UserData.currentLevel = id
                 return true
                 
             }
