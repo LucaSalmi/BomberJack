@@ -74,11 +74,7 @@ class GameScene: SKScene {
     
     
     
-    override func sceneDidLoad() {
-        
-        
-        
-    }
+    override func sceneDidLoad() {}
     
     func setupLightning() {
         
@@ -99,13 +95,13 @@ class GameScene: SKScene {
         isCaveLevel = true
     }
     
+    // decides a victory conditions based on what level is loaded
     func setupVictoryCond(){
         
         switch UserData.currentLevel{
             
         case 1:
-            //victoryCondition = VictoryConditions.openDoor
-            victoryCondition = VictoryConditions.testCond
+            victoryCondition = VictoryConditions.openDoor
             
         case 2:
             victoryCondition = VictoryConditions.killAll
@@ -609,15 +605,6 @@ class GameScene: SKScene {
                     
                 }
                 
-            case .testCond:
-                
-                if PlayerSettings.haveBombs{
-                    
-                    UserData.currentLevel += 1
-                    dataReaderWriter.saveLocalSaveData()
-                    isGameOver = true
-                    
-                }
                 
             default:
                 print("something went VERY wrong...")
