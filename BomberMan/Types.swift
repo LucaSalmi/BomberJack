@@ -13,7 +13,7 @@ enum Direction: Int{
 
 enum VictoryConditions: Int{
     
-    case openDoor = 0, killAll
+    case openDoor = 0, killAll, testCond
 }
 
 typealias tileCoordinates = (column: Int, row: Int)

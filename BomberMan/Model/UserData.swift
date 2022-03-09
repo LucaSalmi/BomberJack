@@ -19,8 +19,8 @@ enum UserData{
     
     //Playable Charachter
     static var lives: Int = 3
-    static var currentLevel: Int = 0
-    static var score: Int = 0
+    static var currentLevel: Int = 1
+    static let numberOfLevels: Int = 4
     
     //Stats
     static var enemiesKilled: Int64 = 0
@@ -80,6 +80,25 @@ class dataReaderWriter{
         
         }catch{
             print("result error")
+            
+        }
+    }
+    
+    static func saveLevelComplete(){
+        
+        let viewContext = PersistenceController.shared.container.viewContext
+        
+        let fetchRequest = NSFetchRequest<Statistics>(entityName: "Statistics")
+        
+        do{
+            let result = try viewContext.fetch(fetchRequest)
+            let statistics = result[0]
+            //update data in Database
+            statistics.lastCompletedLevel = Int64(UserData.currentLevel)
+            print("level save completed")
+        
+        }catch{
+            print("level save error")
             
         }
     }

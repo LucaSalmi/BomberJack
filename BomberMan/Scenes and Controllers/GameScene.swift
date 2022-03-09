@@ -101,10 +101,11 @@ class GameScene: SKScene {
     
     func setupVictoryCond(){
         
-        switch GameScene.viewController!.currentLevel{
+        switch UserData.currentLevel{
             
         case 1:
-            victoryCondition = VictoryConditions.openDoor
+            //victoryCondition = VictoryConditions.openDoor
+            victoryCondition = VictoryConditions.testCond
             
         case 2:
             victoryCondition = VictoryConditions.killAll
@@ -480,7 +481,7 @@ class GameScene: SKScene {
             self.stopScene()
             
             //Present a new instance of the scene
-            let restartScene = "GameScene" + String(GameScene.viewController!.currentLevel)
+            let restartScene = "GameScene" + String(UserData.currentLevel)
             GameScene.viewController!.presentScene(restartScene)
             return
             
@@ -575,7 +576,7 @@ class GameScene: SKScene {
                 
                 if Enemy.enemies.count <= 0{
                     
-                    GameScene.viewController?.currentLevel += 1
+                    UserData.currentLevel += 1
                     isGameOver = true
                     print("you killed everyone, you monster.....")
                 }
@@ -600,9 +601,19 @@ class GameScene: SKScene {
                 
                 if isDoorOpen{
                     
-                    GameScene.viewController?.currentLevel += 1
+                    UserData.currentLevel += 1
                     isGameOver = true
                     print("keys found and door opened, good job...")
+                    
+                }
+                
+            case .testCond:
+                
+                if PlayerSettings.haveBombs{
+                    
+                    UserData.currentLevel += 1
+                    dataReaderWriter.saveLevelComplete()
+                    isGameOver = true
                     
                 }
                 

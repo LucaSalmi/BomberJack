@@ -143,11 +143,11 @@ class ActionManagager{
             print("Could not find Game View Controller!")
             return
         }
-        GameScene.viewController!.currentLevel += 1
-        if GameScene.viewController!.currentLevel > GameScene.viewController!.numberOfLevels {
-            GameScene.viewController!.currentLevel = GameScene.viewController!.numberOfLevels
+        UserData.currentLevel += 1
+        if UserData.currentLevel > UserData.numberOfLevels {
+            UserData.currentLevel = UserData.numberOfLevels
         }
-        let nextScene = "GameScene" + String(GameScene.viewController!.currentLevel)
+        let nextScene = "GameScene" + String(UserData.currentLevel)
         GameScene.viewController!.presentScene(nextScene)
     }
 }
