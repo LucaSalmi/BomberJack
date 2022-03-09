@@ -22,6 +22,7 @@ struct ContentView: View {
     
     @State var startGame: Bool = false
     @State var isPaused: Bool = false
+    @State var isDead: Bool = false
     
     @Environment(\.managedObjectContext) private var viewContext
     
@@ -43,12 +44,12 @@ struct ContentView: View {
         if startGame {
             ZStack {
                 if isPaused {
-                    PauseMenu(startGame: $startGame, isPaused: $isPaused)
+                    PauseMenu(startGame: $startGame, isPaused: $isPaused, isDead: $isDead)
                         .zIndex(2)
                         //.transition(.slide)
                         //.animation(.easeInOut)
                 }
-                GameView(startGame: $startGame, isPaused: $isPaused)
+                GameView(startGame: $startGame, isPaused: $isPaused, isDead: $isDead)
                     .zIndex(1)
             }
             
@@ -104,13 +105,14 @@ struct GameView: View {
     
     @Binding var startGame: Bool
     @Binding var isPaused: Bool
+    @Binding var isDead: Bool
     
     var body: some View {
         
         ZStack {
             
             //Game UI layer
-            GameUIView(startGame: $startGame, isPaused: $isPaused)
+            GameUIView(startGame: $startGame, isPaused: $isPaused, isDead: $isDead )
                 .zIndex(2)
             
             //Game Scene Layer (ViewController)

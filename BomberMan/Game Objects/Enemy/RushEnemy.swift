@@ -30,7 +30,7 @@ class RushEnemy: TestEnemy {
         
         chargeSpeed = enemySpeed * chargeSpeedMultiplier
         
-        self.texture = SKTexture(imageNamed: "firebug")
+        self.texture = SKTexture(imageNamed: "enemy_rush")
     }
     
     private func searchForPlayer() -> CGPoint {

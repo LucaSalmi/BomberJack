@@ -28,6 +28,7 @@ class ObstacleObject: SKSpriteNode{
         if textureName != "barricade"{
             
             obstacleTexture = SKSpriteNode(texture: objTexture, color: .clear, size: size!)
+            obstacleTexture.lightingBitMask = 1
             
         }else{
             
@@ -49,7 +50,6 @@ class ObstacleObject: SKSpriteNode{
         physicsBody?.friction = 0
         physicsBody?.allowsRotation = false
         
-        lightingBitMask = 1
     }
     
     func collision(with other: SKNode?) {

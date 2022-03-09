@@ -14,6 +14,7 @@ struct GameUIView: View {
     
     @Binding var startGame: Bool
     @Binding var isPaused: Bool
+    @Binding var isDead: Bool
     
     var body: some View {
         
@@ -116,6 +117,7 @@ struct PauseMenu: View {
     
     @Binding var startGame: Bool
     @Binding var isPaused: Bool
+    @Binding var isDead: Bool
     
     var body: some View {
         
@@ -135,6 +137,8 @@ struct PauseMenu: View {
             
             VStack {
                 
+                if isPaused {
+                
                 Button(action: {
                     if GameViewController.currentGameScene?.actionManager != nil {
                         withAnimation(.easeOut(duration: 0.3)){
@@ -150,12 +154,43 @@ struct PauseMenu: View {
                         .padding(10)
                         .overlay(RoundedRectangle(cornerRadius: 5)
                                     .stroke(Color.white, lineWidth: 1))
+                
                     
                     
                 })
                 
                     .background(Color.black)
                     .cornerRadius(5)
+                    
+                }
+                if isDead{
+                    
+                    
+                    
+                    Button(action: {
+                        if GameViewController.currentGameScene?.actionManager != nil {
+                            withAnimation(.easeOut(duration: 0.3)){
+                                isPaused = false
+                            }
+                            
+                            GameScene.gameState = .play
+                        }
+                    }, label: {
+                        
+                        Label("Restart", systemImage: "arrowtriangle.right.circle")
+                            .foregroundColor(Color.white)
+                            .padding(10)
+                            .overlay(RoundedRectangle(cornerRadius: 5)
+                                        .stroke(Color.white, lineWidth: 1))
+                    
+                        
+                        
+                    })
+                    
+                        .background(Color.black)
+                        .cornerRadius(5)
+                        
+                    }
                 
                 
                 

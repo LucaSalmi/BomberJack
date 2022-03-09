@@ -16,7 +16,8 @@ class GameViewController: UIViewController {
     static var currentGameScene: GameScene? = nil
     
     let numberOfLevels: Int = 4
-    var currentLevel: Int = 1
+    var currentLevel: Int = 2
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
