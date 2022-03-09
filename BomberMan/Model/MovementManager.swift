@@ -52,7 +52,9 @@ class MovementManager {
     
     func checkInput(_ touches: Set<UITouch>, with event: UIEvent?) {
         
-        
+        if context.cutsceneRunning {
+            return
+        }
         
         for touch in touches {
             
@@ -96,6 +98,7 @@ class MovementManager {
     }
     
     func update() {
+        
         if currentJoystickButton != nil {
             
             let joystickButtonName = currentJoystickButton!.name

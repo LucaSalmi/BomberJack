@@ -111,7 +111,7 @@ class Player: SKSpriteNode{
     
     func move(direction: CGPoint){
         
-        if isShielded || isTrapped{
+        if isShielded || isTrapped {
             return
         }
         
@@ -228,6 +228,22 @@ class Player: SKSpriteNode{
         if GameScene.viewController?.currentLevel == 1{
             PlayerSettings.haveBombs = false
         }
+    }
+    
+    func hidePlayer() {
+        self.alpha = 0
+        playerTexture.alpha = 0
+        shieldTexture.alpha = 0
+    }
+    
+    func showPlayer() {
+        self.alpha = 1
+        playerTexture.alpha = 1
+        shieldTexture.alpha = 1
+        
+        GameViewController.currentGameScene!.playerCutscene!.removeFromParent()
+        GameViewController.currentGameScene!.playerCutscene = nil
+        GameViewController.currentGameScene!.cutsceneRunning = false
     }
     
     func update() {

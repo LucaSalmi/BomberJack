@@ -34,11 +34,13 @@ class GameScene: SKScene {
     var lootNode: SKNode? = SKNode()
     var eventsNode: SKNode? = SKNode()
     var currentDialogue: Dialogue? = nil
+    var playerCutscene: PlayerCutscene? = nil
     var player: Player? = nil
     var victoryCondition: VictoryConditions?
     
     var movementManager: MovementManager? = nil
     
+    var cutsceneRunning = false
     var isGameOver = false
     var isDoorOpen = false
         
@@ -105,6 +107,7 @@ class GameScene: SKScene {
             
         case 1:
             victoryCondition = VictoryConditions.openDoor
+            cutsceneRunning = true
             
         case 2:
             victoryCondition = VictoryConditions.killAll
@@ -424,6 +427,15 @@ class GameScene: SKScene {
                     player!.position = playerMap.centerOfTile(atColumn: column, row: row)
                     player!.playerTexture.position.x = player!.position.x
                     player!.playerTexture.position.y = player!.position.y + PlayerSettings.textureOffset
+                    player!.hidePlayer()
+                }
+                
+                if tile.userData?.object(forKey: "playerCutscene") != nil {
+                    
+                    playerCutscene = PlayerCutscene()
+                    playerCutscene!.position = playerMap.centerOfTile(atColumn: column, row: row)
+                    cutsceneRunning = true
+                    addChild(playerCutscene!)
                     
                 }
             }
@@ -458,6 +470,11 @@ class GameScene: SKScene {
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
+        
+        if cutsceneRunning {
+            updateCutscene()
+            return
+        }
         
         if GameScene.gameState == .pause{
             return
@@ -544,6 +561,17 @@ class GameScene: SKScene {
         }
         
         
+    }
+    
+    private func updateCutscene() {
+        switch GameScene.viewController!.currentLevel {
+        case 1:
+            playerCutscene?.update()
+        default:
+            print("updateCutscene() couldnt find the current level")
+            player!.showPlayer()
+            cutsceneRunning = false
+        }
     }
     
     func stopScene() {
