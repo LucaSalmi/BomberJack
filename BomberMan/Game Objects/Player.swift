@@ -226,7 +226,7 @@ class Player: SKSpriteNode{
     func resetInventory(){
         
         PlayerSettings.amountOfKeys = 0
-        if GameScene.viewController?.currentLevel == 1{
+        if UserData.currentLevel == 1{
             PlayerSettings.haveBombs = false
         }
     }

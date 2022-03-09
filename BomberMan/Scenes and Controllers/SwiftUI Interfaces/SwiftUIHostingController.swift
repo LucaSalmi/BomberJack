@@ -51,8 +51,7 @@ struct ContentView: View {
                 if isPaused || swiftUICommunicator.isGameOver {
                     PauseMenu(startGame: $startGame, isPaused: $isPaused)
                         .zIndex(2)
-                        //.transition(.slide)
-                        //.animation(.easeInOut)
+
                 }
                 GameView(startGame: $startGame, isPaused: $isPaused)
                     .zIndex(1)
@@ -62,36 +61,8 @@ struct ContentView: View {
         else {
             MusicView(bgmString: SoundManager.mainMenuBGM)
             MainMenyView(startGame: $startGame)
-                .onAppear(perform: {
-                    cleanUpDatabase()
-                })
+                            
         }
-    }
-    func cleanUpDatabase(){
-        
-        do{
-            if result.isEmpty{
-                let statistics = Statistics(context: viewContext)
-                statistics.killedEnemies = 3
-            }
-            else {
-                for i in 0..<result.count{
-                    let statisticsData = result[i]
-                    if i >= 10{
-                        viewContext.delete(statisticsData)
-                        
-                    }
-                }
-            }
-            
-            try viewContext.save()
-            
-            
-        }catch{
-            print("result error")
-            
-        }
-        
     }
 }
 
@@ -133,10 +104,16 @@ struct GameView: View {
 
 struct MainMenyView: View {
     
+    @Environment(\.managedObjectContext) private var viewContext
+    
     @Binding var startGame: Bool
+    
+    
     @State var showMapMenu: Bool = false
     @State var index = 1
     @State var offset: CGFloat = 200.0
+    
+    
     
     var body: some View {
         
@@ -150,17 +127,17 @@ struct MainMenyView: View {
                         .onAppear {
                             showMapMenu = false
                         }
-                
-                    TabTwo().tag(1)
+                    
+                    MainView().tag(1)
                         .onAppear {
                             showMapMenu = false
                         }
-                
-                    TabThree(showMapMenu: $showMapMenu, startGame: $startGame).tag(2)
+                    
+                    LevelSelectView(showMapMenu: $showMapMenu, startGame: $startGame).tag(2)
                         .onAppear {
                             showMapMenu = true
                         }
-                
+                    
                 }
                 .transition(.slide)
                 //Calle was here
@@ -224,7 +201,7 @@ struct MainMenyView: View {
     }
 }
 
-struct TabTwo: View{
+struct MainView: View{
     
     
     var body: some View{
@@ -281,14 +258,15 @@ struct TabTwo: View{
     }
 }
 
-struct TabThree: View{
+struct LevelSelectView: View{
+    
+    @Environment(\.managedObjectContext) private var viewContext
     
     @Binding var showMapMenu: Bool
-    
     @Binding var startGame: Bool
     
-    
     var body: some View{
+        
         
         ZStack{
             
@@ -306,7 +284,7 @@ struct TabThree: View{
                     SideViewMapMenu(startGame: $startGame)
                         .offset ( x: showMapMenu ? 0 : UIScreen.main.bounds.width)
                         .animation(.easeInOut(duration: 1), value: showMapMenu)
-                        
+                    
                 }
             }
         }
@@ -338,6 +316,7 @@ class SwiftUIHostingController: UIHostingController<AttachmentView> {
     override func viewDidLoad() {
         super.viewDidLoad()
         dataReaderWriter.loaduserData()
+        dataReaderWriter.loadLocalSaveData()
     }
 }
 
@@ -349,5 +328,12 @@ struct AttachmentView: View {
         ContentView()
             .environment(\.managedObjectContext, viewContext)
     }
+    
+}
+
+func checkLevel(result: FetchedResults<Statistics>){
+    
+    let level = Int(result[0].lastCompletedLevel)
+    UserData.currentLevel = level
     
 }

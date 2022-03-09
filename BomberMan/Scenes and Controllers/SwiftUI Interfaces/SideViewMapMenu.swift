@@ -6,12 +6,14 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct SideViewMapMenu: View {
-    
+        
     @Binding var startGame: Bool
     
     var body: some View {
+        
         VStack{
             
             Spacer()
@@ -22,15 +24,18 @@ struct SideViewMapMenu: View {
                     
                     
                     Button {
-                    
+                        
                         print("level 1 pressed")
                         
                         
                         withAnimation(.easeIn(duration: 0.3)){
-                            startGame = true
-                            
+                                                        
+                            if checkAndStartLevel(id: 1){
+                                
+                                startGame = true
+                            }
                         }
-                    
+                        
                     } label: {
                         Text("level 1")
                     }
@@ -40,8 +45,13 @@ struct SideViewMapMenu: View {
                     .padding(.leading, 100)
                     
                     Button {
-                    
+                        
                         print("level 3 pressed")
+                        
+                        if checkAndStartLevel(id: 3){
+                            
+                            startGame = true
+                        }
                         
                     } label: {
                         Text("level 3")
@@ -51,8 +61,13 @@ struct SideViewMapMenu: View {
                     .font(.largeTitle)
                     
                     Button {
-                    
+                        
                         print("level 5 pressed")
+                        
+                        if checkAndStartLevel(id: 5){
+                            
+                            startGame = true
+                        }
                         
                     } label: {
                         Text("level 5")
@@ -60,7 +75,7 @@ struct SideViewMapMenu: View {
                     .foregroundColor(.white)
                     .font(Font.body.bold())
                     .font(.largeTitle)
-
+                    
                 }
                 .padding(40)
                 .padding(.horizontal, 60)
@@ -69,11 +84,18 @@ struct SideViewMapMenu: View {
                 
                 HStack(spacing: 150){
                     Button {
-                    
+                        
                         print("level 2 pressed")
+                        
+                        if checkAndStartLevel(id: 2){
+                            
+                            startGame = true
+                        }
                         
                     } label: {
                         Text("level 2")
+                        
+                        
                     }
                     .foregroundColor(.white)
                     .font(Font.body.bold())
@@ -81,8 +103,13 @@ struct SideViewMapMenu: View {
                     .padding(.leading, 100)
                     
                     Button {
-                    
+                        
                         print("level 4 pressed")
+                        
+                        if checkAndStartLevel(id: 4){
+                            
+                            startGame = true
+                        }
                         
                     } label: {
                         Text("level 4")
@@ -92,8 +119,13 @@ struct SideViewMapMenu: View {
                     .font(.largeTitle)
                     
                     Button {
-                    
+                        
                         print("level 6 pressed")
+                        
+                        if checkAndStartLevel(id: 6){
+                            
+                            startGame = true
+                        }
                         
                     } label: {
                         Text("level 6")
@@ -101,7 +133,7 @@ struct SideViewMapMenu: View {
                     .foregroundColor(.white)
                     .font(Font.body.bold())
                     .font(.largeTitle)
-
+                    
                 }
                 .padding(40)
                 .padding(.horizontal, 60)
@@ -115,4 +147,17 @@ struct SideViewMapMenu: View {
         
         .edgesIgnoringSafeArea(.trailing)
     }
+    
+    func checkAndStartLevel(id: Int) -> Bool{
+        
+        print(UserData.currentLevel)
+        
+        if UserData.currentLevel >= id{
+            
+            return true
+        }
+        
+        return false
+    }
+
 }

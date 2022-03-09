@@ -76,11 +76,7 @@ class GameScene: SKScene {
     
     
     
-    override func sceneDidLoad() {
-        
-        
-        
-    }
+    override func sceneDidLoad() {}
     
     func setupLightning() {
         
@@ -101,9 +97,10 @@ class GameScene: SKScene {
         isCaveLevel = true
     }
     
+    // decides a victory conditions based on what level is loaded
     func setupVictoryCond(){
         
-        switch GameScene.viewController!.currentLevel{
+        switch UserData.currentLevel{
             
         case 1:
             victoryCondition = VictoryConditions.openDoor
@@ -609,7 +606,8 @@ class GameScene: SKScene {
                 
                 if Enemy.enemies.count <= 0{
                     
-                    GameScene.viewController?.currentLevel += 1
+                    UserData.currentLevel += 1
+                    dataReaderWriter.saveLocalSaveData()
                     isGameOver = true
                     print("you killed everyone, you monster.....")
                 }
@@ -634,11 +632,13 @@ class GameScene: SKScene {
                 
                 if isDoorOpen{
                     
-                    GameScene.viewController?.currentLevel += 1
+                    UserData.currentLevel += 1
+                    dataReaderWriter.saveLocalSaveData()
                     isGameOver = true
                     print("keys found and door opened, good job...")
                     
                 }
+                
                 
             default:
                 print("something went VERY wrong...")
