@@ -170,6 +170,10 @@ extension GameScene: SKPhysicsContactDelegate{
             case PhysicsCategory.Bomb:
                 print("Obstacle-Bomb")
                 
+            case PhysicsCategory.Explosion:
+                let explosion = nodeB as! Explosion
+                explosion.removeFromParent()
+                
             default:
                 print("mystery")
             }
@@ -237,6 +241,8 @@ extension GameScene: SKPhysicsContactDelegate{
                 
             case PhysicsCategory.Obstacle:
                 print("Explosion-Obstacle")
+                let explosion = nodeA as! Explosion
+                explosion.removeFromParent()
                 
             default:
                 print("mystery")
