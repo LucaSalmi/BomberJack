@@ -15,12 +15,14 @@ struct GameUIView: View {
     @Binding var startGame: Bool
     @Binding var isPaused: Bool
     
+    @ObservedObject var swiftUICommunicator = SwiftUICommunicator.instance
+    
     var body: some View {
         
         
         HStack {
             
-            if !isPaused {
+            if !isPaused && !swiftUICommunicator.isGameOver {
                 
                 Spacer()
                 
@@ -117,6 +119,8 @@ struct PauseMenu: View {
     @Binding var startGame: Bool
     @Binding var isPaused: Bool
     
+    @ObservedObject var swiftUICommunicator = SwiftUICommunicator.instance
+    
     var body: some View {
         
         ZStack {
@@ -135,6 +139,36 @@ struct PauseMenu: View {
             
             VStack {
                 
+                if swiftUICommunicator.isGameOver{
+                    
+                    Text("GAME OVER")
+                    
+                    Button(action: {
+                        let levelNumber = GameScene.viewController!.getCurrentLevel()
+                        GameScene.viewController!.presentScene("GameScene\(levelNumber)")
+                        
+                        isPaused = false
+                        swiftUICommunicator.isGameOver = false
+                        
+                    }, label: {
+                        
+                        Label("Restart", systemImage: "arrowtriangle.right.circle")
+                            .foregroundColor(Color.white)
+                            .padding(10)
+                            .overlay(RoundedRectangle(cornerRadius: 5)
+                                        .stroke(Color.white, lineWidth: 1))
+                        
+                        
+                    })
+                    
+                        .background(Color.black)
+                        .cornerRadius(5)
+                    
+                }
+                else{
+                
+                    Text("PAUSED")
+                    
                 Button(action: {
                     if GameViewController.currentGameScene?.actionManager != nil {
                         withAnimation(.easeOut(duration: 0.3)){
@@ -158,7 +192,7 @@ struct PauseMenu: View {
                     .cornerRadius(5)
                 
                 
-                
+                }
                 
                 Button(action: {
                     if GameViewController.currentGameScene?.actionManager != nil {

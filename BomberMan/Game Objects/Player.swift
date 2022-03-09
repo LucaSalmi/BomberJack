@@ -158,6 +158,7 @@ class Player: SKSpriteNode{
         currentTexture.removeFromParent()
         
         GameViewController.currentGameScene!.isGameOver = true
+        
     }
     
     func findDirection(playerDirection: CGPoint) -> Direction{

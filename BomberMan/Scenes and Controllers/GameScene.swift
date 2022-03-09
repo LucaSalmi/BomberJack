@@ -463,6 +463,8 @@ class GameScene: SKScene {
             return
         }
         
+        
+        
         if isGameOver{
             
             if endLevelCounter < endLevelDelay{
@@ -475,14 +477,16 @@ class GameScene: SKScene {
             }
             
             //Deallocate all nodes/children from the old scene
-            self.removeAllChildren()
-            self.removeAllActions()
-            self.stopScene()
+//            self.removeAllChildren()
+//            self.removeAllActions()
+  //            self.stopScene()
+            
+            SwiftUICommunicator.instance.isGameOver = true
             
             //Present a new instance of the scene
-            let restartScene = "GameScene" + String(GameScene.viewController!.currentLevel)
-            GameScene.viewController!.presentScene(restartScene)
-            return
+//            let restartScene = "GameScene" + String(GameScene.viewController!.currentLevel)
+//            GameScene.viewController!.presentScene(restartScene)
+//            return
             
         }else{
             
@@ -533,7 +537,7 @@ class GameScene: SKScene {
             currentDialogue.update()
         }
         
-        player!.update()
+        player?.update()
         
         if databaseUpdateCounter < databaseUpdateLimit{
             databaseUpdateCounter += 1

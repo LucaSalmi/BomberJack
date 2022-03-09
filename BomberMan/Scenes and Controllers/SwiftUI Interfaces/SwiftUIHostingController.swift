@@ -25,6 +25,9 @@ struct ContentView: View {
     
     @Environment(\.managedObjectContext) private var viewContext
     
+    @ObservedObject var swiftUICommunicator: SwiftUICommunicator
+    
+    
     @FetchRequest
     var result: FetchedResults<Statistics>
     
@@ -32,6 +35,8 @@ struct ContentView: View {
         let sortingPredicate = [NSSortDescriptor(keyPath: \Statistics.killedEnemies, ascending: false)]
         
         let animation = Animation.default
+        
+        swiftUICommunicator = SwiftUICommunicator.instance
         
         _result = FetchRequest<Statistics>(sortDescriptors: sortingPredicate, animation: animation)
         
@@ -42,7 +47,8 @@ struct ContentView: View {
         
         if startGame {
             ZStack {
-                if isPaused {
+                
+                if isPaused || swiftUICommunicator.isGameOver {
                     PauseMenu(startGame: $startGame, isPaused: $isPaused)
                         .zIndex(2)
                         //.transition(.slide)
@@ -105,6 +111,8 @@ struct GameView: View {
     @Binding var startGame: Bool
     @Binding var isPaused: Bool
     
+    @ObservedObject var swiftUICommunicator = SwiftUICommunicator.instance
+    
     var body: some View {
         
         ZStack {
@@ -117,7 +125,7 @@ struct GameView: View {
             ViewController()
                 .ignoresSafeArea()
                 .zIndex(1)
-                .blur(radius: (self.isPaused == true ? 3 : 0))
+                .blur(radius: ((self.isPaused || swiftUICommunicator.isGameOver) ? 3 : 0))
         }
     }
     
