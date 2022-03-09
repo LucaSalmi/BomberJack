@@ -9,29 +9,10 @@ import SwiftUI
 import CoreData
 
 struct SideViewMapMenu: View {
-    
+        
     @Binding var startGame: Bool
     
-    @FetchRequest
-    var statisticsData: FetchedResults<Statistics>
-    
-    init(startBool: Binding<Bool>){
-        
-        let sortingPredicate = [NSSortDescriptor(keyPath: \Statistics.killedEnemies, ascending: false)]
-        
-        let animation = Animation.default
-        
-        _statisticsData = FetchRequest<Statistics>(sortDescriptors: sortingPredicate, animation: animation)
-        
-        _startGame = startBool
-        
-        
-        
-    }
-    
     var body: some View {
-        
-        
         
         VStack{
             
@@ -48,9 +29,7 @@ struct SideViewMapMenu: View {
                         
                         
                         withAnimation(.easeIn(duration: 0.3)){
-                            
-                            print(statisticsData.count)
-                            
+                                                        
                             if checkAndStartLevel(id: 1){
                                 
                                 startGame = true
@@ -171,24 +150,13 @@ struct SideViewMapMenu: View {
     
     func checkAndStartLevel(id: Int) -> Bool{
         
-        if !statisticsData.isEmpty{
+        print(UserData.currentLevel)
+        
+        if UserData.currentLevel >= id{
             
-            print(statisticsData[0].lastCompletedLevel)
-            UserData.currentLevel = Int(statisticsData[0].lastCompletedLevel)
-            
-            if UserData.currentLevel == 0{
-                UserData.currentLevel = 1
-                statisticsData[0].lastCompletedLevel = 1
-            }
-            
-            if UserData.currentLevel >= id{
-                UserData.currentLevel = id
-                return true
-                
-            }
+            return true
         }
         
-        print(UserData.currentLevel)
         return false
     }
 

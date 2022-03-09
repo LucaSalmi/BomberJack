@@ -32,31 +32,48 @@ enum UserData{
 
 struct DefaultKeys{
     
+    static let defaultData = UserDefaults.standard
     static let musicToggleKey = "isMusicOn"
     static let sFXToggleKey = "areSFXOn"
     static let screenShakeToggleKey = "isScreenShakeOn"
+    static let lastPlayedLevelKey = "lastCompletedLevel"
 }
 
 class dataReaderWriter{
     
     static func saveUserData(){
         
-        let defaultData = UserDefaults.standard
-        defaultData.set(Options.options.isMusicOn, forKey: DefaultKeys.musicToggleKey)
-        defaultData.set(Options.options.areSFXOn, forKey: DefaultKeys.sFXToggleKey)
-        defaultData.set(Options.options.isScreenShakeOn, forKey: DefaultKeys.screenShakeToggleKey)
+        DefaultKeys.defaultData.set(Options.options.isMusicOn, forKey: DefaultKeys.musicToggleKey)
+        DefaultKeys.defaultData.set(Options.options.areSFXOn, forKey: DefaultKeys.sFXToggleKey)
+        DefaultKeys.defaultData.set(Options.options.isScreenShakeOn, forKey: DefaultKeys.screenShakeToggleKey)
 
        
     }
     
     static func loaduserData(){
         
-        let defaultData = UserDefaults.standard
-        Options.options.isMusicOn = defaultData.bool(forKey: DefaultKeys.musicToggleKey)
-        Options.options.areSFXOn = defaultData.bool(forKey: DefaultKeys.sFXToggleKey)
-        Options.options.isScreenShakeOn = defaultData.bool(forKey: DefaultKeys.screenShakeToggleKey)
+        Options.options.isMusicOn = DefaultKeys.defaultData.bool(forKey: DefaultKeys.musicToggleKey)
+        Options.options.areSFXOn = DefaultKeys.defaultData.bool(forKey: DefaultKeys.sFXToggleKey)
+        Options.options.isScreenShakeOn = DefaultKeys.defaultData.bool(forKey: DefaultKeys.screenShakeToggleKey)
 
     }
+    
+    static func saveLocalSaveData(){
+        
+        DefaultKeys.defaultData.set(UserData.currentLevel, forKey: DefaultKeys.lastPlayedLevelKey)
+        
+    }
+    
+    static func loadLocalSaveData(){
+        
+        UserData.currentLevel = DefaultKeys.defaultData.integer(forKey: DefaultKeys.lastPlayedLevelKey)
+        if UserData.currentLevel == 0{
+            UserData.currentLevel = 1
+        }
+        
+    }
+    
+    
     
     static func updateDatabase(){
         
@@ -72,6 +89,14 @@ class dataReaderWriter{
             statistics.bombsDropped += UserData.bombsDropped
             statistics.numberOfDeaths += UserData.numberOfDeaths
             statistics.usedBarrel += UserData.barrelUsed
+            
+            let level = UserData.currentLevel - 1
+            if level > statistics.lastCompletedLevel{
+                
+                statistics.lastCompletedLevel = Int64(level)
+                
+            }
+                
             //reset local data
             UserData.enemiesKilled = 0
             UserData.bombsDropped = 0
@@ -80,27 +105,6 @@ class dataReaderWriter{
         
         }catch{
             print("result error")
-            
-        }
-    }
-    
-    static func saveLevelComplete(){
-        
-        let viewContext = PersistenceController.shared.container.viewContext
-        
-        let fetchRequest = NSFetchRequest<Statistics>(entityName: "Statistics")
-        
-        do{
-            let result = try viewContext.fetch(fetchRequest)
-            let statistics = result[0]
-            //update data in Database
-            statistics.lastCompletedLevel = Int64(UserData.currentLevel)
-            print("level save completed")
-            print(statistics.lastCompletedLevel)
-            print(UserData.currentLevel)
-        
-        }catch{
-            print("level save error")
             
         }
     }

@@ -23,6 +23,7 @@ struct ContentView: View {
     @State var startGame: Bool = false
     @State var isPaused: Bool = false
     
+    @Environment(\.managedObjectContext) private var viewContext
     
     var body: some View {
         
@@ -31,8 +32,7 @@ struct ContentView: View {
                 if isPaused {
                     PauseMenu(startGame: $startGame, isPaused: $isPaused)
                         .zIndex(2)
-                    //.transition(.slide)
-                    //.animation(.easeInOut)
+
                 }
                 GameView(startGame: $startGame, isPaused: $isPaused)
                     .zIndex(1)
@@ -45,35 +45,6 @@ struct ContentView: View {
                             
         }
     }
-    
-    //    func cleanUpDatabase(){
-    //
-    //        do{
-    //            if result.isEmpty{
-    //                let statistics = Statistics(context: viewContext)
-    //                statistics.killedEnemies = 3
-    //            }
-    //            else {
-    //                for i in 0..<result.count{
-    //                    let statisticsData = result[i]
-    //                    if i >= 10{
-    //                        viewContext.delete(statisticsData)
-    //
-    //                    }
-    //                }
-    //            }
-    //
-    //            try viewContext.save()
-    //
-    //
-    //        }catch{
-    //            print("result error")
-    //
-    //        }
-    //
-    //    }
-    
-    
 }
 
 struct MusicView: View {
@@ -111,6 +82,8 @@ struct GameView: View {
 }
 
 struct MainMenyView: View {
+    
+    @Environment(\.managedObjectContext) private var viewContext
     
     @Binding var startGame: Bool
     
@@ -266,6 +239,8 @@ struct MainView: View{
 
 struct LevelSelectView: View{
     
+    @Environment(\.managedObjectContext) private var viewContext
+    
     @Binding var showMapMenu: Bool
     @Binding var startGame: Bool
     
@@ -285,7 +260,7 @@ struct LevelSelectView: View{
                     
                     Spacer()
                     
-                    SideViewMapMenu(startBool: $startGame)
+                    SideViewMapMenu(startGame: $startGame)
                         .offset ( x: showMapMenu ? 0 : UIScreen.main.bounds.width)
                         .animation(.easeInOut(duration: 1), value: showMapMenu)
                     
@@ -320,6 +295,7 @@ class SwiftUIHostingController: UIHostingController<AttachmentView> {
     override func viewDidLoad() {
         super.viewDidLoad()
         dataReaderWriter.loaduserData()
+        dataReaderWriter.loadLocalSaveData()
     }
 }
 

@@ -577,6 +577,7 @@ class GameScene: SKScene {
                 if Enemy.enemies.count <= 0{
                     
                     UserData.currentLevel += 1
+                    dataReaderWriter.saveLocalSaveData()
                     isGameOver = true
                     print("you killed everyone, you monster.....")
                 }
@@ -602,6 +603,7 @@ class GameScene: SKScene {
                 if isDoorOpen{
                     
                     UserData.currentLevel += 1
+                    dataReaderWriter.saveLocalSaveData()
                     isGameOver = true
                     print("keys found and door opened, good job...")
                     
@@ -612,7 +614,7 @@ class GameScene: SKScene {
                 if PlayerSettings.haveBombs{
                     
                     UserData.currentLevel += 1
-                    dataReaderWriter.saveLevelComplete()
+                    dataReaderWriter.saveLocalSaveData()
                     isGameOver = true
                     
                 }
