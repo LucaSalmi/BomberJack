@@ -8,6 +8,16 @@
 import Foundation
 import GameplayKit
 
+enum DialogueSettings {
+    
+    static let defaultPositionOffsetY: CGFloat = 150
+    static let cavePositionOffsetY: CGFloat = 75
+    
+    static let defaultFontSize: CGFloat = 26
+    static let caveFontSize: CGFloat = 13
+    
+}
+
 class Dialogue: SKNode {
     
     var shapeNode: SKShapeNode? = nil
@@ -36,8 +46,13 @@ class Dialogue: SKNode {
         self.shapeNode = SKShapeNode(rectOf: CGSize(width: width, height: height), cornerRadius: 10.0)
         setupShapeNode()
         
+        if GameViewController.currentGameScene!.isCaveLevel {
+            position.y += DialogueSettings.cavePositionOffsetY
+        }
+        else {
+            position.y += DialogueSettings.defaultPositionOffsetY
+        }
         
-        position.y += positionOffsetY
         zPosition = 70
     }
     
@@ -52,7 +67,12 @@ class Dialogue: SKNode {
         labelNode!.text = dialogueText
         labelNode!.fontColor = .white
         labelNode!.fontName = "Chalkduster"
-        labelNode!.fontSize = 26
+        if GameViewController.currentGameScene!.isCaveLevel {
+            labelNode!.fontSize = DialogueSettings.caveFontSize
+        }
+        else {
+            labelNode!.fontSize = DialogueSettings.defaultFontSize
+        }
         labelNode!.alpha = 1
         labelNode!.zPosition = 52
         addChild(labelNode!)
@@ -62,7 +82,12 @@ class Dialogue: SKNode {
         
         if let player = GameViewController.currentGameScene?.player {
             position = player.position
-            position.y += positionOffsetY
+            if GameViewController.currentGameScene!.isCaveLevel {
+                position.y += DialogueSettings.cavePositionOffsetY
+            }
+            else {
+                position.y += DialogueSettings.defaultPositionOffsetY
+            }
         }
         
         ticks += 1

@@ -45,7 +45,6 @@ extension GameScene: SKPhysicsContactDelegate{
                 
                 if !player.isShielded {
                     player.death(player: nodeA!)
-                    isGameOver = true
                 }
                 
                 // BodyB is a Breakable Object
@@ -60,7 +59,6 @@ extension GameScene: SKPhysicsContactDelegate{
             case PhysicsCategory.Explosion:
                 
                 player.death(player: nodeA!)
-                isGameOver = true
                 
             case PhysicsCategory.TrapBomb:
                 
@@ -103,7 +101,6 @@ extension GameScene: SKPhysicsContactDelegate{
                 let player = getPlayer(node: nodeB!)
                 if !player.isShielded {
                     player.death(player: nodeB!)
-                    isGameOver = true
                 }
                 
                 // BodyB is a Breakable Object

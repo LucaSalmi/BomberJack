@@ -7,6 +7,7 @@
 
 import UIKit
 import SwiftUI
+import CoreData
 
 struct MyViewSettings {
     
@@ -17,11 +18,25 @@ struct MyViewSettings {
     
 }
 
-struct MyView: View {
+struct ContentView: View {
     
     @State var startGame: Bool = false
     @State var isPaused: Bool = false
     
+    @Environment(\.managedObjectContext) private var viewContext
+    
+    @FetchRequest
+    var result: FetchedResults<Statistics>
+    
+    init(){
+        let sortingPredicate = [NSSortDescriptor(keyPath: \Statistics.killedEnemies, ascending: false)]
+        
+        let animation = Animation.default
+        
+        _result = FetchRequest<Statistics>(sortDescriptors: sortingPredicate, animation: animation)
+        
+        
+    }
     
     var body: some View {
         
@@ -41,7 +56,36 @@ struct MyView: View {
         else {
             MusicView(bgmString: SoundManager.mainMenuBGM)
             MainMenyView(startGame: $startGame)
+                .onAppear(perform: {
+                    cleanUpDatabase()
+                })
         }
+    }
+    func cleanUpDatabase(){
+        
+        do{
+            if result.isEmpty{
+                let statistics = Statistics(context: viewContext)
+                statistics.killedEnemies = 3
+            }
+            else {
+                for i in 0..<result.count{
+                    let statisticsData = result[i]
+                    if i >= 10{
+                        viewContext.delete(statisticsData)
+                        
+                    }
+                }
+            }
+            
+            try viewContext.save()
+            
+            
+        }catch{
+            print("result error")
+            
+        }
+        
     }
 }
 
@@ -179,7 +223,7 @@ struct TabTwo: View{
         
         ZStack{
             
-            Image("page_view_two")
+            Image("main_menu_home")
                 .resizable()
                 .scaledToFill()
             VStack {
@@ -209,8 +253,9 @@ struct TabTwo: View{
                             .frame(width: 180, height: 80)
                         
                     }
-                    .padding(.leading, 100)
+                    .padding(.leading, 70)
                     .padding(.top, 30)
+                    .padding(.bottom, 40)
                     
                     Spacer()
                     
@@ -224,9 +269,6 @@ struct TabTwo: View{
                 Spacer()
                 
             }
-            
-            
-            
         }
     }
 }
@@ -243,7 +285,7 @@ struct TabThree: View{
         ZStack{
             
             
-            Image("page_view_three")
+            Image("main_menu_play")
                 .resizable()
                 .scaledToFill()
             
@@ -258,22 +300,7 @@ struct TabThree: View{
                         .animation(.easeInOut(duration: 1), value: showMapMenu)
                         
                 }
-                
             }
-            
-//            HStack {
-//                Button {
-//                    self.showMapMenu.toggle()
-//                } label: {
-//                    Image(systemName: "plus")
-//                        .font(.title)
-//                        .foregroundColor(.black)
-//                        .padding(30)
-//
-//                }
-//
-//                Spacer()
-//            }
         }
     }
 }
@@ -292,14 +319,27 @@ struct ViewController: UIViewControllerRepresentable {
     }
 }
 
-class SwiftUIHostingController: UIHostingController<MyView> {
+class SwiftUIHostingController: UIHostingController<AttachmentView> {
+    
+    let persistenceController = PersistenceController.shared
     
     required init?(coder: NSCoder) {
-        super.init(coder: coder, rootView: MyView());
+        super.init(coder: coder, rootView: AttachmentView(viewContext: persistenceController.container.viewContext));
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         dataReaderWriter.loaduserData()
     }
+}
+
+struct AttachmentView: View {
+    
+    let viewContext: NSManagedObjectContext
+    
+    var body: some View {
+        ContentView()
+            .environment(\.managedObjectContext, viewContext)
+    }
+    
 }

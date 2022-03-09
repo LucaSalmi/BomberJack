@@ -10,13 +10,22 @@ import SpriteKit
 
 class Door: SKSpriteNode{
     
+    var doorTexture: SKSpriteNode
+    var isOpened: Bool = false
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("use init()")
     }
     
-    init(texture: SKTexture){
+    init(textureName: String){
         
-        super.init(texture: texture, color: .white, size: GameScene.tileSize!)
+        //Texture init
+        let objTexture = SKTexture(imageNamed: textureName)
+        var size = GameScene.tileSize
+        size?.height += BreakableSettings.sizeOffset
+        doorTexture = SKSpriteNode(texture: objTexture, color: .clear, size: size!)
+        
+        super.init(texture: nil, color: .clear, size: GameScene.tileSize!)
         
         name = "Door Object"
         zPosition = 50
@@ -39,6 +48,7 @@ class Door: SKSpriteNode{
         if PlayerSettings.amountOfKeys > 0{
             PlayerSettings.amountOfKeys -= 1
             other?.physicsBody = nil
+            self.isOpened = true
             SoundManager.playSFX("doorsound")
             
             

@@ -15,7 +15,7 @@ class GameViewController: UIViewController {
     static var currentInputKey: UInt8 = 0
     static var currentGameScene: GameScene? = nil
     
-    let numberOfLevels: Int = 3
+    let numberOfLevels: Int = 4
     var currentLevel: Int = 1
 
     override func viewDidLoad() {

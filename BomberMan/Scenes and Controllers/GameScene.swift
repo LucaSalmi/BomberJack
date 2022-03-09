@@ -15,6 +15,8 @@ class GameScene: SKScene {
     static var tileSize: CGSize? = CGSize(width: 32, height: 32)
     static var gameState = GameState.play
     
+    var isCaveLevel: Bool = false
+    
     var leftUI: SKSpriteNode? = nil
     var rightUI: SKSpriteNode? = nil
     
@@ -39,9 +41,12 @@ class GameScene: SKScene {
     
     var isGameOver = false
     var isDoorOpen = false
-    
+        
     let endLevelDelay = 60
     var endLevelCounter = 0
+    
+    let databaseUpdateLimit = 60 * 120
+    var databaseUpdateCounter = 0
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -91,6 +96,7 @@ class GameScene: SKScene {
         darknessMaskNode = (darknessNode as! SKSpriteNode)
         darknessMaskNode!.position = player!.position
         
+        isCaveLevel = true
     }
     
     func setupVictoryCond(){
@@ -161,19 +167,24 @@ class GameScene: SKScene {
                 
                 guard let tile = tile(in: breakablesTileMap, at: (column, row)) else {continue}
                 GameScene.tileSize = tile.size
-                guard tile.userData?.object(forKey: "breakable") != nil else {continue}
+                guard tile.userData?.object(forKey: "tree") != nil || tile.userData?.object(forKey: "fence") != nil else {continue}
                 
                 var breakable: BreakableObject
                 //eventualy different types of breakable obj???
-                if tile.userData?.value(forKey: "breakable") != nil{
+                
+                if tile.userData?.value(forKey: "tree") != nil{
                     
-                    let textureName = tile.userData!.value(forKey: "breakable") as! String
+                    let textureName = tile.userData!.value(forKey: "tree") as! String
                     
-                    breakable = BreakableObject(textureName: textureName)
+                    breakable = Tree(textureName: textureName)
                     
+                }else if tile.userData?.value(forKey: "fence") != nil{
+                    
+                    let textureName = tile.userData!.value(forKey: "fence") as! String
+                    
+                    breakable = Fence(textureName: textureName)
                 }else{
-                    
-                    breakable = BreakableObject(textureName: "tree_medium_style_1")
+                    return
                 }
                 
                 breakable.createPhysicsBody(tile: tile)
@@ -308,20 +319,13 @@ class GameScene: SKScene {
                 }else if tile.userData?.value(forKey: "door") != nil{
                     let doorType = tile.userData?.value(forKey: "door") as! String
                     
-                    switch doorType{
-                        
-                    case "doorHorizontal":
-                        let texture = SKTexture(imageNamed: "doorone")
-                        door = DoorHorizontal(texture: texture)
-                        
-                    case "doorVertical":
-                        let texture = SKTexture(imageNamed: "doortwo")
-                        door = DoorVertical(texture: texture)
-                        
+                    switch doorType {
+                    case "door_horizontal":
+                        door = DoorHorizontal(textureName: doorType)
                     default:
-                        return
-                        
+                        door = DoorVertical(textureName: doorType)
                     }
+                    
                 }
                 
                 if obstacle != nil{
@@ -340,8 +344,13 @@ class GameScene: SKScene {
                 
                 if door != nil{
                     door!.position = obstaclesTileMap.centerOfTile(atColumn: column, row: row)
+                    door?.doorTexture.position = door!.position
                     GameScene.updateZPosition(object: door!)
+                    door?.doorTexture.zPosition = door!.zPosition
+                    door?.doorTexture.position.y += PlayerSettings.textureOffset
+                    
                     obstaclesNode!.addChild(door!)
+                    obstaclesNode?.addChild(door!.doorTexture)
                 }
                 
                 
@@ -507,7 +516,7 @@ class GameScene: SKScene {
             for bomb in Bomb.bombs {
                 bomb.update()
             }
-            
+            //call update method on Player
             player!.update()
             
             if let lightNode = lightNode {
@@ -526,7 +535,14 @@ class GameScene: SKScene {
         
         player!.update()
         
-        dataReaderWriter.saveUserData()
+        if databaseUpdateCounter < databaseUpdateLimit{
+            databaseUpdateCounter += 1
+        }else{
+            databaseUpdateCounter = 0
+            dataReaderWriter.updateDatabase()
+            print("Luca: Database Updated")
+        }
+        
         
     }
     
@@ -541,6 +557,8 @@ class GameScene: SKScene {
         movementManager = nil
         actionManager = nil
         bombsNode = nil
+        lootNode = nil
+        eventsNode = nil
         Bomb.bombs.removeAll()
         Enemy.enemies.removeAll()
         ExplosionSettings.explosionsArray.removeAll()
@@ -567,8 +585,11 @@ class GameScene: SKScene {
                 guard let obstaclesArray = obstaclesNode?.children else {return}
                 for obj in obstaclesArray{
                     
-                    if obj.name == "Door Object"{
-                        return
+                    if obj is Door {
+                        let door = obj as! Door
+                        if !door.isOpened {
+                            return
+                        }
                     }
                 }
                 
@@ -596,7 +617,8 @@ class GameScene: SKScene {
     
     static func updateZPosition(object: SKNode) {
         guard let tileSize = tileSize else { return }
-        object.zPosition = round(object.position.y/tileSize.height) * -1
+        let margin: CGFloat = 10
+        object.zPosition = round(object.position.y/(tileSize.height-margin)) * -1
     }
     
 }

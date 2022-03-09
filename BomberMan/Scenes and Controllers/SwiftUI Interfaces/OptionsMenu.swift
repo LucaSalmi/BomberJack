@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SceneKit
+import CoreData
 
 struct OptionsMenu: View {
     
@@ -16,34 +17,39 @@ struct OptionsMenu: View {
         
         ZStack{
             
-            Image("page_view_one")
+            Image("main_menu_options")
                 .resizable()
                 .scaledToFill()
             
-            ZStack{
-                
-                RoundedRectangle(cornerRadius: 40)
-                    .padding(.top, 25)
-                    .padding(.bottom, 100)
-                    .padding(.leading, 25)
-                    .padding(.trailing, 25)
-                    .opacity(0.5)
-            
             VStack{
-                CustomTopTabBar(tabIndex: $tabIndex)
-                if tabIndex == 0 {
-                    OptionsTab()
+                
+                ZStack{
+                    
+                    RoundedRectangle(cornerRadius: 40)
+                        .padding(.top, 25)
+                        .padding(.bottom, 110)
+                        .padding(.leading, 25)
+                        .padding(.trailing, 25)
+                        .opacity(0.5)
+                    
+                    VStack{
+                        CustomTopTabBar(tabIndex: $tabIndex)
+                            .padding(.horizontal, 40)
+                            .padding(.vertical, 25)
+                        if tabIndex == 0 {
+                            OptionsTab()
+                        }
+                        else {
+                            StatisticsTab()
+                        }
+                        Spacer()
+                    }
+                    .frame(width: UIScreen.main.bounds.width - 30, alignment: .top)
+                    .foregroundColor(.white).opacity(1.0)
                 }
-                else {
-                    StatisticsTab()
-                }
-                Spacer()
             }
-            .frame(width: UIScreen.main.bounds.width - 30, alignment: .top)
-            .padding(30)
-            .foregroundColor(.white).opacity(1.0)
-            }
-            .padding()
+            .padding(.top, 50)
+            
         }
     }
 }
@@ -151,42 +157,56 @@ struct OptionsTab: View{
         }
         .padding()
         .scaledToFit()
+        .onDisappear(perform: {
+            dataReaderWriter.saveUserData()
+        })
     }
 }
 
 struct StatisticsTab: View{
     
-    let myStats: [String: Int] = [
-        "Killed Enemies": UserData.enemiesKilled,
-        "Bombs Dropped": UserData.bombsDropped,
-        "Hidden in Barrel": UserData.barrelUsed,
-        "Number of Deaths": UserData.numberOfDeaths
-    ]
+    @FetchRequest
+    var statisticsData: FetchedResults<Statistics>
+    
+    init(){
+        let sortingPredicate = [NSSortDescriptor(keyPath: \Statistics.killedEnemies, ascending: false)]
+        
+        let animation = Animation.default
+        
+        _statisticsData = FetchRequest<Statistics>(sortDescriptors: sortingPredicate, animation: animation)
+        
+    }
     
     var body: some View{
+        
+        let statsArray: [String: Int64] = [
+            
+            "Enemies Killed:" : statisticsData[0].killedEnemies,
+            "Bombs Dropped:" : statisticsData[0].bombsDropped,
+            "Barrel Used:" : statisticsData[0].usedBarrel,
+            "Number of Deaths:" : statisticsData[0].numberOfDeaths
+        ]
         
         HStack(){
             
             let columns: [GridItem] =
             Array(repeating: .init(.flexible()), count: 2)
-
-            ScrollView{
+            
                 
                 LazyVGrid(columns: columns){
-                    
-                    ForEach(myStats.sorted(by: >), id: \.key) { key, value in
-                        HStack{
+                        
+                        ForEach(statsArray.sorted(by: >), id: \.key) { key, value in
                             
-                            Text(key + ": " + String(value)).listRowBackground(Color.clear)
-                                .foregroundColor(.white)
-                                .font(.custom("Avenir", size: 30))
+                            HStack{
+                                
+                                Text("\(key) \(value)").listRowBackground(Color.clear)
+                                    .foregroundColor(.white)
+                                    .font(.custom("Avenir", size: 30))
+                                
+                            }
                         }
-                    }
                 }
                 .padding(EdgeInsets(top: 0, leading: 0, bottom: 70, trailing: 30))
-                
-                
-            }
         }
     }
 }
