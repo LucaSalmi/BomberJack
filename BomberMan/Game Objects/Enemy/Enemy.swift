@@ -12,6 +12,7 @@ class Enemy: SKSpriteNode {
     
     //Keep references to all enemies
     static var enemies = [Enemy]()
+    static var attacks = [SwordAttack]()
 
     //Constants (replace with enum)
     static let superEasy: Int = 0
@@ -36,6 +37,8 @@ class Enemy: SKSpriteNode {
     //trap Boolean
     var isTrapped = false
     var trapPosition: CGPoint?
+    
+    
     
     var enemyTexture: SKSpriteNode = SKSpriteNode()
     
@@ -133,6 +136,9 @@ class Enemy: SKSpriteNode {
     func update() {
         
         updateZPosition()
+        
+        
+        
         
         if trapPosition != nil {
             position = trapPosition!

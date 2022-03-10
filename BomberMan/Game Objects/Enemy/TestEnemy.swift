@@ -18,6 +18,8 @@ class TestEnemy: Enemy {
     var currentMovementDistance: CGFloat = 0.0
     var direction = CGPoint(x: 0, y: 0)
     
+    var isAttacking = false
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("use init()")
     }
@@ -66,8 +68,10 @@ class TestEnemy: Enemy {
         direction = newDirection
     }
     
+    
     override func collision(with other: SKNode?) {
         super.collision(with: other)
+        
 
         let oldDirection = direction
         var newDirection = direction
@@ -83,6 +87,10 @@ class TestEnemy: Enemy {
         super.update()
         
         if !(self is TestEnemy) {
+            return
+        }
+        
+        if isAttacking{
             return
         }
         

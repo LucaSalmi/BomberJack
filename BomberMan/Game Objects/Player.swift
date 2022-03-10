@@ -36,6 +36,7 @@ class Player: SKSpriteNode{
     var shieldTick: CGFloat = 0.0
     
     
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("use init()")
     }
@@ -115,15 +116,13 @@ class Player: SKSpriteNode{
             return
         }
         
-        
         self.position.x += (direction.x * PlayerSettings.playerSpeed)
         self.position.y += (direction.y * PlayerSettings.playerSpeed)
+        
         //HERE
-        let direction = PhysicsUtils.findDirection(objDirection: direction)
+        let animationDirection = PhysicsUtils.findDirection(objDirection: direction)
         
-        runAnim(playerDirection: direction)
-        
-        
+        runAnim(playerDirection: animationDirection)
         
     }
     
@@ -139,7 +138,7 @@ class Player: SKSpriteNode{
     }
     
     func death(player: SKNode){
-
+        
         let deathParticle = SKEmitterNode(fileNamed: "EnemyDeath")
         deathParticle!.particleTexture = playerTexture.texture
         deathParticle!.position = playerTexture.position
