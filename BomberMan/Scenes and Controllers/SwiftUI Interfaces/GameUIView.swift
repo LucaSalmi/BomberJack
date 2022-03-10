@@ -25,8 +25,28 @@ struct GameUIView: View {
             
             if !isPaused && !swiftUICommunicator.isGameOver {
                 
+                
+                
+                //LEFT SIDE UI (INVENTORY DATA)
+                VStack {
+                    
+                    HStack {
+                        Image("KeyOneLoot")
+                            .resizable()
+                            .frame(width: 35, height: 35, alignment: .center)
+                        
+                        Text("\(playerSettingsUI.amountOfKeys)")
+                            .font(.custom("Chalkduster", size: 22))
+                    }
+                    .padding(.vertical, 16)
+                    
+                    Spacer()
+                    
+                }
+                
                 Spacer()
                 
+                //RIGHT SIDE UI (BUTTONS)
                 VStack {
                     HStack{
                         
