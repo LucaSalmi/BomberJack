@@ -57,8 +57,7 @@ class PlayerCutscene: SKSpriteNode {
                 floatUp = true
             }
             
-            //self.position.x += speedX
-            self.position.x += 10
+            self.position.x += speedX
             
             if self.position.x >= GameViewController.currentGameScene!.player!.position.x {
                 let gameScene = GameViewController.currentGameScene!
