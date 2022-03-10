@@ -43,8 +43,21 @@ extension GameScene: SKPhysicsContactDelegate{
                 // BodyB is an Enemy
             case PhysicsCategory.Enemy:
                 
-                let sword = SwordAttack()
-                sword.setPositions(with: nodeA!)
+                if nodeB is TestEnemy{
+                    
+                    let sword = SwordAttack()
+                    sword.setPositions(with: nodeA!, enemyNode: nodeB!)
+                    GameViewController.currentGameScene!.addChild(sword)
+                    
+                }else{
+                    
+                    if !player.isShielded{
+                        
+                        player.death(player: nodeA!)
+
+                    }
+                }
+                
                 
                 //                if !player.isShielded {
                 //                    //player.death(player: nodeA!)
@@ -54,7 +67,7 @@ extension GameScene: SKPhysicsContactDelegate{
             case PhysicsCategory.Sword:
                 
                 if !player.isShielded{
-                    player.death(player: nodeA!)
+                    //player.death(player: nodeA!)
                 }
                 
                 //BodyB is a Bomb
@@ -106,9 +119,20 @@ extension GameScene: SKPhysicsContactDelegate{
                 // BodyB is Player
             case PhysicsCategory.Player:
                 
-                let sword = SwordAttack()
-                sword.setPositions(with: nodeB!)
-                GameViewController.currentGameScene!.addChild(sword)
+                if nodeA is TestEnemy{
+                    
+                    let sword = SwordAttack()
+                    sword.setPositions(with: nodeB!, enemyNode: nodeA!)
+                    GameViewController.currentGameScene!.addChild(sword)
+                    
+                }else{
+                    
+                    if !player!.isShielded{
+                        
+                        player!.death(player: nodeB!)
+
+                    }
+                }
                 
                 //                let player = getPlayer(node: nodeB!)
                 //                if !player.isShielded {
@@ -327,7 +351,7 @@ extension GameScene: SKPhysicsContactDelegate{
             case PhysicsCategory.Player:
                 
                 if player!.isShielded{
-                    player!.death(player: nodeB!)
+                    //player!.death(player: nodeB!)
                 }
                 
             default:

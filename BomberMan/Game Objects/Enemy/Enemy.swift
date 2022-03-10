@@ -38,6 +38,8 @@ class Enemy: SKSpriteNode {
     var isTrapped = false
     var trapPosition: CGPoint?
     
+    
+    
     var enemyTexture: SKSpriteNode = SKSpriteNode()
     
     required init?(coder aDecoder: NSCoder) {
@@ -134,6 +136,8 @@ class Enemy: SKSpriteNode {
     func update() {
         
         updateZPosition()
+        
+        
         
         
         if trapPosition != nil {

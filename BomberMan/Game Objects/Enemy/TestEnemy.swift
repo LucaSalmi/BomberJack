@@ -18,6 +18,8 @@ class TestEnemy: Enemy {
     var currentMovementDistance: CGFloat = 0.0
     var direction = CGPoint(x: 0, y: 0)
     
+    var isAttacking = false
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("use init()")
     }
@@ -85,6 +87,10 @@ class TestEnemy: Enemy {
         super.update()
         
         if !(self is TestEnemy) {
+            return
+        }
+        
+        if isAttacking{
             return
         }
         
