@@ -10,6 +10,8 @@
 		330C62E927D8BDE800E01C98 /* PlayerCutscene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330C62E827D8BDE800E01C98 /* PlayerCutscene.swift */; };
 		330C62EB27D8C8B600E01C98 /* Level1IntroDialogue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330C62EA27D8C8B600E01C98 /* Level1IntroDialogue.swift */; };
 		330D6EFD27C67E2F00444648 /* SwiftUIHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330D6EFC27C67E2F00444648 /* SwiftUIHostingController.swift */; };
+		3310B62A27D9F6B8000962CB /* loot_keys.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3310B62927D9F6B8000962CB /* loot_keys.wav */; };
+		3310B62E27D9F8BD000962CB /* loot_bombs.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3310B62D27D9F8BD000962CB /* loot_bombs.wav */; };
 		3312D2A027C60A28004C0EEF /* EnemyDeath.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3312D29F27C60A28004C0EEF /* EnemyDeath.sks */; };
 		3312D2A227C612E3004C0EEF /* BloodSplatter.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3312D2A127C612E3004C0EEF /* BloodSplatter.sks */; };
 		3312D2A427C61539004C0EEF /* blood_splatter.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3312D2A327C61539004C0EEF /* blood_splatter.wav */; };
@@ -81,6 +83,8 @@
 		330C62E827D8BDE800E01C98 /* PlayerCutscene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerCutscene.swift; sourceTree = "<group>"; };
 		330C62EA27D8C8B600E01C98 /* Level1IntroDialogue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level1IntroDialogue.swift; sourceTree = "<group>"; };
 		330D6EFC27C67E2F00444648 /* SwiftUIHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIHostingController.swift; sourceTree = "<group>"; };
+		3310B62927D9F6B8000962CB /* loot_keys.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = loot_keys.wav; sourceTree = "<group>"; };
+		3310B62D27D9F8BD000962CB /* loot_bombs.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = loot_bombs.wav; sourceTree = "<group>"; };
 		3312D29F27C60A28004C0EEF /* EnemyDeath.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = EnemyDeath.sks; sourceTree = "<group>"; };
 		3312D2A127C612E3004C0EEF /* BloodSplatter.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BloodSplatter.sks; sourceTree = "<group>"; };
 		3312D2A327C61539004C0EEF /* blood_splatter.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = blood_splatter.wav; sourceTree = "<group>"; };
@@ -327,6 +331,8 @@
 			isa = PBXGroup;
 			children = (
 				3354DF2327BF847F0019D640 /* explosion1.wav */,
+				3310B62D27D9F8BD000962CB /* loot_bombs.wav */,
+				3310B62927D9F6B8000962CB /* loot_keys.wav */,
 				E52D5F8427C7A6CB00BBB4BE /* doorsound.wav */,
 				33CC323127C5297400856D82 /* barrel_shield.wav */,
 				33CC323527C5386F00856D82 /* rush_impact.wav */,
@@ -443,6 +449,7 @@
 				33E8104E27C8355F001D52EE /* in_game_bgm.mp3 in Resources */,
 				33CC323627C5387000856D82 /* rush_impact.wav in Resources */,
 				C815F79D27B400490084DE7A /* Main.storyboard in Resources */,
+				3310B62A27D9F6B8000962CB /* loot_keys.wav in Resources */,
 				3312D2A427C61539004C0EEF /* blood_splatter.wav in Resources */,
 				33E8104C27C8318B001D52EE /* main_menu_bgm.mp3 in Resources */,
 				D5FFD73527C4FAB20032912D /* GameScene1.sks in Resources */,
@@ -453,6 +460,7 @@
 				33BFC5C827BBA567008DBA03 /* StartMenuScene.sks in Resources */,
 				C815F79F27B400490084DE7A /* Assets.xcassets in Resources */,
 				C869390D27BA66E100EEF877 /* TileSet Placeholder.sks in Resources */,
+				3310B62E27D9F8BD000962CB /* loot_bombs.wav in Resources */,
 				33CC323427C5343600856D82 /* RushStun.sks in Resources */,
 				E52D5F8527C7A6CB00BBB4BE /* doorsound.wav in Resources */,
 				E56CE0B627BD3FFF00962834 /* GameScene3.sks in Resources */,

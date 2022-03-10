@@ -25,6 +25,7 @@ class Key: LootObject {
     override func collision(loot: SKNode?) {
         print("loot collision key")
         PlayerSettings.amountOfKeys += 1
+        SoundManager.playSFX(SoundManager.lootKeysSFX)
         super.collision(loot: loot)
         
         
