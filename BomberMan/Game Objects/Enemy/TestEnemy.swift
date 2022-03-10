@@ -66,8 +66,10 @@ class TestEnemy: Enemy {
         direction = newDirection
     }
     
+    
     override func collision(with other: SKNode?) {
         super.collision(with: other)
+        
 
         let oldDirection = direction
         var newDirection = direction
