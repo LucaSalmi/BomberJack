@@ -7,19 +7,14 @@
 
 import Foundation
 
-class SwiftUICommunicator: ObservableObject{
+class SwiftUICommunicator: ObservableObject {
+    
     static let instance = SwiftUICommunicator()
     
     @Published var isGameOver = false
     
-    
-//    func setGameOver(state: Bool){
-//
-//        isGameOver = state
-//
-//    }
-    
-    
-    
+    private init() {
+        //SINGLETON. PRIVATE INIT.
+    }
     
 }

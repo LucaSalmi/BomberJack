@@ -45,8 +45,8 @@ class Door: SKSpriteNode{
     
     func collision(with other: SKNode?) {
         
-        if PlayerSettings.amountOfKeys > 0{
-            PlayerSettings.amountOfKeys -= 1
+        if PlayerSettingsUI.instance.amountOfKeys > 0{
+            PlayerSettingsUI.instance.amountOfKeys -= 1
             other?.physicsBody = nil
             self.isOpened = true
             SoundManager.playSFX("doorsound")
