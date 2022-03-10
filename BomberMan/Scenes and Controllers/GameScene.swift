@@ -34,11 +34,13 @@ class GameScene: SKScene {
     var lootNode: SKNode? = SKNode()
     var eventsNode: SKNode? = SKNode()
     var currentDialogue: Dialogue? = nil
+    var playerCutscene: PlayerCutscene? = nil
     var player: Player? = nil
     var victoryCondition: VictoryConditions?
     
     var movementManager: MovementManager? = nil
     
+    var cutsceneRunning = false
     var isGameOver = false
     var isDoorOpen = false
         
@@ -76,8 +78,8 @@ class GameScene: SKScene {
     
     override func sceneDidLoad() {
         
-        
-        
+        //gets a pirate insult from html adress
+        getPirateInsult()
     }
     
     func setupLightning() {
@@ -99,9 +101,14 @@ class GameScene: SKScene {
         isCaveLevel = true
     }
     
+    // decides a victory conditions based on what level is loaded
     func setupVictoryCond(){
         
-        switch GameScene.viewController!.currentLevel{
+        if UserData.currentLevel > 1 {
+            PlayerSettingsUI.instance.haveBombs = true
+        }
+        
+        switch UserData.currentLevel{
             
         case 1:
             victoryCondition = VictoryConditions.openDoor
@@ -391,8 +398,11 @@ class GameScene: SKScene {
                     }
                     
                     enemy.position = enemiesMap.centerOfTile(atColumn: column, row: row)
+                    enemy.enemyTexture.position = enemy.position
+                    enemy.enemyTexture.position.y += PlayerSettings.textureOffset
                     Enemy.enemies.append(enemy)
                     enemyNode!.addChild(enemy)
+                    enemyNode!.addChild(enemy.enemyTexture)
                     
                 }
             }
@@ -424,9 +434,21 @@ class GameScene: SKScene {
                     player!.position = playerMap.centerOfTile(atColumn: column, row: row)
                     player!.playerTexture.position.x = player!.position.x
                     player!.playerTexture.position.y = player!.position.y + PlayerSettings.textureOffset
-                    
                 }
+                
+//                if tile.userData?.object(forKey: "playerCutscene") != nil {
+//                    
+//                    playerCutscene = PlayerCutscene()
+//                    playerCutscene!.position = playerMap.centerOfTile(atColumn: column, row: row)
+//                    cutsceneRunning = true
+//                    addChild(playerCutscene!)
+//                    
+//                }
             }
+        }
+        
+        if playerCutscene != nil {
+            player!.hidePlayer()
         }
         
         addChild(player!)
@@ -459,9 +481,16 @@ class GameScene: SKScene {
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
         
+        if cutsceneRunning {
+            updateCutscene()
+            return
+        }
+        
         if GameScene.gameState == .pause{
             return
         }
+        
+        
         
         if isGameOver{
             
@@ -475,14 +504,16 @@ class GameScene: SKScene {
             }
             
             //Deallocate all nodes/children from the old scene
-            self.removeAllChildren()
-            self.removeAllActions()
-            self.stopScene()
+//            self.removeAllChildren()
+//            self.removeAllActions()
+  //            self.stopScene()
+            
+            SwiftUICommunicator.instance.isGameOver = true
             
             //Present a new instance of the scene
-            let restartScene = "GameScene" + String(GameScene.viewController!.currentLevel)
-            GameScene.viewController!.presentScene(restartScene)
-            return
+//            let restartScene = "GameScene" + String(GameScene.viewController!.currentLevel)
+//            GameScene.viewController!.presentScene(restartScene)
+//            return
             
         }else{
             
@@ -503,10 +534,17 @@ class GameScene: SKScene {
                     }
                     enemy.deathParticle()
                     enemy.removeFromParent()
+                    enemy.enemyTexture.removeFromParent()
                     
                     return
                 }
                 enemy.update()
+            }
+            
+            print("Luca sword: \(Enemy.attacks.count)")
+            for attack in Enemy.attacks{
+                
+                attack.update()
             }
             
             for explosion in ExplosionSettings.explosionsArray{
@@ -533,7 +571,7 @@ class GameScene: SKScene {
             currentDialogue.update()
         }
         
-        player!.update()
+        player?.update()
         
         if databaseUpdateCounter < databaseUpdateLimit{
             databaseUpdateCounter += 1
@@ -544,6 +582,17 @@ class GameScene: SKScene {
         }
         
         
+    }
+    
+    private func updateCutscene() {
+        switch UserData.currentLevel {
+        case 1:
+            playerCutscene?.update()
+        default:
+            print("updateCutscene() couldnt find the current level")
+            player!.showPlayer()
+            cutsceneRunning = false
+        }
     }
     
     func stopScene() {
@@ -559,6 +608,7 @@ class GameScene: SKScene {
         bombsNode = nil
         lootNode = nil
         eventsNode = nil
+        currentDialogue = nil
         Bomb.bombs.removeAll()
         Enemy.enemies.removeAll()
         ExplosionSettings.explosionsArray.removeAll()
@@ -575,8 +625,10 @@ class GameScene: SKScene {
                 
                 if Enemy.enemies.count <= 0{
                     
-                    GameScene.viewController?.currentLevel += 1
-                    isGameOver = true
+                    UserData.currentLevel += 1
+                    dataReaderWriter.saveLocalSaveData()
+                    let sceneName = "GameScene\(UserData.currentLevel)"
+                    GameScene.viewController!.presentScene(sceneName)
                     print("you killed everyone, you monster.....")
                 }
                 
@@ -593,18 +645,21 @@ class GameScene: SKScene {
                     }
                 }
                 
-                if PlayerSettings.haveBombs{
+                if PlayerSettingsUI.instance.haveBombs{
                     isDoorOpen = true
                 }
                 
                 
                 if isDoorOpen{
                     
-                    GameScene.viewController?.currentLevel += 1
-                    isGameOver = true
+                    UserData.currentLevel += 1
+                    dataReaderWriter.saveLocalSaveData()
+                    let sceneName = "GameScene\(UserData.currentLevel)"
+                    GameScene.viewController!.presentScene(sceneName)
                     print("keys found and door opened, good job...")
                     
                 }
+                
                 
             default:
                 print("something went VERY wrong...")
@@ -619,6 +674,18 @@ class GameScene: SKScene {
         guard let tileSize = tileSize else { return }
         let margin: CGFloat = 10
         object.zPosition = round(object.position.y/(tileSize.height-margin)) * -1
+    }
+    
+    func getPirateInsult(){
+        
+        let url = URL(string: "https://pirate.monkeyness.com/api/insult")!
+
+        let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
+            guard let data = data else { return }
+            print(String(data: data, encoding: .utf8)!)
+        }
+
+        task.resume()
     }
     
 }

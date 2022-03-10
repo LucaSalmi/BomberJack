@@ -59,6 +59,7 @@ class StandardBomb: Bomb{
         let scene = GameViewController.currentGameScene
         for explosion in ExplosionSettings.explosionsArray{
             if explosion.parent == nil {
+                explosion.zPosition = self.zPosition
                 scene?.explosionsNode!.addChild(explosion)
             }
         }

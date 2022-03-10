@@ -32,6 +32,8 @@ class Tree: BreakableObject{
     override func collision(breakable: SKNode?) {
         let obj = breakable as! Tree
         obj.breakableTexture.removeFromParent()
+        
+        changeTexture(obj: obj)
         super.collision(breakable: breakable)
     }
     

@@ -15,15 +15,39 @@ struct GameUIView: View {
     @Binding var startGame: Bool
     @Binding var isPaused: Bool
     
+    @ObservedObject var swiftUICommunicator = SwiftUICommunicator.instance
+    @ObservedObject var playerSettingsUI = PlayerSettingsUI.instance
+    
     var body: some View {
         
         
         HStack {
             
-            if !isPaused {
+            if !isPaused && !swiftUICommunicator.isGameOver {
+                
+                
+                
+                //LEFT SIDE UI (INVENTORY DATA)
+                VStack {
+                    
+                    HStack {
+                        Image("KeyOneLoot")
+                            .resizable()
+                            .frame(width: 35, height: 35, alignment: .center)
+                        
+                        Text("\(playerSettingsUI.amountOfKeys)")
+                            .font(.custom("Chalkduster", size: 22))
+                            .foregroundColor(.white)
+                    }
+                    .padding(.vertical, 16)
+                    
+                    Spacer()
+                    
+                }
                 
                 Spacer()
                 
+                //RIGHT SIDE UI (BUTTONS)
                 VStack {
                     HStack{
                         
@@ -102,8 +126,10 @@ struct GameUIView: View {
                             Image("bomb")
                                 .resizable()
                                 .frame(width: 55, height: 50, alignment: .center)
+                                .opacity(playerSettingsUI.haveBombs ? 1.0 : 0.5)
                         })
                             .padding(20)
+                            .disabled(!playerSettingsUI.haveBombs)
                         
                     }
                 }
@@ -116,6 +142,8 @@ struct PauseMenu: View {
     
     @Binding var startGame: Bool
     @Binding var isPaused: Bool
+    
+    @ObservedObject var swiftUICommunicator = SwiftUICommunicator.instance
     
     var body: some View {
         
@@ -135,6 +163,36 @@ struct PauseMenu: View {
             
             VStack {
                 
+                if swiftUICommunicator.isGameOver{
+                    
+                    Text("GAME OVER")
+                    
+                    Button(action: {
+                        let levelNumber = UserData.currentLevel
+                        GameScene.viewController!.presentScene("GameScene\(levelNumber)")
+                        
+                        isPaused = false
+                        swiftUICommunicator.isGameOver = false
+                        
+                    }, label: {
+                        
+                        Label("Restart", systemImage: "arrowtriangle.right.circle")
+                            .foregroundColor(Color.white)
+                            .padding(10)
+                            .overlay(RoundedRectangle(cornerRadius: 5)
+                                        .stroke(Color.white, lineWidth: 1))
+                        
+                        
+                    })
+                    
+                        .background(Color.black)
+                        .cornerRadius(5)
+                    
+                }
+                else{
+                
+                    Text("PAUSED")
+                    
                 Button(action: {
                     if GameViewController.currentGameScene?.actionManager != nil {
                         withAnimation(.easeOut(duration: 0.3)){
@@ -158,7 +216,7 @@ struct PauseMenu: View {
                     .cornerRadius(5)
                 
                 
-                
+                }
                 
                 Button(action: {
                     if GameViewController.currentGameScene?.actionManager != nil {

@@ -10,85 +10,108 @@ import GameplayKit
 
 enum DialogueSettings {
     
-    static let defaultPositionOffsetY: CGFloat = 150
-    static let cavePositionOffsetY: CGFloat = 75
+    static let defaultPositionOffsetY: CGFloat = 135
+    static let cavePositionOffsetY: CGFloat = 85
     
-    static let defaultFontSize: CGFloat = 26
-    static let caveFontSize: CGFloat = 13
+    static let defaultFontSize: CGFloat = 20
+    static let caveFontSize: CGFloat = 12
     
 }
 
-class Dialogue: SKNode {
+class Dialogue: SKSpriteNode {
     
     var shapeNode: SKShapeNode? = nil
-    var labelNode: SKLabelNode? = nil
+    var labelNodes = [SKLabelNode]()
     
-    let dialogueText: String!
-    let showingTime = 60 * 3
+    let showingTime = 60 * 4
     var ticks: Int = 0
     
     let positionOffsetY: CGFloat = 150
-    let textPadding: CGFloat = 50
+    let textPadding: CGFloat = 40
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("use init()")
     }
     
-    init(dialogueText: String) {
+    init(dialogueLines: [String]) {
         
-        self.dialogueText = dialogueText
-        super.init()
+        super.init(texture: nil, color: .clear, size: CGSize(width: 0, height: 0))
         
-        self.labelNode = SKLabelNode()
-        setupLabelNode()
-        let width = labelNode!.frame.width + textPadding
-        let height = labelNode!.frame.height + textPadding
-        self.shapeNode = SKShapeNode(rectOf: CGSize(width: width, height: height), cornerRadius: 10.0)
+        setupLabelNodes(dialogueLines: dialogueLines)
+        
         setupShapeNode()
         
-        if GameViewController.currentGameScene!.isCaveLevel {
-            position.y += DialogueSettings.cavePositionOffsetY
-        }
-        else {
-            position.y += DialogueSettings.defaultPositionOffsetY
-        }
+        setNewPosition()
         
         zPosition = 70
     }
     
     private func setupShapeNode() {
+        
+        let width = labelNodes[0].frame.width + textPadding
+        let numOfLines = CGFloat(labelNodes.count)
+        let height = (numOfLines * labelNodes[0].frame.height) + textPadding
+        shapeNode = SKShapeNode(rectOf: CGSize(width: width, height: height), cornerRadius: 10.0)
+        
         shapeNode!.fillColor = .black
         shapeNode!.alpha = 0.8
         shapeNode!.zPosition = 51
         addChild(shapeNode!)
-    }
-    
-    private func setupLabelNode() {
-        labelNode!.text = dialogueText
-        labelNode!.fontColor = .white
-        labelNode!.fontName = "Chalkduster"
-        if GameViewController.currentGameScene!.isCaveLevel {
-            labelNode!.fontSize = DialogueSettings.caveFontSize
-        }
-        else {
-            labelNode!.fontSize = DialogueSettings.defaultFontSize
-        }
-        labelNode!.alpha = 1
-        labelNode!.zPosition = 52
-        addChild(labelNode!)
-    }
-    
-    func update() {
         
+        var lineStart = shapeNode!.position
+        lineStart.y += (shapeNode!.frame.size.height/2)
+        
+        for i in 0..<labelNodes.count {
+            let labelNode = labelNodes[i]
+            labelNode.position = lineStart
+            labelNode.position.y -= CGFloat(i+1) * labelNodes[0].frame.height
+            labelNode.position.y -= textPadding/4
+        }
+        
+        anchorPoint.y += (shapeNode!.frame.height/2)
+    }
+    
+    private func setupLabelNodes(dialogueLines: [String]) {
+        
+        for line in dialogueLines {
+            
+            let labelNode = SKLabelNode()
+            labelNode.text = line
+            labelNode.fontColor = .white
+            labelNode.fontName = "Chalkduster"
+            labelNode.alpha = 1
+            labelNode.zPosition = 52
+            
+            if GameViewController.currentGameScene!.isCaveLevel {
+                labelNode.fontSize = DialogueSettings.caveFontSize
+            }
+            else {
+                labelNode.fontSize = DialogueSettings.defaultFontSize
+            }
+            
+            self.labelNodes.append(labelNode)
+            addChild(labelNode)
+        }
+        
+    }
+    
+    private func setNewPosition() {
         if let player = GameViewController.currentGameScene?.player {
             position = player.position
+            
             if GameViewController.currentGameScene!.isCaveLevel {
                 position.y += DialogueSettings.cavePositionOffsetY
             }
             else {
                 position.y += DialogueSettings.defaultPositionOffsetY
             }
+            
         }
+    }
+    
+    func update() {
+        
+        setNewPosition()
         
         ticks += 1
         if ticks >= showingTime {

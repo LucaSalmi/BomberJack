@@ -12,6 +12,7 @@ class Enemy: SKSpriteNode {
     
     //Keep references to all enemies
     static var enemies = [Enemy]()
+    static var attacks = [SwordAttack]()
 
     //Constants (replace with enum)
     static let superEasy: Int = 0
@@ -22,6 +23,12 @@ class Enemy: SKSpriteNode {
     
     static let knockbackMultiplier = 16.0
     
+    //Animation Variables
+    var rightAnimations: [SKAction] = []
+    var leftAnimations: [SKAction] = []
+    var upAnimations: [SKAction] = []
+    var downAnimations: [SKAction] = []
+    
     //change these variables in enemy subclass
     var enemySpeed: CGFloat = 0.0
     var difficult: Int = 0
@@ -30,6 +37,10 @@ class Enemy: SKSpriteNode {
     //trap Boolean
     var isTrapped = false
     var trapPosition: CGPoint?
+    
+    
+    
+    var enemyTexture: SKSpriteNode = SKSpriteNode()
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("use init()")
@@ -48,6 +59,14 @@ class Enemy: SKSpriteNode {
         zPosition = 50
         
         lightingBitMask = 1
+        
+        //init() for texture
+        let textureSize = CGSize(width: size.width, height: size.height*1.5)
+        enemyTexture = SKSpriteNode(texture: texture, color: UIColor(red: 0, green: 0, blue: 0, alpha: 0), size: textureSize)
+        enemyTexture.position = position
+        enemyTexture.zPosition = 50
+        
+        setEnemyAnimations(enemy: "enemy_walk_animation")
     }
     
     func bloodParticle() {
@@ -63,7 +82,7 @@ class Enemy: SKSpriteNode {
     
     func deathParticle() {
         let deathParticle = SKEmitterNode(fileNamed: "EnemyDeath")
-        deathParticle!.particleTexture = texture
+        deathParticle!.particleTexture = enemyTexture.texture
         deathParticle!.position = position
         deathParticle!.zPosition = 100
         GameViewController.currentGameScene!.addChild(deathParticle!)
@@ -118,16 +137,41 @@ class Enemy: SKSpriteNode {
         
         updateZPosition()
         
+        
+        
+        
         if trapPosition != nil {
             position = trapPosition!
             bloodParticle()
             trapPosition = nil
+            
+            enemyTexture.position.x = position.x
+            enemyTexture.position.y = position.y + PlayerSettings.textureOffset
         }
         
     }
     
     func updateZPosition() {
         GameScene.updateZPosition(object: self)
+        enemyTexture.zPosition = self.zPosition
     }
     
+    func runAnim(objDirection: Direction){
+        
+        switch objDirection {
+            
+        case .forward:
+            enemyTexture.run(upAnimations[0], withKey: "animation")
+        case .backward:
+            enemyTexture.run(downAnimations[0], withKey: "animation")
+        case .left:
+            enemyTexture.run(leftAnimations[0], withKey: "animation")
+        case .right:
+            enemyTexture.run(rightAnimations[0], withKey: "animation")
+        }
+    }
+    
+    
 }
+
+extension Enemy: Animatable{}

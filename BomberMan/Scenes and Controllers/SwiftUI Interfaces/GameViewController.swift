@@ -15,8 +15,8 @@ class GameViewController: UIViewController {
     static var currentInputKey: UInt8 = 0
     static var currentGameScene: GameScene? = nil
     
-    let numberOfLevels: Int = 4
-    var currentLevel: Int = 1
+    //let numberOfLevels: Int = 4
+    //var currentLevel: Int = 1
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,13 +33,13 @@ class GameViewController: UIViewController {
         //old start menu (before SwiftUI)
         //presentOldStartMenu()
         
-        let sceneName = "GameScene\(currentLevel)"
+        let sceneName = "GameScene\(UserData.currentLevel)"
         presentScene(sceneName)
     }
     
-    func getCurrentLevel()-> Int{
-        return currentLevel
-    }
+//    func getCurrentLevel()-> Int{
+//        return currentLevel
+//    }
     
     private func presentOldStartMenu() {
         // Load 'GameScene.sks' as a GKScene. This provides gameplay related content

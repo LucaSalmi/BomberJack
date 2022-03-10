@@ -16,8 +16,12 @@ class NeedKeyDialogue: Dialogue {
     
     init() {
         
-        let dialogueText: String = "This door is locked. Where is the key?"
-        super.init(dialogueText: dialogueText)
+        var dialogueLines = [String]()
+        
+        dialogueLines.append("This door is locked.")
+        dialogueLines.append("Where is the key?")
+        
+        super.init(dialogueLines: dialogueLines)
         
     }
     

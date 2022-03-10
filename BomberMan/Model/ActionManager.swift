@@ -22,10 +22,7 @@ class ActionManagager{
         self.camera = camera
         
         rightUI = (context.childNode(withName: "camera/rightUI") as! SKSpriteNode)
-        
-        if (PlayerSettings.haveBombs == false) {
-            //bombButton?.alpha = 0.2
-        }
+
     }
     
     func checkInput(_ touches: Set<UITouch>, with event: UIEvent?){
@@ -33,6 +30,10 @@ class ActionManagager{
     }
     
     func handleInput(id: Int, isPaused: Bool) {
+        
+        if context.cutsceneRunning {
+            return
+        }
         
         if isPaused {
             return
@@ -76,7 +77,7 @@ class ActionManagager{
             bomb = StandardBomb()
         }
         
-        if bomb is StandardBomb && !PlayerSettings.haveBombs {
+        if bomb is StandardBomb && !PlayerSettingsUI.instance.haveBombs {
             return
         }
         
@@ -143,11 +144,11 @@ class ActionManagager{
             print("Could not find Game View Controller!")
             return
         }
-        GameScene.viewController!.currentLevel += 1
-        if GameScene.viewController!.currentLevel > GameScene.viewController!.numberOfLevels {
-            GameScene.viewController!.currentLevel = GameScene.viewController!.numberOfLevels
+        UserData.currentLevel += 1
+        if UserData.currentLevel > UserData.numberOfLevels {
+            UserData.currentLevel = UserData.numberOfLevels
         }
-        let nextScene = "GameScene" + String(GameScene.viewController!.currentLevel)
+        let nextScene = "GameScene" + String(UserData.currentLevel)
         GameScene.viewController!.presentScene(nextScene)
     }
 }

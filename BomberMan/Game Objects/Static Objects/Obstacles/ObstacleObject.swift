@@ -44,8 +44,9 @@ class ObstacleObject: SKSpriteNode{
         
         physicsBody = SKPhysicsBody(circleOfRadius: (tile.size.width/2) * PhysicsUtils.physicsBodyPct)
         physicsBody?.categoryBitMask = PhysicsCategory.Obstacle
+        physicsBody?.collisionBitMask = 0
         physicsBody?.restitution = 0
-        physicsBody?.isDynamic = false
+        physicsBody?.isDynamic = true
         physicsBody?.friction = 0
         physicsBody?.allowsRotation = false
         

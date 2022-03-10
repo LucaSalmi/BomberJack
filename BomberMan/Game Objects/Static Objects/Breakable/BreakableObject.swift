@@ -52,4 +52,29 @@ class BreakableObject: SKSpriteNode{
         breakable?.physicsBody = nil
         
     }
+    
+    //When destroying the obj changes the texture to another without a Physics Body
+    func changeTexture(obj: BreakableObject){
+        
+        var imageName = ""
+        
+        if obj is Fence {
+            imageName = "trashed_fence"
+        }
+        else if obj is Tree {
+            imageName = "trashed_fence"
+        }
+        else {
+            imageName = "trashed_fence"
+        }
+        
+        var size = GameScene.tileSize
+        size?.height += BreakableSettings.sizeOffset
+        size?.width += 8 // temporary
+        obj.breakableTexture = SKSpriteNode(texture: SKTexture(imageNamed: imageName), size: size!)
+        obj.breakableTexture.position = obj.position
+        obj.breakableTexture.zPosition = obj.zPosition - 1
+        GameViewController.currentGameScene?.breakablesNode?.addChild(obj.breakableTexture)
+        
+    }
 }

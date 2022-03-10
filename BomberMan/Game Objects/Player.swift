@@ -8,15 +8,15 @@
 import Foundation
 import SpriteKit
 
-enum PlayerSettings{
-    static let playerSpeed: CGFloat = 1.5
+enum PlayerSettings {
+    
+    static let playerSpeed: CGFloat = 1.7
     static var frame: Int = 0
     static var frameLimiter: Int = 1
     static var canDropBomb: Bool = true // temporary not using
     static let textureOffset = CGFloat(10) //temporary hard coded variable
     static let shieldDuration: CGFloat = 60 * 2
-    static var haveBombs: Bool = false
-    static var amountOfKeys = 0
+    
 }
 
 class Player: SKSpriteNode{
@@ -34,6 +34,7 @@ class Player: SKSpriteNode{
     var isTrapped = false
     var isShielded = false
     var shieldTick: CGFloat = 0.0
+    
     
     
     required init?(coder aDecoder: NSCoder) {
@@ -111,18 +112,17 @@ class Player: SKSpriteNode{
     
     func move(direction: CGPoint){
         
-        if isShielded || isTrapped{
+        if isShielded || isTrapped {
             return
         }
         
-        
         self.position.x += (direction.x * PlayerSettings.playerSpeed)
         self.position.y += (direction.y * PlayerSettings.playerSpeed)
-        let direction = findDirection(playerDirection: direction)
         
-        runAnim(playerDirection: direction)
+        //HERE
+        let animationDirection = PhysicsUtils.findDirection(objDirection: direction)
         
-        
+        runAnim(playerDirection: animationDirection)
         
     }
     
@@ -138,7 +138,7 @@ class Player: SKSpriteNode{
     }
     
     func death(player: SKNode){
-        //
+        
         let deathParticle = SKEmitterNode(fileNamed: "EnemyDeath")
         deathParticle!.particleTexture = playerTexture.texture
         deathParticle!.position = playerTexture.position
@@ -158,26 +158,9 @@ class Player: SKSpriteNode{
         currentTexture.removeFromParent()
         
         GameViewController.currentGameScene!.isGameOver = true
+        
     }
     
-    func findDirection(playerDirection: CGPoint) -> Direction{
-        
-        
-        if playerDirection.x == 1{
-            return .right
-        }
-        if playerDirection.x == -1{
-            return .left
-        }
-        if playerDirection.y == 1{
-            return .forward
-        }
-        if playerDirection.y == -1{
-            return .backward
-        }
-        
-        return .right
-    }
     
     func runAnim(playerDirection: Direction){
         
@@ -224,10 +207,26 @@ class Player: SKSpriteNode{
     
     func resetInventory(){
         
-        PlayerSettings.amountOfKeys = 0
-        if GameScene.viewController?.currentLevel == 1{
-            PlayerSettings.haveBombs = false
+        PlayerSettingsUI.instance.amountOfKeys = 0
+        if UserData.currentLevel == 1{
+            PlayerSettingsUI.instance.haveBombs = false
         }
+    }
+    
+    func hidePlayer() {
+        self.alpha = 0
+        playerTexture.alpha = 0
+        shieldTexture.alpha = 0
+    }
+    
+    func showPlayer() {
+        self.alpha = 1
+        playerTexture.alpha = 1
+        shieldTexture.alpha = 0
+        
+        GameViewController.currentGameScene!.playerCutscene!.removeFromParent()
+        GameViewController.currentGameScene!.playerCutscene = nil
+        GameViewController.currentGameScene!.cutsceneRunning = false
     }
     
     func update() {
