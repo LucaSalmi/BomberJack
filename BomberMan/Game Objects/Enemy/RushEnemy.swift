@@ -29,8 +29,8 @@ class RushEnemy: TestEnemy {
         difficult = Enemy.easy
         
         chargeSpeed = enemySpeed * chargeSpeedMultiplier
-        
-        self.texture = SKTexture(imageNamed: "firebug")
+        //keep until we get rush enemy texture
+        //self.texture = SKTexture(imageNamed: "firebug")
     }
     
     private func searchForPlayer() -> CGPoint {
@@ -153,6 +153,9 @@ class RushEnemy: TestEnemy {
         if isCharging {
             position.x += (direction.x * chargeSpeed)
             position.y += (direction.y * chargeSpeed)
+            
+            enemyTexture.position.x = position.x
+            enemyTexture.position.y = position.y + PlayerSettings.textureOffset
             
             //for Animations
             let direction = PhysicsUtils.findDirection(objDirection: direction)

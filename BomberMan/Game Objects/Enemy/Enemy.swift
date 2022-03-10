@@ -37,6 +37,8 @@ class Enemy: SKSpriteNode {
     var isTrapped = false
     var trapPosition: CGPoint?
     
+    var enemyTexture: SKSpriteNode = SKSpriteNode()
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("use init()")
     }
@@ -54,6 +56,12 @@ class Enemy: SKSpriteNode {
         zPosition = 50
         
         lightingBitMask = 1
+        
+        //init() for texture
+        let textureSize = CGSize(width: size.width, height: size.height*1.5)
+        enemyTexture = SKSpriteNode(texture: texture, color: UIColor(red: 0, green: 0, blue: 0, alpha: 0), size: textureSize)
+        enemyTexture.position = position
+        enemyTexture.zPosition = 50
         
         setEnemyAnimations(enemy: "enemy_walk_animation")
     }
@@ -130,6 +138,9 @@ class Enemy: SKSpriteNode {
             position = trapPosition!
             bloodParticle()
             trapPosition = nil
+            
+            enemyTexture.position.x = position.x
+            enemyTexture.position.y = position.y + PlayerSettings.textureOffset
         }
         
     }
@@ -143,13 +154,13 @@ class Enemy: SKSpriteNode {
         switch objDirection {
             
         case .forward:
-            self.run(upAnimations[0], withKey: "animation")
+            enemyTexture.run(upAnimations[0], withKey: "animation")
         case .backward:
-            self.run(downAnimations[0], withKey: "animation")
+            enemyTexture.run(downAnimations[0], withKey: "animation")
         case .left:
-            self.run(leftAnimations[0], withKey: "animation")
+            enemyTexture.run(leftAnimations[0], withKey: "animation")
         case .right:
-            self.run(rightAnimations[0], withKey: "animation")
+            enemyTexture.run(rightAnimations[0], withKey: "animation")
         }
     }
     
