@@ -16,6 +16,7 @@ struct GameUIView: View {
     @Binding var isPaused: Bool
     
     @ObservedObject var swiftUICommunicator = SwiftUICommunicator.instance
+    @ObservedObject var playerSettingsUI = PlayerSettingsUI.instance
     
     var body: some View {
         
@@ -24,8 +25,28 @@ struct GameUIView: View {
             
             if !isPaused && !swiftUICommunicator.isGameOver {
                 
+                
+                
+                //LEFT SIDE UI (INVENTORY DATA)
+                VStack {
+                    
+                    HStack {
+                        Image("KeyOneLoot")
+                            .resizable()
+                            .frame(width: 35, height: 35, alignment: .center)
+                        
+                        Text("\(playerSettingsUI.amountOfKeys)")
+                            .font(.custom("Chalkduster", size: 22))
+                    }
+                    .padding(.vertical, 16)
+                    
+                    Spacer()
+                    
+                }
+                
                 Spacer()
                 
+                //RIGHT SIDE UI (BUTTONS)
                 VStack {
                     HStack{
                         
@@ -104,8 +125,10 @@ struct GameUIView: View {
                             Image("bomb")
                                 .resizable()
                                 .frame(width: 55, height: 50, alignment: .center)
+                                .opacity(playerSettingsUI.haveBombs ? 1.0 : 0.5)
                         })
                             .padding(20)
+                            .disabled(!playerSettingsUI.haveBombs)
                         
                     }
                 }

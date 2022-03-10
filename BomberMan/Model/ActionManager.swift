@@ -22,10 +22,7 @@ class ActionManagager{
         self.camera = camera
         
         rightUI = (context.childNode(withName: "camera/rightUI") as! SKSpriteNode)
-        
-        if (PlayerSettings.haveBombs == false) {
-            //bombButton?.alpha = 0.2
-        }
+
     }
     
     func checkInput(_ touches: Set<UITouch>, with event: UIEvent?){
@@ -80,7 +77,7 @@ class ActionManagager{
             bomb = StandardBomb()
         }
         
-        if bomb is StandardBomb && !PlayerSettings.haveBombs {
+        if bomb is StandardBomb && !PlayerSettingsUI.instance.haveBombs {
             return
         }
         

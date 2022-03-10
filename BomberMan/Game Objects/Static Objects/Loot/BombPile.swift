@@ -23,7 +23,7 @@ class BombPile: LootObject {
     }
     override func collision(loot: SKNode?) {
         
-        PlayerSettings.haveBombs = true
+        PlayerSettingsUI.instance.haveBombs = true
         print("loot collision bombpile")
         SoundManager.playSFX(SoundManager.lootBombsSFX)
         super.collision(loot: loot)

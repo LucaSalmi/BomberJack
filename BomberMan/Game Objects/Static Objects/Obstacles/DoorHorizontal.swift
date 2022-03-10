@@ -12,7 +12,7 @@ class DoorHorizontal: Door{
     
     override func collision(with other: SKNode?){
         
-        if PlayerSettings.amountOfKeys > 0{
+        if PlayerSettingsUI.instance.amountOfKeys > 0{
             super.collision(with: other)
             self.doorTexture.texture = SKTexture(imageNamed: "door_vertical")
         }

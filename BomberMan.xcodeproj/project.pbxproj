@@ -12,6 +12,7 @@
 		330D6EFD27C67E2F00444648 /* SwiftUIHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330D6EFC27C67E2F00444648 /* SwiftUIHostingController.swift */; };
 		3310B62A27D9F6B8000962CB /* loot_keys.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3310B62927D9F6B8000962CB /* loot_keys.wav */; };
 		3310B62E27D9F8BD000962CB /* loot_bombs.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3310B62D27D9F8BD000962CB /* loot_bombs.wav */; };
+		3310B63027D9FB50000962CB /* PlayerSettingsUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3310B62F27D9FB50000962CB /* PlayerSettingsUI.swift */; };
 		3312D2A027C60A28004C0EEF /* EnemyDeath.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3312D29F27C60A28004C0EEF /* EnemyDeath.sks */; };
 		3312D2A227C612E3004C0EEF /* BloodSplatter.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3312D2A127C612E3004C0EEF /* BloodSplatter.sks */; };
 		3312D2A427C61539004C0EEF /* blood_splatter.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3312D2A327C61539004C0EEF /* blood_splatter.wav */; };
@@ -85,6 +86,7 @@
 		330D6EFC27C67E2F00444648 /* SwiftUIHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIHostingController.swift; sourceTree = "<group>"; };
 		3310B62927D9F6B8000962CB /* loot_keys.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = loot_keys.wav; sourceTree = "<group>"; };
 		3310B62D27D9F8BD000962CB /* loot_bombs.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = loot_bombs.wav; sourceTree = "<group>"; };
+		3310B62F27D9FB50000962CB /* PlayerSettingsUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerSettingsUI.swift; sourceTree = "<group>"; };
 		3312D29F27C60A28004C0EEF /* EnemyDeath.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = EnemyDeath.sks; sourceTree = "<group>"; };
 		3312D2A127C612E3004C0EEF /* BloodSplatter.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BloodSplatter.sks; sourceTree = "<group>"; };
 		3312D2A327C61539004C0EEF /* blood_splatter.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = blood_splatter.wav; sourceTree = "<group>"; };
@@ -295,6 +297,7 @@
 				334F89D327CCDACD007A1857 /* Dialogue */,
 				C801D2E727BBAF2F008B1CD5 /* Player.swift */,
 				330C62E827D8BDE800E01C98 /* PlayerCutscene.swift */,
+				3310B62F27D9FB50000962CB /* PlayerSettingsUI.swift */,
 			);
 			path = "Game Objects";
 			sourceTree = "<group>";
@@ -505,6 +508,7 @@
 				C8E502D427C525C100706C71 /* UserData.swift in Sources */,
 				C801D2EA27BBB031008B1CD5 /* Types.swift in Sources */,
 				C8B7480127BF9A9A00D76B32 /* Extensions.swift in Sources */,
+				3310B63027D9FB50000962CB /* PlayerSettingsUI.swift in Sources */,
 				C8C7DC3127BFDB470083656A /* Explosion.swift in Sources */,
 				338D408B27D0A0E20003C3A6 /* NeedKeyDialogue.swift in Sources */,
 				334F89CD27CCCD6A007A1857 /* Event.swift in Sources */,
