@@ -20,9 +20,13 @@ struct SideViewMapMenu: View {
             
             VStack{
                 
-                HStack(spacing: 100){
+                //ROW 1
+                HStack(){
                     
-                    //ROW 1
+                    let lineWidth: CGFloat = 40
+                    let lineHeight: CGFloat = 1.5
+                    let lineColor: Color = Color.black
+                    
                     Button {
                         
                         print("level 2 pressed")
@@ -42,7 +46,12 @@ struct SideViewMapMenu: View {
                     .foregroundColor(.white)
                     .font(Font.body.bold())
                     .font(.largeTitle)
-                    .padding(.leading, 100)
+                    .padding(.leading, 75)
+                    .padding(.trailing, 20)
+                    
+                    Rectangle()
+                        .fill(lineColor)
+                        .frame(width: lineWidth, height: lineHeight)
                     
                     Button {
                         
@@ -59,6 +68,13 @@ struct SideViewMapMenu: View {
                     .foregroundColor(.white)
                     .font(Font.body.bold())
                     .font(.largeTitle)
+                    .padding(.leading, 20)
+                    .padding(.trailing, 20)
+                    
+                    Rectangle()
+                        .fill(lineColor)
+                        .frame(width: lineWidth, height: lineHeight)
+                        .opacity(0)
                     
                     Button {
                         
@@ -75,6 +91,7 @@ struct SideViewMapMenu: View {
                     .foregroundColor(.white)
                     .font(Font.body.bold())
                     .font(.largeTitle)
+                    .padding(.leading, 20)
                     
                 }
                 .padding(20)
@@ -105,7 +122,12 @@ struct SideViewMapMenu: View {
                 }
                 
                 //ROW 3
-                HStack(spacing: 100){
+                HStack(){
+                    
+                    let lineWidth: CGFloat = 40
+                    let lineHeight: CGFloat = 1.5
+                    let lineColor: Color = Color.black
+                    
                     Button {
                         
                         print("level 1 pressed")
@@ -123,7 +145,13 @@ struct SideViewMapMenu: View {
                     .foregroundColor(.white)
                     .font(Font.body.bold())
                     .font(.largeTitle)
-                    .padding(.leading, 100)
+                    .padding(.leading, 75)
+                    .padding(.trailing, 20)
+                    
+                    Rectangle()
+                        .fill(lineColor)
+                        .frame(width: lineWidth, height: lineHeight)
+                        .opacity(0)
                     
                     Button {
                         
@@ -140,6 +168,12 @@ struct SideViewMapMenu: View {
                     .foregroundColor(.white)
                     .font(Font.body.bold())
                     .font(.largeTitle)
+                    .padding(.leading, 20)
+                    .padding(.trailing, 20)
+                    
+                    Rectangle()
+                        .fill(lineColor)
+                        .frame(width: lineWidth, height: lineHeight)
                     
                     Button {
                         
@@ -156,11 +190,13 @@ struct SideViewMapMenu: View {
                     .foregroundColor(.white)
                     .font(Font.body.bold())
                     .font(.largeTitle)
+                    .padding(.leading, 20)
                     
                 }
                 .padding(20)
                 .padding(.horizontal, 60)
             }
+            .padding(35)
             Spacer()
             
         }
