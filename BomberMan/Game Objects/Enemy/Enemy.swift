@@ -147,6 +147,7 @@ class Enemy: SKSpriteNode {
     
     func updateZPosition() {
         GameScene.updateZPosition(object: self)
+        enemyTexture.zPosition = self.zPosition
     }
     
     func runAnim(objDirection: Direction){
