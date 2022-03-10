@@ -37,6 +37,7 @@ struct GameUIView: View {
                         
                         Text("\(playerSettingsUI.amountOfKeys)")
                             .font(.custom("Chalkduster", size: 22))
+                            .foregroundColor(.white)
                     }
                     .padding(.vertical, 16)
                     
