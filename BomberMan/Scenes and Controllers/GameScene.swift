@@ -602,6 +602,7 @@ class GameScene: SKScene {
         bombsNode = nil
         lootNode = nil
         eventsNode = nil
+        currentDialogue = nil
         Bomb.bombs.removeAll()
         Enemy.enemies.removeAll()
         ExplosionSettings.explosionsArray.removeAll()

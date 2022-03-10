@@ -16,8 +16,12 @@ class Level1IntroDialogue: Dialogue {
     
     init() {
         
-        let dialogueText: String = "Those filthy worms called a mutiny. Time for revenge!"
-        super.init(dialogueText: dialogueText)
+        var dialogueLines = [String]()
+        
+        dialogueLines.append("Those filthy worms called a mutiny.")
+        dialogueLines.append("Time for revenge!")
+        
+        super.init(dialogueLines: dialogueLines)
         
     }
     

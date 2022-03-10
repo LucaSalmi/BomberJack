@@ -16,8 +16,11 @@ class NeedBombsDialogue: Dialogue {
     
     init() {
         
-        let dialogueText: String = "I need bombs to unblock this path!"
-        super.init(dialogueText: dialogueText)
+        var dialogueLines = [String]()
+        
+        dialogueLines.append("I need bombs to unblock this path!")
+        
+        super.init(dialogueLines: dialogueLines)
         
     }
     
