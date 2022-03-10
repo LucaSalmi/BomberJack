@@ -90,7 +90,7 @@ class GameScene: SKScene {
         }
         lightNode = (node as! SKLightNode)
         lightNode!.position = player!.position
-        lightNode!.falloff = 2.5
+        lightNode!.falloff = 2
         
         guard let darknessNode = childNode(withName: "darknessMask") else { return }
         darknessMaskNode = (darknessNode as! SKSpriteNode)

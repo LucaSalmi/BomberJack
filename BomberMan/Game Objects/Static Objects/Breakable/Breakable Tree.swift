@@ -23,6 +23,7 @@ class Tree: BreakableObject{
     init(textureName: String) {
         super.init(textureName: textureName, yOffset: TreeSettings.sizeOffset)
         name = "Breakable Tree"
+        
     }
     
     override func createPhysicsBody(tile: SKTileDefinition) {

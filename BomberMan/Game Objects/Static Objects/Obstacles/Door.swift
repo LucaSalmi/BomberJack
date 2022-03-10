@@ -24,6 +24,7 @@ class Door: SKSpriteNode{
         var size = GameScene.tileSize
         size?.height += BreakableSettings.sizeOffset
         doorTexture = SKSpriteNode(texture: objTexture, color: .clear, size: size!)
+        doorTexture.lightingBitMask = 1
         
         super.init(texture: nil, color: .clear, size: GameScene.tileSize!)
         
