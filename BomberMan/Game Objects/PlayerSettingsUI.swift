@@ -12,7 +12,8 @@ class PlayerSettingsUI: ObservableObject {
     
     static let instance = PlayerSettingsUI()
     
-    
+    @Published var haveBombs: Bool = false
+    @Published var amountOfKeys = 0
     
     private init() {
         //SINGLETON. PRIVATE INIT.

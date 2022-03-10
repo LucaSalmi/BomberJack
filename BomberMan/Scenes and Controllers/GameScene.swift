@@ -100,6 +100,10 @@ class GameScene: SKScene {
     // decides a victory conditions based on what level is loaded
     func setupVictoryCond(){
         
+        if UserData.currentLevel > 1 {
+            PlayerSettingsUI.instance.haveBombs = true
+        }
+        
         switch UserData.currentLevel{
             
         case 1:
@@ -629,7 +633,7 @@ class GameScene: SKScene {
                     }
                 }
                 
-                if PlayerSettings.haveBombs{
+                if PlayerSettingsUI.instance.haveBombs{
                     isDoorOpen = true
                 }
                 

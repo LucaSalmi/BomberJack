@@ -16,8 +16,6 @@ enum PlayerSettings {
     static var canDropBomb: Bool = true // temporary not using
     static let textureOffset = CGFloat(10) //temporary hard coded variable
     static let shieldDuration: CGFloat = 60 * 2
-    static var haveBombs: Bool = false
-    static var amountOfKeys = 0
     
 }
 
@@ -210,9 +208,9 @@ class Player: SKSpriteNode{
     
     func resetInventory(){
         
-        PlayerSettings.amountOfKeys = 0
+        PlayerSettingsUI.instance.amountOfKeys = 0
         if UserData.currentLevel == 1{
-            PlayerSettings.haveBombs = false
+            PlayerSettingsUI.instance.haveBombs = false
         }
     }
     
