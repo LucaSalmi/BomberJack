@@ -76,7 +76,11 @@ class GameScene: SKScene {
     
     
     
-    override func sceneDidLoad() {}
+    override func sceneDidLoad() {
+        
+        //gets a pirate insult from html adress
+        getPirateInsult()
+    }
     
     func setupLightning() {
         
@@ -659,6 +663,18 @@ class GameScene: SKScene {
         guard let tileSize = tileSize else { return }
         let margin: CGFloat = 10
         object.zPosition = round(object.position.y/(tileSize.height-margin)) * -1
+    }
+    
+    func getPirateInsult(){
+        
+        let url = URL(string: "https://pirate.monkeyness.com/api/insult")!
+
+        let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
+            guard let data = data else { return }
+            print(String(data: data, encoding: .utf8)!)
+        }
+
+        task.resume()
     }
     
 }
