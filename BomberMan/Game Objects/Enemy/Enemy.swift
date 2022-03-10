@@ -79,7 +79,7 @@ class Enemy: SKSpriteNode {
     
     func deathParticle() {
         let deathParticle = SKEmitterNode(fileNamed: "EnemyDeath")
-        deathParticle!.particleTexture = texture
+        deathParticle!.particleTexture = enemyTexture.texture
         deathParticle!.position = position
         deathParticle!.zPosition = 100
         GameViewController.currentGameScene!.addChild(deathParticle!)
