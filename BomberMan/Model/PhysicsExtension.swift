@@ -44,8 +44,9 @@ extension GameScene: SKPhysicsContactDelegate{
             case PhysicsCategory.Enemy:
                 
                 if nodeB is TestEnemy{
-                    
-                    let sword = SwordAttack()
+                    let enemy = nodeB as! TestEnemy
+                    let direction = PhysicsUtils.findDirection(objDirection: enemy.direction)
+                    let sword = SwordAttack(attackDirection: direction)
                     sword.setPositions(with: nodeA!, enemyNode: nodeB!)
                     GameViewController.currentGameScene!.addChild(sword)
                     
@@ -121,7 +122,9 @@ extension GameScene: SKPhysicsContactDelegate{
                 
                 if nodeA is TestEnemy{
                     
-                    let sword = SwordAttack()
+                    let enemy = nodeA as! TestEnemy
+                    let direction = PhysicsUtils.findDirection(objDirection: enemy.direction)
+                    let sword = SwordAttack(attackDirection: direction)
                     sword.setPositions(with: nodeB!, enemyNode: nodeA!)
                     GameViewController.currentGameScene!.addChild(sword)
                     

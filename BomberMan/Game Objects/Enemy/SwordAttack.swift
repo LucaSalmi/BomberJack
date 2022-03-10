@@ -15,16 +15,17 @@ class SwordAttack: SKSpriteNode{
     let physicsBodyPct = CGFloat(0.50)
     var swordAnchor = SKSpriteNode()
     var enemyAttacking: TestEnemy?
+    var direction: Direction?
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("use init()")
     }
     
-    init(){
+    init(attackDirection: Direction){
         
         //declaring all necessary variables
         
-        let swordTexture = SKTexture(imageNamed: "sword_swing_left_side")
+        let swordTexture = SKTexture()
         let swordSize = CGSize(width: tileSize, height: tileSize)
         //create sprite node for sword attack
         super.init(texture: swordTexture, color: .white, size: swordSize)
@@ -37,8 +38,33 @@ class SwordAttack: SKSpriteNode{
         physicsBody?.isDynamic = false
         physicsBody?.friction = 0
         physicsBody?.allowsRotation = false
-
+        
+        texture = SKTexture(imageNamed: getTexture(attackDirection: attackDirection))
+        
         Enemy.attacks.append(self)
+    }
+    
+    func getTexture(attackDirection: Direction) -> String{
+        
+        switch attackDirection {
+        case .forward:
+            direction = .forward
+            return "sword_swing_up_side"
+            
+        case .backward:
+            direction = .backward
+            return "sword_swing_under_side"
+            
+        case .left:
+            direction = .left
+            return "sword_swing_right_side"
+            
+        case .right:
+            direction = .right
+            return "sword_swing_left_side"
+            
+        }
+        
     }
     
     func setPositions(with other: SKNode, enemyNode: SKNode){
@@ -55,8 +81,19 @@ class SwordAttack: SKSpriteNode{
     
     func update(){
         
+        var positionToChange: CGFloat
+        
+        if direction == .forward || direction == .backward{
+            
+            positionToChange = position.x
+            
+        }else{
+            
+            positionToChange = position.y
+        }
+        
         if swordCount < 5{
-            position.y += 1
+            positionToChange += 1
             swordCount += 1
             
             if swordCount == 4{
@@ -64,19 +101,20 @@ class SwordAttack: SKSpriteNode{
             }
             
         }else if swordCount < 10{
-            position.y += 2
+            positionToChange += 2
             swordCount += 1
             
             if swordCount == 9{
-                    zRotation -= 0.3
+                zRotation -= 0.3
             }
             
         }else if swordCount < 15{
-            position.y += 2
+            
+            positionToChange += 2
             swordCount += 1
             
             if swordCount == 14{
-                    zRotation -= 0.3
+                zRotation -= 0.3
             }
             
         }else{
@@ -86,27 +124,5 @@ class SwordAttack: SKSpriteNode{
             Enemy.attacks.remove(at: toRemove)
             enemyAttacking?.isAttacking = false
         }
-        
-        
-        
-        
-//        switch swordCount{
-//
-//        case 0:
-//            swordCount += 1
-//        case 1:
-//            position.y += tileSize
-//            swordCount += 1
-//        case 2:
-//            position.y += tileSize
-//            swordCount += 1
-//        default:
-//            self.physicsBody = nil
-//            self.removeFromParent()
-//
-//        }
-        
-        
     }
-    
 }
