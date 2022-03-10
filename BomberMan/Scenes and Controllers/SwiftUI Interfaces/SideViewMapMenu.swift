@@ -20,24 +20,24 @@ struct SideViewMapMenu: View {
             
             VStack{
                 
-                HStack(spacing: 150){
+                HStack(spacing: 100){
                     
-                    
+                    //ROW 1
                     Button {
                         
-                        print("level 1 pressed")
+                        print("level 2 pressed")
                         
                         
                         withAnimation(.easeIn(duration: 0.3)){
                                                         
-                            if checkAndStartLevel(id: 1){
+                            if checkAndStartLevel(id: 2){
                                 
                                 startGame = true
                             }
                         }
                         
                     } label: {
-                        Text("level 1")
+                        Text("level 2")
                     }
                     .foregroundColor(.white)
                     .font(Font.body.bold())
@@ -62,38 +62,61 @@ struct SideViewMapMenu: View {
                     
                     Button {
                         
-                        print("level 5 pressed")
+                        print("level 6 pressed")
                         
-                        if checkAndStartLevel(id: 5){
+                        if checkAndStartLevel(id: 6){
                             
                             startGame = true
                         }
                         
                     } label: {
-                        Text("level 5")
+                        Text("level 6")
                     }
                     .foregroundColor(.white)
                     .font(Font.body.bold())
                     .font(.largeTitle)
                     
                 }
-                .padding(40)
+                .padding(20)
                 .padding(.horizontal, 60)
                 
+                //ROW 2 (only connecting lines)
+                HStack() {
+                    
+                    let lineWidth: CGFloat = 1.5
+                    let lineHeight: CGFloat = 50
+                    let lineColor: Color = Color.black
+                    
+                    Rectangle()
+                        .fill(lineColor)
+                        .frame(width: lineWidth, height: lineHeight)
+                        .padding(.leading, 90)
+                    
+                    Rectangle()
+                        .fill(lineColor)
+                        .frame(width: lineWidth, height: lineHeight)
+                        .padding(.leading, 140)
+                    
+                    Rectangle()
+                        .fill(lineColor)
+                        .frame(width: lineWidth, height: lineHeight)
+                        .padding(.leading, 140)
+                    
+                }
                 
-                
-                HStack(spacing: 150){
+                //ROW 3
+                HStack(spacing: 100){
                     Button {
                         
-                        print("level 2 pressed")
+                        print("level 1 pressed")
                         
-                        if checkAndStartLevel(id: 2){
+                        if checkAndStartLevel(id: 1){
                             
                             startGame = true
                         }
                         
                     } label: {
-                        Text("level 2")
+                        Text("level 1")
                         
                         
                     }
@@ -120,22 +143,22 @@ struct SideViewMapMenu: View {
                     
                     Button {
                         
-                        print("level 6 pressed")
+                        print("level 5 pressed")
                         
-                        if checkAndStartLevel(id: 6){
+                        if checkAndStartLevel(id: 5){
                             
                             startGame = true
                         }
                         
                     } label: {
-                        Text("level 6")
+                        Text("level 5")
                     }
                     .foregroundColor(.white)
                     .font(Font.body.bold())
                     .font(.largeTitle)
                     
                 }
-                .padding(40)
+                .padding(20)
                 .padding(.horizontal, 60)
             }
             Spacer()
