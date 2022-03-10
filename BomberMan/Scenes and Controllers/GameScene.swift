@@ -612,7 +612,8 @@ class GameScene: SKScene {
                     
                     UserData.currentLevel += 1
                     dataReaderWriter.saveLocalSaveData()
-                    isGameOver = true
+                    let sceneName = "GameScene\(UserData.currentLevel)"
+                    GameScene.viewController!.presentScene(sceneName)
                     print("you killed everyone, you monster.....")
                 }
                 
@@ -638,7 +639,8 @@ class GameScene: SKScene {
                     
                     UserData.currentLevel += 1
                     dataReaderWriter.saveLocalSaveData()
-                    isGameOver = true
+                    let sceneName = "GameScene\(UserData.currentLevel)"
+                    GameScene.viewController!.presentScene(sceneName)
                     print("keys found and door opened, good job...")
                     
                 }

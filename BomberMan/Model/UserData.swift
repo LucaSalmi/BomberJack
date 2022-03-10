@@ -129,7 +129,7 @@ class Options: ObservableObject{
     
     static let options = Options()
     
-    init(){}
+    private init(){}
     
 }
 
