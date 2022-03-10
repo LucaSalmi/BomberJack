@@ -16,6 +16,7 @@ struct GameUIView: View {
     @Binding var isPaused: Bool
     
     @ObservedObject var swiftUICommunicator = SwiftUICommunicator.instance
+    @ObservedObject var playerSettingsUI = PlayerSettingsUI.instance
     
     var body: some View {
         
@@ -104,8 +105,10 @@ struct GameUIView: View {
                             Image("bomb")
                                 .resizable()
                                 .frame(width: 55, height: 50, alignment: .center)
+                                .opacity(playerSettingsUI.haveBombs ? 1.0 : 0.5)
                         })
                             .padding(20)
+                            .disabled(!playerSettingsUI.haveBombs)
                         
                     }
                 }
