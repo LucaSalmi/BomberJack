@@ -25,8 +25,7 @@ class TestEnemy: Enemy {
     init(){
         let size: CGSize = CGSize(width: 32, height: 32)
         let tempColor = UIColor(red: 100, green: 100, blue: 100, alpha: 0)
-        super.init(SKTexture(imageNamed: "enemy_walk_animation_down"), tempColor, size)
-        
+        super.init(SKTexture(imageNamed: "player_shadow"), tempColor, size)
         name = "Test Enemy"
         
         enemySpeed = 0.5
@@ -96,6 +95,10 @@ class TestEnemy: Enemy {
             if currentMovementDistance == changeDirectionInterval {
                 updateDirection(newDirection: getRandomDirection())
             }
+            
+            enemyTexture.position.x = position.x
+            enemyTexture.position.y = position.y + PlayerSettings.textureOffset
+            
             let direction = PhysicsUtils.findDirection(objDirection: direction)
             runAnim(objDirection: direction)
         }

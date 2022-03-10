@@ -390,8 +390,11 @@ class GameScene: SKScene {
                     }
                     
                     enemy.position = enemiesMap.centerOfTile(atColumn: column, row: row)
+                    enemy.enemyTexture.position = enemy.position
+                    enemy.enemyTexture.position.y += PlayerSettings.textureOffset
                     Enemy.enemies.append(enemy)
                     enemyNode!.addChild(enemy)
+                    enemyNode!.addChild(enemy.enemyTexture)
                     
                 }
             }
@@ -523,6 +526,7 @@ class GameScene: SKScene {
                     }
                     enemy.deathParticle()
                     enemy.removeFromParent()
+                    enemy.enemyTexture.removeFromParent()
                     
                     return
                 }
