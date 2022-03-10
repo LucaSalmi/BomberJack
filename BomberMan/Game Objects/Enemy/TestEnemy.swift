@@ -96,6 +96,8 @@ class TestEnemy: Enemy {
             if currentMovementDistance == changeDirectionInterval {
                 updateDirection(newDirection: getRandomDirection())
             }
+            let direction = PhysicsUtils.findDirection(objDirection: direction)
+            runAnim(objDirection: direction)
         }
         
     }

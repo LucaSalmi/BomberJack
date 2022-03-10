@@ -22,6 +22,12 @@ class Enemy: SKSpriteNode {
     
     static let knockbackMultiplier = 16.0
     
+    //Animation Variables
+    var rightAnimations: [SKAction] = []
+    var leftAnimations: [SKAction] = []
+    var upAnimations: [SKAction] = []
+    var downAnimations: [SKAction] = []
+    
     //change these variables in enemy subclass
     var enemySpeed: CGFloat = 0.0
     var difficult: Int = 0
@@ -48,6 +54,8 @@ class Enemy: SKSpriteNode {
         zPosition = 50
         
         lightingBitMask = 1
+        
+        setEnemyAnimations(enemy: "enemy_walk_animation")
     }
     
     func bloodParticle() {
@@ -130,4 +138,22 @@ class Enemy: SKSpriteNode {
         GameScene.updateZPosition(object: self)
     }
     
+    func runAnim(objDirection: Direction){
+        
+        switch objDirection {
+            
+        case .forward:
+            self.run(upAnimations[0], withKey: "animation")
+        case .backward:
+            self.run(downAnimations[0], withKey: "animation")
+        case .left:
+            self.run(leftAnimations[0], withKey: "animation")
+        case .right:
+            self.run(rightAnimations[0], withKey: "animation")
+        }
+    }
+    
+    
 }
+
+extension Enemy: Animatable{}

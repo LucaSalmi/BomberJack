@@ -118,7 +118,8 @@ class Player: SKSpriteNode{
         
         self.position.x += (direction.x * PlayerSettings.playerSpeed)
         self.position.y += (direction.y * PlayerSettings.playerSpeed)
-        let direction = findDirection(playerDirection: direction)
+        //HERE
+        let direction = PhysicsUtils.findDirection(objDirection: direction)
         
         runAnim(playerDirection: direction)
         
@@ -138,7 +139,7 @@ class Player: SKSpriteNode{
     }
     
     func death(player: SKNode){
-        //
+
         let deathParticle = SKEmitterNode(fileNamed: "EnemyDeath")
         deathParticle!.particleTexture = playerTexture.texture
         deathParticle!.position = playerTexture.position
@@ -161,24 +162,6 @@ class Player: SKSpriteNode{
         
     }
     
-    func findDirection(playerDirection: CGPoint) -> Direction{
-        
-        
-        if playerDirection.x == 1{
-            return .right
-        }
-        if playerDirection.x == -1{
-            return .left
-        }
-        if playerDirection.y == 1{
-            return .forward
-        }
-        if playerDirection.y == -1{
-            return .backward
-        }
-        
-        return .right
-    }
     
     func runAnim(playerDirection: Direction){
         

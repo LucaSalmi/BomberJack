@@ -154,6 +154,10 @@ class RushEnemy: TestEnemy {
             position.x += (direction.x * chargeSpeed)
             position.y += (direction.y * chargeSpeed)
             
+            //for Animations
+            let direction = PhysicsUtils.findDirection(objDirection: direction)
+            runAnim(objDirection: direction)
+            
             return
         }
         

@@ -77,4 +77,24 @@ class PhysicsUtils {
 
     }
     
+    static func findDirection(objDirection: CGPoint) -> Direction{
+        
+        
+        if objDirection.x == 1{
+            return .right
+        }
+        if objDirection.x == -1{
+            return .left
+        }
+        if objDirection.y == 1{
+            return .forward
+        }
+        if objDirection.y == -1{
+            return .backward
+        }
+        
+        return .right
+    }
+
+    
 }
