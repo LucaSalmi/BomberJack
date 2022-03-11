@@ -239,6 +239,7 @@ struct PauseMenu: View {
                 Button(action: {
                     startGame = false
                     isPaused = false
+                    swiftUICommunicator.isGameOver = false
                     GameScene.gameState = .play
                     GameViewController.currentGameScene?.player?.resetInventory()
                     dataReaderWriter.updateDatabase()
