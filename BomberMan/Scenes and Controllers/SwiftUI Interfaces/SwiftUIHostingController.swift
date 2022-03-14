@@ -60,8 +60,7 @@ struct ContentView: View {
         }
         else {
             MusicView(bgmString: SoundManager.mainMenuBGM)
-            MainMenyView(startGame: $startGame)
-                            
+            MainMenyView(result: result, startGame: $startGame)
         }
     }
 }
@@ -106,6 +105,8 @@ struct MainMenyView: View {
     
     @Environment(\.managedObjectContext) private var viewContext
     
+    var result: FetchedResults<Statistics>
+    
     @Binding var startGame: Bool
     
     
@@ -124,9 +125,28 @@ struct MainMenyView: View {
                 
                 TabView(selection: $index){
                     OptionsMenu().tag(0)
-                        .onAppear {
+                        .onAppear(perform: {
                             showMapMenu = false
-                        }
+                            
+                            if result.isEmpty {
+                                let newItem = Statistics(context: viewContext)
+                                newItem.usedBarrel = 0
+                                newItem.lastCompletedLevel = 0
+                                newItem.killedEnemies = 0
+                                newItem.numberOfDeaths = 0
+                                newItem.bombsDropped = 0
+                                
+                                do {
+                                    try viewContext.save()
+                                } catch {
+                                    // Replace this implementation with code to handle the error appropriately.
+                                    // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                                    let nsError = error as NSError
+                                    fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+                                }
+                            }
+                            
+                        })
                     
                     MainView().tag(1)
                         .onAppear {
