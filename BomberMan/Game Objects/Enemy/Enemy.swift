@@ -137,9 +137,6 @@ class Enemy: SKSpriteNode {
         
         updateZPosition()
         
-        
-        
-        
         if trapPosition != nil {
             position = trapPosition!
             bloodParticle()

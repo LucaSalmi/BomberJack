@@ -35,6 +35,8 @@ class Player: SKSpriteNode{
     var isShielded = false
     var shieldTick: CGFloat = 0.0
     
+    var newDirection: CGPoint?
+    
     
     
     required init?(coder aDecoder: NSCoder) {
@@ -115,6 +117,8 @@ class Player: SKSpriteNode{
         if isShielded || isTrapped {
             return
         }
+        
+        newDirection = direction
         
         self.position.x += (direction.x * PlayerSettings.playerSpeed)
         self.position.y += (direction.y * PlayerSettings.playerSpeed)

@@ -69,13 +69,37 @@ class SwordAttack: SKSpriteNode{
     
     func setPositions(with other: SKNode, enemyNode: SKNode){
         
-        let enemy = enemyNode as! TestEnemy
-        enemyAttacking = enemy
+        enemyAttacking = enemyNode as? TestEnemy
         let player = other as! Player
         let swordPos = CGPoint(x: player.position.x, y: player.position.y)
         position = swordPos
         zPosition = 50
         enemyAttacking!.isAttacking = true
+        
+        switch player.newDirection?.x{
+            
+        case 1:
+            enemyAttacking?.direction.x = -1
+            
+        case -1:
+            enemyAttacking?.direction.x = 1
+            
+        default:
+            print("continue")
+        }
+        
+        switch player.newDirection?.y{
+            
+        case 1:
+            enemyAttacking?.direction.y = -1
+            
+        case -1:
+            enemyAttacking?.direction.y = 1
+            
+        default:
+            print("continue")
+        }
+        
         
     }
     
@@ -92,30 +116,11 @@ class SwordAttack: SKSpriteNode{
             positionToChange = position.y
         }
         
-        if swordCount < 5{
+        if swordCount < 5 || swordCount < 10 || swordCount < 15{
             positionToChange += 1
             swordCount += 1
             
-            if swordCount == 4{
-                zRotation -= 0.3
-            }
-            
-        }else if swordCount < 10{
-            positionToChange += 2
-            swordCount += 1
-            
-            if swordCount == 9{
-                zRotation -= 0.3
-            }
-            
-        }else if swordCount < 15{
-            
-            positionToChange += 2
-            swordCount += 1
-            
-            if swordCount == 14{
-                zRotation -= 0.3
-            }
+            zRotation -= 0.1
             
         }else{
             self.physicsBody = nil

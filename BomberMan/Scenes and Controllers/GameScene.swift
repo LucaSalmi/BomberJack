@@ -541,7 +541,6 @@ class GameScene: SKScene {
                 enemy.update()
             }
             
-            print("Luca sword: \(Enemy.attacks.count)")
             for attack in Enemy.attacks{
                 
                 attack.update()
