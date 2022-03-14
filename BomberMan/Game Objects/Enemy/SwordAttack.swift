@@ -30,17 +30,8 @@ class SwordAttack: SKSpriteNode{
         //create sprite node for sword attack
         super.init(texture: swordTexture, color: .white, size: swordSize)
         //setup physics body
-        physicsBody = SKPhysicsBody(circleOfRadius: (size.width/4) * physicsBodyPct)
-        physicsBody?.categoryBitMask = PhysicsCategory.Sword
-        physicsBody?.collisionBitMask = PhysicsCategory.All
-        physicsBody?.contactTestBitMask = PhysicsCategory.All
-        physicsBody?.restitution = 0
-        physicsBody?.isDynamic = false
-        physicsBody?.friction = 0
-        physicsBody?.allowsRotation = false
-        
+        setupPhysicsBody()
         texture = SKTexture(imageNamed: getTexture(attackDirection: attackDirection))
-        
         Enemy.attacks.append(self)
     }
     
@@ -64,6 +55,19 @@ class SwordAttack: SKSpriteNode{
             return "sword_swing_left_side"
             
         }
+        
+    }
+    
+    func setupPhysicsBody(){
+        
+        physicsBody = SKPhysicsBody(circleOfRadius: (size.width/4) * physicsBodyPct)
+        physicsBody?.categoryBitMask = PhysicsCategory.Sword
+        physicsBody?.collisionBitMask = PhysicsCategory.All
+        physicsBody?.contactTestBitMask = PhysicsCategory.All
+        physicsBody?.restitution = 0
+        physicsBody?.isDynamic = false
+        physicsBody?.friction = 0
+        physicsBody?.allowsRotation = false
         
     }
     
