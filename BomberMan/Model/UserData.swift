@@ -144,6 +144,7 @@ class Options: ObservableObject{
     
     private init(){}
     
+    //SINGLETON 
 }
 
 
