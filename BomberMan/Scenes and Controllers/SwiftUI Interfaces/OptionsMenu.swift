@@ -179,41 +179,62 @@ struct StatisticsTab: View{
     
     var body: some View{
         
-        let statsArray: [String: Int64] = [
-            
-            "Enemies Killed:" : statisticsData[0].killedEnemies,
-            "Bombs Dropped:" : statisticsData[0].bombsDropped,
-            "Barrel Used:" : statisticsData[0].usedBarrel,
-            "Number of Deaths:" : statisticsData[0].numberOfDeaths
-        ]
+        var statsArray: [String : Int64] = checkStat()
+        
         
         HStack(){
             
             let columns: [GridItem] =
             Array(repeating: .init(.flexible()), count: 2)
             
+            
+            LazyVGrid(columns: columns){
                 
-                LazyVGrid(columns: columns){
+                ForEach(statsArray.sorted(by: >), id: \.key) { key, value in
+                    
+                    HStack{
                         
-                        ForEach(statsArray.sorted(by: >), id: \.key) { key, value in
-                            
-                            HStack{
-                                
-                                Text("\(key) \(value)").listRowBackground(Color.clear)
-                                    .foregroundColor(.white)
-                                    .font(.custom("Avenir", size: 30))
-                                
-                            }
-                        }
-                }
-                .padding(EdgeInsets(top: 0, leading: 0, bottom: 70, trailing: 30))
-                .onAppear(perform: {
-                    if statisticsData.isEmpty{
-                        print("LOL")
+                        Text("\(key) \(value)").listRowBackground(Color.clear)
+                            .foregroundColor(.white)
+                            .font(.custom("Avenir", size: 30))
+                        
                     }
-                })
+                }
+            }
+            .padding(EdgeInsets(top: 0, leading: 0, bottom: 70, trailing: 30))
+            .onAppear(perform: {
+                if statisticsData.isEmpty{
+                    print("LOL")
+                }
+            })
         }
     }
+    
+    func checkStat() -> [String : Int64]{
+        
+        if _statisticsData.wrappedValue.isEmpty{
+            
+            return [
+                
+                "Enemies Killed:" : 0,
+                "Bombs Dropped:" : 0,
+                "Barrel Used:" : 0,
+                "Number of Deaths:" : 0
+            ]
+            
+        }else{
+            
+            return [
+                
+                "Enemies Killed:" : statisticsData[0].killedEnemies,
+                "Bombs Dropped:" : statisticsData[0].bombsDropped,
+                "Barrel Used:" : statisticsData[0].usedBarrel,
+                "Number of Deaths:" : statisticsData[0].numberOfDeaths
+            ]
+        }
+        
+    }
+    
 }
 
 struct Options_Preview: PreviewProvider{
