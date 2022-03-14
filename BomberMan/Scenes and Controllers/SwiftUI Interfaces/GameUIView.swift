@@ -242,6 +242,7 @@ struct PauseMenu: View {
                     swiftUICommunicator.isGameOver = false
                     GameScene.gameState = .play
                     GameViewController.currentGameScene?.player?.resetInventory()
+                    GameViewController.currentGameScene?.isGameOver = false
                     dataReaderWriter.updateDatabase()
                 }, label: {
                     
