@@ -75,6 +75,7 @@
 		E56CE0B227BCEF0C00962834 /* Bomb.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56CE0B127BCEF0C00962834 /* Bomb.swift */; };
 		E56CE0B427BD1F8D00962834 /* ActionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56CE0B327BD1F8D00962834 /* ActionManager.swift */; };
 		E56CE0B627BD3FFF00962834 /* GameScene3.sks in Resources */ = {isa = PBXBuildFile; fileRef = E56CE0B527BD3FFF00962834 /* GameScene3.sks */; };
+		E5CAA1B627DF7609006AD289 /* PauseMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5CAA1B527DF7609006AD289 /* PauseMenu.swift */; };
 		E5DCA41427D7619A00DC05EA /* GameScene4.sks in Resources */ = {isa = PBXBuildFile; fileRef = E5DCA41327D7619A00DC05EA /* GameScene4.sks */; };
 		E5DCA41727D8D62400DC05EA /* BomberMan.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E5DCA41527D8D62400DC05EA /* BomberMan.xcdatamodeld */; };
 		E5DCA41927D8D8E700DC05EA /* SwiftUICommunicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DCA41827D8D8E600DC05EA /* SwiftUICommunicator.swift */; };
@@ -151,6 +152,7 @@
 		E56CE0B127BCEF0C00962834 /* Bomb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bomb.swift; sourceTree = "<group>"; };
 		E56CE0B327BD1F8D00962834 /* ActionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionManager.swift; sourceTree = "<group>"; };
 		E56CE0B527BD3FFF00962834 /* GameScene3.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene3.sks; sourceTree = "<group>"; };
+		E5CAA1B527DF7609006AD289 /* PauseMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseMenu.swift; sourceTree = "<group>"; };
 		E5DCA41327D7619A00DC05EA /* GameScene4.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene4.sks; sourceTree = "<group>"; };
 		E5DCA41627D8D62400DC05EA /* BomberMan.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BomberMan.xcdatamodel; sourceTree = "<group>"; };
 		E5DCA41827D8D8E600DC05EA /* SwiftUICommunicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUICommunicator.swift; sourceTree = "<group>"; };
@@ -254,10 +256,10 @@
 		C84B3AF727CF9F1E00224426 /* SwiftUI Interfaces */ = {
 			isa = PBXGroup;
 			children = (
+				E5CAA1B727DF7717006AD289 /* IngameViews */,
 				330D6EFC27C67E2F00444648 /* SwiftUIHostingController.swift */,
 				C815F79927B400490084DE7A /* GameViewController.swift */,
 				33BFC5C927BBA5A9008DBA03 /* StartMenuScene.swift */,
-				33250F3F27CE073F0019AAB1 /* GameUIView.swift */,
 				C8CEDCDB27CF6ACD008C5A64 /* TabMenu.swift */,
 				C8A7490227CD0C2F00AD68E8 /* OptionsMenu.swift */,
 				D5A24D2527CE144000AD62F1 /* SideViewMapMenu.swift */,
@@ -391,6 +393,15 @@
 			path = Enemy;
 			sourceTree = "<group>";
 		};
+		E5CAA1B727DF7717006AD289 /* IngameViews */ = {
+			isa = PBXGroup;
+			children = (
+				33250F3F27CE073F0019AAB1 /* GameUIView.swift */,
+				E5CAA1B527DF7609006AD289 /* PauseMenu.swift */,
+			);
+			path = IngameViews;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -509,6 +520,7 @@
 				D5FFD73727C52BEC0032912D /* LootObject.swift in Sources */,
 				C8E502CC27C4E59A00706C71 /* StandardBomb.swift in Sources */,
 				338D408927D0A08A0003C3A6 /* NeedKeyHint.swift in Sources */,
+				E5CAA1B627DF7609006AD289 /* PauseMenu.swift in Sources */,
 				C8E502D427C525C100706C71 /* UserData.swift in Sources */,
 				C801D2EA27BBB031008B1CD5 /* Types.swift in Sources */,
 				C8B7480127BF9A9A00D76B32 /* Extensions.swift in Sources */,

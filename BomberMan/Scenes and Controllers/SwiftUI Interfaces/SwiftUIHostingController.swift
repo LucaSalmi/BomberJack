@@ -48,10 +48,17 @@ struct ContentView: View {
         if startGame {
             ZStack {
                 
+                
                 if isPaused || swiftUICommunicator.isGameOver {
-                    PauseMenu(startGame: $startGame, isPaused: $isPaused)
+                    
+                    
+                        PauseMenu(startGame: $startGame, isPaused: $isPaused)
+                        //.animation(.easeIn, value: true)
+                        //.transition(AnyTransition.opacity.animation(.easeIn(duration: 5)))
                         .zIndex(2)
-
+                    
+                        
+                
                 }
                 GameView(startGame: $startGame, isPaused: $isPaused)
                     .zIndex(1)

@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import SwiftUI
+
 
 class SwiftUICommunicator: ObservableObject {
     
@@ -15,6 +17,13 @@ class SwiftUICommunicator: ObservableObject {
     
     private init() {
         //SINGLETON. PRIVATE INIT.
+    }
+    
+    func setIsGameOver(){
+        withAnimation{
+            isGameOver = true
+        }
+        
     }
     
 }
