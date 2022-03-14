@@ -35,6 +35,7 @@ class NeedKeyEvent: Event {
         //Unique logarithm for this event goes here
         let needKeyDialogue = NeedKeyDialogue()
         gameScene.currentDialogue = needKeyDialogue
+        //print(needKeyDialogue)
         gameScene.addChild(needKeyDialogue)
         
         

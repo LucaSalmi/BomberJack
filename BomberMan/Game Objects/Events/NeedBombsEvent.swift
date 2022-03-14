@@ -35,6 +35,7 @@ class NeedBombsEvent: Event {
         //Unique logarithm for this event goes here
         let needBombsDialogue = NeedBombsDialogue()
         gameScene.currentDialogue = needBombsDialogue
+        //print(NeedBombsDialogue)
         gameScene.addChild(needBombsDialogue)
         
         
