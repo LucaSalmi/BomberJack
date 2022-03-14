@@ -94,7 +94,11 @@ class dataReaderWriter{
         
         do{
             let result = try viewContext.fetch(fetchRequest)
+            if result.isEmpty{
+                return
+            }
             let statistics = result[0]
+            
             //update data in Database
             statistics.killedEnemies += UserData.enemiesKilled
             statistics.bombsDropped += UserData.bombsDropped
@@ -106,6 +110,15 @@ class dataReaderWriter{
                 
                 statistics.lastCompletedLevel = Int64(level)
                 
+            }
+            
+            do {
+                
+                try viewContext.save()
+                
+            }catch{
+                
+                print("save error")
             }
                 
             //reset local data

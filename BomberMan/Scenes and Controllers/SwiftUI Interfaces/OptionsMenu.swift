@@ -11,6 +11,7 @@ import CoreData
 
 struct OptionsMenu: View {
     
+    var result: FetchedResults<Statistics>
     @State var tabIndex = 0
     
     var body: some View {
@@ -40,7 +41,7 @@ struct OptionsMenu: View {
                             OptionsTab()
                         }
                         else {
-                            StatisticsTab()
+                            StatisticsTab(result: result)
                         }
                         Spacer()
                     }
@@ -165,55 +166,64 @@ struct OptionsTab: View{
 
 struct StatisticsTab: View{
     
-    @FetchRequest
-    var statisticsData: FetchedResults<Statistics>
-    
-    init(){
-        let sortingPredicate = [NSSortDescriptor(keyPath: \Statistics.killedEnemies, ascending: false)]
-        
-        let animation = Animation.default
-        
-        _statisticsData = FetchRequest<Statistics>(sortDescriptors: sortingPredicate, animation: animation)
-        
-    }
+    var result: FetchedResults<Statistics>
     
     var body: some View{
         
-        let statsArray: [String: Int64] = [
-            
-            "Enemies Killed:" : statisticsData[0].killedEnemies,
-            "Bombs Dropped:" : statisticsData[0].bombsDropped,
-            "Barrel Used:" : statisticsData[0].usedBarrel,
-            "Number of Deaths:" : statisticsData[0].numberOfDeaths
-        ]
+        let statsArray: [String : Int64] = checkStat()
+        
         
         HStack(){
             
             let columns: [GridItem] =
             Array(repeating: .init(.flexible()), count: 2)
             
+            
+            LazyVGrid(columns: columns){
                 
-                LazyVGrid(columns: columns){
+                ForEach(statsArray.sorted(by: >), id: \.key) { key, value in
+                    
+                    HStack{
                         
-                        ForEach(statsArray.sorted(by: >), id: \.key) { key, value in
-                            
-                            HStack{
-                                
-                                Text("\(key) \(value)").listRowBackground(Color.clear)
-                                    .foregroundColor(.white)
-                                    .font(.custom("Avenir", size: 30))
-                                
-                            }
-                        }
+                        Text("\(key) \(value)").listRowBackground(Color.clear)
+                            .foregroundColor(.white)
+                            .font(.custom("Avenir", size: 30))
+                        
+                    }
                 }
-                .padding(EdgeInsets(top: 0, leading: 0, bottom: 70, trailing: 30))
+            }
+            .padding(EdgeInsets(top: 0, leading: 0, bottom: 70, trailing: 30))
+            .onAppear(perform: {
+                if result.isEmpty{
+                    print("empty DataBase")
+                }
+            })
         }
     }
-}
-
-struct Options_Preview: PreviewProvider{
-    static var previews: some View{
-        OptionsMenu()
-            .previewInterfaceOrientation(.landscapeLeft)
+    
+    func checkStat() -> [String : Int64]{
+        
+        if result.isEmpty{
+            
+            return [
+                
+                "Enemies Killed:" : 0,
+                "Bombs Dropped:" : 0,
+                "Barrel Used:" : 0,
+                "Number of Deaths:" : 0
+            ]
+            
+        }else{
+            
+            return [
+                
+                "Enemies Killed:" : result[0].killedEnemies,
+                "Bombs Dropped:" : result[0].bombsDropped,
+                "Barrel Used:" : result[0].usedBarrel,
+                "Number of Deaths:" : result[0].numberOfDeaths
+            ]
+        }
+        
     }
+    
 }
