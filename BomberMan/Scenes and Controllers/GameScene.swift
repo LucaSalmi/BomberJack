@@ -508,7 +508,7 @@ class GameScene: SKScene {
 //            self.removeAllActions()
   //            self.stopScene()
             
-            SwiftUICommunicator.instance.isGameOver = true
+            SwiftUICommunicator.instance.setIsGameOver()
             
             //Present a new instance of the scene
 //            let restartScene = "GameScene" + String(GameScene.viewController!.currentLevel)

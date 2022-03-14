@@ -161,6 +161,9 @@ class Player: SKSpriteNode{
         player.removeFromParent()
         currentTexture.removeFromParent()
         
+        ExplosionSettings.explosionsArray.removeAll()
+        Bomb.bombs.removeAll()
+        
         GameViewController.currentGameScene!.isGameOver = true
         
     }
