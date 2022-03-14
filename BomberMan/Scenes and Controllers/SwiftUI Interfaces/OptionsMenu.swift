@@ -207,6 +207,11 @@ struct StatisticsTab: View{
                         }
                 }
                 .padding(EdgeInsets(top: 0, leading: 0, bottom: 70, trailing: 30))
+                .onAppear(perform: {
+                    if statisticsData.isEmpty{
+                        print("LOL")
+                    }
+                })
         }
     }
 }
