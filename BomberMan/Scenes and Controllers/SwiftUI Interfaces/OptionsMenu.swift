@@ -179,7 +179,7 @@ struct StatisticsTab: View{
     
     var body: some View{
         
-        var statsArray: [String : Int64] = checkStat()
+        let statsArray: [String : Int64] = checkStat()
         
         
         HStack(){
