@@ -58,28 +58,37 @@ struct GameUIView: View {
                             GameScene.gameState = .pause
                             
                             
-                            withAnimation(.easeIn(duration: 0.4)){
+                            
+                            withAnimation(.easeIn(duration: 1)) {
                                 isPaused = true
                             }
+                            
+                            
                             
                             
                         }, label: {
                             
                             HStack {
                                 
-                                Rectangle()
-                                    .fill(Color.white)
-                                    .frame(width: 10, height: 40)
-                                    .border(Color.black, width: 1)
+                                Text("||")
+                                    .font(.custom("Chalkduster", size: 35))
+                                    .foregroundColor(Color.white)
                                 
-                                Rectangle()
-                                    .fill(Color.white)
-                                    .frame(width: 10, height: 40)
-                                    .border(Color.black, width: 1)
+                                
+                                //                                Rectangle()
+                                //                                    .fill(Color.white)
+                                //                                    .frame(width: 10, height: 40)
+                                //                                    .border(Color.black, width: 1)
+                                //
+                                //                                Rectangle()
+                                //                                    .fill(Color.white)
+                                //                                    .frame(width: 10, height: 40)
+                                //                                    .border(Color.black, width: 1)
                                 
                             }
                         })
                             .padding(20)
+                        
                     }
                     
                     
@@ -149,16 +158,24 @@ struct PauseMenu: View {
         
         ZStack {
             
-            let cornerRadius = CGFloat(10)
-            let borderWidth = CGFloat(2)
+            //            let cornerRadius = CGFloat(10)
+            //            let borderWidth = CGFloat(2)
             
-            RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
-                .foregroundColor(.gray)
-                .frame(width: 300, height: 200)
-                .overlay(
-                    RoundedRectangle(cornerRadius: cornerRadius)
-                        .stroke(Color.white, lineWidth: borderWidth)
-                )
+            
+            //            RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
+            //
+            //
+            //
+            //                .background(Image("pausebackground"))
+            ////                .overlay(
+            ////                    RoundedRectangle(cornerRadius: cornerRadius)
+            ////                        .stroke(Color.white, lineWidth: borderWidth)
+            ////                )
+            
+            Image("pausebackground")
+                .resizable()
+                .frame(width: 400, height: 300)
+                .shadow(color: Color.black, radius: 100, x: 0, y: 0)
             
             
             VStack {
@@ -174,48 +191,35 @@ struct PauseMenu: View {
                         isPaused = false
                         swiftUICommunicator.isGameOver = false
                         
+                        ExplosionSettings.explosionsArray.removeAll()
+                        Bomb.bombs.removeAll()
                     }, label: {
                         
                         Label("Restart", systemImage: "arrowtriangle.right.circle")
-                            .foregroundColor(Color.white)
                             .padding(10)
-                            .overlay(RoundedRectangle(cornerRadius: 5)
-                                        .stroke(Color.white, lineWidth: 1))
-                        
-                        
                     })
                     
-                        .background(Color.black)
-                        .cornerRadius(5)
-                    
                 }
-                else{
                 
+                else{
+                    
                     Text("PAUSED")
                     
-                Button(action: {
-                    if GameViewController.currentGameScene?.actionManager != nil {
-                        withAnimation(.easeOut(duration: 0.3)){
-                            isPaused = false
+                    Button(action: {
+                        if GameViewController.currentGameScene?.actionManager != nil {
+                            withAnimation(.easeOut(duration: 0.3)){
+                                isPaused = false
+                            }
+                            
+                            
+                            GameScene.gameState = .play
                         }
+                    }, label: {
                         
-                        GameScene.gameState = .play
-                    }
-                }, label: {
+                        Label("Continue", systemImage: "arrowtriangle.right.circle")
+                            .padding(10)
+                    })
                     
-                    Label("Continue", systemImage: "arrowtriangle.right.circle")
-                        .foregroundColor(Color.white)
-                        .padding(10)
-                        .overlay(RoundedRectangle(cornerRadius: 5)
-                                    .stroke(Color.white, lineWidth: 1))
-                    
-                    
-                })
-                
-                    .background(Color.black)
-                    .cornerRadius(5)
-                
-                
                 }
                 
                 Button(action: {
@@ -227,36 +231,33 @@ struct PauseMenu: View {
                 }, label: {
                     
                     Label("Next Level", systemImage: "arrowshape.turn.up.right")
-                        .foregroundColor(Color.white)
                         .padding(10)
-                        .overlay(RoundedRectangle(cornerRadius: 5)
-                                    .stroke(Color.white, lineWidth: 1))
+                    
                 })
-                    .background(Color.black)
-                    .cornerRadius(5)
                     .padding([.top, .bottom], 20)
                 
                 Button(action: {
                     startGame = false
                     isPaused = false
                     swiftUICommunicator.isGameOver = false
-                    GameScene.gameState = .mainMenu
+                    GameScene.gameState = .play
                     GameViewController.currentGameScene?.player?.resetInventory()
                     dataReaderWriter.updateDatabase()
                 }, label: {
                     
                     Label("Main Menu", systemImage: "house")
-                        .foregroundColor(Color.white)
                         .padding(10)
-                        .overlay(RoundedRectangle(cornerRadius: 5)
-                                    .stroke(Color.white, lineWidth: 1))
-                    
-                    
                 })
-                    .background(Color.black)
-                    .cornerRadius(5)
+                
                 
             }
+            .font(.custom("Chalkduster", size: 18))
+            .foregroundColor(Color.black)
+            .shadow(color: Color.red, radius: 0, x: 0, y: 0)
         }
     }
+    
 }
+
+
+
