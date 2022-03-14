@@ -111,6 +111,15 @@ class dataReaderWriter{
                 statistics.lastCompletedLevel = Int64(level)
                 
             }
+            
+            do {
+                
+                try viewContext.save()
+                
+            }catch{
+                
+                print("save error")
+            }
                 
             //reset local data
             UserData.enemiesKilled = 0

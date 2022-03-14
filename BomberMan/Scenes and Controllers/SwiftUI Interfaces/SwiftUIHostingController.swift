@@ -124,7 +124,7 @@ struct MainMenyView: View {
             ZStack{
                 
                 TabView(selection: $index){
-                    OptionsMenu().tag(0)
+                    OptionsMenu(result: result).tag(0)
                         .onAppear(perform: {
                             showMapMenu = false
                             

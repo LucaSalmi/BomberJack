@@ -11,6 +11,7 @@ import CoreData
 
 struct OptionsMenu: View {
     
+    var result: FetchedResults<Statistics>
     @State var tabIndex = 0
     
     var body: some View {
@@ -40,7 +41,7 @@ struct OptionsMenu: View {
                             OptionsTab()
                         }
                         else {
-                            StatisticsTab()
+                            StatisticsTab(result: result)
                         }
                         Spacer()
                     }
@@ -165,17 +166,7 @@ struct OptionsTab: View{
 
 struct StatisticsTab: View{
     
-    @FetchRequest
-    var statisticsData: FetchedResults<Statistics>
-    
-    init(){
-        let sortingPredicate = [NSSortDescriptor(keyPath: \Statistics.killedEnemies, ascending: false)]
-        
-        let animation = Animation.default
-        
-        _statisticsData = FetchRequest<Statistics>(sortDescriptors: sortingPredicate, animation: animation)
-        
-    }
+    var result: FetchedResults<Statistics>
     
     var body: some View{
         
@@ -203,8 +194,8 @@ struct StatisticsTab: View{
             }
             .padding(EdgeInsets(top: 0, leading: 0, bottom: 70, trailing: 30))
             .onAppear(perform: {
-                if statisticsData.isEmpty{
-                    print("LOL")
+                if result.isEmpty{
+                    print("empty DataBase")
                 }
             })
         }
@@ -212,7 +203,7 @@ struct StatisticsTab: View{
     
     func checkStat() -> [String : Int64]{
         
-        if _statisticsData.wrappedValue.isEmpty{
+        if result.isEmpty{
             
             return [
                 
@@ -226,20 +217,13 @@ struct StatisticsTab: View{
             
             return [
                 
-                "Enemies Killed:" : statisticsData[0].killedEnemies,
-                "Bombs Dropped:" : statisticsData[0].bombsDropped,
-                "Barrel Used:" : statisticsData[0].usedBarrel,
-                "Number of Deaths:" : statisticsData[0].numberOfDeaths
+                "Enemies Killed:" : result[0].killedEnemies,
+                "Bombs Dropped:" : result[0].bombsDropped,
+                "Barrel Used:" : result[0].usedBarrel,
+                "Number of Deaths:" : result[0].numberOfDeaths
             ]
         }
         
     }
     
-}
-
-struct Options_Preview: PreviewProvider{
-    static var previews: some View{
-        OptionsMenu()
-            .previewInterfaceOrientation(.landscapeLeft)
-    }
 }
