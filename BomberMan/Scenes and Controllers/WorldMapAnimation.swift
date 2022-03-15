@@ -103,7 +103,7 @@ class WorldMapAnimation: ObservableObject {
         
         if startIndex >= (WorldMapAnimation.worldMapImageNames.count - WorldMapAnimation.imagesPerLevel) {
             WorldMapAnimation.instance.currentFrameIndex = WorldMapAnimation.worldMapImageNames.count-1
-            print("DANNE: MAX INDEX RETURN = \(WorldMapAnimation.instance.currentFrameIndex) | LAST FRAME INDEX = \(WorldMapAnimation.worldMapImageNames.count-1)")
+            //print("DANNE: MAX INDEX RETURN = \(WorldMapAnimation.instance.currentFrameIndex) | LAST FRAME INDEX = \(WorldMapAnimation.worldMapImageNames.count-1)")
             return
         }
         
