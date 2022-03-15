@@ -90,13 +90,16 @@ class WorldMapAnimation: ObservableObject {
     ]
     static let imagesPerLevel: Int = 12
     static let animationStartDelay: Double = 0.75
-    static let animationDelay: Double = 0.15
+    static let animationDelay: Double = 0.10
     
     @Published var currentFrameIndex: Int = 0
+    @Published var isAnimating: Bool = false
     
     private init() { /* SINGELTON (PRIVATE CONSTRUCTOR! */ }
         
     func animateWorldMap() {
+        
+        isAnimating = true
  
         //Level 1 = 0, Level 2 = 12, Level 3 = 24, etc....
         let startIndex: Int = (UserData.lastSavedLevel-1) * WorldMapAnimation.imagesPerLevel
@@ -123,7 +126,11 @@ class WorldMapAnimation: ObservableObject {
         
         //print("DANNE: Current loop index = \(loopIndex)")
         
-        if loopIndex > WorldMapAnimation.imagesPerLevel-1 { return }
+        //Condition for stopping the Iterative Function Loop
+        if loopIndex > WorldMapAnimation.imagesPerLevel-1 {
+            WorldMapAnimation.instance.isAnimating = false
+            return
+        }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + WorldMapAnimation.animationDelay){
             

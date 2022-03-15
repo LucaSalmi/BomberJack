@@ -29,75 +29,28 @@ struct SideViewMapMenu: View {
                     let lineHeight: CGFloat = 1.5
                     let lineColor: Color = Color.black
                     
-                    Button {
-                        
-                        print("level 2 pressed")
-                        
-                        
-                        withAnimation(.easeIn(duration: 0.3)){
-                                                        
-                            if checkAndStartLevel(id: 2){
-                                
-                                startGame = true
-                            }
-                        }
-                        
-                    } label: {
-                        Text("level 2")
-                    }
-                    .foregroundColor(.white)
-                    .font(Font.body.bold())
-                    .font(.largeTitle)
-                    .padding(.leading, 75)
-                    .padding(.trailing, 20)
-                    .opacity(checkAndStartLevel(id: 2) ? 1 : 0)
+                    //Level 2 Button
+                    LevelButtonView(buttonID: 2, startGame: $startGame)
+                        .opacity(WorldMapAnimation.instance.isAnimating ? 0 : 1)
+                    
                     
                     Rectangle()
                         .fill(lineColor)
                         .frame(width: lineWidth, height: lineHeight)
                         .opacity(0)
                     
-                    Button {
-                        
-                        print("level 3 pressed")
-                        
-                        if checkAndStartLevel(id: 3){
-                            
-                            startGame = true
-                        }
-                        
-                    } label: {
-                        Text("level 3")
-                    }
-                    .foregroundColor(.white)
-                    .font(Font.body.bold())
-                    .font(.largeTitle)
-                    .padding(.leading, 20)
-                    .padding(.trailing, 20)
-                    .opacity(checkAndStartLevel(id: 3) ? 1 : 0)
+                    //Level 3 Button
+                    LevelButtonView(buttonID: 3, startGame: $startGame)
+                        .opacity(WorldMapAnimation.instance.isAnimating ? 0 : 1)
                     
                     Rectangle()
                         .fill(lineColor)
                         .frame(width: lineWidth, height: lineHeight)
                         .opacity(0)
                     
-                    Button {
-                        
-                        print("level 6 pressed")
-                        
-                        if checkAndStartLevel(id: 6){
-                            
-                            startGame = true
-                        }
-                        
-                    } label: {
-                        Text("level 6")
-                    }
-                    .foregroundColor(.white)
-                    .font(Font.body.bold())
-                    .font(.largeTitle)
-                    .padding(.leading, 20)
-                    .opacity(checkAndStartLevel(id: 6) ? 1 : 0)
+                    //Level 6 Button
+                    LevelButtonView(buttonID: 6, startGame: $startGame)
+                        .opacity(WorldMapAnimation.instance.isAnimating ? 0 : 1)
                     
                 }
                 .padding(20)
@@ -137,73 +90,27 @@ struct SideViewMapMenu: View {
                     let lineHeight: CGFloat = 1.5
                     let lineColor: Color = Color.black
                     
-                    Button {
-                        
-                        print("level 1 pressed")
-                        
-                        if checkAndStartLevel(id: 1){
-                            
-                            startGame = true
-                        }
-                        
-                    } label: {
-                        Text("level 1")
-                        
-                        
-                    }
-                    .foregroundColor(.white)
-                    .font(Font.body.bold())
-                    .font(.largeTitle)
-                    .padding(.leading, 75)
-                    .padding(.trailing, 20)
-                    .opacity(checkAndStartLevel(id: 1) ? 1 : 0)
+                    //Level 1 Button
+                    LevelButtonView(buttonID: 1, startGame: $startGame)
+                        .opacity(WorldMapAnimation.instance.isAnimating ? 0 : 1)
                     
                     Rectangle()
                         .fill(lineColor)
                         .frame(width: lineWidth, height: lineHeight)
                         .opacity(0)
                     
-                    Button {
-                        
-                        print("level 4 pressed")
-                        
-                        if checkAndStartLevel(id: 4){
-                            
-                            startGame = true
-                        }
-                        
-                    } label: {
-                        Text("level 4")
-                    }
-                    .foregroundColor(.white)
-                    .font(Font.body.bold())
-                    .font(.largeTitle)
-                    .padding(.leading, 20)
-                    .padding(.trailing, 20)
-                    .opacity(checkAndStartLevel(id: 4) ? 1 : 0)
+                    //Level 4 Button
+                    LevelButtonView(buttonID: 4, startGame: $startGame)
+                        .opacity(WorldMapAnimation.instance.isAnimating ? 0 : 1)
                     
                     Rectangle()
                         .fill(lineColor)
                         .frame(width: lineWidth, height: lineHeight)
                         .opacity(0)
                     
-                    Button {
-                        
-                        print("level 5 pressed")
-                        
-                        if checkAndStartLevel(id: 5){
-                            
-                            startGame = true
-                        }
-                        
-                    } label: {
-                        Text("level 5")
-                    }
-                    .foregroundColor(.white)
-                    .font(Font.body.bold())
-                    .font(.largeTitle)
-                    .padding(.leading, 20)
-                    .opacity(checkAndStartLevel(id: 5) ? 1 : 0)
+                    //Level 5 Button
+                    LevelButtonView(buttonID: 5, startGame: $startGame)
+                        .opacity(WorldMapAnimation.instance.isAnimating ? 0 : 1)
                     
                 }
                 .padding(20)
@@ -220,6 +127,33 @@ struct SideViewMapMenu: View {
         .onAppear(perform: {
             worldMapAnimation.animateWorldMap()
         })
+    }
+
+}
+
+struct LevelButtonView: View {
+    
+    let buttonID: Int
+    @Binding var startGame: Bool
+    
+    var body: some View {
+        Button {
+            
+            print("level \(buttonID) pressed")
+            
+            if checkAndStartLevel(id: buttonID){
+                
+                startGame = true
+            }
+            
+        } label: {
+            Text("level \(buttonID)")
+        }
+        .foregroundColor(.white)
+        .font(Font.body.bold())
+        .font(.largeTitle)
+        .padding(.leading, 20)
+        .opacity(checkAndStartLevel(id: buttonID) ? 1 : 0)
     }
     
     func checkAndStartLevel(id: Int) -> Bool{
@@ -243,5 +177,4 @@ struct SideViewMapMenu: View {
         
         return false
     }
-
 }
