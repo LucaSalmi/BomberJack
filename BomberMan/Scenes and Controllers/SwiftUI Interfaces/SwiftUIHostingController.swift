@@ -39,8 +39,6 @@ struct ContentView: View {
         swiftUICommunicator = SwiftUICommunicator.instance
         
         _result = FetchRequest<Statistics>(sortDescriptors: sortingPredicate, animation: animation)
-        
-        
     }
     
     var body: some View {
