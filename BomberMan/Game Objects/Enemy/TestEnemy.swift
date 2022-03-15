@@ -88,23 +88,25 @@ class TestEnemy: Enemy {
     override func update() {
         
         super.update()
-        
-        if !isTrapped || !isAttacking{
-            
-            position.x += (direction.x * enemySpeed)
-            position.y += (direction.y * enemySpeed)
-            
-            currentMovementDistance += enemySpeed
-            if currentMovementDistance == changeDirectionInterval {
-                updateDirection(newDirection: getRandomDirection())
-            }
-            
-            enemyTexture.position.x = position.x
-            enemyTexture.position.y = position.y + PlayerSettings.textureOffset
-            
-            let direction = PhysicsUtils.findDirection(objDirection: direction)
-            runAnim(objDirection: direction)
+                
+        if isTrapped || isAttacking{
+            return
         }
+        
+        position.x += (direction.x * enemySpeed)
+        position.y += (direction.y * enemySpeed)
+        
+        currentMovementDistance += enemySpeed
+        if currentMovementDistance == changeDirectionInterval {
+            updateDirection(newDirection: getRandomDirection())
+        }
+        
+        enemyTexture.position.x = position.x
+        enemyTexture.position.y = position.y + PlayerSettings.textureOffset
+        
+        let direction = PhysicsUtils.findDirection(objDirection: direction)
+        runAnim(objDirection: direction)
+        
         
     }
     
