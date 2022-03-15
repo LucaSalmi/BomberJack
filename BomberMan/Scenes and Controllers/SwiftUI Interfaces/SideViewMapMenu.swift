@@ -54,6 +54,7 @@ struct SideViewMapMenu: View {
                     Rectangle()
                         .fill(lineColor)
                         .frame(width: lineWidth, height: lineHeight)
+                        .opacity(0)
                     
                     Button {
                         
@@ -110,16 +111,19 @@ struct SideViewMapMenu: View {
                         .fill(lineColor)
                         .frame(width: lineWidth, height: lineHeight)
                         .padding(.leading, 90)
+                        .opacity(0)
                     
                     Rectangle()
                         .fill(lineColor)
                         .frame(width: lineWidth, height: lineHeight)
                         .padding(.leading, 140)
+                        .opacity(0)
                     
                     Rectangle()
                         .fill(lineColor)
                         .frame(width: lineWidth, height: lineHeight)
                         .padding(.leading, 140)
+                        .opacity(0)
                     
                 }
                 
@@ -176,6 +180,7 @@ struct SideViewMapMenu: View {
                     Rectangle()
                         .fill(lineColor)
                         .frame(width: lineWidth, height: lineHeight)
+                        .opacity(0)
                     
                     Button {
                         
