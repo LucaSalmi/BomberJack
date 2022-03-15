@@ -13,7 +13,7 @@ class WorldMapAnimation: ObservableObject {
     
     static let worldMapImageNames = [
     
-        "map_level_1_phase_1",
+        "map_level_1_phase_1",  //LEVEL 1
         "map_level_1_phase_2",
         "map_level_1_phase_3",
         "map_level_1_phase_4",
@@ -25,7 +25,7 @@ class WorldMapAnimation: ObservableObject {
         "map_level_1_phase_10",
         "map_level_1_phase_11",
         "map_level_1_phase_12",
-        "map_level_2_phase_1",
+        "map_level_2_phase_1",  //LEVEL 2
         "map_level_2_phase_2",
         "map_level_2_phase_3",
         "map_level_2_phase_4",
@@ -37,7 +37,7 @@ class WorldMapAnimation: ObservableObject {
         "map_level_2_phase_10",
         "map_level_2_phase_11",
         "map_level_2_phase_12",
-        "map_level_3_phase_1",
+        "map_level_3_phase_1",  //LEVEL 3
         "map_level_3_phase_2",
         "map_level_3_phase_3",
         "map_level_3_phase_4",
@@ -49,6 +49,42 @@ class WorldMapAnimation: ObservableObject {
         "map_level_3_phase_10",
         "map_level_3_phase_11",
         "map_level_3_phase_12",
+        "MapRoll",              //LEVEL 4
+        "MapRoll",
+        "MapRoll",
+        "MapRoll",
+        "MapRoll",
+        "MapRoll",
+        "MapRoll",
+        "MapRoll",
+        "MapRoll",
+        "MapRoll",
+        "MapRoll",
+        "MapRoll",
+        "MapRoll",              //LEVEL 5
+        "MapRoll",
+        "MapRoll",
+        "MapRoll",
+        "MapRoll",
+        "MapRoll",
+        "MapRoll",
+        "MapRoll",
+        "MapRoll",
+        "MapRoll",
+        "MapRoll",
+        "MapRoll",
+        "MapRoll",              //LEVEL 6
+        "MapRoll",
+        "MapRoll",
+        "MapRoll",
+        "MapRoll",
+        "MapRoll",
+        "MapRoll",
+        "MapRoll",
+        "MapRoll",
+        "MapRoll",
+        "MapRoll",
+        "MapRoll",
     
     ]
     
@@ -58,5 +94,9 @@ class WorldMapAnimation: ObservableObject {
     
     private init() { /* SINGELTON (PRIVATE CONSTRUCTOR! */ }
         
-    
+    func animateWorldMap() {
+        
+        
+        
+    }
 }

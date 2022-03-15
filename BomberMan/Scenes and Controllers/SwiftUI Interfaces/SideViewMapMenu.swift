@@ -12,6 +12,8 @@ struct SideViewMapMenu: View {
         
     @Binding var startGame: Bool
     
+    @ObservedObject var worldMapAnimation = WorldMapAnimation.instance
+    
     var body: some View {
         
         VStack{
@@ -202,7 +204,7 @@ struct SideViewMapMenu: View {
         }
         .scaledToFill()
         .foregroundColor(.white)
-        .background(Image("MapRoll").resizable().scaledToFit())
+        .background(Image(WorldMapAnimation.worldMapImageNames[worldMapAnimation.currentFrameIndex]).resizable().scaledToFit())
         
         .edgesIgnoringSafeArea(.trailing)
     }
