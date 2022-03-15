@@ -27,6 +27,7 @@
 		3354DF2A27BFDAE60019D640 /* RushEnemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3354DF2927BFDAE60019D640 /* RushEnemy.swift */; };
 		338D408927D0A08A0003C3A6 /* NeedKeyHint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338D408827D0A08A0003C3A6 /* NeedKeyHint.swift */; };
 		338D408B27D0A0E20003C3A6 /* NeedKeyDialogue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338D408A27D0A0E20003C3A6 /* NeedKeyDialogue.swift */; };
+		33B75B6927E08835004CABDE /* WorldMapAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B75B6827E08835004CABDE /* WorldMapAnimation.swift */; };
 		33B882A327BBC41A00BB897E /* MovementManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B882A227BBC41A00BB897E /* MovementManager.swift */; };
 		33B882A527BBEF3500BB897E /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B882A427BBEF3500BB897E /* Enemy.swift */; };
 		33B882A727BBF2FB00BB897E /* TestEnemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B882A627BBF2FB00BB897E /* TestEnemy.swift */; };
@@ -103,6 +104,7 @@
 		3354DF2927BFDAE60019D640 /* RushEnemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RushEnemy.swift; sourceTree = "<group>"; };
 		338D408827D0A08A0003C3A6 /* NeedKeyHint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeedKeyHint.swift; sourceTree = "<group>"; };
 		338D408A27D0A0E20003C3A6 /* NeedKeyDialogue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeedKeyDialogue.swift; sourceTree = "<group>"; };
+		33B75B6827E08835004CABDE /* WorldMapAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldMapAnimation.swift; sourceTree = "<group>"; };
 		33B882A227BBC41A00BB897E /* MovementManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementManager.swift; sourceTree = "<group>"; };
 		33B882A427BBEF3500BB897E /* Enemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
 		33B882A627BBF2FB00BB897E /* TestEnemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestEnemy.swift; sourceTree = "<group>"; };
@@ -263,6 +265,7 @@
 				C8CEDCDB27CF6ACD008C5A64 /* TabMenu.swift */,
 				C8A7490227CD0C2F00AD68E8 /* OptionsMenu.swift */,
 				D5A24D2527CE144000AD62F1 /* SideViewMapMenu.swift */,
+				33B75B6827E08835004CABDE /* WorldMapAnimation.swift */,
 			);
 			path = "SwiftUI Interfaces";
 			sourceTree = "<group>";
@@ -527,6 +530,7 @@
 				3310B63027D9FB50000962CB /* PlayerSettingsUI.swift in Sources */,
 				C8C7DC3127BFDB470083656A /* Explosion.swift in Sources */,
 				338D408B27D0A0E20003C3A6 /* NeedKeyDialogue.swift in Sources */,
+				33B75B6927E08835004CABDE /* WorldMapAnimation.swift in Sources */,
 				334F89CD27CCCD6A007A1857 /* Event.swift in Sources */,
 				E5DCA41927D8D8E700DC05EA /* SwiftUICommunicator.swift in Sources */,
 				C82A154227D5F4F2006B6C6B /* Breakable Tree.swift in Sources */,
