@@ -31,7 +31,7 @@ struct SideViewMapMenu: View {
                     
                     //Level 2 Button
                     LevelButtonView(buttonID: 2, startGame: $startGame)
-                        .opacity(WorldMapAnimation.instance.isAnimating ? 0 : 1)
+                        .opacity(!WorldMapAnimation.instance.isAnimating || UserData.lastSavedLevel > 2 ? 1 : 0)
                     
                     Rectangle()
                         .fill(lineColor)
@@ -40,7 +40,7 @@ struct SideViewMapMenu: View {
                     
                     //Level 3 Button
                     LevelButtonView(buttonID: 3, startGame: $startGame)
-                        .opacity(WorldMapAnimation.instance.isAnimating ? 0 : 1)
+                        .opacity(!WorldMapAnimation.instance.isAnimating || UserData.lastSavedLevel > 3 ? 1 : 0)
                     
                     Rectangle()
                         .fill(lineColor)
@@ -49,7 +49,7 @@ struct SideViewMapMenu: View {
                     
                     //Level 6 Button
                     LevelButtonView(buttonID: 6, startGame: $startGame)
-                        .opacity(WorldMapAnimation.instance.isAnimating ? 0 : 1)
+                        .opacity(!WorldMapAnimation.instance.isAnimating || UserData.lastSavedLevel > 6 ? 1 : 0)
                     
                 }
                 .padding(20)
@@ -91,7 +91,7 @@ struct SideViewMapMenu: View {
                     
                     //Level 1 Button
                     LevelButtonView(buttonID: 1, startGame: $startGame)
-                        .opacity(WorldMapAnimation.instance.isAnimating ? 0 : 1)
+                        .opacity(!WorldMapAnimation.instance.isAnimating || UserData.lastSavedLevel > 1 ? 1 : 0)
                     
                     Rectangle()
                         .fill(lineColor)
@@ -100,7 +100,7 @@ struct SideViewMapMenu: View {
                     
                     //Level 4 Button
                     LevelButtonView(buttonID: 4, startGame: $startGame)
-                        .opacity(WorldMapAnimation.instance.isAnimating ? 0 : 1)
+                        .opacity(!WorldMapAnimation.instance.isAnimating || UserData.lastSavedLevel > 4 ? 1 : 0)
                     
                     Rectangle()
                         .fill(lineColor)
@@ -109,7 +109,7 @@ struct SideViewMapMenu: View {
                     
                     //Level 5 Button
                     LevelButtonView(buttonID: 5, startGame: $startGame)
-                        .opacity(WorldMapAnimation.instance.isAnimating ? 0 : 1)
+                        .opacity(!WorldMapAnimation.instance.isAnimating || UserData.lastSavedLevel > 5 ? 1 : 0)
                     
                 }
                 .padding(20)
