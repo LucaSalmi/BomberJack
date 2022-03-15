@@ -78,6 +78,17 @@ class ActionManagager{
         }
         
         if bomb is StandardBomb && !PlayerSettingsUI.instance.haveBombs {
+            guard let gameScene = GameViewController.currentGameScene else { return }
+            
+            if gameScene.currentDialogue != nil {
+                gameScene.currentDialogue!.removeFromParent()
+            }
+            
+            //Unique logarithm for this event goes here
+            let noBombsDialogue = NoBombsDialogue()
+            gameScene.currentDialogue = noBombsDialogue
+            //print(NeedBombsDialogue)
+            gameScene.addChild(noBombsDialogue)
             return
         }
         

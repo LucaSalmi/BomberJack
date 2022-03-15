@@ -122,7 +122,6 @@ struct GameUIView: View {
                                 .opacity(playerSettingsUI.haveBombs ? 1.0 : 0.5)
                         })
                             .padding(20)
-                            .disabled(!playerSettingsUI.haveBombs)
                         
                     }
                 }
