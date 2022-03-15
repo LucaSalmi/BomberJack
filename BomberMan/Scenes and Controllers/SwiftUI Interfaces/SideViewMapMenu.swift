@@ -205,8 +205,10 @@ struct SideViewMapMenu: View {
         .scaledToFill()
         .foregroundColor(.white)
         .background(Image(WorldMapAnimation.worldMapImageNames[worldMapAnimation.currentFrameIndex]).resizable().scaledToFit())
-        
         .edgesIgnoringSafeArea(.trailing)
+        .onAppear(perform: {
+            worldMapAnimation.animateWorldMap()
+        })
     }
     
     func checkAndStartLevel(id: Int) -> Bool{

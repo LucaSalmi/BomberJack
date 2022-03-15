@@ -87,8 +87,8 @@ class WorldMapAnimation: ObservableObject {
         "MapRoll",
     
     ]
-    
     static let imagesPerLevel: Int = 12
+    static let animationDelay: Double = 0.5
     
     @Published var currentFrameIndex: Int = 0
     
@@ -96,7 +96,29 @@ class WorldMapAnimation: ObservableObject {
         
     func animateWorldMap() {
         
+        //Level 1 = 0, Level 2 = 12, Level 3 = 24, etc....
+        let startIndex: Int = (UserData.currentLevel-1) * WorldMapAnimation.imagesPerLevel
         
+        print("DANNE: Start index = \(startIndex)")
         
+        //test
+        animationLoop(startImageIndex: startIndex)
+        
+    }
+    
+    private func animationLoop(startImageIndex: Int, loopIndex: Int = 0) {
+        
+        print("DANNE: Current loop index = \(loopIndex)")
+        
+        if loopIndex > WorldMapAnimation.imagesPerLevel-1 { return }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + WorldMapAnimation.animationDelay){
+            
+            //WorldMapAnimation.instance.currentFrameIndex = startImageIndex + loopIndex
+            print("DANNE: Current image index = \(startImageIndex+loopIndex)")
+            
+            WorldMapAnimation.instance.animationLoop(startImageIndex: startImageIndex, loopIndex: loopIndex-1)
+            
+        }
     }
 }
