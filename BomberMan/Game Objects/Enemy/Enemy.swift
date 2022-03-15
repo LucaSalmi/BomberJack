@@ -58,13 +58,13 @@ class Enemy: SKSpriteNode {
         
         zPosition = 50
         
-        lightingBitMask = 1
         
         //init() for texture
         let textureSize = CGSize(width: size.width, height: size.height*1.5)
         enemyTexture = SKSpriteNode(texture: texture, color: UIColor(red: 0, green: 0, blue: 0, alpha: 0), size: textureSize)
         enemyTexture.position = position
         enemyTexture.zPosition = 50
+        enemyTexture.lightingBitMask = 1
         
         setEnemyAnimations(enemy: "enemy_walk_animation")
     }

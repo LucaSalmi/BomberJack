@@ -30,6 +30,7 @@ class BreakableObject: SKSpriteNode{
         size?.height += yOffset
         size?.width += 8 // temporary
         breakableTexture = SKSpriteNode(texture: objTexture, color: .clear, size: size!)
+        breakableTexture.lightingBitMask = 1
         
         super.init(texture: nil, color: .clear, size: GameScene.tileSize!)
         zPosition = 50
