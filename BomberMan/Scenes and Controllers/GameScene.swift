@@ -14,6 +14,9 @@ class GameScene: SKScene {
     static var viewController: GameViewController? = nil
     static var tileSize: CGSize? = CGSize(width: 32, height: 32)
     static var gameState = GameState.play
+    static var canUseTraps = true
+    
+    var trapDelayCounter = 120
     
     var isCaveLevel: Bool = false
     
@@ -191,6 +194,7 @@ class GameScene: SKScene {
                     
                     breakable = Fence(textureName: textureName)
                 }else{
+                    
                     return
                 }
                 
@@ -490,7 +494,17 @@ class GameScene: SKScene {
             return
         }
         
-        
+        if !GameScene.canUseTraps{
+            
+            trapDelayCounter -= 1
+            
+            if trapDelayCounter <= 0{
+                
+                GameScene.canUseTraps = true
+                trapDelayCounter = 120
+                
+            }
+        }
         
         if isGameOver{
             

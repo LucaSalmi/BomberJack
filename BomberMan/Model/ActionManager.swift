@@ -57,7 +57,7 @@ class ActionManagager{
             
     func placeBomb(id: Int){
         
-        if GameViewController.currentGameScene!.player!.isShielded {
+        if GameViewController.currentGameScene!.player!.isShielded || !GameScene.canUseTraps{
             return
         }
         //stat change
@@ -72,6 +72,7 @@ class ActionManagager{
             
         case 1:
             bomb = TrapBomb()
+            GameScene.canUseTraps = false
             
         default:
             bomb = StandardBomb()
