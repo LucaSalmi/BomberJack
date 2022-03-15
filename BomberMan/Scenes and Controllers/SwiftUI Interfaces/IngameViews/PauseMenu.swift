@@ -38,9 +38,13 @@ struct PauseMenu: View {
                 
                 Text(swiftUICommunicator.isGameOver ? "Game Over" : "Paused")
                 
+                
                 HStack{
                     
+                    
                     VStack(alignment: .leading){
+                        
+                        
                         
                         if swiftUICommunicator.isGameOver{
                             
@@ -57,6 +61,7 @@ struct PauseMenu: View {
                             }, label: {
                                 
                                 Label("Restart", systemImage: "arrowtriangle.right.circle")
+                                
                                 
                             }).padding(.vertical, 10)
                             
@@ -77,6 +82,7 @@ struct PauseMenu: View {
                             }, label: {
                                 
                                 Label("Continue", systemImage: "arrowtriangle.right.circle")
+                                
                                 
                                 
                                 
@@ -124,7 +130,8 @@ struct PauseMenu: View {
                     
                     if !swiftUICommunicator.isGameOver{
                         
-                        VStack(){
+                        VStack(alignment: .trailing){
+                            
                             
                             Toggle("Music", isOn: self.$options.isMusicOn)
                                 .onReceive([self.$options.isMusicOn].publisher.first(), perform: { (value) in
@@ -133,9 +140,11 @@ struct PauseMenu: View {
                                     }else{
                                         SoundManager.playBGM(bgmString: SoundManager.mainMenuBGM)
                                     }
-                                })
-                            Toggle("Sound Effects", isOn: self.$options.areSFXOn).preferredColorScheme(ColorScheme.light)
-                            Toggle("Camera Shake", isOn: self.$options.isScreenShakeOn)
+                                }).toggleStyle(myCheckbox())
+                                
+                            
+                            Toggle("Sound Effects", isOn: self.$options.areSFXOn).toggleStyle(myCheckbox())
+                            Toggle("Camera Shake", isOn: self.$options.isScreenShakeOn).toggleStyle(myCheckbox())
                             
                         }
                         .padding(.leading, 20)
@@ -149,13 +158,36 @@ struct PauseMenu: View {
             .font(.custom("Chalkduster", size: 18))
             .foregroundColor(Color.black)
             .shadow(color: Color.red, radius: 0, x: 0, y: 0)
-            .opacity(0.7)
+            .opacity(1)
             
             
         }.transition(.scale)
         
         
         
+    }
+    
+}
+
+struct myCheckbox: ToggleStyle{
+    var text: String = ""
+    
+    func makeBody(configuration: Configuration) -> some View {
+        HStack{
+            configuration.label
+            Button{
+                configuration.isOn.toggle()
+            } label: {
+                HStack{
+                    
+                Spacer()
+                Image(configuration.isOn ? "button_on" : "button_off")
+                    .resizable()
+                    .frame(width: 65, height: 40, alignment: .trailing)
+                }
+            }
+            
+        }
     }
     
 }
