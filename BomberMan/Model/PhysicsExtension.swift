@@ -63,7 +63,7 @@ extension GameScene: SKPhysicsContactDelegate{
             case PhysicsCategory.Sword:
                 
                 if !player.isShielded{
-                    //player.death(player: nodeA!)
+                    player.death(player: nodeA!)
                 }
                 
             case PhysicsCategory.Explosion:
@@ -182,16 +182,6 @@ extension GameScene: SKPhysicsContactDelegate{
             
             switch contact.bodyB.categoryBitMask{
                 
-                // BodyB is Player
-            case PhysicsCategory.Player:
-                
-                let _ = getPlayer(node: nodeB!)
-                
-                // BodyB is an Enemy
-            case PhysicsCategory.Enemy:
-                
-                let _ = getEnemy(node: nodeB!)
-                
             case PhysicsCategory.Explosion:
                 let bomb = nodeA as! Bomb
                 bomb.tickingTime = BombSettings.explosionTime
@@ -211,8 +201,6 @@ extension GameScene: SKPhysicsContactDelegate{
                 let player = getPlayer(node: nodeB!)
                 player.death(player: nodeB!)
                 
-            case PhysicsCategory.Enemy:
-                print("Explosion-Enemy")
                 
             case PhysicsCategory.Breakable:
                 print("look here")
@@ -274,9 +262,7 @@ extension GameScene: SKPhysicsContactDelegate{
                 let door = getDoor(node: nodeA!)
                 
                 door.collision(with: nodeA)
-                
-                print("hi door")
-                
+                                
             default:
                 print("mystery")
             }
@@ -302,16 +288,14 @@ extension GameScene: SKPhysicsContactDelegate{
             case PhysicsCategory.Player:
                 
                 if player!.isShielded{
-                    //player!.death(player: nodeB!)
+                    player!.death(player: nodeB!)
                 }
                 
             default:
                 print("mystery")
             }
-            //default case for main switch
             
             //default case for main switch
-            
         default:
             print("mystery")
         }

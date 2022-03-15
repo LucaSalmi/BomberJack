@@ -69,8 +69,6 @@ class dataReaderWriter{
             
             DefaultKeys.defaultData.set(UserData.currentLevel, forKey: DefaultKeys.lastPlayedLevelKey)
         }
-        
-        
     }
     
     static func loadLocalSaveData(){

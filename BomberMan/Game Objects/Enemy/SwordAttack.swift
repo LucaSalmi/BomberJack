@@ -31,7 +31,6 @@ class SwordAttack: SKSpriteNode{
         super.init(texture: swordTexture, color: .white, size: swordSize)
         //setup physics body
         setupPhysicsBody()
-        texture = SKTexture(imageNamed: getTexture(attackDirection: attackDirection))
         Enemy.attacks.append(self)
     }
     
@@ -48,11 +47,11 @@ class SwordAttack: SKSpriteNode{
             
         case .left:
             direction = .left
-            return "sword_swing_right_side"
+            return "sword_swing_left_side"
             
         case .right:
             direction = .right
-            return "sword_swing_left_side"
+            return "sword_swing_right_side"
             
         }
         
@@ -73,6 +72,7 @@ class SwordAttack: SKSpriteNode{
     
     func setPositions(with other: SKNode, enemyNode: SKNode){
         
+        //changes the position of the enemy attacking based on where the player is coming from
         enemyAttacking = enemyNode as? TestEnemy
         let player = other as! Player
         let swordPos = CGPoint(x: player.position.x, y: player.position.y)
@@ -104,27 +104,17 @@ class SwordAttack: SKSpriteNode{
             print("continue")
         }
         
+        //uses a different sword texture based on the direction the enemy is facing
+        self.texture = SKTexture(imageNamed: getTexture(attackDirection: PhysicsUtils.findDirection(objDirection: enemyAttacking?.direction ?? CGPoint(x: 1, y: 0))))
+        
         
     }
     
     func update(){
         
-        var positionToChange: CGFloat
-        
-        if direction == .forward || direction == .backward{
+        if swordCount < 13 {
             
-            positionToChange = position.x
-            
-        }else{
-            
-            positionToChange = position.y
-        }
-        
-        if swordCount < 5 || swordCount < 10 || swordCount < 15{
-            positionToChange += 1
             swordCount += 1
-            
-            zRotation -= 0.1
             
         }else{
             self.physicsBody = nil
