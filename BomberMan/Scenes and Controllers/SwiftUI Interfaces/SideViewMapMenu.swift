@@ -50,6 +50,7 @@ struct SideViewMapMenu: View {
                     .font(.largeTitle)
                     .padding(.leading, 75)
                     .padding(.trailing, 20)
+                    .opacity(checkAndStartLevel(id: 2) ? 1 : 0)
                     
                     Rectangle()
                         .fill(lineColor)
@@ -73,6 +74,7 @@ struct SideViewMapMenu: View {
                     .font(.largeTitle)
                     .padding(.leading, 20)
                     .padding(.trailing, 20)
+                    .opacity(checkAndStartLevel(id: 3) ? 1 : 0)
                     
                     Rectangle()
                         .fill(lineColor)
@@ -95,6 +97,7 @@ struct SideViewMapMenu: View {
                     .font(Font.body.bold())
                     .font(.largeTitle)
                     .padding(.leading, 20)
+                    .opacity(checkAndStartLevel(id: 6) ? 1 : 0)
                     
                 }
                 .padding(20)
@@ -153,6 +156,7 @@ struct SideViewMapMenu: View {
                     .font(.largeTitle)
                     .padding(.leading, 75)
                     .padding(.trailing, 20)
+                    .opacity(checkAndStartLevel(id: 1) ? 1 : 0)
                     
                     Rectangle()
                         .fill(lineColor)
@@ -176,6 +180,7 @@ struct SideViewMapMenu: View {
                     .font(.largeTitle)
                     .padding(.leading, 20)
                     .padding(.trailing, 20)
+                    .opacity(checkAndStartLevel(id: 4) ? 1 : 0)
                     
                     Rectangle()
                         .fill(lineColor)
@@ -198,6 +203,7 @@ struct SideViewMapMenu: View {
                     .font(Font.body.bold())
                     .font(.largeTitle)
                     .padding(.leading, 20)
+                    .opacity(checkAndStartLevel(id: 5) ? 1 : 0)
                     
                 }
                 .padding(20)
