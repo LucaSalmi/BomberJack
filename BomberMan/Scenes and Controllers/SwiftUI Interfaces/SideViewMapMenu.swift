@@ -25,100 +25,41 @@ struct SideViewMapMenu: View {
                 //ROW 1
                 HStack(){
                     
-                    let lineWidth: CGFloat = 40
-                    let lineHeight: CGFloat = 1.5
-                    let lineColor: Color = Color.black
-                    
                     //Level 2 Button
                     LevelButtonView(buttonID: 2, startGame: $startGame)
                         .opacity(!WorldMapAnimation.instance.isAnimating || UserData.lastSavedLevel > 2 ? 1 : 0)
-                    
-                    Rectangle()
-                        .fill(lineColor)
-                        .frame(width: lineWidth, height: lineHeight)
-                        .opacity(0)
+                        .padding(.leading, 175)
                     
                     //Level 3 Button
                     LevelButtonView(buttonID: 3, startGame: $startGame)
                         .opacity(!WorldMapAnimation.instance.isAnimating || UserData.lastSavedLevel > 3 ? 1 : 0)
+                        .padding(.leading, 75)
                     
-                    Rectangle()
-                        .fill(lineColor)
-                        .frame(width: lineWidth, height: lineHeight)
-                        .opacity(0)
-                    
-                    //Level 6 Button
-                    LevelButtonView(buttonID: 6, startGame: $startGame)
-                        .opacity(!WorldMapAnimation.instance.isAnimating || UserData.lastSavedLevel > 6 ? 1 : 0)
                     
                 }
-                .padding(20)
-                .padding(.horizontal, 60)
-                
-                //ROW 2 (only connecting lines)
-                HStack() {
-                    
-                    let lineWidth: CGFloat = 1.5
-                    let lineHeight: CGFloat = 50
-                    let lineColor: Color = Color.black
-                    
-                    Rectangle()
-                        .fill(lineColor)
-                        .frame(width: lineWidth, height: lineHeight)
-                        .padding(.leading, 90)
-                        .opacity(0)
-                    
-                    Rectangle()
-                        .fill(lineColor)
-                        .frame(width: lineWidth, height: lineHeight)
-                        .padding(.leading, 140)
-                        .opacity(0)
-                    
-                    Rectangle()
-                        .fill(lineColor)
-                        .frame(width: lineWidth, height: lineHeight)
-                        .padding(.leading, 140)
-                        .opacity(0)
-                    
-                }
+                .padding(10)
                 
                 //ROW 3
                 HStack(){
                     
-                    let lineWidth: CGFloat = 40
-                    let lineHeight: CGFloat = 1.5
-                    let lineColor: Color = Color.black
-                    
                     //Level 1 Button
                     LevelButtonView(buttonID: 1, startGame: $startGame)
                         .opacity(!WorldMapAnimation.instance.isAnimating || UserData.lastSavedLevel > 1 ? 1 : 0)
-                    
-                    Rectangle()
-                        .fill(lineColor)
-                        .frame(width: lineWidth, height: lineHeight)
-                        .opacity(0)
+                        .padding(.leading, 100)
                     
                     //Level 4 Button
                     LevelButtonView(buttonID: 4, startGame: $startGame)
                         .opacity(!WorldMapAnimation.instance.isAnimating || UserData.lastSavedLevel > 4 ? 1 : 0)
-                    
-                    Rectangle()
-                        .fill(lineColor)
-                        .frame(width: lineWidth, height: lineHeight)
-                        .opacity(0)
-                    
-                    //Level 5 Button
-                    LevelButtonView(buttonID: 5, startGame: $startGame)
-                        .opacity(!WorldMapAnimation.instance.isAnimating || UserData.lastSavedLevel > 5 ? 1 : 0)
+                        .padding(.leading, 175)
                     
                 }
-                .padding(20)
-                .padding(.horizontal, 60)
+                .padding(40)
             }
-            .padding(35)
+            .padding(25)
             Spacer()
             
         }
+        .frame(width: 700, height: 500, alignment: .leading)
         .scaledToFill()
         .foregroundColor(.white)
         .background(Image(WorldMapAnimation.worldMapImageNames[worldMapAnimation.currentFrameIndex]).resizable().scaledToFit())
