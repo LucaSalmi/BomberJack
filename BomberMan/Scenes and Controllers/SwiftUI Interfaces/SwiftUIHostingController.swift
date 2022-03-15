@@ -40,7 +40,8 @@ struct ContentView: View {
         
         _result = FetchRequest<Statistics>(sortDescriptors: sortingPredicate, animation: animation)
         
-        
+        //TODO: REMOVE THIS TEST LINE:
+        UserData.lastSavedLevel = 4
     }
     
     var body: some View {

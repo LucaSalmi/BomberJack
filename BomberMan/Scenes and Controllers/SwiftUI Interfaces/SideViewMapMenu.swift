@@ -33,7 +33,6 @@ struct SideViewMapMenu: View {
                     LevelButtonView(buttonID: 2, startGame: $startGame)
                         .opacity(WorldMapAnimation.instance.isAnimating ? 0 : 1)
                     
-                    
                     Rectangle()
                         .fill(lineColor)
                         .frame(width: lineWidth, height: lineHeight)
