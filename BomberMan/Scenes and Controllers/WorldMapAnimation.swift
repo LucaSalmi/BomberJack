@@ -49,75 +49,88 @@ class WorldMapAnimation: ObservableObject {
         "map_level_3_phase_10",
         "map_level_3_phase_11",
         "map_level_3_phase_12",
-        "MapRoll",              //LEVEL 4
-        "MapRoll",
-        "MapRoll",
-        "MapRoll",
-        "MapRoll",
-        "MapRoll",
-        "MapRoll",
-        "MapRoll",
-        "MapRoll",
-        "MapRoll",
-        "MapRoll",
-        "MapRoll",
-        "MapRoll",              //LEVEL 5
-        "MapRoll",
-        "MapRoll",
-        "MapRoll",
-        "MapRoll",
-        "MapRoll",
-        "MapRoll",
-        "MapRoll",
-        "MapRoll",
-        "MapRoll",
-        "MapRoll",
-        "MapRoll",
-        "MapRoll",              //LEVEL 6
-        "MapRoll",
-        "MapRoll",
-        "MapRoll",
-        "MapRoll",
-        "MapRoll",
-        "MapRoll",
-        "MapRoll",
-        "MapRoll",
-        "MapRoll",
-        "MapRoll",
-        "MapRoll",
+        "map_level_1_phase_1",  //LEVEL 4
+        "map_level_1_phase_2",
+        "map_level_1_phase_3",
+        "map_level_1_phase_4",
+        "map_level_1_phase_5",
+        "map_level_1_phase_6",
+        "map_level_1_phase_7",
+        "map_level_1_phase_8",
+        "map_level_1_phase_9",
+        "map_level_1_phase_10",
+        "map_level_1_phase_11",
+        "map_level_1_phase_12",
+        "map_level_2_phase_1",  //LEVEL 5
+        "map_level_2_phase_2",
+        "map_level_2_phase_3",
+        "map_level_2_phase_4",
+        "map_level_2_phase_5",
+        "map_level_2_phase_6",
+        "map_level_2_phase_7",
+        "map_level_2_phase_8",
+        "map_level_2_phase_9",
+        "map_level_2_phase_10",
+        "map_level_2_phase_11",
+        "map_level_2_phase_12",
+        "map_level_3_phase_1",  //LEVEL 6
+        "map_level_3_phase_2",
+        "map_level_3_phase_3",
+        "map_level_3_phase_4",
+        "map_level_3_phase_5",
+        "map_level_3_phase_6",
+        "map_level_3_phase_7",
+        "map_level_3_phase_8",
+        "map_level_3_phase_9",
+        "map_level_3_phase_10",
+        "map_level_3_phase_11",
+        "map_level_3_phase_12",
+
     
     ]
     static let imagesPerLevel: Int = 12
-    static let animationDelay: Double = 0.5
+    static let animationStartDelay: Double = 0.75
+    static let animationDelay: Double = 0.15
     
     @Published var currentFrameIndex: Int = 0
     
     private init() { /* SINGELTON (PRIVATE CONSTRUCTOR! */ }
         
     func animateWorldMap() {
-        
+ 
         //Level 1 = 0, Level 2 = 12, Level 3 = 24, etc....
-        let startIndex: Int = (UserData.currentLevel-1) * WorldMapAnimation.imagesPerLevel
+        let startIndex: Int = (UserData.lastSavedLevel-1) * WorldMapAnimation.imagesPerLevel
         
-        print("DANNE: Start index = \(startIndex)")
+        if startIndex >= (WorldMapAnimation.worldMapImageNames.count - WorldMapAnimation.imagesPerLevel) {
+            WorldMapAnimation.instance.currentFrameIndex = WorldMapAnimation.worldMapImageNames.count-1
+            print("DANNE: MAX INDEX RETURN = \(WorldMapAnimation.instance.currentFrameIndex) | LAST FRAME INDEX = \(WorldMapAnimation.worldMapImageNames.count-1)")
+            return
+        }
         
-        //test
-        animationLoop(startImageIndex: startIndex)
+        WorldMapAnimation.instance.currentFrameIndex = startIndex
+        
+        //Animation start delay
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + WorldMapAnimation.animationStartDelay){
+            
+            //Iterative function
+            WorldMapAnimation.instance.animationLoop(startImageIndex: startIndex)
+        }
         
     }
     
     private func animationLoop(startImageIndex: Int, loopIndex: Int = 0) {
         
-        print("DANNE: Current loop index = \(loopIndex)")
+        //print("DANNE: Current loop index = \(loopIndex)")
         
         if loopIndex > WorldMapAnimation.imagesPerLevel-1 { return }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + WorldMapAnimation.animationDelay){
             
-            //WorldMapAnimation.instance.currentFrameIndex = startImageIndex + loopIndex
-            print("DANNE: Current image index = \(startImageIndex+loopIndex)")
+            WorldMapAnimation.instance.currentFrameIndex = startImageIndex + loopIndex
+            //print("DANNE: Current image index = \(startImageIndex+loopIndex)")
             
-            WorldMapAnimation.instance.animationLoop(startImageIndex: startImageIndex, loopIndex: loopIndex-1)
+            WorldMapAnimation.instance.animationLoop(startImageIndex: startImageIndex, loopIndex: loopIndex+1)
             
         }
     }
