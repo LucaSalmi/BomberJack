@@ -54,5 +54,9 @@ class WorldMapAnimation: ObservableObject {
     
     static let imagesPerLevel: Int = 12
     
-    private init() { //SINGELTON (PRIVATE CONSTRUCTOR! }
+    @Published var currentFrameIndex: Int = 0
+    
+    private init() { /* SINGELTON (PRIVATE CONSTRUCTOR! */ }
+        
+    
 }

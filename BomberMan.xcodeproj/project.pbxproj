@@ -265,7 +265,6 @@
 				C8CEDCDB27CF6ACD008C5A64 /* TabMenu.swift */,
 				C8A7490227CD0C2F00AD68E8 /* OptionsMenu.swift */,
 				D5A24D2527CE144000AD62F1 /* SideViewMapMenu.swift */,
-				33B75B6827E08835004CABDE /* WorldMapAnimation.swift */,
 			);
 			path = "SwiftUI Interfaces";
 			sourceTree = "<group>";
@@ -289,6 +288,7 @@
 				C84B3AF827CF9F4400224426 /* Scenes */,
 				C84B3AF727CF9F1E00224426 /* SwiftUI Interfaces */,
 				C815F79727B400490084DE7A /* GameScene.swift */,
+				33B75B6827E08835004CABDE /* WorldMapAnimation.swift */,
 				E5DCA41827D8D8E600DC05EA /* SwiftUICommunicator.swift */,
 			);
 			path = "Scenes and Controllers";
