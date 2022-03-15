@@ -27,6 +27,7 @@ class Player: SKSpriteNode{
     var leftAnimations: [SKAction] = []
     var upAnimations: [SKAction] = []
     var downAnimations: [SKAction] = []
+    let characterAnimationNames = ["player_walk_right_", "player_walk_left_", "player_walk_down_", "player_walk_up_"]
     var playerTexture: SKSpriteNode! = SKSpriteNode()
     var shieldTexture: SKSpriteNode! = SKSpriteNode()
     var currentTexture: SKSpriteNode! = SKSpriteNode()
@@ -73,7 +74,7 @@ class Player: SKSpriteNode{
         shieldTexture.alpha = 0
         GameViewController.currentGameScene!.addChild(shieldTexture)
         
-        createPlayerAnimations(character: "player_walk")
+        createPlayerAnimations(characterAnimationNames: characterAnimationNames)
         
         lightingBitMask = 1
     }
