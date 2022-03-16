@@ -59,7 +59,6 @@
 		C8A7490327CD0C2F00AD68E8 /* OptionsMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A7490227CD0C2F00AD68E8 /* OptionsMenu.swift */; };
 		C8B747FF27BF992F00D76B32 /* Animatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B747FE27BF992F00D76B32 /* Animatable.swift */; };
 		C8B7480127BF9A9A00D76B32 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B7480027BF9A9A00D76B32 /* Extensions.swift */; };
-		C8C76FB527DA131400205CAA /* SwordAttack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C76FB427DA131400205CAA /* SwordAttack.swift */; };
 		C8C7DC2F27BFD9990083656A /* PhysicsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C7DC2E27BFD9990083656A /* PhysicsExtension.swift */; };
 		C8C7DC3127BFDB470083656A /* Explosion.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C7DC3027BFDB470083656A /* Explosion.swift */; };
 		C8CEDCDC27CF6ACD008C5A64 /* TabMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8CEDCDB27CF6ACD008C5A64 /* TabMenu.swift */; };
@@ -139,7 +138,6 @@
 		C8A7490227CD0C2F00AD68E8 /* OptionsMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsMenu.swift; sourceTree = "<group>"; };
 		C8B747FE27BF992F00D76B32 /* Animatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animatable.swift; sourceTree = "<group>"; };
 		C8B7480027BF9A9A00D76B32 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		C8C76FB427DA131400205CAA /* SwordAttack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwordAttack.swift; sourceTree = "<group>"; };
 		C8C7DC2E27BFD9990083656A /* PhysicsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsExtension.swift; sourceTree = "<group>"; };
 		C8C7DC3027BFDB470083656A /* Explosion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Explosion.swift; sourceTree = "<group>"; };
 		C8CEDCDB27CF6ACD008C5A64 /* TabMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabMenu.swift; sourceTree = "<group>"; };
@@ -397,7 +395,6 @@
 				33B882A427BBEF3500BB897E /* Enemy.swift */,
 				33B882A627BBF2FB00BB897E /* TestEnemy.swift */,
 				3354DF2927BFDAE60019D640 /* RushEnemy.swift */,
-				C8C76FB427DA131400205CAA /* SwordAttack.swift */,
 			);
 			path = Enemy;
 			sourceTree = "<group>";
@@ -514,7 +511,6 @@
 				E533BFB227D0D7D000FDBFAD /* DoorHorizontal.swift in Sources */,
 				E5DCA41727D8D62400DC05EA /* BomberMan.xcdatamodeld in Sources */,
 				330C62EB27D8C8B600E01C98 /* Level1IntroDialogue.swift in Sources */,
-				C8C76FB527DA131400205CAA /* SwordAttack.swift in Sources */,
 				33B882A327BBC41A00BB897E /* MovementManager.swift in Sources */,
 				33250F4027CE073F0019AAB1 /* GameUIView.swift in Sources */,
 				C8C7DC2F27BFD9990083656A /* PhysicsExtension.swift in Sources */,

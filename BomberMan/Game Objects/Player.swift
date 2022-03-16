@@ -74,7 +74,7 @@ class Player: SKSpriteNode{
         shieldTexture.alpha = 0
         GameViewController.currentGameScene!.addChild(shieldTexture)
         
-        createPlayerAnimations(characterAnimationNames: characterAnimationNames)
+        createAnimationSets(characterAnimationNames: characterAnimationNames, numberOfFrames: AnimationData.numberOfFramesPlayer, timePerFrame: AnimationData.timePerFramePlayer)
         
         lightingBitMask = 1
     }
@@ -124,7 +124,6 @@ class Player: SKSpriteNode{
         self.position.x += (direction.x * PlayerSettings.playerSpeed)
         self.position.y += (direction.y * PlayerSettings.playerSpeed)
         
-        //HERE
         let animationDirection = PhysicsUtils.findDirection(objDirection: direction)
         
         runAnim(playerDirection: animationDirection)
@@ -143,7 +142,7 @@ class Player: SKSpriteNode{
     }
     
     func death(player: SKNode){
-        
+                
         let deathParticle = SKEmitterNode(fileNamed: "EnemyDeath")
         deathParticle!.particleTexture = playerTexture.texture
         deathParticle!.position = playerTexture.position
