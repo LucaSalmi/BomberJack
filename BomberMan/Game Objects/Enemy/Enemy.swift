@@ -67,6 +67,8 @@ class Enemy: SKSpriteNode {
         enemyTexture.zPosition = 50
         enemyTexture.lightingBitMask = 1
         
+        corpseTexture.lightingBitMask = 1
+        
         setEnemyAnimations(enemy: "enemy_walk_animation")
     }
     

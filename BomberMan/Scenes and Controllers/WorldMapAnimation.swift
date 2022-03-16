@@ -75,6 +75,8 @@ class WorldMapAnimation: ObservableObject {
         
     func animateWorldMap() {
         
+        print("DANNE: Last saved level = \(UserData.lastSavedLevel)")
+        
         isAnimating = true
  
         //Level 1 = 0, Level 2 = 12, Level 3 = 24, etc....
