@@ -123,7 +123,7 @@ class GameScene: SKScene {
 //            Player.camera!.run(newScale)
 //
         case 3:
-            victoryCondition = VictoryConditions.openDoorAndKillAll
+            victoryCondition = VictoryConditions.openDoor
             
         case 4:
             victoryCondition = VictoryConditions.killAll
