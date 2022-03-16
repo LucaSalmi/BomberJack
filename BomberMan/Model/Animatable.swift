@@ -11,6 +11,7 @@ import SpriteKit
 enum AnimationData{
     
     static let numberOfFramesPlayer = 7
+    static let numberOfFramesRushEnemy = 12
     
 }
 
@@ -57,7 +58,7 @@ extension Animatable{
                     
                 case "player_walk_down_":
                     downAnimations.append(anim)
-                                        
+                    
                 default:
                     print("animation error")
                 }
@@ -67,7 +68,7 @@ extension Animatable{
         
     }
     
-    func setEnemyAnimations(enemy: String){
+    func setSwordEnemyAnimations(enemy: String){
         
         let actionForward: SKAction = SKAction.animate(with: [
             SKTexture(imageNamed: "\(enemy)_up_1"),
@@ -95,6 +96,72 @@ extension Animatable{
         
         
     }
+    
+    func setRushEnemyAnimations(characterAnimationNames: [String]){
+        
+        
+        for fileName in characterAnimationNames{
+            
+            if fileName == "rush_down_"{
+                
+                let actionBackward1: SKAction = SKAction.animate(with: [
+                    SKTexture(imageNamed: "\(fileName)1"),
+                    SKTexture(imageNamed: "\(fileName)2")
+                ], timePerFrame: 0.4)
+                downAnimations.append(actionBackward1)
+                let actionBackward2: SKAction = SKAction.animate(with: [
+                    SKTexture(imageNamed: "\(fileName)2"),
+                    SKTexture(imageNamed: "\(fileName)1")
+                ], timePerFrame: 0.4)
+                downAnimations.append(actionBackward2)
+                
+            }else if fileName == "rush_top_"{
+                
+                let actionForward1: SKAction = SKAction.animate(with: [
+                    SKTexture(imageNamed: "\(fileName)1"),
+                    SKTexture(imageNamed: "\(fileName)2")
+                ], timePerFrame: 0.4)
+                upAnimations.append(actionForward1)
+                let actionForward2: SKAction = SKAction.animate(with: [
+                    SKTexture(imageNamed: "\(fileName)2"),
+                    SKTexture(imageNamed: "\(fileName)1")
+                ], timePerFrame: 0.4)
+                upAnimations.append(actionForward2)
+                
+            }else{
+                
+                for i in 1...AnimationData.numberOfFramesRushEnemy{
+                    
+                    let anim: SKAction
+                    
+                    if i == AnimationData.numberOfFramesRushEnemy{
+                        //the last animation frame is connected to the first again
+                        anim = SKAction.animate(with: [SKTexture(pixelImageNamed: "\(fileName)\(i)"), SKTexture(pixelImageNamed: "\(fileName)1")], timePerFrame: 0.4)
+                        
+                    }else{
+                        //one frame is connected to the next in a SKAction
+                        anim = SKAction.animate(with: [SKTexture(pixelImageNamed: "\(fileName)\(i)"), SKTexture(pixelImageNamed: "\(fileName)\(i+1)")], timePerFrame: 0.4)
+                        
+                    }
+                    
+                    switch fileName{
+                        
+                    case "rush_right_":
+                        rightAnimations.append(anim)
+                        
+                    case "rush_left_":
+                        leftAnimations.append(anim)
+                        
+                    default:
+                        print("animation error")
+                    }
+                }
+            }
+        }
+    }
+    
+    
+    
     
     
 }

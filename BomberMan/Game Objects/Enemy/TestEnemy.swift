@@ -29,7 +29,7 @@ class TestEnemy: Enemy {
         let tempColor = UIColor(red: 100, green: 100, blue: 100, alpha: 0)
         super.init(SKTexture(imageNamed: "player_shadow"), tempColor, size)
         name = "Test Enemy"
-        
+        setSwordEnemyAnimations(enemy: "enemy_walk_animation")
         enemySpeed = 0.5
         difficult = Enemy.superEasy
         direction = getRandomDirection()
