@@ -38,6 +38,13 @@ struct PauseMenu: View {
                 
                 Text(swiftUICommunicator.isGameOver ? "Game Over" : "Paused")
                 
+                if swiftUICommunicator.isGameOver{
+                    
+                    Text(GameScene.gameOverInsult)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .frame(width: 470, height: 50)
+                }
+                
                 
                 HStack{
                     
@@ -164,8 +171,8 @@ struct PauseMenu: View {
         }.transition(.scale)
         
         
-        
     }
+    
     
 }
 

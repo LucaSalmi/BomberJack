@@ -15,6 +15,7 @@ class GameScene: SKScene {
     static var tileSize: CGSize? = CGSize(width: 32, height: 32)
     static var gameState = GameState.play
     static var canUseTraps = true
+    static var gameOverInsult : String = ""
     
     var trapDelayCounter = 120
     
@@ -695,7 +696,7 @@ class GameScene: SKScene {
 
         let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
             guard let data = data else { return }
-            print(String(data: data, encoding: .utf8)!)
+            GameScene.gameOverInsult = String(data: data, encoding: .utf8)!
         }
 
         task.resume()
