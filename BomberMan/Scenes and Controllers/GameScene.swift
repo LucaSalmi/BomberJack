@@ -122,6 +122,9 @@ class GameScene: SKScene {
             let newScale: SKAction = SKAction.scale(by: 0.6, duration: 1)
             Player.camera!.run(newScale)
             
+        case 3:
+            victoryCondition = VictoryConditions.openDoor
+            
         default:
             victoryCondition = VictoryConditions.killAll
             Player.camera!.setScale(CGFloat(0.42))
