@@ -12,7 +12,7 @@ class RushEnemy: Enemy {
     
     //Charge AI logic variables
     var isCharging: Bool = false
-    let chargeSpeedMultiplier: CGFloat = 3.0
+    let chargeSpeedMultiplier: CGFloat = 3.5
     var chargeSpeed: CGFloat = 0.0
     
     //Movement AI logic variables
@@ -82,9 +82,15 @@ class RushEnemy: Enemy {
     
     private func searchForPlayer() -> CGPoint {
         
+        let cancelSearch = CGPoint(x: 0, y: 0)
+        
+        guard let backgroundMap = GameViewController.currentGameScene!.childNode(withName: "background")as? SKTileMapNode else {
+            return cancelSearch
+        }
+        
         let worldWidth = (GameViewController.currentGameScene!.backgroundMap!.mapSize.width)
         //let worldWidth = (self.scene as! GameScene).backgroundMap!.mapSize.width
-        let rayStart = self.position
+        guard let rayStart = PhysicsUtils.findCenterOfClosestTile(map: backgroundMap, object: self) else { return cancelSearch }
         var targetBody = SKPhysicsBody()
         
         let directions = [CGPoint(x: 1, y: 0),//right
@@ -121,7 +127,7 @@ class RushEnemy: Enemy {
         }
         
         //return default when no player was found
-        return CGPoint(x: 0, y: 0)
+        return cancelSearch
     }
     
     private func knockBack() {
