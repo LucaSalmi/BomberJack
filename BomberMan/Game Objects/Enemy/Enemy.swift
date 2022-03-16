@@ -71,7 +71,6 @@ class Enemy: SKSpriteNode {
         
         corpseTexture.lightingBitMask = 1
         
-        setEnemyAnimations(enemy: "enemy_walk_animation")
     }
     
     func bloodParticle() {
