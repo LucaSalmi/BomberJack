@@ -55,11 +55,14 @@ class TrapBomb: Bomb{
             
             if bomb == self && self.isTrapActive{
                 
+                if self.isTrapActive && trapActive == 1{
+                    self.texture = SKTexture(imageNamed: "trap_bomb_folded")
+                }
+                
                 trapActive += 1
                 
                 if trapActive >= BombSettings.trapDuration{
                     
-                    print("trap removed")
                     resetBools()
                     Bomb.bombs.remove(at: i)
                     bomb.removeFromParent()

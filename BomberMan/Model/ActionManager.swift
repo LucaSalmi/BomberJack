@@ -57,7 +57,7 @@ class ActionManagager{
             
     func placeBomb(id: Int){
         
-        if GameViewController.currentGameScene!.player!.isShielded {
+        if GameViewController.currentGameScene!.player!.isShielded || !GameScene.canUseTraps || Bomb.bombs.count > 2{
             return
         }
         //stat change
@@ -72,12 +72,24 @@ class ActionManagager{
             
         case 1:
             bomb = TrapBomb()
+            GameScene.canUseTraps = false
             
         default:
             bomb = StandardBomb()
         }
         
         if bomb is StandardBomb && !PlayerSettingsUI.instance.haveBombs {
+            guard let gameScene = GameViewController.currentGameScene else { return }
+            
+            if gameScene.currentDialogue != nil {
+                gameScene.currentDialogue!.removeFromParent()
+            }
+            
+            //Unique logarithm for this event goes here
+            let noBombsDialogue = NoBombsDialogue()
+            gameScene.currentDialogue = noBombsDialogue
+            //print(NeedBombsDialogue)
+            gameScene.addChild(noBombsDialogue)
             return
         }
         

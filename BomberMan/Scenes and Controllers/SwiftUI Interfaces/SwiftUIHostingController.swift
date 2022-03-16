@@ -39,8 +39,6 @@ struct ContentView: View {
         swiftUICommunicator = SwiftUICommunicator.instance
         
         _result = FetchRequest<Statistics>(sortDescriptors: sortingPredicate, animation: animation)
-        
-        
     }
     
     var body: some View {
@@ -48,10 +46,17 @@ struct ContentView: View {
         if startGame {
             ZStack {
                 
+                
                 if isPaused || swiftUICommunicator.isGameOver {
-                    PauseMenu(startGame: $startGame, isPaused: $isPaused)
+                    
+                    
+                        PauseMenu(startGame: $startGame, isPaused: $isPaused)
+                        //.animation(.easeIn, value: true)
+                        //.transition(AnyTransition.opacity.animation(.easeIn(duration: 5)))
                         .zIndex(2)
-
+                    
+                        
+                
                 }
                 GameView(startGame: $startGame, isPaused: $isPaused)
                     .zIndex(1)
@@ -142,7 +147,7 @@ struct MainMenyView: View {
                                     // Replace this implementation with code to handle the error appropriately.
                                     // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
                                     let nsError = error as NSError
-                                    fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+                                    print("Unresolved error \(nsError), \(nsError.userInfo)")
                                 }
                             }
                             

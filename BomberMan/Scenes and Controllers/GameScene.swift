@@ -14,6 +14,10 @@ class GameScene: SKScene {
     static var viewController: GameViewController? = nil
     static var tileSize: CGSize? = CGSize(width: 32, height: 32)
     static var gameState = GameState.play
+    static var canUseTraps = true
+    static var gameOverInsult : String = ""
+    
+    var trapDelayCounter = 120
     
     var isCaveLevel: Bool = false
     
@@ -92,7 +96,7 @@ class GameScene: SKScene {
         }
         lightNode = (node as! SKLightNode)
         lightNode!.position = player!.position
-        lightNode!.falloff = 4
+        lightNode!.falloff = 3
         
         guard let darknessNode = childNode(withName: "darknessMask") else { return }
         darknessMaskNode = (darknessNode as! SKSpriteNode)
@@ -114,15 +118,21 @@ class GameScene: SKScene {
             victoryCondition = VictoryConditions.openDoor
             
         case 2:
+            victoryCondition = VictoryConditions.openDoor
+//            let newScale: SKAction = SKAction.scale(by: 0.6, duration: 1)
+//            Player.camera!.run(newScale)
+//
+        case 3:
+            victoryCondition = VictoryConditions.openDoorAndKillAll
+            
+        case 4:
             victoryCondition = VictoryConditions.killAll
-            let newScale: SKAction = SKAction.scale(by: 0.6, duration: 1)
-            Player.camera!.run(newScale)
             
         default:
             victoryCondition = VictoryConditions.killAll
-            Player.camera!.setScale(CGFloat(0.42))
-            let newScale: SKAction = SKAction.scale(by: 1.66, duration: 1)
-            Player.camera!.run(newScale)
+//            Player.camera!.setScale(CGFloat(0.42))
+//            let newScale: SKAction = SKAction.scale(by: 1.66, duration: 1)
+//            Player.camera!.run(newScale)
             
         }
     }
@@ -191,6 +201,7 @@ class GameScene: SKScene {
                     
                     breakable = Fence(textureName: textureName)
                 }else{
+                    
                     return
                 }
                 
@@ -490,7 +501,17 @@ class GameScene: SKScene {
             return
         }
         
-        
+        if !GameScene.canUseTraps{
+            
+            trapDelayCounter -= 1
+            
+            if trapDelayCounter <= 0{
+                
+                GameScene.canUseTraps = true
+                trapDelayCounter = 120
+                
+            }
+        }
         
         if isGameOver{
             
@@ -508,7 +529,7 @@ class GameScene: SKScene {
 //            self.removeAllActions()
   //            self.stopScene()
             
-            SwiftUICommunicator.instance.isGameOver = true
+            SwiftUICommunicator.instance.setIsGameOver()
             
             //Present a new instance of the scene
 //            let restartScene = "GameScene" + String(GameScene.viewController!.currentLevel)
@@ -539,12 +560,6 @@ class GameScene: SKScene {
                     return
                 }
                 enemy.update()
-            }
-            
-            print("Luca sword: \(Enemy.attacks.count)")
-            for attack in Enemy.attacks{
-                
-                attack.update()
             }
             
             for explosion in ExplosionSettings.explosionsArray{
@@ -660,6 +675,34 @@ class GameScene: SKScene {
                     
                 }
                 
+            case .openDoorAndKillAll:
+                
+                guard let obstaclesArray = obstaclesNode?.children else {return}
+                for obj in obstaclesArray{
+                    
+                    if obj is Door {
+                        let door = obj as! Door
+                        if !door.isOpened {
+                            return
+                        }
+                    }
+                }
+                
+                if PlayerSettingsUI.instance.haveBombs{
+                    isDoorOpen = true
+                }
+                
+                
+                if isDoorOpen && Enemy.enemies.count <= 0{
+                    
+                    UserData.currentLevel += 1
+                    dataReaderWriter.saveLocalSaveData()
+                    let sceneName = "GameScene\(UserData.currentLevel)"
+                    GameScene.viewController!.presentScene(sceneName)
+                    print("keys found and door opened, good job...")
+                    
+                }
+                
                 
             default:
                 print("something went VERY wrong...")
@@ -682,7 +725,7 @@ class GameScene: SKScene {
 
         let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
             guard let data = data else { return }
-            print(String(data: data, encoding: .utf8)!)
+            GameScene.gameOverInsult = String(data: data, encoding: .utf8)!
         }
 
         task.resume()

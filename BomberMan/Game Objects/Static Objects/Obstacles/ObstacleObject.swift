@@ -34,7 +34,7 @@ class ObstacleObject: SKSpriteNode{
             obstacleTexture = SKSpriteNode(texture: nil, color: .clear, size: size!)
         }
         
-        
+        obstacleTexture.lightingBitMask = 1
         super.init(texture: nil, color: .clear, size: GameScene.tileSize!)
         name = "Obstacle Object"
         zPosition = 50

@@ -27,6 +27,7 @@ class Player: SKSpriteNode{
     var leftAnimations: [SKAction] = []
     var upAnimations: [SKAction] = []
     var downAnimations: [SKAction] = []
+    let characterAnimationNames = ["player_walk_right_", "player_walk_left_", "player_walk_down_", "player_walk_up_"]
     var playerTexture: SKSpriteNode! = SKSpriteNode()
     var shieldTexture: SKSpriteNode! = SKSpriteNode()
     var currentTexture: SKSpriteNode! = SKSpriteNode()
@@ -34,6 +35,8 @@ class Player: SKSpriteNode{
     var isTrapped = false
     var isShielded = false
     var shieldTick: CGFloat = 0.0
+    
+    var newDirection: CGPoint?
     
     
     
@@ -71,7 +74,7 @@ class Player: SKSpriteNode{
         shieldTexture.alpha = 0
         GameViewController.currentGameScene!.addChild(shieldTexture)
         
-        createPlayerAnimations(character: "player_walk")
+        createAnimationSets(characterAnimationNames: characterAnimationNames, numberOfFrames: AnimationData.numberOfFramesPlayer, timePerFrame: AnimationData.timePerFramePlayer)
         
         lightingBitMask = 1
     }
@@ -116,10 +119,11 @@ class Player: SKSpriteNode{
             return
         }
         
+        newDirection = direction
+        
         self.position.x += (direction.x * PlayerSettings.playerSpeed)
         self.position.y += (direction.y * PlayerSettings.playerSpeed)
         
-        //HERE
         let animationDirection = PhysicsUtils.findDirection(objDirection: direction)
         
         runAnim(playerDirection: animationDirection)
@@ -138,7 +142,7 @@ class Player: SKSpriteNode{
     }
     
     func death(player: SKNode){
-        
+                
         let deathParticle = SKEmitterNode(fileNamed: "EnemyDeath")
         deathParticle!.particleTexture = playerTexture.texture
         deathParticle!.position = playerTexture.position
@@ -147,7 +151,7 @@ class Player: SKSpriteNode{
         GameViewController.currentGameScene!.run(SKAction.wait(forDuration: 1)) {
             deathParticle!.removeFromParent()
         }
-        //Play sound SFX on death?
+        SoundManager.playSFX(SoundManager.deathScreamSFX)
         
         //stat change
         UserData.numberOfDeaths += 1
@@ -156,6 +160,9 @@ class Player: SKSpriteNode{
         
         player.removeFromParent()
         currentTexture.removeFromParent()
+        
+        ExplosionSettings.explosionsArray.removeAll()
+        Bomb.bombs.removeAll()
         
         GameViewController.currentGameScene!.isGameOver = true
         

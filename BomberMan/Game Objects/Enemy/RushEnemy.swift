@@ -8,36 +8,89 @@
 import Foundation
 import GameplayKit
 
-class RushEnemy: TestEnemy {
+class RushEnemy: Enemy {
     
+    //Charge AI logic variables
     var isCharging: Bool = false
-    let chargeSpeedMultiplier: CGFloat = 3.0
+    let chargeSpeedMultiplier: CGFloat = 3.5
     var chargeSpeed: CGFloat = 0.0
+    
+    //Movement AI logic variables
+    var changeDirectionInterval: CGFloat = 0.0
+    let tileSize: CGFloat = 32.0  //32 = tile size
+    let minIntervalMultiplier: Int = 1
+    let maxIntervalMultiplier: Int = 5
+    var currentMovementDistance: CGFloat = 0.0
+    var direction = CGPoint(x: 0, y: 0)
     
     var isStunned: Bool = false
     let stunDuration: CGFloat = 60 * 3
     var stunTick: CGFloat = 0
     
+    let characterAnimationNames = ["rush_right_", "rush_left_", "rush_down_", "rush_top_"]
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("use init()")
     }
     
-    override init(){
-        super.init()
+    init(){
+        
+        let size: CGSize = CGSize(width: 32, height: 32)
+        let tempColor = UIColor(red: 100, green: 100, blue: 100, alpha: 0)
+        super.init(SKTexture(imageNamed: "player_shadow"), tempColor, size)
         name = "Rush Enemy"
         
         difficult = Enemy.easy
-        
+        enemySpeed = 0.5
         chargeSpeed = enemySpeed * chargeSpeedMultiplier
-        //keep until we get rush enemy texture
-        //self.texture = SKTexture(imageNamed: "firebug")
+        self.enemyTexture.texture = SKTexture(imageNamed: "rush_down_1")
+        setRushEnemyAnimations(characterAnimationNames: characterAnimationNames)
+        direction = getRandomDirection()
+    }
+    
+    internal func getRandomDirection() -> CGPoint {
+        var newDirection = CGPoint(x: 0, y: 0)
+        
+        let moveSideways: Bool = Bool.random()
+        if moveSideways {
+            newDirection.x = 1
+        }
+        else {
+            newDirection.y = 1
+        }
+        
+        let invertDirection: Bool = Bool.random()
+        if invertDirection {
+            newDirection.x *= -1
+            newDirection.y *= -1
+        }
+        
+        //set random move distance based on tile size and a random multiplier within limits
+        let intervalMultiplier: Int = Int.random(in: minIntervalMultiplier...maxIntervalMultiplier)
+        changeDirectionInterval = tileSize * CGFloat(intervalMultiplier)
+        currentMovementDistance = 0 //reset move distance after changing direction
+        
+        return newDirection
+    }
+    
+    private func updateDirection(newDirection: CGPoint) {
+        
+        self.position = centerInCurrentTile()
+        
+        direction = newDirection
     }
     
     private func searchForPlayer() -> CGPoint {
         
+        let cancelSearch = CGPoint(x: 0, y: 0)
+        
+        guard let backgroundMap = GameViewController.currentGameScene!.childNode(withName: "background")as? SKTileMapNode else {
+            return cancelSearch
+        }
+        
         let worldWidth = (GameViewController.currentGameScene!.backgroundMap!.mapSize.width)
         //let worldWidth = (self.scene as! GameScene).backgroundMap!.mapSize.width
-        let rayStart = self.position
+        guard let rayStart = PhysicsUtils.findCenterOfClosestTile(map: backgroundMap, object: self) else { return cancelSearch }
         var targetBody = SKPhysicsBody()
         
         let directions = [CGPoint(x: 1, y: 0),//right
@@ -74,7 +127,7 @@ class RushEnemy: TestEnemy {
         }
         
         //return default when no player was found
-        return CGPoint(x: 0, y: 0)
+        return cancelSearch
     }
     
     private func knockBack() {
@@ -129,6 +182,7 @@ class RushEnemy: TestEnemy {
         if trapPosition != nil {
             isCharging = false
             super.update()
+            normalUpdate()
             return
         }
         
@@ -165,8 +219,9 @@ class RushEnemy: TestEnemy {
         }
         
         //Normal update state
-        
         super.update()
+        normalUpdate()
+
         
         let rushDirection = searchForPlayer()
         if rushDirection.x == 0 && rushDirection.y == 0 {
@@ -179,9 +234,26 @@ class RushEnemy: TestEnemy {
             
             position = centerInCurrentTile()
         }
+    }
+    
+    func normalUpdate(){
         
+        position.x += (direction.x * enemySpeed)
+        position.y += (direction.y * enemySpeed)
         
-            
+        currentMovementDistance += enemySpeed
+        if currentMovementDistance == changeDirectionInterval {
+            updateDirection(newDirection: getRandomDirection())
+        }
+        
+        enemyTexture.position.x = position.x
+        enemyTexture.position.y = position.y + PlayerSettings.textureOffset
+        
+        let animationDirection = PhysicsUtils.findDirection(objDirection: direction)
+        runAnim(objDirection: animationDirection)
         
     }
+    
+    
+    
 }
