@@ -152,7 +152,7 @@ class Player: SKSpriteNode{
         GameViewController.currentGameScene!.run(SKAction.wait(forDuration: 1)) {
             deathParticle!.removeFromParent()
         }
-        //Play sound SFX on death?
+        SoundManager.playSFX(SoundManager.deathScreamSFX)
         
         //stat change
         UserData.numberOfDeaths += 1

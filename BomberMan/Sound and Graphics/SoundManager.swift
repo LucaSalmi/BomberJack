@@ -21,6 +21,7 @@ class SoundManager {
     static let doorOpenSFX = "door_sound"
     static let lootBombsSFX = "loot_bombs"
     static let lootKeysSFX = "loot_keys"
+    static let deathScreamSFX = "death_scream"
     
     static let mainMenuBGM = "main_menu_bgm"
     static let inGameBGM = "in_game_bgm"
