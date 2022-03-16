@@ -118,18 +118,21 @@ class GameScene: SKScene {
             victoryCondition = VictoryConditions.openDoor
             
         case 2:
-            victoryCondition = VictoryConditions.killAll
-            let newScale: SKAction = SKAction.scale(by: 0.6, duration: 1)
-            Player.camera!.run(newScale)
-            
-        case 3:
             victoryCondition = VictoryConditions.openDoor
+//            let newScale: SKAction = SKAction.scale(by: 0.6, duration: 1)
+//            Player.camera!.run(newScale)
+//
+        case 3:
+            victoryCondition = VictoryConditions.openDoorAndKillAll
+            
+        case 4:
+            victoryCondition = VictoryConditions.killAll
             
         default:
             victoryCondition = VictoryConditions.killAll
-            Player.camera!.setScale(CGFloat(0.42))
-            let newScale: SKAction = SKAction.scale(by: 1.66, duration: 1)
-            Player.camera!.run(newScale)
+//            Player.camera!.setScale(CGFloat(0.42))
+//            let newScale: SKAction = SKAction.scale(by: 1.66, duration: 1)
+//            Player.camera!.run(newScale)
             
         }
     }
@@ -668,6 +671,34 @@ class GameScene: SKScene {
                 
                 
                 if isDoorOpen{
+                    
+                    UserData.currentLevel += 1
+                    dataReaderWriter.saveLocalSaveData()
+                    let sceneName = "GameScene\(UserData.currentLevel)"
+                    GameScene.viewController!.presentScene(sceneName)
+                    print("keys found and door opened, good job...")
+                    
+                }
+                
+            case .openDoorAndKillAll:
+                
+                guard let obstaclesArray = obstaclesNode?.children else {return}
+                for obj in obstaclesArray{
+                    
+                    if obj is Door {
+                        let door = obj as! Door
+                        if !door.isOpened {
+                            return
+                        }
+                    }
+                }
+                
+                if PlayerSettingsUI.instance.haveBombs{
+                    isDoorOpen = true
+                }
+                
+                
+                if isDoorOpen && Enemy.enemies.count <= 0{
                     
                     UserData.currentLevel += 1
                     dataReaderWriter.saveLocalSaveData()

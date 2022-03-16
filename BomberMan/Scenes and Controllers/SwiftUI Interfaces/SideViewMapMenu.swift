@@ -93,7 +93,7 @@ struct LevelButtonView: View {
         .font(Font.body.bold())
         .font(.largeTitle)
         .padding(.leading, 20)
-        .opacity(checkAndStartLevel(id: buttonID) ? 1 : 0)
+        .opacity(checkLevelButton(id: buttonID) ? 1 : 0)
     }
     
     func checkAndStartLevel(id: Int) -> Bool{
@@ -117,4 +117,15 @@ struct LevelButtonView: View {
         
         return false
     }
+    
+    func checkLevelButton(id: Int) -> Bool{
+
+            if id <= UserData.lastSavedLevel+1{
+
+                return true
+
+            }
+            return false
+    }
+    
 }
