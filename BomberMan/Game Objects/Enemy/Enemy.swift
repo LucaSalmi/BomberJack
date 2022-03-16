@@ -28,6 +28,7 @@ class Enemy: SKSpriteNode {
     var leftAnimations: [SKAction] = []
     var upAnimations: [SKAction] = []
     var downAnimations: [SKAction] = []
+    var corpseTexture = SKSpriteNode(texture: SKTexture(imageNamed: "corpse_with_flesh"), size: GameScene.tileSize!)
     
     //change these variables in enemy subclass
     var enemySpeed: CGFloat = 0.0
@@ -116,6 +117,7 @@ class Enemy: SKSpriteNode {
                     
                     //stat change
                     UserData.enemiesKilled += 1
+                    spawnCorpse()
                     isAlive = false
                 }
             }
@@ -133,6 +135,14 @@ class Enemy: SKSpriteNode {
         
     }
  
+    private func spawnCorpse(){
+        
+        corpseTexture.position = self.position
+        corpseTexture.zPosition = -99
+        GameViewController.currentGameScene?.addChild(corpseTexture)
+        
+    }
+    
     func update() {
         
         updateZPosition()
