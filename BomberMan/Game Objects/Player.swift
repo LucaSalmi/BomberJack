@@ -74,7 +74,7 @@ class Player: SKSpriteNode{
         shieldTexture.alpha = 0
         GameViewController.currentGameScene!.addChild(shieldTexture)
         
-        createPlayerAnimations(characterAnimationNames: characterAnimationNames)
+        createAnimationSets(characterAnimationNames: characterAnimationNames, numberOfFrames: AnimationData.numberOfFramesPlayer, timePerFrame: AnimationData.timePerFramePlayer)
         
         lightingBitMask = 1
     }

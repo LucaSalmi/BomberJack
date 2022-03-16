@@ -12,7 +12,10 @@ enum AnimationData{
     
     static let numberOfFramesPlayer = 7
     static let numberOfFramesRushEnemy = 12
-    
+    static let numberOfFramesClassicEnemy = 4
+    static let timePerFramePlayer = 0.4
+    static let timePerFrameRushEnemy = 0.4
+    static let timePerFrameClassicEnemy = 0.4
 }
 
 protocol Animatable: AnyObject{
@@ -27,37 +30,37 @@ protocol Animatable: AnyObject{
 extension Animatable{
     
     
-    func createPlayerAnimations(characterAnimationNames: [String]){
+    func createAnimationSets(characterAnimationNames: [String], numberOfFrames: Int, timePerFrame: Double){
         
         for fileName in characterAnimationNames{
             
-            for i in 1...AnimationData.numberOfFramesPlayer{
+            for i in 1...numberOfFrames{
                 
                 let anim: SKAction
                 
-                if i == AnimationData.numberOfFramesPlayer{
+                if i == numberOfFrames{
                     //the last animation frame is connected to the first again
-                    anim = SKAction.animate(with: [SKTexture(pixelImageNamed: "\(fileName)\(i)"), SKTexture(pixelImageNamed: "\(fileName)1")], timePerFrame: 0.4)
+                    anim = SKAction.animate(with: [SKTexture(pixelImageNamed: "\(fileName)\(i)"), SKTexture(pixelImageNamed: "\(fileName)1")], timePerFrame: timePerFrame)
                     
                 }else{
                     //one frame is connected to the next in a SKAction
-                    anim = SKAction.animate(with: [SKTexture(pixelImageNamed: "\(fileName)\(i)"), SKTexture(pixelImageNamed: "\(fileName)\(i+1)")], timePerFrame: 0.4)
+                    anim = SKAction.animate(with: [SKTexture(pixelImageNamed: "\(fileName)\(i)"), SKTexture(pixelImageNamed: "\(fileName)\(i+1)")], timePerFrame: timePerFrame)
                     
                 }
                 
                 switch fileName{
                     
-                case "player_walk_right_":
+                case characterAnimationNames[0]:
                     rightAnimations.append(anim)
                     
-                case "player_walk_left_":
+                case characterAnimationNames[1]:
                     leftAnimations.append(anim)
                     
-                case "player_walk_up_":
-                    upAnimations.append(anim)
-                    
-                case "player_walk_down_":
+                case characterAnimationNames[2]:
                     downAnimations.append(anim)
+                    
+                case characterAnimationNames[3]:
+                    upAnimations.append(anim)
                     
                 default:
                     print("animation error")
@@ -68,34 +71,34 @@ extension Animatable{
         
     }
     
-    func setSwordEnemyAnimations(enemy: String){
-        
-        let actionForward: SKAction = SKAction.animate(with: [
-            SKTexture(imageNamed: "\(enemy)_up_1"),
-            SKTexture(imageNamed: "\(enemy)_up_1")
-        ], timePerFrame: 0.2)
-        upAnimations.append(SKAction.repeatForever(actionForward))
-        
-        let actionBackward: SKAction = SKAction.animate(with: [
-            SKTexture(imageNamed: "\(enemy)_down_1"),
-            SKTexture(imageNamed: "\(enemy)_down_1")
-        ], timePerFrame: 0.2)
-        downAnimations.append(SKAction.repeatForever(actionBackward))
-        
-        let actionLeft: SKAction = SKAction.animate(with: [
-            SKTexture(imageNamed: "\(enemy)_left_1"),
-            SKTexture(imageNamed: "\(enemy)_left_1")
-        ], timePerFrame: 0.2)
-        leftAnimations.append(SKAction.repeatForever(actionLeft))
-        
-        let actionRight: SKAction = SKAction.animate(with: [
-            SKTexture(imageNamed: "\(enemy)_right_1"),
-            SKTexture(imageNamed: "\(enemy)_right_1")
-        ], timePerFrame: 0.2)
-        rightAnimations.append(SKAction.repeatForever(actionRight))
-        
-        
-    }
+//    func setSwordEnemyAnimations(enemy: String){
+//
+//        let actionForward: SKAction = SKAction.animate(with: [
+//            SKTexture(imageNamed: "\(enemy)_up_1"),
+//            SKTexture(imageNamed: "\(enemy)_up_1")
+//        ], timePerFrame: 0.2)
+//        upAnimations.append(SKAction.repeatForever(actionForward))
+//
+//        let actionBackward: SKAction = SKAction.animate(with: [
+//            SKTexture(imageNamed: "\(enemy)_down_1"),
+//            SKTexture(imageNamed: "\(enemy)_down_1")
+//        ], timePerFrame: 0.2)
+//        downAnimations.append(SKAction.repeatForever(actionBackward))
+//
+//        let actionLeft: SKAction = SKAction.animate(with: [
+//            SKTexture(imageNamed: "\(enemy)_left_1"),
+//            SKTexture(imageNamed: "\(enemy)_left_1")
+//        ], timePerFrame: 0.2)
+//        leftAnimations.append(SKAction.repeatForever(actionLeft))
+//
+//        let actionRight: SKAction = SKAction.animate(with: [
+//            SKTexture(imageNamed: "\(enemy)_right_1"),
+//            SKTexture(imageNamed: "\(enemy)_right_1")
+//        ], timePerFrame: 0.2)
+//        rightAnimations.append(SKAction.repeatForever(actionRight))
+//
+//
+//    }
     
     func setRushEnemyAnimations(characterAnimationNames: [String]){
         

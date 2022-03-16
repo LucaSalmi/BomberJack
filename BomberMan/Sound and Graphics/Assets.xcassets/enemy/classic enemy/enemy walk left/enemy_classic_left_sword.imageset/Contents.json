@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "enemy_walk_animation left.png",
+      "filename" : "enemy_classic_left_sword.png",
       "idiom" : "universal",
       "scale" : "1x"
     },

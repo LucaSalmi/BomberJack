@@ -31,6 +31,7 @@ class Enemy: SKSpriteNode {
     var corpseTexture = SKSpriteNode(texture: SKTexture(imageNamed: "corpse_with_flesh"), size: GameScene.tileSize!)
     var enemyFrame = 0
     var frameLimiter: Int = 1
+    var skipFrame = false
     
     //change these variables in enemy subclass
     var enemySpeed: CGFloat = 0.0
@@ -202,8 +203,12 @@ class Enemy: SKSpriteNode {
         
         if frameLimiter > rightAnimations.count - 1 || frameLimiter > leftAnimations.count - 1{
             
-            enemyFrame += 1
+            if self is TestEnemy && !skipFrame{
+                
+                enemyFrame += 1
+            }
             frameLimiter = 1
+            skipFrame.toggle()
         }
         
         frameLimiter += 1

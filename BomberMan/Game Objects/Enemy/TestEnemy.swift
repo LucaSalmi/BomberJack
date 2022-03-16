@@ -18,6 +18,8 @@ class TestEnemy: Enemy {
     var currentMovementDistance: CGFloat = 0.0
     var direction = CGPoint(x: 0, y: 0)
     
+    let characterAnimationNames = ["enemy_classic_right_", "enemy_classic_left_", "enemy_classic_down_", "enemy_classic_up_"]
+    
     var isAttacking = false
     
     required init?(coder aDecoder: NSCoder) {
@@ -29,7 +31,8 @@ class TestEnemy: Enemy {
         let tempColor = UIColor(red: 100, green: 100, blue: 100, alpha: 0)
         super.init(SKTexture(imageNamed: "player_shadow"), tempColor, size)
         name = "Test Enemy"
-        setSwordEnemyAnimations(enemy: "enemy_walk_animation")
+        createAnimationSets(characterAnimationNames: characterAnimationNames, numberOfFrames: AnimationData.numberOfFramesClassicEnemy,
+                            timePerFrame: AnimationData.timePerFrameClassicEnemy)
         enemySpeed = 0.5
         difficult = Enemy.superEasy
         direction = getRandomDirection()
