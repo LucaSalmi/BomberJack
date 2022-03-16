@@ -143,9 +143,9 @@ struct PauseMenu: View {
                             Toggle("Music", isOn: self.$options.isMusicOn)
                                 .onReceive([self.$options.isMusicOn].publisher.first(), perform: { (value) in
                                     if options.isMusicOn{
-                                        SoundManager.playBGM(bgmString: SoundManager.mainMenuBGM)
+                                        SoundManager.playBGM(bgmString: SoundManager.inGameBGM)
                                     }else{
-                                        SoundManager.playBGM(bgmString: SoundManager.mainMenuBGM)
+                                        SoundManager.playBGM(bgmString: SoundManager.inGameBGM)
                                     }
                                 }).toggleStyle(myCheckbox())
                                 
