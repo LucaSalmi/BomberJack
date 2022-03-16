@@ -559,11 +559,6 @@ class GameScene: SKScene {
                 enemy.update()
             }
             
-            for attack in Enemy.attacks{
-                
-                attack.update()
-            }
-            
             for explosion in ExplosionSettings.explosionsArray{
                 explosion.update()
             }

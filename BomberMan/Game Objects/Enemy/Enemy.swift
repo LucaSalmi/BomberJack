@@ -12,7 +12,6 @@ class Enemy: SKSpriteNode {
     
     //Keep references to all enemies
     static var enemies = [Enemy]()
-    static var attacks = [SwordAttack]()
     
     //Constants (replace with enum)
     static let superEasy: Int = 0

@@ -45,26 +45,16 @@ extension GameScene: SKPhysicsContactDelegate{
                 
                 if nodeB is TestEnemy{
                     let enemy = nodeB as! TestEnemy
-                    let direction = PhysicsUtils.findDirection(objDirection: enemy.direction)
-                    let sword = SwordAttack(attackDirection: direction)
-                    sword.setPositions(with: nodeA!, enemyNode: nodeB!)
-                    GameViewController.currentGameScene!.addChild(sword)
+                    enemy.setAttackPosition(with: nodeA!)
                     
-                }else{
-                    
-                    if !player.isShielded{
-                        
-                        player.death(player: nodeA!)
-
-                    }
                 }
-                
-                // BodyB is a SwordAttack
-            case PhysicsCategory.Sword:
                 
                 if !player.isShielded{
+                    
                     player.death(player: nodeA!)
+                    
                 }
+                
                 
             case PhysicsCategory.Explosion:
                 
@@ -110,20 +100,17 @@ extension GameScene: SKPhysicsContactDelegate{
                 if nodeA is TestEnemy{
                     
                     let enemy = nodeA as! TestEnemy
-                    let direction = PhysicsUtils.findDirection(objDirection: enemy.direction)
-                    let sword = SwordAttack(attackDirection: direction)
-                    sword.setPositions(with: nodeB!, enemyNode: nodeA!)
-                    GameViewController.currentGameScene!.addChild(sword)
+                    enemy.setAttackPosition(with: nodeB!)
                     
-                }else{
-                    
-                    if !player!.isShielded{
-                        
-                        player!.death(player: nodeB!)
-
-                    }
                 }
-
+                
+                if !player!.isShielded{
+                    
+                    player!.death(player: nodeB!)
+                    
+                }
+                
+                
                 // BodyB is a Breakable Object
             case PhysicsCategory.Breakable:
                 
@@ -261,7 +248,7 @@ extension GameScene: SKPhysicsContactDelegate{
                 let door = getDoor(node: nodeA!)
                 
                 door.collision(with: nodeA)
-                                
+                
             default:
                 print("mystery")
             }
@@ -278,20 +265,6 @@ extension GameScene: SKPhysicsContactDelegate{
             default:
                 print("mystery")
                 
-            }
-            
-        case PhysicsCategory.Sword:
-            
-            switch contact.bodyB.categoryBitMask{
-                
-            case PhysicsCategory.Player:
-                
-                if player!.isShielded{
-                    player!.death(player: nodeB!)
-                }
-                
-            default:
-                print("mystery")
             }
             
             //default case for main switch
