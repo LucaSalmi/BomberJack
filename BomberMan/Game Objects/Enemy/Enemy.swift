@@ -13,7 +13,7 @@ class Enemy: SKSpriteNode {
     //Keep references to all enemies
     static var enemies = [Enemy]()
     static var attacks = [SwordAttack]()
-
+    
     //Constants (replace with enum)
     static let superEasy: Int = 0
     static let easy: Int = 1
@@ -29,6 +29,8 @@ class Enemy: SKSpriteNode {
     var upAnimations: [SKAction] = []
     var downAnimations: [SKAction] = []
     var corpseTexture = SKSpriteNode(texture: SKTexture(imageNamed: "corpse_with_flesh"), size: GameScene.tileSize!)
+    var enemyFrame = 0
+    var frameLimiter: Int = 1
     
     //change these variables in enemy subclass
     var enemySpeed: CGFloat = 0.0
@@ -67,7 +69,6 @@ class Enemy: SKSpriteNode {
         enemyTexture.zPosition = 50
         enemyTexture.lightingBitMask = 1
         
-        setEnemyAnimations(enemy: "enemy_walk_animation")
     }
     
     func bloodParticle() {
@@ -134,7 +135,7 @@ class Enemy: SKSpriteNode {
         }
         
     }
- 
+    
     private func spawnCorpse(){
         
         corpseTexture.position = self.position
@@ -168,15 +169,47 @@ class Enemy: SKSpriteNode {
         switch objDirection {
             
         case .forward:
-            enemyTexture.run(upAnimations[0], withKey: "animation")
+            if enemyFrame > upAnimations.count - 1{
+                enemyFrame = 0
+            }
         case .backward:
-            enemyTexture.run(downAnimations[0], withKey: "animation")
+            if enemyFrame > downAnimations.count - 1{
+                enemyFrame = 0
+            }
         case .left:
-            enemyTexture.run(leftAnimations[0], withKey: "animation")
+            if enemyFrame > leftAnimations.count - 1{
+                enemyFrame = 0
+            }
         case .right:
-            enemyTexture.run(rightAnimations[0], withKey: "animation")
+            if enemyFrame > rightAnimations.count - 1{
+                enemyFrame = 0
+            }
         }
+        
+        switch objDirection {
+            
+        case .forward:
+            enemyTexture.run(upAnimations[enemyFrame], withKey: "animation")
+        case .backward:
+            enemyTexture.run(downAnimations[enemyFrame], withKey: "animation")
+        case .left:
+            enemyTexture.run(leftAnimations[enemyFrame], withKey: "animation")
+        case .right:
+            enemyTexture.run(rightAnimations[enemyFrame], withKey: "animation")
+        }
+        
+        if frameLimiter > rightAnimations.count - 1 || frameLimiter > leftAnimations.count - 1{
+            
+            enemyFrame += 1
+            frameLimiter = 1
+        }
+        
+        frameLimiter += 1
+        
     }
+    
+    
+    
     
     
 }
