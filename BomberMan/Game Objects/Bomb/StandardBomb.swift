@@ -37,26 +37,26 @@ class StandardBomb: Bomb{
     override func activation(_ position: CGPoint){
         
      
-        let explosion0 = Explosion(position: position)
+        let explosion0 = Explosion(position: position, explosionAnimPart: ExplosionPosition.center.rawValue)
         explosion0.texture = SKTexture(imageNamed: "start explosion middle 5")
         ExplosionSettings.explosionsArray.append(explosion0)
         
-        let explosion1 = Explosion(position: position)
+        let explosion1 = Explosion(position: position, explosionAnimPart: ExplosionPosition.left.rawValue)
         explosion1.position.x += ExplosionSettings.distanceNeg
         explosion1.texture = SKTexture(imageNamed: "start explosion left 5")
         ExplosionSettings.explosionsArray.append(explosion1)
         
-        let explosion2 = Explosion(position: position)
+        let explosion2 = Explosion(position: position, explosionAnimPart: ExplosionPosition.right.rawValue)
         explosion2.position.x += ExplosionSettings.distancePos
         explosion2.texture = SKTexture(imageNamed: "start explosion right 5")
         ExplosionSettings.explosionsArray.append(explosion2)
         
-        let explosion3 = Explosion(position: position)
+        let explosion3 = Explosion(position: position, explosionAnimPart: ExplosionPosition.bottom.rawValue)
         explosion3.position.y += ExplosionSettings.distanceNeg
         explosion3.texture = SKTexture(imageNamed: "start explosion bottom 5")
         ExplosionSettings.explosionsArray.append(explosion3)
         
-        let explosion4 = Explosion(position: position)
+        let explosion4 = Explosion(position: position, explosionAnimPart: ExplosionPosition.top.rawValue)
         explosion4.position.y += ExplosionSettings.distancePos
         explosion4.texture = SKTexture(imageNamed: "start explosion top 5")
         ExplosionSettings.explosionsArray.append(explosion4)

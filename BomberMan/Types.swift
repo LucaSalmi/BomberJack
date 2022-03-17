@@ -42,4 +42,8 @@ enum GameState: Int{
     case mainMenu = 0,  start, play, win, lose, pause
 }
 
-//test
+enum ExplosionPosition: Int{
+    
+    case center = 0, right, left, top, bottom
+    
+}
