@@ -92,7 +92,7 @@ struct GameUIView: View {
                                     .resizable()
                                     .scaledToFit()
                                     .frame(width: UIScreen.main.bounds.width/2, height: UIScreen.main.bounds.height*0.65 , alignment: .trailing)
-                                    .opacity(0.8)
+                                    .opacity(0.5)
                                 
                                 
                             }

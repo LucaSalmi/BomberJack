@@ -32,6 +32,7 @@ struct ContentView: View {
     var result: FetchedResults<Statistics>
     
     init(){
+        
         let sortingPredicate = [NSSortDescriptor(keyPath: \Statistics.killedEnemies, ascending: false)]
         
         let animation = Animation.default
@@ -189,7 +190,7 @@ struct MainMenyView: View {
                             .fontWeight(.bold)
                             .padding(.vertical, 10)
                             .padding(.horizontal, 20)
-                            .background(.black.opacity(self.index == 0 ? 1 : 0))
+                            .background(.black.opacity(self.index == 0 ? 0.5 : 0))
                             .clipShape(Capsule())
                             .onTapGesture {
                                 self.index = 0
@@ -200,7 +201,7 @@ struct MainMenyView: View {
                             .fontWeight(.bold)
                             .padding(.vertical, 10)
                             .padding(.horizontal, 20)
-                            .background(.black.opacity(self.index == 1 ? 1 : 0))
+                            .background(.black.opacity(self.index == 1 ? 0.5 : 0))
                             .clipShape(Capsule())
                             .onTapGesture {
                                 self.index = 1
@@ -211,7 +212,7 @@ struct MainMenyView: View {
                             .fontWeight(.bold)
                             .padding(.vertical, 10)
                             .padding(.horizontal, 20)
-                            .background(.black.opacity(self.index == 2 ? 1 : 0))
+                            .background(.black.opacity(self.index == 2 ? 0.5 : 0))
                             .clipShape(Capsule())
                             .onTapGesture {
                                 self.index = 2
@@ -221,6 +222,8 @@ struct MainMenyView: View {
                     .clipShape(Capsule())
                     .padding(.horizontal)
                     .padding(.bottom, 40)
+                    .font(.custom("Chalkduster", size: 15))
+                    .foregroundColor(Color.white)
                     
                 }
             }
@@ -267,6 +270,7 @@ struct MainView: View{
                         
                         Text("Credits: Luca\nDaniel, Calle & Hampus")
                             .foregroundColor(.white)
+                            .font(.custom("Chalkduster", size: 15))
                             .frame(width: 180, height: 80)
                         
                     }

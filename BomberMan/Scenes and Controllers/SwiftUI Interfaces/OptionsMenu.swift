@@ -31,7 +31,9 @@ struct OptionsMenu: View {
                         .padding(.bottom, 110)
                         .padding(.leading, 25)
                         .padding(.trailing, 25)
-                        .opacity(0.5)
+                        .opacity(0.2)
+                        
+                        
                     
                     VStack{
                         CustomTopTabBar(tabIndex: $tabIndex)
@@ -58,6 +60,8 @@ struct OptionsMenu: View {
 
 struct CustomTopTabBar: View {
     @Binding var tabIndex: Int
+    
+    
     var body: some View {
         
         HStack(spacing: 20) {
@@ -68,6 +72,7 @@ struct CustomTopTabBar: View {
             Spacer()
         }
         .border(width: 1, edges: [.bottom], color: .black)
+        
         .padding()
     }
     
@@ -82,7 +87,8 @@ struct TabBarButton: View {
     var body: some View {
         Text(text)
             .fontWeight(isSelected ? .heavy : .regular)
-            .font(.custom("Avenir", size: 16))
+            .font(.custom("Chalkduster", size: 16))
+            .foregroundColor(Color.white)
             .padding(.bottom,10)
             .border(width: isSelected ? 2 : 1, edges: [.bottom], color: .black)
     }
@@ -152,12 +158,18 @@ struct OptionsTab: View{
                         SoundManager.playBGM(bgmString: SoundManager.mainMenuBGM)
                     }
                 })
+                
             Toggle("Sound Effects", isOn: self.$options.areSFXOn)
+                
             Toggle("Camera Shake", isOn: self.$options.isScreenShakeOn)
+                
             
         }
+        .toggleStyle(myCheckbox(width: 100, height: 50))
         .padding()
         .scaledToFit()
+        .font(.custom("Chalkduster", size: 20))
+        .foregroundColor(Color.white)
         .onDisappear(perform: {
             dataReaderWriter.saveUserData()
         })
@@ -186,8 +198,8 @@ struct StatisticsTab: View{
                     HStack{
                         
                         Text("\(key) \(value)").listRowBackground(Color.clear)
-                            .foregroundColor(.white)
-                            .font(.custom("Avenir", size: 30))
+                            .font(.custom("Chalkduster", size: 25))
+                            .foregroundColor(Color.white)
                         
                     }
                 }
