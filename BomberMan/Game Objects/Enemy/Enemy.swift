@@ -141,7 +141,7 @@ class Enemy: SKSpriteNode {
     private func spawnCorpse(){
         
         corpseTexture.position = self.position
-        corpseTexture.zPosition = -99
+        corpseTexture.zPosition = -97
         if corpseTexture.parent == nil {
             
             GameViewController.currentGameScene?.bombsNode!.addChild(corpseTexture)
