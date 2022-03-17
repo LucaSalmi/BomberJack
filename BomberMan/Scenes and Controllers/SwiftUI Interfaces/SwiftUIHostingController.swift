@@ -67,6 +67,14 @@ struct ContentView: View {
         else {
             MusicView(bgmString: SoundManager.mainMenuBGM)
             MainMenyView(result: result, startGame: $startGame)
+                .onAppear(perform: {
+                    guard let currentGameScene = GameViewController.currentGameScene else { return }
+                    GameViewController.currentGameScene = nil
+                    let stopSceneDelay: Double = 1
+                    DispatchQueue.main.asyncAfter(deadline: .now() + stopSceneDelay){
+                        currentGameScene.stopScene()
+                    }
+                })
         }
     }
 }

@@ -58,6 +58,8 @@ struct PauseMenu: View {
                             //Text("GAME OVER")
                             
                             Button(action: {
+                                GameViewController.currentGameScene!.stopScene()
+                                
                                 let levelNumber = UserData.currentLevel
                                 GameScene.viewController!.presentScene("GameScene\(levelNumber)")
                                 
@@ -114,6 +116,7 @@ struct PauseMenu: View {
                         
                         
                         Button(action: {
+
                             startGame = false
                             isPaused = false
                             swiftUICommunicator.isGameOver = false
@@ -121,6 +124,7 @@ struct PauseMenu: View {
                             GameViewController.currentGameScene?.player?.resetInventory()
                             GameViewController.currentGameScene?.isGameOver = false
                             dataReaderWriter.updateDatabase()
+                            
                         }, label: {
                             
                             Label("Main Menu", systemImage: "house")

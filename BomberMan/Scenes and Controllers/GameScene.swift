@@ -486,6 +486,12 @@ class GameScene: SKScene {
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
         
+        guard let currentGameScene = GameViewController.currentGameScene else { return }
+        
+        if currentGameScene != self {
+            return
+        }
+        
         if cutsceneRunning {
             updateCutscene()
             return
@@ -612,6 +618,9 @@ class GameScene: SKScene {
         Bomb.bombs.removeAll()
         Enemy.enemies.removeAll()
         ExplosionSettings.explosionsArray.removeAll()
+        if lightNode != nil {
+            lightNode = nil
+        }
     }
     
     //checks the current level´s victory condition and, if met, brings the player to the next level.
