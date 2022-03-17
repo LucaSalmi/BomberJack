@@ -164,6 +164,12 @@ class RushEnemy: Enemy {
     
     override func collision(with other: SKNode?) {
         
+        if other is Player {
+            if !GameViewController.currentGameScene!.player!.isShielded {
+                SoundManager.playSFX(SoundManager.bloodSplatterSFX)
+            }
+        }
+        
         if !isCharging || other is TrapBomb {
             super.collision(with: other)
         }
