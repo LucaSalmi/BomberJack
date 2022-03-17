@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "floating_dude.png",
+      "filename" : "player_floating.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
