@@ -101,21 +101,6 @@ struct PauseMenu: View {
                         }
                         
                         Button(action: {
-                            if GameViewController.currentGameScene?.actionManager != nil {
-                                isPaused = false
-                                GameScene.gameState = .play
-                                GameViewController.currentGameScene?.actionManager.handleInput(id: MyViewSettings.actionNextLevel, isPaused: isPaused)
-                            }
-                        }, label: {
-                            
-                            
-                            Label("Next Level", systemImage: "arrowshape.turn.up.right")
-                            
-                            
-                        }).padding(.vertical, 10)
-                        
-                        
-                        Button(action: {
 
                             startGame = false
                             isPaused = false
