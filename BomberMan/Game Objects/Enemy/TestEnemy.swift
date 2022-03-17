@@ -161,6 +161,8 @@ class TestEnemy: Enemy {
         //uses a different sword texture based on the direction the enemy is facing
         self.enemyTexture.texture = SKTexture(imageNamed: getAttackTexture())
         
+        SoundManager.playSFX(SoundManager.swordImpactSFX)
+        
     }
     
     func getAttackTexture() -> String{

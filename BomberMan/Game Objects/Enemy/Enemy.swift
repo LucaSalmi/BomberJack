@@ -174,19 +174,19 @@ class Enemy: SKSpriteNode {
         switch objDirection {
             
         case .forward:
-            if enemyFrame > upAnimations.count - 1{
+            if enemyFrame >= upAnimations.count{
                 enemyFrame = 0
             }
         case .backward:
-            if enemyFrame > downAnimations.count - 1{
+            if enemyFrame >= downAnimations.count{
                 enemyFrame = 0
             }
         case .left:
-            if enemyFrame > leftAnimations.count - 1{
+            if enemyFrame >= leftAnimations.count{
                 enemyFrame = 0
             }
         case .right:
-            if enemyFrame > rightAnimations.count - 1{
+            if enemyFrame >= rightAnimations.count{
                 enemyFrame = 0
             }
         }
@@ -208,6 +208,11 @@ class Enemy: SKSpriteNode {
             if self is TestEnemy && !skipFrame{
                 
                 enemyFrame += 1
+                
+            }else if self is RushEnemy{
+                
+                enemyFrame += 1
+                
             }
             frameLimiter = 1
             skipFrame.toggle()

@@ -71,35 +71,6 @@ extension Animatable{
         
     }
     
-//    func setSwordEnemyAnimations(enemy: String){
-//
-//        let actionForward: SKAction = SKAction.animate(with: [
-//            SKTexture(imageNamed: "\(enemy)_up_1"),
-//            SKTexture(imageNamed: "\(enemy)_up_1")
-//        ], timePerFrame: 0.2)
-//        upAnimations.append(SKAction.repeatForever(actionForward))
-//
-//        let actionBackward: SKAction = SKAction.animate(with: [
-//            SKTexture(imageNamed: "\(enemy)_down_1"),
-//            SKTexture(imageNamed: "\(enemy)_down_1")
-//        ], timePerFrame: 0.2)
-//        downAnimations.append(SKAction.repeatForever(actionBackward))
-//
-//        let actionLeft: SKAction = SKAction.animate(with: [
-//            SKTexture(imageNamed: "\(enemy)_left_1"),
-//            SKTexture(imageNamed: "\(enemy)_left_1")
-//        ], timePerFrame: 0.2)
-//        leftAnimations.append(SKAction.repeatForever(actionLeft))
-//
-//        let actionRight: SKAction = SKAction.animate(with: [
-//            SKTexture(imageNamed: "\(enemy)_right_1"),
-//            SKTexture(imageNamed: "\(enemy)_right_1")
-//        ], timePerFrame: 0.2)
-//        rightAnimations.append(SKAction.repeatForever(actionRight))
-//
-//
-//    }
-    
     func setRushEnemyAnimations(characterAnimationNames: [String]){
         
         

@@ -42,7 +42,7 @@ struct PauseMenu: View {
                     
                     Text(GameScene.gameOverInsult)
                         .fixedSize(horizontal: false, vertical: true)
-                        .frame(width: 470, height: 50)
+                        .frame(width: 440, height: 50)
                 }
                 
                 
@@ -58,6 +58,8 @@ struct PauseMenu: View {
                             //Text("GAME OVER")
                             
                             Button(action: {
+                                GameViewController.currentGameScene!.stopScene()
+                                
                                 let levelNumber = UserData.currentLevel
                                 GameScene.viewController!.presentScene("GameScene\(levelNumber)")
                                 
@@ -99,21 +101,7 @@ struct PauseMenu: View {
                         }
                         
                         Button(action: {
-                            if GameViewController.currentGameScene?.actionManager != nil {
-                                isPaused = false
-                                GameScene.gameState = .play
-                                GameViewController.currentGameScene?.actionManager.handleInput(id: MyViewSettings.actionNextLevel, isPaused: isPaused)
-                            }
-                        }, label: {
-                            
-                            
-                            Label("Next Level", systemImage: "arrowshape.turn.up.right")
-                            
-                            
-                        }).padding(.vertical, 10)
-                        
-                        
-                        Button(action: {
+
                             startGame = false
                             isPaused = false
                             swiftUICommunicator.isGameOver = false
@@ -121,6 +109,7 @@ struct PauseMenu: View {
                             GameViewController.currentGameScene?.player?.resetInventory()
                             GameViewController.currentGameScene?.isGameOver = false
                             dataReaderWriter.updateDatabase()
+                            
                         }, label: {
                             
                             Label("Main Menu", systemImage: "house")
@@ -147,13 +136,14 @@ struct PauseMenu: View {
                                     }else{
                                         SoundManager.playBGM(bgmString: SoundManager.inGameBGM)
                                     }
-                                }).toggleStyle(myCheckbox())
+                                })
                                 
                             
-                            Toggle("Sound Effects", isOn: self.$options.areSFXOn).toggleStyle(myCheckbox())
-                            Toggle("Camera Shake", isOn: self.$options.isScreenShakeOn).toggleStyle(myCheckbox())
+                            Toggle("Sound Effects", isOn: self.$options.areSFXOn)
+                            Toggle("Camera Shake", isOn: self.$options.isScreenShakeOn)
                             
                         }
+                        .toggleStyle(myCheckbox(width: 65, height: 40))
                         .padding(.leading, 20)
                         .frame(width: 200, height: 200, alignment: .center)
                         
@@ -177,7 +167,8 @@ struct PauseMenu: View {
 }
 
 struct myCheckbox: ToggleStyle{
-    var text: String = ""
+    var width: CGFloat
+    var height: CGFloat
     
     func makeBody(configuration: Configuration) -> some View {
         HStack{
@@ -190,7 +181,9 @@ struct myCheckbox: ToggleStyle{
                 Spacer()
                 Image(configuration.isOn ? "button_on" : "button_off")
                     .resizable()
-                    .frame(width: 65, height: 40, alignment: .trailing)
+                    .scaledToFit()
+                    .frame(width: width, height: height, alignment: .trailing)
+                    
                 }
             }
             

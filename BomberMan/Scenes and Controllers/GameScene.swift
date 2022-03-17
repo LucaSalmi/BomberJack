@@ -103,6 +103,7 @@ class GameScene: SKScene {
         darknessMaskNode!.position = player!.position
         
         isCaveLevel = true
+        
     }
     
     // decides a victory conditions based on what level is loaded
@@ -119,20 +120,15 @@ class GameScene: SKScene {
             
         case 2:
             victoryCondition = VictoryConditions.openDoor
-//            let newScale: SKAction = SKAction.scale(by: 0.6, duration: 1)
-//            Player.camera!.run(newScale)
-//
+
         case 3:
-            victoryCondition = VictoryConditions.openDoorAndKillAll
+            victoryCondition = VictoryConditions.openDoor
             
         case 4:
             victoryCondition = VictoryConditions.killAll
             
         default:
             victoryCondition = VictoryConditions.killAll
-//            Player.camera!.setScale(CGFloat(0.42))
-//            let newScale: SKAction = SKAction.scale(by: 1.66, duration: 1)
-//            Player.camera!.run(newScale)
             
         }
     }
@@ -187,7 +183,6 @@ class GameScene: SKScene {
                 guard tile.userData?.object(forKey: "tree") != nil || tile.userData?.object(forKey: "fence") != nil else {continue}
                 
                 var breakable: BreakableObject
-                //eventualy different types of breakable obj???
                 
                 if tile.userData?.value(forKey: "tree") != nil{
                     
@@ -447,14 +442,14 @@ class GameScene: SKScene {
                     player!.playerTexture.position.y = player!.position.y + PlayerSettings.textureOffset
                 }
                 
-//                if tile.userData?.object(forKey: "playerCutscene") != nil {
-//                    
-//                    playerCutscene = PlayerCutscene()
-//                    playerCutscene!.position = playerMap.centerOfTile(atColumn: column, row: row)
-//                    cutsceneRunning = true
-//                    addChild(playerCutscene!)
-//                    
-//                }
+                if tile.userData?.object(forKey: "playerCutscene") != nil {
+                    
+                    playerCutscene = PlayerCutscene()
+                    playerCutscene!.position = playerMap.centerOfTile(atColumn: column, row: row)
+                    cutsceneRunning = true
+                    addChild(playerCutscene!)
+                    
+                }
             }
         }
         
@@ -492,6 +487,12 @@ class GameScene: SKScene {
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
         
+        guard let currentGameScene = GameViewController.currentGameScene else { return }
+        
+        if currentGameScene != self {
+            return
+        }
+        
         if cutsceneRunning {
             updateCutscene()
             return
@@ -523,18 +524,9 @@ class GameScene: SKScene {
                 
                 endLevelCounter = 0
             }
-            
-            //Deallocate all nodes/children from the old scene
-//            self.removeAllChildren()
-//            self.removeAllActions()
-  //            self.stopScene()
-            
+                        
             SwiftUICommunicator.instance.setIsGameOver()
             
-            //Present a new instance of the scene
-//            let restartScene = "GameScene" + String(GameScene.viewController!.currentLevel)
-//            GameScene.viewController!.presentScene(restartScene)
-//            return
             
         }else{
             
@@ -627,6 +619,9 @@ class GameScene: SKScene {
         Bomb.bombs.removeAll()
         Enemy.enemies.removeAll()
         ExplosionSettings.explosionsArray.removeAll()
+        if lightNode != nil {
+            lightNode = nil
+        }
     }
     
     //checks the current level´s victory condition and, if met, brings the player to the next level.

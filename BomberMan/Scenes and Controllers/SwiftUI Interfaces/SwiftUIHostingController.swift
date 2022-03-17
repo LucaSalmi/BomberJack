@@ -32,6 +32,7 @@ struct ContentView: View {
     var result: FetchedResults<Statistics>
     
     init(){
+        
         let sortingPredicate = [NSSortDescriptor(keyPath: \Statistics.killedEnemies, ascending: false)]
         
         let animation = Animation.default
@@ -39,6 +40,7 @@ struct ContentView: View {
         swiftUICommunicator = SwiftUICommunicator.instance
         
         _result = FetchRequest<Statistics>(sortDescriptors: sortingPredicate, animation: animation)
+        
     }
     
     var body: some View {
@@ -51,8 +53,6 @@ struct ContentView: View {
                     
                     
                         PauseMenu(startGame: $startGame, isPaused: $isPaused)
-                        //.animation(.easeIn, value: true)
-                        //.transition(AnyTransition.opacity.animation(.easeIn(duration: 5)))
                         .zIndex(2)
                     
                         
@@ -66,6 +66,14 @@ struct ContentView: View {
         else {
             MusicView(bgmString: SoundManager.mainMenuBGM)
             MainMenyView(result: result, startGame: $startGame)
+                .onAppear(perform: {
+                    guard let currentGameScene = GameViewController.currentGameScene else { return }
+                    GameViewController.currentGameScene = nil
+                    let stopSceneDelay: Double = 1
+                    DispatchQueue.main.asyncAfter(deadline: .now() + stopSceneDelay){
+                        currentGameScene.stopScene()
+                    }
+                })
         }
     }
 }
@@ -182,7 +190,7 @@ struct MainMenyView: View {
                             .fontWeight(.bold)
                             .padding(.vertical, 10)
                             .padding(.horizontal, 20)
-                            .background(.black.opacity(self.index == 0 ? 1 : 0))
+                            .background(.black.opacity(self.index == 0 ? 0.5 : 0))
                             .clipShape(Capsule())
                             .onTapGesture {
                                 self.index = 0
@@ -193,7 +201,7 @@ struct MainMenyView: View {
                             .fontWeight(.bold)
                             .padding(.vertical, 10)
                             .padding(.horizontal, 20)
-                            .background(.black.opacity(self.index == 1 ? 1 : 0))
+                            .background(.black.opacity(self.index == 1 ? 0.5 : 0))
                             .clipShape(Capsule())
                             .onTapGesture {
                                 self.index = 1
@@ -204,7 +212,7 @@ struct MainMenyView: View {
                             .fontWeight(.bold)
                             .padding(.vertical, 10)
                             .padding(.horizontal, 20)
-                            .background(.black.opacity(self.index == 2 ? 1 : 0))
+                            .background(.black.opacity(self.index == 2 ? 0.5 : 0))
                             .clipShape(Capsule())
                             .onTapGesture {
                                 self.index = 2
@@ -214,6 +222,8 @@ struct MainMenyView: View {
                     .clipShape(Capsule())
                     .padding(.horizontal)
                     .padding(.bottom, 40)
+                    .font(.custom("Chalkduster", size: 15))
+                    .foregroundColor(Color.white)
                     
                 }
             }
@@ -260,6 +270,7 @@ struct MainView: View{
                         
                         Text("Credits: Luca\nDaniel, Calle & Hampus")
                             .foregroundColor(.white)
+                            .font(.custom("Chalkduster", size: 15))
                             .frame(width: 180, height: 80)
                         
                     }
