@@ -45,6 +45,11 @@ extension GameScene: SKPhysicsContactDelegate{
                 
                 if nodeB is TestEnemy{
                     let enemy = nodeB as! TestEnemy
+                    
+                    if enemy.isTrapped{
+                        return
+                    }
+                    
                     enemy.setAttackPosition(with: nodeA!)
                     
                 }
@@ -103,6 +108,11 @@ extension GameScene: SKPhysicsContactDelegate{
                 if nodeA is TestEnemy{
                     
                     let enemy = nodeA as! TestEnemy
+                    
+                    if enemy.isTrapped{
+                        return
+                    }
+                    
                     enemy.setAttackPosition(with: nodeB!)
                     
                 }
