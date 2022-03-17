@@ -57,7 +57,15 @@ class ActionManagager{
             
     func placeBomb(id: Int){
         
-        if GameViewController.currentGameScene!.player!.isShielded || !GameScene.canUseTraps || Bomb.bombs.count > 2{
+        var bombCount: Int = 0
+        for bomb in Bomb.bombs{
+            
+            if bomb is StandardBomb{
+                bombCount += 1
+            }
+        }
+        
+        if GameViewController.currentGameScene!.player!.isShielded || !GameScene.canUseTraps || bombCount > 2{
             return
         }
         //stat change
