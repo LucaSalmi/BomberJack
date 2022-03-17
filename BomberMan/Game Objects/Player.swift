@@ -151,7 +151,6 @@ class Player: SKSpriteNode{
         GameViewController.currentGameScene!.run(SKAction.wait(forDuration: 1)) {
             deathParticle!.removeFromParent()
         }
-        SoundManager.playSFX(SoundManager.deathScreamSFX)
         
         //stat change
         UserData.numberOfDeaths += 1
@@ -165,6 +164,11 @@ class Player: SKSpriteNode{
         Bomb.bombs.removeAll()
         
         GameViewController.currentGameScene!.isGameOver = true
+        
+        let playerDeathSfxDelay = 0.5
+        DispatchQueue.main.asyncAfter(deadline: .now() + playerDeathSfxDelay){
+            SoundManager.playSFX(SoundManager.deathScreamSFX)
+        }
         
     }
     

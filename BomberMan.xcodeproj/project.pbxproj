@@ -20,6 +20,7 @@
 		33201EDD27BD352F003B4EB4 /* ObstacleObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33201EDC27BD352F003B4EB4 /* ObstacleObject.swift */; };
 		33250F4027CE073F0019AAB1 /* GameUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33250F3F27CE073F0019AAB1 /* GameUIView.swift */; };
 		332E186D27E35D2F00CEB8AF /* rush_start.wav in Resources */ = {isa = PBXBuildFile; fileRef = 332E186C27E35D2F00CEB8AF /* rush_start.wav */; };
+		332E186F27E35ED600CEB8AF /* sword_impact.wav in Resources */ = {isa = PBXBuildFile; fileRef = 332E186E27E35ED600CEB8AF /* sword_impact.wav */; };
 		334F89CD27CCCD6A007A1857 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334F89CC27CCCD6A007A1857 /* Event.swift */; };
 		334F89D227CCD8E9007A1857 /* NeedBombsEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334F89D127CCD8E9007A1857 /* NeedBombsEvent.swift */; };
 		334F89D527CCDAE3007A1857 /* Dialogue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334F89D427CCDAE3007A1857 /* Dialogue.swift */; };
@@ -98,6 +99,7 @@
 		33201EDC27BD352F003B4EB4 /* ObstacleObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObstacleObject.swift; sourceTree = "<group>"; };
 		33250F3F27CE073F0019AAB1 /* GameUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameUIView.swift; sourceTree = "<group>"; };
 		332E186C27E35D2F00CEB8AF /* rush_start.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = rush_start.wav; sourceTree = "<group>"; };
+		332E186E27E35ED600CEB8AF /* sword_impact.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sword_impact.wav; sourceTree = "<group>"; };
 		334F89CC27CCCD6A007A1857 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		334F89D127CCD8E9007A1857 /* NeedBombsEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NeedBombsEvent.swift; sourceTree = "<group>"; };
 		334F89D427CCDAE3007A1857 /* Dialogue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dialogue.swift; sourceTree = "<group>"; };
@@ -343,6 +345,7 @@
 			isa = PBXGroup;
 			children = (
 				332E186C27E35D2F00CEB8AF /* rush_start.wav */,
+				332E186E27E35ED600CEB8AF /* sword_impact.wav */,
 				3354DF2327BF847F0019D640 /* explosion1.wav */,
 				3310B62D27D9F8BD000962CB /* loot_bombs.wav */,
 				3310B62927D9F6B8000962CB /* loot_keys.wav */,
@@ -470,6 +473,7 @@
 				33FEE19E27BE96DF0036BC22 /* UIScene.sks in Resources */,
 				3312D2A027C60A28004C0EEF /* EnemyDeath.sks in Resources */,
 				33E8104E27C8355F001D52EE /* in_game_bgm.mp3 in Resources */,
+				332E186F27E35ED600CEB8AF /* sword_impact.wav in Resources */,
 				33CC323627C5387000856D82 /* rush_impact.wav in Resources */,
 				C815F79D27B400490084DE7A /* Main.storyboard in Resources */,
 				3310B62A27D9F6B8000962CB /* loot_keys.wav in Resources */,
