@@ -42,7 +42,7 @@ struct PauseMenu: View {
                     
                     Text(GameScene.gameOverInsult)
                         .fixedSize(horizontal: false, vertical: true)
-                        .frame(width: 470, height: 50)
+                        .frame(width: 440, height: 50)
                 }
                 
                 

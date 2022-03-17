@@ -31,7 +31,9 @@ struct OptionsMenu: View {
                         .padding(.bottom, 110)
                         .padding(.leading, 25)
                         .padding(.trailing, 25)
-                        .opacity(0.5)
+                        .opacity(0.2)
+                        
+                        
                     
                     VStack{
                         CustomTopTabBar(tabIndex: $tabIndex)
@@ -58,6 +60,8 @@ struct OptionsMenu: View {
 
 struct CustomTopTabBar: View {
     @Binding var tabIndex: Int
+    
+    
     var body: some View {
         
         HStack(spacing: 20) {
@@ -68,6 +72,7 @@ struct CustomTopTabBar: View {
             Spacer()
         }
         .border(width: 1, edges: [.bottom], color: .black)
+        
         .padding()
     }
     
