@@ -233,6 +233,8 @@ class RushEnemy: Enemy {
             direction = rushDirection
             
             position = centerInCurrentTile()
+            
+            SoundManager.playSFX(SoundManager.rushStartSFX)
         }
     }
     
