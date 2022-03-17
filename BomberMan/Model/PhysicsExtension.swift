@@ -51,6 +51,7 @@ extension GameScene: SKPhysicsContactDelegate{
                 
                 if !player.isShielded{
                     
+                    SoundManager.playSFX("blood_splatter")
                     player.death(player: nodeA!)
                     
                 }
@@ -106,6 +107,7 @@ extension GameScene: SKPhysicsContactDelegate{
                 
                 if !player!.isShielded{
                     
+                    SoundManager.playSFX("blood_splatter")
                     player!.death(player: nodeB!)
                     
                 }
