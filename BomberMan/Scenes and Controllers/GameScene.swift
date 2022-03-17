@@ -119,9 +119,7 @@ class GameScene: SKScene {
             
         case 2:
             victoryCondition = VictoryConditions.openDoor
-//            let newScale: SKAction = SKAction.scale(by: 0.6, duration: 1)
-//            Player.camera!.run(newScale)
-//
+
         case 3:
             victoryCondition = VictoryConditions.openDoor
             
@@ -130,9 +128,6 @@ class GameScene: SKScene {
             
         default:
             victoryCondition = VictoryConditions.killAll
-//            Player.camera!.setScale(CGFloat(0.42))
-//            let newScale: SKAction = SKAction.scale(by: 1.66, duration: 1)
-//            Player.camera!.run(newScale)
             
         }
     }
@@ -187,7 +182,6 @@ class GameScene: SKScene {
                 guard tile.userData?.object(forKey: "tree") != nil || tile.userData?.object(forKey: "fence") != nil else {continue}
                 
                 var breakable: BreakableObject
-                //eventualy different types of breakable obj???
                 
                 if tile.userData?.value(forKey: "tree") != nil{
                     
@@ -447,14 +441,14 @@ class GameScene: SKScene {
                     player!.playerTexture.position.y = player!.position.y + PlayerSettings.textureOffset
                 }
                 
-//                if tile.userData?.object(forKey: "playerCutscene") != nil {
-//                    
-//                    playerCutscene = PlayerCutscene()
-//                    playerCutscene!.position = playerMap.centerOfTile(atColumn: column, row: row)
-//                    cutsceneRunning = true
-//                    addChild(playerCutscene!)
-//                    
-//                }
+                if tile.userData?.object(forKey: "playerCutscene") != nil {
+                    
+                    playerCutscene = PlayerCutscene()
+                    playerCutscene!.position = playerMap.centerOfTile(atColumn: column, row: row)
+                    cutsceneRunning = true
+                    addChild(playerCutscene!)
+                    
+                }
             }
         }
         
@@ -523,18 +517,9 @@ class GameScene: SKScene {
                 
                 endLevelCounter = 0
             }
-            
-            //Deallocate all nodes/children from the old scene
-//            self.removeAllChildren()
-//            self.removeAllActions()
-  //            self.stopScene()
-            
+                        
             SwiftUICommunicator.instance.setIsGameOver()
             
-            //Present a new instance of the scene
-//            let restartScene = "GameScene" + String(GameScene.viewController!.currentLevel)
-//            GameScene.viewController!.presentScene(restartScene)
-//            return
             
         }else{
             
