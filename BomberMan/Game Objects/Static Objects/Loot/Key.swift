@@ -21,6 +21,8 @@ class Key: LootObject {
         super.init(texture, .white, (GameScene.tileSize)!)
         name = "key object"
         zPosition = 50
+        
+        lightingBitMask = 1
     }
     override func collision(loot: SKNode?) {
         print("loot collision key")
