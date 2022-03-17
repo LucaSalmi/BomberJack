@@ -25,15 +25,23 @@ struct SideViewMapMenu: View {
                 //ROW 1
                 HStack(){
                     
-                    //Level 2 Button
-                    LevelButtonView(buttonID: 2, startGame: $startGame)
-                        .opacity(!WorldMapAnimation.instance.isAnimating || UserData.lastSavedLevel > 2 ? 1 : 0)
-                        .padding(.leading, 175)
+                    let level2ButtonID = 2
+                    if level2ButtonID <= UserData.lastSavedLevel {
+                        //Level 2 Button
+                        LevelButtonView(buttonID: level2ButtonID, startGame: $startGame)
+                            .opacity(!WorldMapAnimation.instance.isAnimating || UserData.lastSavedLevel > level2ButtonID ? 1 : 0)
+                            .padding(.leading, 125)
+                    }
                     
-                    //Level 3 Button
-                    LevelButtonView(buttonID: 3, startGame: $startGame)
-                        .opacity(!WorldMapAnimation.instance.isAnimating || UserData.lastSavedLevel > 3 ? 1 : 0)
-                        .padding(.leading, 75)
+                    
+                    let level3ButtonID = 3
+                    if level3ButtonID <= UserData.lastSavedLevel {
+                        //Level 3 Button
+                        LevelButtonView(buttonID: level3ButtonID, startGame: $startGame)
+                            .opacity(!WorldMapAnimation.instance.isAnimating || UserData.lastSavedLevel > level3ButtonID ? 1 : 0)
+                            .padding(.leading, 75)
+                    }
+                   
                     
                     
                 }
@@ -42,15 +50,23 @@ struct SideViewMapMenu: View {
                 //ROW 3
                 HStack(){
                     
-                    //Level 1 Button
-                    LevelButtonView(buttonID: 1, startGame: $startGame)
-                        .opacity(!WorldMapAnimation.instance.isAnimating || UserData.lastSavedLevel > 1 ? 1 : 0)
-                        .padding(.leading, 100)
+                    let level1ButtonID = 1
+                    if level1ButtonID <= UserData.lastSavedLevel {
+                        //Level 1 Button
+                        LevelButtonView(buttonID: level1ButtonID, startGame: $startGame)
+                            .opacity(!WorldMapAnimation.instance.isAnimating || UserData.lastSavedLevel > level1ButtonID ? 1 : 0)
+                            .padding(.leading, 100)
+                    }
                     
-                    //Level 4 Button
-                    LevelButtonView(buttonID: 4, startGame: $startGame)
-                        .opacity(!WorldMapAnimation.instance.isAnimating || UserData.lastSavedLevel > 4 ? 1 : 0)
-                        .padding(.leading, 175)
+                    let level4ButtonID = 4
+                    if level4ButtonID <= UserData.lastSavedLevel {
+                        //Level 4 Button
+                        LevelButtonView(buttonID: level4ButtonID, startGame: $startGame)
+                            .opacity(!WorldMapAnimation.instance.isAnimating || UserData.lastSavedLevel > level4ButtonID  ? 1 : 0)
+                            .padding(.leading, 175)
+                    }
+                    
+                    
                     
                 }
                 .padding(40)
@@ -89,7 +105,8 @@ struct LevelButtonView: View {
         } label: {
             Text("level \(buttonID)")
         }
-        .foregroundColor(.white)
+        .foregroundColor(Color.black)
+        .font(.custom("Chalkduster", size: 18))
         .font(Font.body.bold())
         .font(.largeTitle)
         .padding(.leading, 20)
