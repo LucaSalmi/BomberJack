@@ -208,8 +208,11 @@ class Enemy: SKSpriteNode {
             if self is TestEnemy && !skipFrame{
                 
                 enemyFrame += 1
-            }else{
+                
+            }else if self is RushEnemy{
+                
                 enemyFrame += 1
+                
             }
             frameLimiter = 1
             skipFrame.toggle()
