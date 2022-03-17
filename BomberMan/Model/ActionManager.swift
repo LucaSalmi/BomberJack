@@ -96,7 +96,6 @@ class ActionManagager{
             //Unique logarithm for this event goes here
             let noBombsDialogue = NoBombsDialogue()
             gameScene.currentDialogue = noBombsDialogue
-            //print(NeedBombsDialogue)
             gameScene.addChild(noBombsDialogue)
             return
         }
