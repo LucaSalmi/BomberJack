@@ -441,14 +441,14 @@ class GameScene: SKScene {
                     player!.playerTexture.position.y = player!.position.y + PlayerSettings.textureOffset
                 }
                 
-                if tile.userData?.object(forKey: "playerCutscene") != nil {
-                    
-                    playerCutscene = PlayerCutscene()
-                    playerCutscene!.position = playerMap.centerOfTile(atColumn: column, row: row)
-                    cutsceneRunning = true
-                    addChild(playerCutscene!)
-                    
-                }
+//                if tile.userData?.object(forKey: "playerCutscene") != nil {
+//                    
+//                    playerCutscene = PlayerCutscene()
+//                    playerCutscene!.position = playerMap.centerOfTile(atColumn: column, row: row)
+//                    cutsceneRunning = true
+//                    addChild(playerCutscene!)
+//                    
+//                }
             }
         }
         
