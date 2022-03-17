@@ -20,17 +20,16 @@ struct SideViewMapMenu: View {
             
             Spacer()
             
-            VStack{
+            VStack(alignment: .leading){
                 
                 //ROW 1
-                HStack(){
+                HStack{
                     
                     let level2ButtonID = 2
                     if level2ButtonID <= UserData.lastSavedLevel {
                         //Level 2 Button
                         LevelButtonView(buttonID: level2ButtonID, startGame: $startGame)
                             .opacity(!WorldMapAnimation.instance.isAnimating || UserData.lastSavedLevel > level2ButtonID ? 1 : 0)
-                            .padding(.leading, 0)
                     }
                     
                     
@@ -39,23 +38,20 @@ struct SideViewMapMenu: View {
                         //Level 3 Button
                         LevelButtonView(buttonID: level3ButtonID, startGame: $startGame)
                             .opacity(!WorldMapAnimation.instance.isAnimating || UserData.lastSavedLevel > level3ButtonID ? 1 : 0)
-                            .padding(.leading, 50)
+                            .padding(.leading, 80)
                     }
-                   
-                    
-                    
                 }
-                .padding(10)
+                .padding(.leading, 30)
+                .padding(.bottom, 40)
                 
                 //ROW 3
-                HStack(){
+                HStack{
                     
                     let level1ButtonID = 1
                     if level1ButtonID <= UserData.lastSavedLevel {
                         //Level 1 Button
                         LevelButtonView(buttonID: level1ButtonID, startGame: $startGame)
                             .opacity(!WorldMapAnimation.instance.isAnimating || UserData.lastSavedLevel > level1ButtonID ? 1 : 0)
-                            .padding(.leading, 100)
                     }
                     
                     let level4ButtonID = 4
@@ -63,16 +59,17 @@ struct SideViewMapMenu: View {
                         //Level 4 Button
                         LevelButtonView(buttonID: level4ButtonID, startGame: $startGame)
                             .opacity(!WorldMapAnimation.instance.isAnimating || UserData.lastSavedLevel > level4ButtonID  ? 1 : 0)
-                            .padding(.leading, 200)
                             .padding(.bottom, 10)
+                            .padding(.leading, 200)
                     }
                     
                     
                     
                 }
-                .padding(40)
+                .padding(.top, 40)
             }
-            .padding(25)
+            .padding(.leading, 170
+        )
             Spacer()
             
         }
@@ -111,7 +108,6 @@ struct LevelButtonView: View {
         .font(.custom("Chalkduster", size: 18))
         .font(Font.body.bold())
         .font(.largeTitle)
-        .padding(.leading, 20)
         .opacity(checkLevelButton(id: buttonID) ? 1 : 0)
     }
     
