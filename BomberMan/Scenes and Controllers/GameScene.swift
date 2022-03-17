@@ -103,6 +103,7 @@ class GameScene: SKScene {
         darknessMaskNode!.position = player!.position
         
         isCaveLevel = true
+        
     }
     
     // decides a victory conditions based on what level is loaded
