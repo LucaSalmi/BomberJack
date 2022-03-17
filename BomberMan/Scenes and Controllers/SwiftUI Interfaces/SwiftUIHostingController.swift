@@ -32,6 +32,7 @@ struct ContentView: View {
     var result: FetchedResults<Statistics>
     
     init(){
+        
         let sortingPredicate = [NSSortDescriptor(keyPath: \Statistics.killedEnemies, ascending: false)]
         
         let animation = Animation.default
