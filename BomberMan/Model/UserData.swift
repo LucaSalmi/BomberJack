@@ -66,7 +66,7 @@ class dataReaderWriter{
             DefaultKeys.defaultData.set(UserData.lastSavedLevel, forKey: DefaultKeys.lastPlayedLevelKey)
             
         }else{
-            
+            UserData.lastSavedLevel = UserData.currentLevel
             DefaultKeys.defaultData.set(UserData.currentLevel, forKey: DefaultKeys.lastPlayedLevelKey)
         }
     }

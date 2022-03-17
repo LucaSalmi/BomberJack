@@ -53,8 +53,6 @@ struct ContentView: View {
                     
                     
                         PauseMenu(startGame: $startGame, isPaused: $isPaused)
-                        //.animation(.easeIn, value: true)
-                        //.transition(AnyTransition.opacity.animation(.easeIn(duration: 5)))
                         .zIndex(2)
                     
                         
